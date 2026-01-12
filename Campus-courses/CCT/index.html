@@ -1,0 +1,277 @@
+<div id="college-portal-root">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <div class="portal-container">
+    <div class="course-grid" id="course-grid"></div>
+  </div>
+</div>
+
+<style>
+  #college-portal-root {
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
+    padding: 60px 20px;
+    color: #1e293b;
+  }
+  .portal-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 650px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .course-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #2563eb;
+  }
+
+  .course-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #0f172a;
+    min-height: 3.2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-row {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #64748b;
+    width: 100%;
+  }
+  .intake-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+
+  .fee-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 20px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+
+  .course-card:hover .fee-section {
+    background-color: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .fee-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fee-label {
+    font-size: 0.65rem;
+    color: #475569;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fee-value {
+    font-weight: 800;
+    color: #1e293b;
+    font-size: 1rem;
+  }
+
+  .test-score-section {
+    width: 100%;
+  }
+  .test-score-section h4 {
+    padding-bottom: 12px;
+    font-size: 0.75rem;
+    color: #2b2c2e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .score-val {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  .score-name {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .btn-detail {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+  .btn-detail:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+  }
+</style>
+
+<script>
+  const courses = [
+    {
+      name: "BA (Honours) in Business",
+      duration: "3 Years",
+      tuition: "€8,600",
+      scores: { ielts: "6.0", pte: "51.6", det: "105", toefl: "79" },
+      url: "https://www.cct.ie/course/bachelor-of-arts-honours-in-business/",
+    },
+    {
+      name: "MA in International Business",
+      duration: "14 Months",
+      tuition: "€12,000",
+      scores: { ielts: "6.5", pte: "58.5", det: "120", toefl: "87" },
+      url: "https://www.cct.ie/course/ma-international-business/",
+    },
+    {
+      name: "BSc (Hons) in Computing & IT",
+      duration: "4 Years",
+      tuition: "€8,600",
+      scores: { ielts: "6.0", pte: "51.6", det: "105", toefl: "79" },
+      url: "https://www.cct.ie/course/bachelor-of-science-honours-in-computing-and-it/",
+    },
+    {
+      name: "MSc in Applied Software Development",
+      duration: "14 Months",
+      tuition: "€14,000",
+      scores: { ielts: "6.5", pte: "58.5", det: "120", toefl: "87" },
+      url: "https://www.cct.ie/course/msc-in-applied-software-development/",
+    },
+    {
+      name: "MSc in Cybersecurity",
+      duration: "14 Months",
+      tuition: "€14,000",
+      scores: { ielts: "6.5", pte: "58.5", det: "120", toefl: "87" },
+      url: "https://www.cct.ie/course/msc-in-cybersecurity/",
+    },
+    {
+      name: "MSc in Computing",
+      duration: "14 Months",
+      tuition: "€14,000",
+      scores: { ielts: "6.5", pte: "58.5", det: "120", toefl: "87" },
+      url: "https://www.cct.ie/course/msc-in-computing/",
+    },
+    {
+      name: "MSc in Data Analytics",
+      duration: "14 Months",
+      tuition: "€14,000",
+      scores: { ielts: "6.5", pte: "58.5", det: "120", toefl: "87" },
+      url: "https://www.cct.ie/course/msc-in-data-analytics/",
+    },
+  ];
+
+  const grid = document.getElementById("course-grid");
+
+  grid.innerHTML = courses
+    .map(
+      (course) => `
+    <div class="course-card">
+      <h3 class="course-title">${course.name}</h3>
+      
+      <div class="info-row">
+        <div class="intake-text">Intakes: <span>Feb / Sept</span></div>
+        <div class="duration-text">⌛ ${course.duration}</div>
+      </div>
+
+      <div class="fee-section">
+        <div class="fee-box">
+          <span class="fee-label">Application Fee</span>
+          <span class="fee-value">€50</span>
+        </div>
+        <div class="fee-box">
+          <span class="fee-label">Tuition Fee</span>
+          <span class="fee-value">${course.tuition}</span>
+        </div>
+      </div>
+
+      <div class="test-score-section">
+        <h4>📝 Test Scores</h4>
+        <div class="scores-grid">
+          <div class="score-item"><span class="score-val">${course.scores.ielts}</span><span class="score-name">IELTS</span></div>
+          <div class="score-item"><span class="score-val">${course.scores.pte}</span><span class="score-name">PTE</span></div>
+          <div class="score-item"><span class="score-val">${course.scores.det}</span><span class="score-name">DET</span></div>
+          <div class="score-item"><span class="score-val">${course.scores.toefl}</span><span class="score-name">TOEFL</span></div>
+        </div>
+      </div>
+
+      <a href="${course.url}" target="_blank" class="btn-detail">View Detail</a>
+    </div>
+  `
+    )
+    .join("");
+</script>

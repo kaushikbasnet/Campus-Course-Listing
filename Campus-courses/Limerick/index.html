@@ -1,0 +1,683 @@
+<div id="college-portal-root">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <div class="portal-container">
+    <div class="course-grid" id="course-grid"></div>
+  </div>
+</div>
+
+<style>
+  #college-portal-root {
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
+    padding: 20px 20px 60px 20px;
+    color: #1e293b;
+  }
+  .portal-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 650px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .course-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #0056b3;
+  }
+
+  .course-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #0f172a;
+    min-height: 3.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-row {
+    font-size: 0.82rem;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #64748b;
+    width: 100%;
+  }
+  .intake-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+  .gpa-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+
+  .fee-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+
+  .course-card:hover .fee-section {
+    background-color: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .fee-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fee-label {
+    font-size: 0.58rem;
+    color: #475569;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fee-value {
+    font-weight: 800;
+    color: #1e293b;
+    font-size: 0.88rem;
+  }
+
+  .test-score-section {
+    width: 100%;
+  }
+  .test-score-section h4 {
+    padding-bottom: 12px;
+    font-size: 0.72rem;
+    color: #2b2c2e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .score-val {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  .score-name {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .btn-detail {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+  .btn-detail:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+  }
+</style>
+
+<script>
+  const courses = [
+    {
+      name: "Master of Science - Public Health",
+      fee: "€14,300",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Health Informatics",
+      fee: "€20,600",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master's Degree - Interaction and Experience Design",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Engineering - Mechatronics",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - International Management and Global Business",
+      fee: "€19,692",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Mechanical Engineering",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Artificial Intelligence and Machine Learning",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Arts - Business Management",
+      fee: "€17,444",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Arts - Psychology",
+      fee: "€15,900",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Financial Services",
+      fee: "€18,622",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Engineering - Edge Computing",
+      fee: "€18,900",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Design for Health and Wellbeing",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Marketing, Consumption and Society",
+      fee: "€17,544",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Physiotherapy",
+      fee: "€24,828",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Work and Organisational Psychology",
+      fee: "€18,772",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Functional Foods and Product Development",
+      fee: "€18,000",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "60.00%",
+    },
+    {
+      name: "Master of Engineering - Computer Vision and AI",
+      fee: "€18,900",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "50.00%",
+    },
+    {
+      name: "Master of Science - Human Nutrition and Dietetics",
+      fee: "€24,314",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Business Analytics",
+      fee: "€19,478",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Mental Skills in Sports",
+      fee: "€12,754",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Professional Master of Education",
+      fee: "€9,954",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "MSc - Sustainable Resource Management Policy",
+      fee: "€15,600",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Project Management",
+      fee: "€17,444",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "MSc - Software Development (International Systems)",
+      fee: "€19,200",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Occupational Therapy",
+      fee: "€20,542",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Speech and Language Therapy",
+      fee: "€19,846",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Advanced Engineering Materials",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Work and Organisational Behaviour",
+      fee: "€18,622",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Risk Management and Insurance",
+      fee: "€18,622",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Psychological Science",
+      fee: "€15,700",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Applied Physics",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Aeronautical Engineering",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Advanced Healthcare Practice",
+      fee: "€13,738",
+      duration: "24 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Masters in International Entrepreneurship Management",
+      fee: "€17,444",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Digital Health Transformation",
+      fee: "€18,000",
+      duration: "18 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Arts - International Tourism",
+      fee: "€18,942",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Arts - Ethnochoreology",
+      fee: "€16,800",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Human Resource Management",
+      fee: "€18,622",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "60.00%",
+    },
+    {
+      name: "Master of Science - Sociology and Data Analytics",
+      fee: "€18,000",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "60.00%",
+    },
+    {
+      name: "Master of Science - Accounting",
+      fee: "€18,000",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Civil Engineering",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Engineering - Cyber Security",
+      fee: "€18,800",
+      duration: "12 months",
+      i: "6.6",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Data Science and Statistical Learning",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Software Engineering",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+    {
+      name: "Master of Science - Biomedical Device Materials",
+      fee: "€19,200",
+      duration: "12 months",
+      i: "6.5",
+      t: "90",
+      p: "61",
+      d: "120",
+      gpa: "70.00%",
+    },
+  ];
+
+  const grid = document.getElementById("course-grid");
+
+  grid.innerHTML = courses
+    .map(
+      (course) => `
+    <div class="course-card">
+      <h3 class="course-title">${course.name}</h3>
+      
+      <div class="info-row">
+        <div class="intake-text">Intakes: <span>Jan / Sept</span></div>
+        <div class="duration-text">⌛ ${course.duration}</div>
+        <div class="gpa-text">Min GPA: <span>${course.gpa}</span></div>
+      </div>
+
+      <div class="fee-section">
+        <div class="fee-box">
+          <span class="fee-label">Application Fee</span>
+          <span class="fee-value">€50</span>
+        </div>
+        <div class="fee-box">
+          <span class="fee-label">Tuition Fee</span>
+          <span class="fee-value">${course.fee}</span>
+        </div>
+      </div>
+
+      <div class="test-score-section">
+        <h4>📝 Test Scores</h4>
+        <div class="scores-grid">
+          <div class="score-item"><span class="score-val">${course.i}</span><span class="score-name">IELTS</span></div>
+          <div class="score-item"><span class="score-val">${course.t}</span><span class="score-name">TOEFL</span></div>
+          <div class="score-item"><span class="score-val">${course.p}</span><span class="score-name">PTE</span></div>
+          <div class="score-item"><span class="score-val">${course.d}</span><span class="score-name">DET</span></div>
+        </div>
+      </div>
+
+      <a href="https://www.ul.ie/" target="_blank" class="btn-detail">View Detail</a>
+    </div>
+  `
+    )
+    .join("");
+</script>

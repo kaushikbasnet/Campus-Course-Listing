@@ -1,0 +1,408 @@
+<div id="college-portal-root">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <div class="portal-container">
+    <div class="course-grid" id="course-grid"></div>
+  </div>
+</div>
+
+<style>
+  #college-portal-root {
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
+    padding: 20px 20px 60px 20px;
+    color: #1e293b;
+  }
+  .portal-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 650px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .course-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6; /* Purple theme for Maynooth */
+  }
+
+  .course-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #0f172a;
+    min-height: 3.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-row {
+    font-size: 0.82rem;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #64748b;
+    width: 100%;
+  }
+  .gpa-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+  .intake-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+
+  .fee-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+
+  .course-card:hover .fee-section {
+    background-color: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .fee-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fee-label {
+    font-size: 0.58rem;
+    color: #475569;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fee-value {
+    font-weight: 800;
+    color: #1e293b;
+    font-size: 0.88rem;
+  }
+
+  .test-score-section {
+    width: 100%;
+  }
+  .test-score-section h4 {
+    padding-bottom: 12px;
+    font-size: 0.72rem;
+    color: #2b2c2e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .score-val {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  .score-name {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .btn-detail {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+  .btn-detail:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+  }
+</style>
+
+<script>
+  const courses = [
+    {
+      name: "MSc Robotics and Embedded AI",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Business", fee: "€18,000", duration: "12 Months" },
+    {
+      name: "MSc Data Science and Analytics",
+      fee: "€17,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Business Analytics", fee: "€18,000", duration: "12 Months" },
+    {
+      name: "MSc CS - Software Engineering",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MSc Computer Science (Applied)",
+      fee: "€18,000",
+      duration: "24 Months",
+    },
+    {
+      name: "MSc International Business",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Finance", fee: "€18,000", duration: "12 Months" },
+    { name: "Master of Education", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MSc IT Enabled Innovation",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MSc Immunology and Global Health",
+      fee: "€17,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Psychology", fee: "€17,000", duration: "12 Months" },
+    {
+      name: "MA Literatures of Engagement",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Mathematics", fee: "€17,000", duration: "12 Months" },
+    { name: "MA Geography", fee: "€16,000", duration: "12 Months" },
+    { name: "MSc Climate Change", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MSc Environmental Psychology",
+      fee: "€17,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MSocSc Rights and Social Policy",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "LLM International Business Law",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MA International Development",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MEd Adult & Community Education",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Design Innovation", fee: "€16,000", duration: "12 Months" },
+    { name: "MA Accounting (One Year)", fee: "€18,000", duration: "12 Months" },
+    { name: "MSocSc Social Work", fee: "€16,000", duration: "24 Months" },
+    { name: "MSc Digital Marketing", fee: "€18,000", duration: "12 Months" },
+    { name: "MSc Strategic Marketing", fee: "€18,000", duration: "12 Months" },
+    {
+      name: "MA Linguistics & Intercultural Studies",
+      fee: "€14,000",
+      duration: "12 Months",
+    },
+    { name: "MSc Business Management", fee: "€18,000", duration: "12 Months" },
+    { name: "MA Music Composition", fee: "€16,000", duration: "12 Months" },
+    { name: "MA Irish History", fee: "€16,000", duration: "12 Months" },
+    { name: "MA European History", fee: "€16,000", duration: "12 Months" },
+    { name: "MSc Mathematical Science", fee: "€17,000", duration: "12 Months" },
+    {
+      name: "MA Creative Music Technologies",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MA Musicology", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MA Performance and Musicology",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MA Local History", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MA Irish Traditional Music",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MSc Sound and Music Computing",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MA Medieval Irish Studies",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MA Creative Writing", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MSc Theoretical Physics & Maths",
+      fee: "€17,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MA Geography and Spatial Justice",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MA Military History & Strategy",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "LLM Global Legal Studies", fee: "€18,000", duration: "12 Months" },
+    {
+      name: "MSc GIS and Remote Sensing",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    { name: "MA French", fee: "€16,000", duration: "12 Months" },
+    { name: "MA Accounting (Two Year)", fee: "€18,000", duration: "24 Months" },
+    { name: "MSc Economics (Two Year)", fee: "€16,000", duration: "12 Months" },
+    { name: "MSc Economics", fee: "€16,000", duration: "12 Months" },
+    { name: "MA Classical Studies", fee: "€16,000", duration: "12 Months" },
+    { name: "MA Anthropology", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MA Cultural Differences (CREOLE)",
+      fee: "€16,000",
+      duration: "24 Months",
+    },
+    { name: "MA Chinese Studies", fee: "€16,000", duration: "12 Months" },
+    {
+      name: "MA Criminology & Criminal Justice",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    {
+      name: "LLM International Justice",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MA International Peacebuilding",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+    {
+      name: "MSc Strategy and Innovation",
+      fee: "€18,000",
+      duration: "12 Months",
+    },
+    { name: "MA Accounting (Bridge)", fee: "€18,000", duration: "24 Months" },
+    {
+      name: "MA Critical and Creative Media",
+      fee: "€16,000",
+      duration: "12 Months",
+    },
+  ];
+
+  const grid = document.getElementById("course-grid");
+
+  grid.innerHTML = courses
+    .map(
+      (course) => `
+    <div class="course-card">
+      <h3 class="course-title">${course.name}</h3>
+      
+      <div class="info-row">
+        <div class="intake-text">Intake: <span>Sept</span></div>
+        <div class="duration-text">⌛ ${course.duration}</div>
+        <div class="gpa-text">Min GPA: <span>2.0</span></div>
+      </div>
+
+      <div class="fee-section">
+        <div class="fee-box">
+          <span class="fee-label">Application Fee</span>
+          <span class="fee-value">€50</span>
+        </div>
+        <div class="fee-box">
+          <span class="fee-label">Tuition Fee</span>
+          <span class="fee-value">${course.fee}</span>
+        </div>
+      </div>
+
+      <div class="test-score-section">
+        <h4>📝 Test Scores</h4>
+        <div class="scores-grid">
+          <div class="score-item"><span class="score-val">6.5</span><span class="score-name">IELTS</span></div>
+          <div class="score-item"><span class="score-val">90</span><span class="score-name">TOEFL</span></div>
+          <div class="score-item"><span class="score-val">63</span><span class="score-name">PTE</span></div>
+          <div class="score-item"><span class="score-val">120</span><span class="score-name">DET</span></div>
+        </div>
+      </div>
+
+      <a href="https://www.maynoothuniversity.ie/" target="_blank" class="btn-detail">View Detail</a>
+    </div>
+  `
+    )
+    .join("");
+</script>

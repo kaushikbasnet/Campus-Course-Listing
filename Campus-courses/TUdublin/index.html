@@ -1,0 +1,707 @@
+<div id="college-portal-root">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <div class="portal-container">
+    <div class="course-grid" id="course-grid"></div>
+  </div>
+</div>
+
+<style>
+  #college-portal-root {
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
+    padding: 20px 20px 60px 20px;
+    color: #1e293b;
+  }
+  .portal-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 650px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .course-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
+  }
+
+  .course-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #0f172a;
+    min-height: 3.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-row {
+    font-size: 0.82rem;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #64748b;
+    width: 100%;
+  }
+  .intake-text span {
+    color: #059669;
+    font-weight: 700;
+  }
+
+  .fee-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .fee-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fee-label {
+    font-size: 0.58rem;
+    color: #475569;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .fee-value {
+    font-weight: 800;
+    color: #1e293b;
+    font-size: 0.88rem;
+  }
+
+  .test-score-section {
+    width: 100%;
+  }
+  .test-score-section h4 {
+    padding-bottom: 12px;
+    font-size: 0.72rem;
+    color: #2b2c2e;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .score-val {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  .score-name {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  .btn-detail {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+  .btn-detail:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+  }
+</style>
+
+<script>
+  const courses = [
+    {
+      name: "MSc Fashion Buying and Management",
+      intake: "Sept",
+      duration: "1.5 Years",
+      tuition: "€15,000",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Event Management",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Hospitality Management",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Tourism Management",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MArch Architecture",
+      intake: "Sept",
+      duration: "1.5 Years",
+      tuition: "€21,750",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Geographic Information Science",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "PGDip Accounting",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€11,000",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MBS Accounting (International)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Advertising and Creativity",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Digital and Content Marketing",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Finance",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MA Global Sustainability Leadership",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€15,000",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Logistics and Supply Chain",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Marketing",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Applied Cyber Security",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Computer Science (Adv Software)",
+      intake: "Jan / Sept",
+      duration: "1-1.5 Years",
+      tuition: "€21,750",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Computer Science (Data Science)",
+      intake: "Jan / Sept",
+      duration: "1-1.5 Years",
+      tuition: "€21,750",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Computing (Human Centred AI)",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Computing with DevOps",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MA Creative Arts (Interior Design)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MA Creative Arts (Visual & Critical)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "7.0",
+      toefl: "100",
+      pte: "75",
+      det: "135",
+    },
+    {
+      name: "MA Creative Arts (Visual Comm)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Creative Digital Media (UX)",
+      intake: "Sept",
+      duration: "1.5 Years",
+      tuition: "€20,250",
+      ielts: "7.0",
+      toefl: "100",
+      pte: "75",
+      det: "135",
+    },
+    {
+      name: "MA Graphic Design Practice",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MA Journalism",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "7.5",
+      toefl: "105",
+      pte: "80",
+      det: "140",
+    },
+    {
+      name: "MSc Applied Culinary Nutrition",
+      intake: "Sept",
+      duration: "2 Years",
+      tuition: "€13,500",
+      ielts: "7.0",
+      toefl: "100",
+      pte: "75",
+      det: "135",
+    },
+    {
+      name: "MSc Culinary Innovation",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "7.0",
+      toefl: "100",
+      pte: "75",
+      det: "135",
+    },
+    {
+      name: "MA Gastronomy & Food Studies",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "7.0",
+      toefl: "100",
+      pte: "75",
+      det: "135",
+    },
+    {
+      name: "HDip Hospitality Management",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MEng Civil Eng (Sustainable)",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Electronic & Comm Engineering",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Energy Management",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MEng Mechanical Engineering",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "PGDip Law",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€11,000",
+      ielts: "7.5",
+      toefl: "105",
+      pte: "80",
+      det: "140",
+    },
+    {
+      name: "MA Law (Professional)",
+      intake: "Sept",
+      duration: "2 Years",
+      tuition: "€27,000",
+      ielts: "7.5",
+      toefl: "105",
+      pte: "80",
+      det: "140",
+    },
+    {
+      name: "MMus Music (Composition)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MMus Music (Conducting)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MMus Music (Performance)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "PGDip Brewing & Distilling",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€9,750",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Brewing & Distilling",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MSc Data Analytics",
+      intake: "Jan / Sept",
+      duration: "1 Year",
+      tuition: "€21,750",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Data Analytics for Sport",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€21,750",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Data Analytics (Precision Diag)",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€21,750",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Environmental Health & Safety",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€14,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MSc Pharm Quality Assurance",
+      intake: "Jan / Sept",
+      duration: "1.5 Years",
+      tuition: "€21,750",
+      ielts: "6.0",
+      toefl: "80",
+      pte: "65",
+      det: "120",
+    },
+    {
+      name: "MA Child, Family & Community",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "PGDip Criminology",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€9,000",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "MA Criminology",
+      intake: "Sept",
+      duration: "1 Year",
+      tuition: "€13,500",
+      ielts: "6.5",
+      toefl: "92",
+      pte: "70",
+      det: "130",
+    },
+    {
+      name: "Intl Postgraduate Bridging Prog",
+      intake: "Jan / Sept",
+      duration: "8 Weeks",
+      tuition: "€3,500",
+      ielts: "5.5",
+      toefl: "59",
+      pte: "46",
+      det: "100",
+    },
+  ];
+
+  const grid = document.getElementById("course-grid");
+
+  grid.innerHTML = courses
+    .map(
+      (course) => `
+    <div class="course-card">
+      <h3 class="course-title">${course.name}</h3>
+      
+      <div class="info-row">
+        <div class="intake-text">Intakes: <span>${course.intake}</span></div>
+        <div class="duration-text">⌛ ${course.duration}</div>
+      </div>
+
+      <div class="fee-section">
+        <div class="fee-box">
+          <span class="fee-label">Application Fee</span>
+          <span class="fee-value">€50</span>
+        </div>
+        <div class="fee-box">
+          <span class="fee-label">Tuition Fee</span>
+          <span class="fee-value">${course.tuition}</span>
+        </div>
+      </div>
+
+      <div class="test-score-section">
+        <h4>📝 Test Scores</h4>
+        <div class="scores-grid">
+          <div class="score-item"><span class="score-val">${course.ielts}</span><span class="score-name">IELTS</span></div>
+          <div class="score-item"><span class="score-val">${course.toefl}</span><span class="score-name">TOEFL</span></div>
+          <div class="score-item"><span class="score-val">${course.pte}</span><span class="score-name">PTE</span></div>
+          <div class="score-item"><span class="score-val">${course.det}</span><span class="score-name">DET</span></div>
+        </div>
+      </div>
+
+      <a href="https://www.tudublin.ie/" target="_blank" class="btn-detail">View Detail</a>
+    </div>
+  `
+    )
+    .join("");
+</script>
