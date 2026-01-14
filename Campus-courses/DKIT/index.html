@@ -1,6 +1,6 @@
 <div id="college-portal-root">
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -13,64 +13,74 @@
   #college-portal-root {
     font-family: "Inter", sans-serif;
     background-color: #f8fafc;
-    padding: 20px;
+    padding: 20px 20px 60px 20px;
     color: #1e293b;
-    -webkit-font-smoothing: antialiased;
   }
-
   .portal-container {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
   }
 
-  /* RESPONSIVE GRID: Automatically fits cards based on available width */
   .course-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 650px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .course-card {
     background: #ffffff;
     border-radius: 16px;
     border: 1px solid #e2e8f0;
-    padding: 24px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Ensures all cards in a row are same height */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
 
   .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
-    border-color: #0056b3;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #3b82f6;
   }
 
   .course-title {
-    /* Fluid font size: min 1rem, max 1.1rem */
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: 0.95rem;
     font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 16px;
+    line-height: 1.4;
+    margin-bottom: 15px;
     color: #0f172a;
-    min-height: 3rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    min-height: 3.8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .info-row {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     color: #64748b;
+    width: 100%;
   }
-
   .intake-text span,
   .gpa-text span {
     color: #059669;
@@ -80,107 +90,89 @@
   .fee-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 16px 0;
+    gap: 10px;
+    padding: 18px 0;
     border-top: 1px solid #f1f5f9;
     border-bottom: 1px solid #f1f5f9;
     margin-bottom: 20px;
+    width: 100%;
   }
 
   .fee-box {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   .fee-label {
-    font-size: 0.65rem;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: block;
+    font-size: 0.58rem;
+    color: #475569;
     margin-bottom: 4px;
+    text-transform: uppercase;
   }
-
   .fee-value {
     font-weight: 800;
     color: #1e293b;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
+  .test-score-section {
+    width: 100%;
+  }
   .test-score-section h4 {
-    font-size: 0.75rem;
-    color: #475569;
+    padding-bottom: 12px;
+    font-size: 0.72rem;
+    color: #2b2c2e;
     text-transform: uppercase;
-    margin-bottom: 12px;
-    letter-spacing: 0.05em;
+    font-weight: 600;
   }
 
   .scores-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 across on all sizes */
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     margin-bottom: 24px;
+    width: 100%;
   }
 
   .score-item {
-    background: #f8fafc;
-    padding: 8px 4px;
-    border-radius: 8px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   .score-val {
-    display: block;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #0f172a;
   }
-
   .score-name {
     font-size: 0.6rem;
     color: #94a3b8;
-    text-transform: uppercase;
+    font-weight: 500;
   }
 
   .btn-detail {
-    margin-top: auto; /* Pushes button to bottom */
     display: block;
     width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
     text-align: center;
     text-decoration: none;
+    background: #ffffff;
+    color: #475569;
+    border: 1.5px solid #e2e8f0;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+  .btn-detail:hover {
     background: #0f172a;
     color: #ffffff;
-    transition: background 0.2s;
-  }
-
-  .btn-detail:hover {
-    background: #334155;
-  }
-
-  /* Tablet Adjustments */
-  @media (max-width: 768px) {
-    .course-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-  }
-
-  /* Mobile Adjustments */
-  @media (max-width: 480px) {
-    #college-portal-root {
-      padding: 12px;
-    }
-    .course-card {
-      padding: 20px;
-    }
+    border-color: #0f172a;
   }
 </style>
 
 <script>
-  // ... (Your existing 'courses' array stays the same)
   const courses = [
     {
       name: "MA in Tourism and Heritage Management",
@@ -232,66 +224,6 @@
       p: "56",
       d: "105",
     },
-    {
-      name: "MSc in Data Analytics",
-      fee: "€12,000",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
-    },
-    {
-      name: "MSc in Management",
-      fee: "€9,950",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
-    },
-    {
-      name: "MBS in Strategic Data Analytics for Business",
-      fee: "No Fee",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
-    },
-    {
-      name: "MSc in Sustainable Food Technology and Innovation",
-      fee: "€12,000",
-      dur: "1-2 Years",
-      intake: "6 Feb",
-      i: "6.5",
-      t: "88",
-      p: "61",
-      d: "120",
-    },
-    {
-      name: "Postgraduate Diploma in Sustainable Food Tech",
-      fee: "€12,000",
-      dur: "1-2 Years",
-      intake: "6 Feb",
-      i: "6.5",
-      t: "88",
-      p: "61",
-      d: "120",
-    },
-    {
-      name: "MSc in Computing in Medical Device Software Engineering",
-      fee: "€10,000",
-      dur: "1-2 Years",
-      intake: "Jan",
-      i: "6.5",
-      t: "88",
-      p: "61",
-      d: "120",
-    },
   ];
 
   const grid = document.getElementById("course-grid");
@@ -305,12 +237,11 @@
       <div class="info-row">
         <div class="intake-text">Intakes: <span>${course.intake}</span></div>
         <div class="duration-text">⌛ ${course.dur}</div>
-        <div class="gpa-text">Min GPA: <span>2.5</span></div>
       </div>
 
       <div class="fee-section">
         <div class="fee-box">
-          <span class="fee-label">App Fee</span>
+          <span class="fee-label">Application Fee</span>
           <span class="fee-value">€50</span>
         </div>
         <div class="fee-box">
