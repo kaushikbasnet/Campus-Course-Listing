@@ -12,13 +12,28 @@
 <style>
   #college-portal-root {
     font-family: "Inter", sans-serif;
-    background-color: #f8fafc;
-    padding: 20px 20px 60px 20px;
+    background-color: #f1f5f9;
+    padding: 40px 20px 80px 20px;
     color: #1e293b;
   }
   .portal-container {
     max-width: 1440px;
     margin: 0 auto;
+  }
+
+  .header-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header-section h2 {
+    font-size: 2.2rem;
+    color: #b91c1c; /* MTU Red Variation */
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+  .header-section p {
+    color: #64748b;
+    font-size: 1.1rem;
   }
 
   .course-grid {
@@ -40,7 +55,7 @@
 
   .course-card {
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 20px;
     border: 1px solid #e2e8f0;
     padding: 32px 24px;
     display: flex;
@@ -53,19 +68,18 @@
   }
 
   .course-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     border-color: #3b82f6;
   }
 
   .course-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 15px;
     color: #0f172a;
-    min-height: 3.8rem;
+    min-height: 3.5rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -73,16 +87,15 @@
   }
 
   .info-row {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     color: #64748b;
     width: 100%;
   }
-  .intake-text span,
-  .gpa-text span {
+  .intake-text span {
     color: #059669;
     font-weight: 700;
   }
@@ -104,15 +117,16 @@
     align-items: center;
   }
   .fee-label {
-    font-size: 0.58rem;
-    color: #475569;
+    font-size: 0.6rem;
+    color: #64748b;
     margin-bottom: 4px;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   .fee-value {
     font-weight: 800;
-    color: #1e293b;
-    font-size: 0.88rem;
+    color: #0f172a;
+    font-size: 0.9rem;
   }
 
   .test-score-section {
@@ -120,8 +134,8 @@
   }
   .test-score-section h4 {
     padding-bottom: 12px;
-    font-size: 0.72rem;
-    color: #2b2c2e;
+    font-size: 0.75rem;
+    color: #475569;
     text-transform: uppercase;
     font-weight: 600;
   }
@@ -138,6 +152,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #f8fafc;
+    padding: 8px;
+    border-radius: 8px;
   }
   .score-val {
     font-weight: 700;
@@ -147,7 +164,7 @@
   .score-name {
     font-size: 0.6rem;
     color: #94a3b8;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .btn-detail {
@@ -175,54 +192,57 @@
 <script>
   const courses = [
     {
-      name: "MA in Tourism and Heritage Management",
-      fee: "€9,950",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
+      name: "MA in Global Business Practice",
+      duration: "1 Year",
+      tuition: "€12,000",
     },
     {
-      name: "MA/MSc in Music Technology",
-      fee: "€12,000",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
+      name: "MA Contemporary Art Practice",
+      duration: "1 Year",
+      tuition: "€12,000",
+    },
+    { name: "MA in Art and Process", duration: "1 Year", tuition: "€12,000" },
+    {
+      name: "MA in Human Resource Management",
+      duration: "1 Year",
+      tuition: "€12,000",
     },
     {
-      name: "MBS in Entrepreneurship and Marketing",
-      fee: "€12,000",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
+      name: "MA in Journalism and Digital Content Creation",
+      duration: "1 Year",
+      tuition: "€12,000",
+    },
+    { name: "MA in Music (Taught)", duration: "2 Years", tuition: "€12,000" },
+    {
+      name: "MA in Music and Technology",
+      duration: "1 Year",
+      tuition: "€12,000",
     },
     {
-      name: "MSc / Postgraduate Diploma in Agricultural Biotechnology",
-      fee: "€12,000",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.5",
-      t: "88",
-      p: "61",
-      d: "120",
+      name: "MA in Public Relations with New Media",
+      duration: "1 Year",
+      tuition: "€12,000",
     },
     {
-      name: "MSc in Computing",
-      fee: "€16,583",
-      dur: "12 Months",
-      intake: "Sept 2026",
-      i: "6.0",
-      t: "80",
-      p: "56",
-      d: "105",
+      name: "MEng Civil Engineering (Environment and Energy)",
+      duration: "1 Year",
+      tuition: "€12,000",
+    },
+    {
+      name: "MEng in Structural Engineering",
+      duration: "1 Year",
+      tuition: "€12,000",
+    },
+    {
+      name: "MSc in Marketing Practice",
+      duration: "1 Year",
+      tuition: "€12,000",
+    },
+    { name: "MSc in Art Therapy", duration: "2 Years", tuition: "€12,000" },
+    {
+      name: "Professional Master of Education (Art and Design)",
+      duration: "2 Years",
+      tuition: "€12,000",
     },
   ];
 
@@ -235,34 +255,34 @@
       <h3 class="course-title">${course.name}</h3>
       
       <div class="info-row">
-        <div class="intake-text">Intakes: <span>${course.intake}</span></div>
-        <div class="duration-text">⌛ ${course.dur}</div>
+        <div class="intake-text">Intakes: <span>Sept / Jan</span></div>
+        <div class="duration-text">⌛ ${course.duration}</div>
       </div>
 
       <div class="fee-section">
         <div class="fee-box">
           <span class="fee-label">Application Fee</span>
-          <span class="fee-value">€50</span>
+          <span class="fee-value">FREE</span>
         </div>
         <div class="fee-box">
           <span class="fee-label">Tuition Fee</span>
-          <span class="fee-value">${course.fee}</span>
+          <span class="fee-value">${course.tuition}</span>
         </div>
       </div>
 
       <div class="test-score-section">
         <h4>📝 Test Scores</h4>
         <div class="scores-grid">
-          <div class="score-item"><span class="score-val">${course.i}</span><span class="score-name">IELTS</span></div>
-          <div class="score-item"><span class="score-val">${course.t}</span><span class="score-name">TOEFL</span></div>
-          <div class="score-item"><span class="score-val">${course.p}</span><span class="score-name">PTE</span></div>
-          <div class="score-item"><span class="score-val">${course.d}</span><span class="score-name">DET</span></div>
+          <div class="score-item"><span class="score-val">6.0</span><span class="score-name">IELTS</span></div>
+          <div class="score-item"><span class="score-val">80</span><span class="score-name">TOEFL</span></div>
+          <div class="score-item"><span class="score-val">59</span><span class="score-name">PTE</span></div>
+          <div class="score-item"><span class="score-val">115</span><span class="score-name">DET</span></div>
         </div>
       </div>
 
-      <a href="https://www.dkit.ie/courses" target="_blank" class="btn-detail">View Details</a>
+      <a href="https://www.mtu.ie/" target="_blank" class="btn-detail">View Details</a>
     </div>
-  `
+  `,
     )
     .join("");
 </script>
