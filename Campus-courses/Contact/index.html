@@ -166,7 +166,11 @@
           </p>
         </div>
 
-        <form action="submit.php" method="POST" enctype="multipart/form-data"">
+        <form
+          action="https://formspree.io/f/xnjjqeew"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           <div class="form-grid">
             <div>
               <label class="field-label">Full Name</label>
@@ -239,16 +243,5 @@
       </div>
       <div class="image-section"></div>
     </div>
-
-    <script>
-      const uploadField = document.querySelector('input[type="file"]');
-      uploadField.onchange = function () {
-        if (this.files[0].size > 4194304) {
-          // 4MB in bytes
-          alert("File is too big! Please select a file under 4MB.");
-          this.value = "";
-        }
-      };
-    </script>
   </body>
 </html>
