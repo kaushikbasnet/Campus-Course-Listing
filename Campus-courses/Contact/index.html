@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -166,7 +166,7 @@
           </p>
         </div>
 
-        <form action="https://formspree.io/f/xnjjqeew" method="POST">
+        <form action="submit.php" method="POST" enctype="multipart/form-data"">
           <div class="form-grid">
             <div>
               <label class="field-label">Full Name</label>
@@ -177,7 +177,11 @@
               <input type="email" name="email" required />
             </div>
             <div>
-              <label class="field-label">Intake</label>
+              <label class="field-label">Phone</label>
+              <input type="tel" name="phone" required />
+            </div>
+            <div>
+              <label class="field-label">Preferred Intake</label>
               <select name="intake" required>
                 <option value="" disabled selected>Select</option>
                 <option>January / February</option>
@@ -185,11 +189,19 @@
               </select>
             </div>
             <div>
-              <label class="field-label">Year</label>
+              <label class="field-label">Preferred Year</label>
               <input type="number" name="year" placeholder="2026" required />
             </div>
+            <div>
+              <label class="field-label">Preferred Course</label>
+              <input
+                type="text"
+                name="course"
+                placeholder="Msc. Cloud Computing"
+              />
+            </div>
             <div class="full-width">
-              <label class="field-label">University</label>
+              <label class="field-label">Preferred University</label>
               <select name="university" required>
                 <option value="" disabled selected>Select university</option>
                 <option>Technological University Dublin</option>
@@ -208,11 +220,35 @@
               <label class="field-label">Message</label>
               <textarea name="message"></textarea>
             </div>
+            <div class="full-width">
+              <label class="field-label">Upload CV/Documents (Max 4MB)</label>
+              <input type="file" name="attachment" accept=".pdf,.doc,.docx" />
+              <p
+                style="
+                  font-size: 10px;
+                  color: var(--text-muted);
+                  margin-top: 5px;
+                "
+              >
+                Supported formats: PDF, DOC. Max size: 4MB.
+              </p>
+            </div>
           </div>
           <button class="btn-submit" type="submit">Send Enquiry</button>
         </form>
       </div>
       <div class="image-section"></div>
     </div>
+
+    <script>
+      const uploadField = document.querySelector('input[type="file"]');
+      uploadField.onchange = function () {
+        if (this.files[0].size > 4194304) {
+          // 4MB in bytes
+          alert("File is too big! Please select a file under 4MB.");
+          this.value = "";
+        }
+      };
+    </script>
   </body>
 </html>
