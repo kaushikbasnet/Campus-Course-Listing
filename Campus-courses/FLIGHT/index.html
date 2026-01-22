@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Ireland Flight | Study in Ireland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#8bc41f",
+              brandDark: "#76a61a",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .hero-bg {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+      }
+      .step-active {
+        background-color: #8bc41f;
+        color: white;
+        transition: all 0.3s ease;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <section class="hero-bg min-h-[700px] py-12 px-6 lg:px-24">
+      <h2 class="text-center text-white text-4xl font-extrabold mb-2">
+        Secure Your Flight to Ireland
+      </h2>
+      <p class="text-center text-white/90 mb-8 font-medium">
+        Trusted Flight Reservations for Students and Travelers
+      </p>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="flex rounded-t-lg overflow-hidden shadow-lg">
+          <div
+            id="step1-header"
+            class="flex-1 p-4 text-center step-active border-r border-[#76a61a] flex items-center justify-center gap-2 font-bold"
+          >
+            <span
+              class="bg-white text-[#8bc41f] rounded-full w-6 h-6 flex items-center justify-center text-xs"
+              >1</span
+            >
+            Booking Information
+          </div>
+          <div
+            id="step2-header"
+            class="flex-1 p-4 text-center bg-white text-gray-400 flex items-center justify-center gap-2 font-bold transition-all"
+          >
+            <span
+              id="step2-number"
+              class="bg-gray-200 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"
+              >2</span
+            >
+            Confirmation
+          </div>
+        </div>
+
+        <div class="bg-white/95 backdrop-blur-md p-10 rounded-b-lg shadow-2xl">
+          <form
+            id="bookingForm"
+            action="https://formspree.io/f/xykkrbzo"
+            method="POST"
+            class="space-y-6 text-gray-800"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="md:col-span-2">
+                <label class="block text-sm font-bold mb-2">Full Name</label>
+                <input
+                  type="text"
+                  name="full_name"
+                  required
+                  placeholder="Enter full name"
+                  class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-[#8bc41f] outline-none"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="+977 9803100720"
+                  class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-[#8bc41f] outline-none"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="admissions@studyinireland.info"
+                  class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-[#8bc41f] outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="pt-4 border-t">
+              <label class="block text-sm font-bold mb-3">Trip Type</label>
+              <div class="flex gap-8">
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="trip"
+                    value="one-way"
+                    class="w-4 h-4 accent-[#8bc41f]"
+                    checked
+                  />
+                  <span class="group-hover:text-[#8bc41f] transition"
+                    >One Way</span
+                  >
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="trip"
+                    value="round-trip"
+                    class="w-4 h-4 accent-[#8bc41f]"
+                  />
+                  <span class="group-hover:text-[#8bc41f] transition"
+                    >Round Trip</span
+                  >
+                </label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-bold mb-2"
+                  >Departing Date</label
+                >
+                <input
+                  type="date"
+                  name="departure_date"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-[#8bc41f] outline-none"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2">Arrival Date</label>
+                <input
+                  type="date"
+                  name="arrival_date"
+                  class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-[#8bc41f] outline-none"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-[#8bc41f] hover:bg-[#76a61a] text-white font-bold py-4 rounded-lg shadow-lg transition duration-300 transform hover:-translate-y-1"
+            >
+              BOOK FLIGHT
+            </button>
+          </form>
+
+          <div id="successMessage" class="hidden text-center py-10">
+            <div class="text-[#8bc41f] text-6xl mb-4">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800">Booking Confirmed!</h3>
+            <p class="text-gray-600 mt-2 font-medium">
+              Thank you for choosing us. We will contact you shortly at your
+              provided email.
+            </p>
+            <button
+              onclick="location.reload()"
+              class="mt-6 text-[#8bc41f] font-bold hover:underline"
+            >
+              Book another flight
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-6xl mx-auto -mt-16 relative z-10 px-6">
+      <div
+        class="bg-slate-800 rounded-xl overflow-hidden flex flex-col md:flex-row"
+      >
+        <div class="bg-[#8bc41f] p-10 flex-1">
+          <h3 class="text-3xl font-bold text-white mb-4">
+            Get Your Flight Reservation Today
+          </h3>
+          <div class="space-y-4 text-white">
+            <div class="flex items-center gap-4">
+              <div
+                class="bg-white/20 p-3 rounded-full w-12 h-12 flex items-center justify-center"
+              >
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <p class="text-xs uppercase opacity-80">Call or Whatsapp</p>
+                <p class="font-bold text-lg">+977 9803100720</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="bg-white/20 p-3 rounded-full w-12 h-12 flex items-center justify-center"
+              >
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p class="text-xs uppercase opacity-80">Email Us</p>
+                <p class="font-bold text-lg">admissions@studyinireland.info</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex-1 bg-slate-800 flex justify-end items-center p-2border-l-4 border-[#76a61a]"
+        >
+          <img
+            src="/images/travelpic1.png"
+            alt="agent"
+            class="h-60 object-cover hover:scale-105 transition:ease-in-out duration-300"
+          />
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-gray-100 pt-20 pb-16 px-10">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm border-b-4 border-[#8bc41f]"
+        >
+          <i class="fas fa-map-marker-alt text-[#8bc41f] text-3xl mb-4"></i>
+          <h5 class="font-bold text-lg">Post Address</h5>
+          <p class="text-sm text-gray-500 mt-2 leading-relaxed font-medium">
+            Kumaripati - Mahalaximisthan Rd,<br />Lalitpur 44700, Nepal
+          </p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm border-b-4 border-[#8bc41f]"
+        >
+          <i class="fas fa-clock text-[#8bc41f] text-3xl mb-4"></i>
+          <h5 class="font-bold text-lg">Operation Hours</h5>
+          <div class="text-xs text-gray-500 mt-2 space-y-1 font-medium">
+            <p>Mon - Fri: 10 AM – 7 PM</p>
+            <p>Sat: 12 PM – 2 PM</p>
+            <p>Sun: 10 AM – 4 PM</p>
+          </div>
+        </div>
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm border-b-4 border-[#8bc41f]"
+        >
+          <i class="fab fa-whatsapp text-[#8bc41f] text-3xl mb-4"></i>
+          <h5 class="font-bold text-lg">Direct Contact</h5>
+          <p class="text-sm text-gray-500 mt-2 font-medium">
+            Whatsapp: +977 9803100720<br />Office: +977 9803100720
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("bookingForm");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          form.classList.add("hidden");
+          document.getElementById("successMessage").classList.remove("hidden");
+
+          const step2Header = document.getElementById("step2-header");
+          const step2Num = document.getElementById("step2-number");
+
+          step2Header.classList.add("step-active");
+          step2Header.classList.remove("bg-white", "text-gray-400");
+          step2Num.classList.replace("bg-gray-200", "bg-white");
+          step2Num.classList.replace("text-white", "text-[#8bc41f]");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      });
+    </script>
+  </body>
+</html>
