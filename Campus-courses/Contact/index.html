@@ -12,6 +12,7 @@
       :root {
         --brand-orange: #d25822;
         --brand-green-dark: #8bc41f;
+        --brand-green: #a3d93d;
         --text-main: #1f2937;
         --text-muted: #6b7280;
         --border-color: #e5e7eb;
@@ -25,7 +26,7 @@
       body {
         margin: 0;
         font-family: "Inter", sans-serif;
-        background: #f8fafc;
+        background: #f1f5f9;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,39 +36,41 @@
 
       .main-container {
         width: 100%;
-        max-width: 1200px; /* Increased max-width */
+        max-width: 1100px;
         display: flex;
         background: #fff;
-        border-radius: 20px;
+        border-radius: 24px;
         overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
       }
 
-      /* LEFT – FORM SECTION (Slimmer) */
+      /* LEFT – FORM SECTION */
       .form-section {
-        flex: 1; /* Occupies less space */
+        flex: 1.2;
         padding: 50px;
-        min-width: 450px;
+        min-width: 400px;
       }
 
       .form-header h2 {
         font-size: 32px;
         font-weight: 700;
-        margin: 0 0 10px 0;
+        margin: 0 0 12px 0;
         color: var(--text-main);
       }
 
       .form-header p {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--text-muted);
-        margin-bottom: 30px;
+        margin-bottom: 35px;
         line-height: 1.6;
       }
 
       .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 20px;
       }
 
       .full-width {
@@ -76,75 +79,94 @@
 
       .field-label {
         display: block;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.8px;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
-        margin-bottom: 6px;
-        color: #111;
+        margin-bottom: 8px;
+        color: #374151;
       }
 
       input,
       select,
       textarea {
         width: 100%;
-        padding: 12px 15px;
+        padding: 12px 16px;
         font-size: 14px;
-        border-radius: 8px;
+        border-radius: 10px;
         border: 1px solid var(--border-color);
         background: var(--input-bg);
-        transition: border 0.2s;
+        transition: all 0.2s ease;
       }
 
       input:focus,
       select:focus,
       textarea:focus {
         outline: none;
-        border-color: var(--brand-green);
+        border-color: var(--brand-green-dark);
+        box-shadow: 0 0 0 3px rgba(139, 196, 31, 0.1);
       }
 
       textarea {
-        height: 80px;
+        height: 100px;
         resize: none;
       }
 
       .btn-submit {
-        margin-top: 20px;
+        margin-top: 25px;
         background: var(--brand-green-dark);
         color: #fff;
         padding: 16px;
         border: none;
-        border-radius: 10px;
+        border-radius: 12px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
         width: 100%;
-        transition: background 0.2s;
+        transition:
+          transform 0.1s,
+          background 0.2s;
       }
 
       .btn-submit:hover {
-        background: var(--brand-green);
+        background: #7ab01a;
+        transform: translateY(-1px);
       }
 
-      /* RIGHT – IMAGE SECTION (Wider) */
+      /* RIGHT – IMAGE SECTION */
       .image-section {
-        flex: 1.5; /* Occupies significantly more space */
-        background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200");
+        flex: 1;
+        position: relative;
+        background-color: #f1f5f9;
+        /* Updated with your requested Pexels image */
+        background-image: url("https://images.pexels.com/photos/14920164/pexels-photo-14920164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /* Optional overlay to keep the look consistent */
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.05);
       }
 
       /* RESPONSIVE */
-      @media (max-width: 1000px) {
+      @media (max-width: 900px) {
         .main-container {
           flex-direction: column-reverse;
+          margin: 20px;
         }
         .image-section {
-          height: 350px;
+          height: 300px;
           width: 100%;
         }
         .form-section {
-          padding: 40px 30px;
+          padding: 40px 25px;
           min-width: 100%;
         }
         .form-grid {
@@ -162,50 +184,59 @@
         <div class="form-header">
           <h2>Get in Touch</h2>
           <p>
-            Tell us your preferences and our advisors will contact you shortly.
+            Tell us your preferences and our Irish education advisors will
+            contact you shortly.
           </p>
         </div>
 
-        <form
-          action="https://formspree.io/f/xnjjqeew"
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <form action="https://formspree.io/f/xnjjqeew" method="POST">
           <div class="form-grid">
-            <div>
+            <div class="full-width">
               <label class="field-label">Full Name</label>
-              <input type="text" name="name" required />
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                required
+              />
             </div>
+
             <div>
               <label class="field-label">Email</label>
-              <input type="email" name="email" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="example@mail.com"
+                required
+              />
             </div>
+
             <div>
               <label class="field-label">Phone</label>
-              <input type="tel" name="phone" required />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="+00 000 0000"
+                required
+              />
             </div>
+
             <div>
-              <label class="field-label">Preferred Intake</label>
+              <label class="field-label">Intake</label>
               <select name="intake" required>
                 <option value="" disabled selected>Select</option>
                 <option>January / February</option>
                 <option>September</option>
               </select>
             </div>
+
             <div>
-              <label class="field-label">Preferred Year</label>
-              <input type="number" name="year" placeholder="2026" required />
+              <label class="field-label">Year</label>
+              <input type="number" name="year" value="2026" required />
             </div>
-            <div>
-              <label class="field-label">Preferred Course</label>
-              <input
-                type="text"
-                name="course"
-                placeholder="Msc. Cloud Computing"
-              />
-            </div>
+
             <div class="full-width">
-              <label class="field-label">Preferred University</label>
+              <label class="field-label">University Preference</label>
               <select name="university" required>
                 <option value="" disabled selected>Select university</option>
                 <option>Technological University Dublin</option>
@@ -220,14 +251,21 @@
                 <option>Other</option>
               </select>
             </div>
+
             <div class="full-width">
               <label class="field-label">Message</label>
-              <textarea name="message"></textarea>
+              <textarea
+                name="message"
+                placeholder="How can we help you?"
+              ></textarea>
             </div>
+          </div>
           <button class="btn-submit" type="submit">Send Enquiry</button>
         </form>
       </div>
-      <div class="image-section"></div>
+      <div class="image-section">
+        <div class="image-overlay"></div>
+      </div>
     </div>
   </body>
 </html>
