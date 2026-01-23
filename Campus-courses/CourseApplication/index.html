@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply Today – Study in Ireland</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --brand-green: #8bc41f;
+        --brand-orange: #d25822;
+        --text-main: #1f2937;
+        --border-color: #374151;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+      }
+
+      .main-container {
+        width: 100%;
+        max-width: 450px;
+        background: #fff;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        padding: 40px;
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-header h2 {
+        font-size: 28px;
+        font-weight: 800;
+        margin: 0;
+        color: #000;
+      }
+
+      .form-group {
+        margin-bottom: 22px;
+      }
+
+      .field-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #000;
+      }
+
+      .required-star {
+        color: #ff0000;
+        margin-left: 4px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 15px;
+        border: none;
+        border-bottom: 1.5px solid var(--border-color);
+        background: transparent;
+        color: var(--text-main);
+        outline: none;
+        transition: border-color 0.3s;
+        border-radius: 0;
+      }
+
+      input::placeholder {
+        color: #b1b5bb;
+      }
+
+      input:focus,
+      select:focus {
+        border-bottom-color: var(--brand-green);
+      }
+
+      .btn-submit {
+        margin-top: 15px;
+        background: var(--brand-green);
+        color: #ffffff;
+        padding: 14px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition:
+          background 0.3s,
+          transform 0.2s;
+      }
+
+      .btn-submit:hover {
+        background: var(--brand-orange);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 480px) {
+        .main-container {
+          padding: 30px 20px;
+          max-width: 100%;
+        }
+        body {
+          overflow-y: auto;
+          height: auto;
+          padding: 40px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="form-header">
+        <h2>Apply Today</h2>
+      </div>
+
+      <form action="https://formspree.io/f/xojeeywp" method="POST">
+        <div class="form-group">
+          <label class="field-label"
+            >Preferred Intake <span class="required-star">*</span></label
+          >
+          <select name="intake" required>
+            <option value="" disabled selected></option>
+            <option value="January / February">January / February</option>
+            <option value="September">September</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label">Preferred Contact Timings</label>
+          <select name="contact_time">
+            <option value="08:00 AM - 10:00 AM">08:00 AM - 10:00 AM</option>
+            <option value="10:00 AM - 01:00 PM">10:00 AM - 01:00 PM</option>
+            <option value="02:00 PM - 05:00 PM">02:00 PM - 05:00 PM</option>
+            <option value="After 06:00 PM">After 06:00 PM</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label"
+            >Name <span class="required-star">*</span></label
+          >
+          <input type="text" name="name" placeholder="Full Name" required />
+        </div>
+
+        <div class="form-group">
+          <label class="field-label"
+            >Contact no <span class="required-star">*</span></label
+          >
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+91 XXXXXXXXXX"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="field-label"
+            >Email <span class="required-star">*</span></label
+          >
+          <input
+            type="email"
+            name="email"
+            placeholder="mail@domain.com"
+            required
+          />
+        </div>
+
+        <button class="btn-submit" type="submit">
+          Apply Now <span style="font-size: 20px">→</span>
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
