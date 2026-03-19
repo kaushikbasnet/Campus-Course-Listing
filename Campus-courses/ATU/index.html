@@ -1,387 +1,1023 @@
-<div id="college-portal-root">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlantic Technological University — Course Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #001d3d;
+        --blue: #004f9f;
+        --mid: #0066cc;
+        --bg: #f2f5f9;
+        --surface: #ffffff;
+        --surf2: #ebf0f7;
+        --border: rgba(0, 79, 159, 0.13);
+        --text: #0f172a;
+        --muted: #5e7491;
+        --light: #94a3b8;
+        --radius: 12px;
+        --rsm: 8px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+      }
 
-  <div class="portal-container">
-    <div class="course-grid" id="course-grid"></div>
-  </div>
-</div>
+      .page-header {
+        background: #eef3fa;
+        border-bottom: 1px solid rgba(0, 79, 159, 0.15);
+        padding: 28px 5% 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .page-eyebrow {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .page-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+      }
+      .page-title span {
+        color: var(--blue);
+      }
+      .page-sub {
+        margin-top: 5px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 300;
+      }
+      .header-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+      }
+      .header-counts {
+        display: flex;
+        gap: 24px;
+      }
+      .hcount {
+        text-align: right;
+      }
+      .hcount-num {
+        font-family: "Syne", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1;
+      }
+      .hcount-lbl {
+        font-size: 0.62rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 2px;
+      }
+      .header-info {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .hinfo-pill {
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: var(--muted);
+        background: rgba(0, 79, 159, 0.07);
+        border: 1px solid rgba(0, 79, 159, 0.15);
+        padding: 4px 12px;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .hinfo-pill strong {
+        color: var(--navy);
+      }
 
-<style>
-  #college-portal-root {
-    font-family: "Inter", sans-serif;
-    background-color: #f8fafc;
-    padding: 20px 20px 60px 20px;
-    color: #1e293b;
-  }
-  .portal-container {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
+      .filters-wrap {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 29, 61, 0.07);
+      }
+      .filters-inner {
+        padding: 14px 5%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .filters-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+        margin-right: 4px;
+      }
+      .filter-select {
+        position: relative;
+        flex-shrink: 0;
+      }
+      .filter-select select {
+        appearance: none;
+        -webkit-appearance: none;
+        background: var(--bg);
+        border: 1.5px solid var(--border);
+        border-radius: var(--rsm);
+        padding: 9px 32px 9px 13px;
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text);
+        cursor: pointer;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .filter-select select:focus {
+        border-color: var(--mid);
+        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      }
+      .filter-select::after {
+        content: "";
+        position: absolute;
+        right: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid var(--muted);
+        pointer-events: none;
+      }
+      .results-count {
+        margin-left: auto;
+        font-size: 0.75rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .results-count strong {
+        color: var(--blue);
+        font-weight: 600;
+      }
 
-  .course-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
+      .main {
+        padding: 28px 5% 80px;
+      }
 
-  @media (max-width: 1200px) {
-    .course-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 650px) {
-    .course-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+      .field-section {
+        margin-bottom: 38px;
+      }
+      .field-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border);
+      }
+      .field-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: #16a34a;
+      }
+      .field-name {
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .field-count {
+        font-size: 0.67rem;
+        font-weight: 600;
+        color: var(--muted);
+        background: var(--surf2);
+        padding: 3px 9px;
+        border-radius: 100px;
+      }
 
-  .course-card {
-    background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    padding: 32px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  }
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
 
-  .course-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #2563eb;
-  }
+      .course-card {
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px 20px 16px;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .course-card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #16a34a;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(22, 163, 74, 0.12);
+        border-color: rgba(22, 163, 74, 0.35);
+      }
+      .course-card:hover::after {
+        opacity: 1;
+      }
 
-  .course-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 15px;
-    color: #0f172a;
-    min-height: 4rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .card-award {
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 9px;
+        border-radius: 100px;
+        background: #f0fdf4;
+        color: #166534;
+        white-space: nowrap;
+      }
+      .card-campus {
+        font-size: 0.62rem;
+        color: var(--light);
+        font-weight: 400;
+        text-align: right;
+        line-height: 1.3;
+      }
 
-  .info-row {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: #64748b;
-    width: 100%;
-  }
-  .intake-text span {
-    color: #059669;
-    font-weight: 700;
-  }
-  .gpa-text span {
-    color: #059669;
-    font-weight: 700;
-  }
+      .course-name {
+        font-family: "Syne", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.45;
+        margin-bottom: 16px;
+        flex: 1;
+      }
 
-  .fee-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 20px 0;
-    border-top: 1px solid #f1f5f9;
-    border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 20px;
-    width: 100%;
-    transition: background 0.3s ease;
-  }
+      .card-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 12px;
+        margin-bottom: 14px;
+      }
+      .info-label {
+        font-size: 0.58rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--light);
+        margin-bottom: 3px;
+      }
+      .info-value {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.35;
+      }
+      .fee-val {
+        color: var(--blue);
+        font-weight: 600;
+      }
 
-  .course-card:hover .fee-section {
-    background-color: #f8fafc;
-    border-radius: 8px;
-  }
+      .intake-row {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .intake-badge {
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 5px;
+        border: 1px solid;
+      }
+      .intake-open {
+        background: #f0fdf4;
+        color: #166534;
+        border-color: #bbf7d0;
+      }
 
-  .fee-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .fee-label {
-    font-size: 0.6rem;
-    color: #475569;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .fee-value {
-    font-weight: 800;
-    color: #1e293b;
-    font-size: 0.95rem;
-  }
+      .test-section {
+        margin-bottom: 14px;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+      .score-item {
+        background: var(--surf2);
+        border-radius: 6px;
+        padding: 6px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .score-label {
+        font-size: 0.55rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--light);
+      }
+      .score-val {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text);
+      }
 
-  .test-score-section {
-    width: 100%;
-  }
-  .test-score-section h4 {
-    padding-bottom: 12px;
-    font-size: 0.75rem;
-    color: #2b2c2e;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    font-weight: 600;
-  }
+      .card-divider {
+        height: 1px;
+        background: var(--border);
+        margin-bottom: 12px;
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .learn-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--blue);
+        background: transparent;
+        border: 1.5px solid var(--border);
+        border-radius: var(--rsm);
+        padding: 6px 14px;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.18s,
+          border-color 0.18s,
+          color 0.18s;
+        white-space: nowrap;
+      }
+      .learn-btn:hover {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: #fff;
+      }
+      .learn-btn svg {
+        transition: transform 0.18s;
+      }
+      .learn-btn:hover svg {
+        transform: translateX(2px);
+      }
 
-  .scores-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-    width: 100%;
-  }
+      #noResults {
+        display: none;
+        text-align: center;
+        padding: 80px 20px;
+        color: var(--muted);
+      }
+      #noResults h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      #noResults p {
+        font-size: 0.85rem;
+      }
 
-  .score-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .score-val {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #0f172a;
-  }
-  .score-name {
-    font-size: 0.6rem;
-    color: #94a3b8;
-    font-weight: 500;
-    text-transform: uppercase;
-  }
-
-  .btn-detail {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    background: #ffffff;
-    color: #475569;
-    border: 1.5px solid #e2e8f0;
-    transition: all 0.3s ease;
-    margin-top: auto;
-  }
-  .btn-detail:hover {
-    background: #0f172a;
-    color: #ffffff;
-    border-color: #0f172a;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
-  }
-</style>
-
-<script>
-  const courses = [
-    { name: "MA - Accounting", intake: "Sept", duration: "12 Months" },
-    {
-      name: "MSc - Blockchain Technologies",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Business Management",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Big Data Analytics",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Big Data & AI",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Cloud Technologies",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Cybersecurity",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    { name: "MSc - DevOps", intake: "Jan / Sept", duration: "12 Months" },
-    {
-      name: "MSc - Cyberpsychology",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    { name: "MSc - Data Science", intake: "Jan / Sept", duration: "12 Months" },
-    {
-      name: "MSc - Engineering Management",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Healthcare Innovation",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    { name: "MSc - Marketing", intake: "Jan / Sept", duration: "12 Months" },
-    {
-      name: "MSc - Strategy & Innovation",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Supply Chain Analytics",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Applied Marine Conservation",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Applied Sport Nutrition",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    {
-      name: "MSc - Biopharmaceutical Manufacturing",
-      intake: "Sept",
-      duration: "15 Months",
-    },
-    {
-      name: "MSc - Business Analytics",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    { name: "MSc - Computing", intake: "Jan / Sept", duration: "12 Months" },
-    {
-      name: "MSc - Conservation Behaviour",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Digital Innovation for Sport",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    {
-      name: "MSc - Engineering Management",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - HR & Employee Relations",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MSc - Medical Technologies",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    {
-      name: "MSc - Nutrition & Food Science",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    {
-      name: "MSc - Sport & Biomechanics",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    {
-      name: "MSc - Strength and Conditioning",
-      intake: "Sept",
-      duration: "18 Months",
-    },
-    { name: "MA - Creative Practice", intake: "Sept", duration: "12 Months" },
-    {
-      name: "MSc - Digital Media & Marketing",
-      intake: "Jan / Sept",
-      duration: "12 Months",
-    },
-    { name: "MSc - Bioprocessing", intake: "Sept", duration: "12 Months" },
-    {
-      name: "MSc - Clinical Measurement",
-      intake: "Sept",
-      duration: "24 Months",
-    },
-    { name: "MA - Creative Practice", intake: "Sept", duration: "18 Months" },
-    {
-      name: "MSc - Food Product Development",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MEng - Geotechnical Engineering",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    { name: "MA - Social Work", intake: "Sept", duration: "24 Months" },
-    {
-      name: "MEng - Structural Engineering",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-    {
-      name: "MHSc - Healthcare Management",
-      intake: "Sept",
-      duration: "12 Months",
-    },
-  ];
-
-  const grid = document.getElementById("course-grid");
-
-  grid.innerHTML = courses
-    .map(
-      (course) => `
-    <div class="course-card">
-      <h3 class="course-title">${course.name}</h3>
-      
-      <div class="info-row">
-        <div class="intake-text">Intakes: <span>${course.intake}</span></div>
-        <div class="duration-text">⌛ ${course.duration}</div>
-        <div class="gpa-text">Min GPA: <span>2.0</span></div>
-      </div>
-
-      <div class="fee-section">
-        <div class="fee-box">
-          <span class="fee-label">Application Fee</span>
-          <span class="fee-value">€30</span>
+      @media (max-width: 1200px) {
+        .course-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 900px) {
+        .page-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .header-meta {
+          align-items: flex-start;
+        }
+        .header-counts {
+          flex-direction: row;
+        }
+        .hcount {
+          text-align: left;
+        }
+        .header-info {
+          justify-content: flex-start;
+        }
+        .course-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .filters-inner {
+          gap: 8px;
+        }
+        .card-info {
+          grid-template-columns: 1fr;
+        }
+        .course-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-header">
+      <div>
+        <div class="page-eyebrow">Course Finder</div>
+        <div class="page-title">
+          Atlantic Technological <span>University</span>
         </div>
-        <div class="fee-box">
-          <span class="fee-label">Tuition Fee</span>
-          <span class="fee-value">€14,000</span>
+        <div class="page-sub">
+          Letterkenny · Galway · Castlebar · Sligo — Postgraduate programmes —
+          Sep 2026 / Jan 2027 intake
         </div>
       </div>
-
-      <div class="test-score-section">
-        <h4>📝 Test Scores</h4>
-        <div class="scores-grid">
-          <div class="score-item"><span class="score-val">6.0</span><span class="score-name">IELTS</span></div>
-          <div class="score-item"><span class="score-val">55</span><span class="score-name">PTE</span></div>
-          <div class="score-item"><span class="score-val">105</span><span class="score-name">DET</span></div>
-          <div class="score-item"><span class="score-val">80</span><span class="score-name">TOEFL</span></div>
+      <div class="header-meta">
+        <div class="header-counts">
+          <div class="hcount">
+            <div class="hcount-num" id="statTotal">—</div>
+            <div class="hcount-lbl">Programmes</div>
+          </div>
+          <div class="hcount">
+            <div class="hcount-num" id="statFields">—</div>
+            <div class="hcount-lbl">Fields</div>
+          </div>
+        </div>
+        <div class="header-info">
+          <span class="hinfo-pill">Application Fee <strong>€30</strong></span>
+          <span class="hinfo-pill">Website <strong>atu.ie</strong></span>
         </div>
       </div>
-
-      <a href="https://www.atu.ie/" target="_blank" class="btn-detail">View Detail</a>
     </div>
-  `
-    )
-    .join("");
-</script>
+
+    <div class="filters-wrap">
+      <div class="filters-inner">
+        <span class="filters-label">Filter by</span>
+        <div class="filter-select">
+          <select id="fieldFilter" onchange="applyFilters()">
+            <option value="">All Fields</option>
+          </select>
+        </div>
+        <div class="filter-select">
+          <select id="campusFilter" onchange="applyFilters()">
+            <option value="">Any Campus</option>
+            <option value="Letterkenny">Letterkenny</option>
+            <option value="Galway City">Galway City</option>
+            <option value="Castlebar">Castlebar</option>
+            <option value="Sligo">Sligo</option>
+          </select>
+        </div>
+        <div class="filter-select">
+          <select id="intakeFilter" onchange="applyFilters()">
+            <option value="">Any Intake</option>
+            <option value="sep">Sep 2026</option>
+            <option value="jan">Jan 2027</option>
+          </select>
+        </div>
+        <div class="filter-select">
+          <select id="durationFilter" onchange="applyFilters()">
+            <option value="">Any Duration</option>
+            <option value="12">12 Months</option>
+            <option value="15">15 Months</option>
+            <option value="18">18 Months</option>
+            <option value="24">24 Months</option>
+          </select>
+        </div>
+        <div class="results-count" id="resultsCount"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div id="noResults">
+        <h3>No courses found</h3>
+        <p>Try adjusting your filters.</p>
+      </div>
+      <div id="courseContainer"></div>
+    </div>
+
+    <script>
+      const SCORES = { ielts: 6.0, toefl: 80, pte: 55, det: 105 };
+
+      // All courses have Sep 2026 intake; Jan 2027 also applies to all based on sheet header
+      const COURSES = [
+        // ── Business & Management ──
+        {
+          name: "Master of Arts - Accounting",
+          award: "MA",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Business Management",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Marketing",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Strategy, Enterprise and Innovation",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Supply Chain Analytics",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Engineering Management",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Business Analytics",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Human Resource Management and Employee Relations",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Digital Media and Marketing",
+          award: "MSc",
+          field: "Business & Management",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Castlebar",
+        },
+        // ── Computing & Technology ──
+        {
+          name: "Master of Science - Blockchain Technologies and Applications",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing in Big Data Analytics",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing in Big Data Analytics and Artificial Intelligence",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing in Cloud Technologies",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing in Cybersecurity",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing in DevOps",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Cyberpsychology",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Data Science",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - Computing",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Digital Innovation for Sport",
+          award: "MSc",
+          field: "Computing & Technology",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        // ── Engineering ──
+        {
+          name: "Master of Science - Engineering Management",
+          award: "MSc",
+          field: "Engineering",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Sport and Clinical Biomechanics",
+          award: "MSc",
+          field: "Engineering",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Engineering - Geotechnical Engineering with Structural Engineering",
+          award: "MEng",
+          field: "Engineering",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Sligo",
+        },
+        {
+          name: "Master of Engineering - Structural Engineering with Geotechnical Engineering",
+          award: "MEng",
+          field: "Engineering",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Sligo",
+        },
+        // ── Sciences ──
+        {
+          name: "Master of Science - Applied Marine Conservation",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Applied Sport and Exercise Nutrition",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Biopharmaceutical Manufacturing",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "15 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Conservation Behaviour",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Nutrition and Food Sensory Science",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Food and Nutritional Product Development",
+          award: "MSc",
+          field: "Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Sligo",
+        },
+        // ── Health Sciences ──
+        {
+          name: "Master of Science - Healthcare Innovation and Technology",
+          award: "MSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Letterkenny",
+        },
+        {
+          name: "Master of Science - International Medical Technologies, Innovation and Development",
+          award: "MSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Strength and Conditioning",
+          award: "MSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Science - Bioprocessing",
+          award: "MSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Sligo",
+        },
+        {
+          name: "Master of Science - Clinical Measurement Physiology",
+          award: "MSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "24 Months",
+          campus: "Sligo",
+        },
+        {
+          name: "Master of Health Science - International Healthcare Management",
+          award: "MHSc",
+          field: "Health Sciences",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Sligo",
+        },
+        // ── Arts & Creative ──
+        {
+          name: "Master of Arts - Creative Practice",
+          award: "MA",
+          field: "Arts & Creative",
+          fee: 14000,
+          duration: "12 Months",
+          campus: "Galway City",
+        },
+        {
+          name: "Master of Arts - Creative Practice",
+          award: "MA",
+          field: "Arts & Creative",
+          fee: 14000,
+          duration: "18 Months",
+          campus: "Sligo / Galway",
+        },
+        // ── Law & Social Sciences ──
+        {
+          name: "Master of Arts - Social Work",
+          award: "MA",
+          field: "Law & Social Sciences",
+          fee: 14000,
+          duration: "24 Months",
+          campus: "Sligo",
+        },
+      ];
+
+      const FIELD_COLOR = {
+        "Business & Management": "#1E40AF",
+        "Computing & Technology": "#6D28D9",
+        Engineering: "#0E7490",
+        Sciences: "#065F46",
+        "Health Sciences": "#047857",
+        "Arts & Creative": "#9D174D",
+        "Law & Social Sciences": "#7C3AED",
+      };
+
+      const fields = [...new Set(COURSES.map((c) => c.field))];
+      const fieldSel = document.getElementById("fieldFilter");
+      fields.forEach((f) => {
+        const o = document.createElement("option");
+        o.value = f;
+        o.textContent = f;
+        fieldSel.appendChild(o);
+      });
+
+      document.getElementById("statTotal").textContent = COURSES.length;
+      document.getElementById("statFields").textContent = fields.length;
+
+      const fmt = (fee) => (fee ? "€" + fee.toLocaleString() : null);
+
+      function campusMatch(campus, f) {
+        if (!f) return true;
+        return campus.includes(f);
+      }
+
+      function durMatch(dur, f) {
+        if (!f) return true;
+        if (f === "12") return dur === "12 Months";
+        if (f === "15") return dur === "15 Months";
+        if (f === "18") return dur === "18 Months";
+        if (f === "24") return dur === "24 Months";
+        return true;
+      }
+
+      // All courses available for both intakes per sheet header
+      function intakeMatch(f) {
+        return true; // both Sep 2026 and Jan 2027 apply to all
+      }
+
+      const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+      function applyFilters() {
+        const field = document.getElementById("fieldFilter").value;
+        const campus = document.getElementById("campusFilter").value;
+        const duration = document.getElementById("durationFilter").value;
+
+        const filtered = COURSES.filter((c) => {
+          if (field && c.field !== field) return false;
+          if (!campusMatch(c.campus, campus)) return false;
+          if (!durMatch(c.duration, duration)) return false;
+          return true;
+        });
+
+        document.getElementById("resultsCount").innerHTML =
+          `<strong>${filtered.length}</strong> programme${filtered.length !== 1 ? "s" : ""} found`;
+
+        const container = document.getElementById("courseContainer");
+        const noRes = document.getElementById("noResults");
+
+        if (filtered.length === 0) {
+          container.innerHTML = "";
+          noRes.style.display = "block";
+          return;
+        }
+        noRes.style.display = "none";
+
+        const grouped = {};
+        const order = [];
+        filtered.forEach((c) => {
+          if (!grouped[c.field]) {
+            grouped[c.field] = [];
+            order.push(c.field);
+          }
+          grouped[c.field].push(c);
+        });
+
+        container.innerHTML = order
+          .map((fieldName) => {
+            const color = FIELD_COLOR[fieldName] || "#1E40AF";
+            const courses = grouped[fieldName];
+
+            const cards = courses
+              .map((c) => {
+                const feeStr = fmt(c.fee);
+                return `
+        <div class="course-card">
+          <div class="card-top">
+            <span class="card-award">${c.award}</span>
+            <span class="card-campus">${c.campus}</span>
+          </div>
+          <div class="course-name">${c.name}</div>
+          <div class="card-info">
+            <div class="info-item">
+              <div class="info-label">Tuition Fee</div>
+              <div class="info-value fee-val">${feeStr}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Application Fee</div>
+              <div class="info-value">€30</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Duration</div>
+              <div class="info-value">${c.duration}</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Intake</div>
+              <div class="info-value">
+                <div class="intake-row">
+                  <span class="intake-badge intake-open">Sep</span>
+                  <span class="intake-badge intake-open">Jan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-section">
+            <div class="info-label" style="margin-bottom:7px;">English Test Requirements</div>
+            <div class="score-grid">
+              <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${SCORES.ielts}</span></div>
+              <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${SCORES.toefl}</span></div>
+              <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${SCORES.pte}</span></div>
+              <div class="score-item"><span class="score-label">DET</span><span class="score-val">${SCORES.det}</span></div>
+            </div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="card-footer">
+            <a href="https://www.atu.ie/" target="_blank" rel="noopener noreferrer" class="learn-btn">
+              Learn More ${ARROW}
+            </a>
+          </div>
+        </div>`;
+              })
+              .join("");
+
+            return `
+      <div class="field-section">
+        <div class="field-header">
+          <div class="field-dot"></div>
+          <div class="field-name">${fieldName}</div>
+          <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
+        </div>
+        <div class="course-grid">${cards}</div>
+      </div>`;
+          })
+          .join("");
+      }
+
+      applyFilters();
+    </script>
+  </body>
+</html>
