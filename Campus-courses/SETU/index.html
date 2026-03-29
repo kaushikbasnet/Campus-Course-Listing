@@ -119,76 +119,6 @@
       .hinfo-pill strong {
         color: var(--navy);
       }
-      .filters-wrap {
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 12px rgba(0, 29, 61, 0.07);
-      }
-      .filters-inner {
-        padding: 14px 5%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .filters-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        white-space: nowrap;
-        margin-right: 4px;
-      }
-      .filter-select {
-        position: relative;
-        flex-shrink: 0;
-      }
-      .filter-select select {
-        appearance: none;
-        -webkit-appearance: none;
-        background: var(--bg);
-        border: 1.5px solid var(--border);
-        border-radius: var(--rsm);
-        padding: 9px 32px 9px 13px;
-        font-family: inherit;
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: var(--text);
-        cursor: pointer;
-        outline: none;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-      }
-      .filter-select select:focus {
-        border-color: var(--mid);
-        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-      }
-      .filter-select::after {
-        content: "";
-        position: absolute;
-        right: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid var(--muted);
-        pointer-events: none;
-      }
-      .results-count {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: var(--muted);
-        white-space: nowrap;
-      }
-      .results-count strong {
-        color: var(--blue);
-        font-weight: 600;
-      }
       .main {
         padding: 28px 5% 80px;
       }
@@ -464,9 +394,6 @@
         }
       }
       @media (max-width: 600px) {
-        .filters-inner {
-          gap: 8px;
-        }
         .card-info {
           grid-template-columns: 1fr;
         }
@@ -510,48 +437,10 @@
       </div>
     </div>
 
-    <div class="filters-wrap">
-      <div class="filters-inner">
-        <span class="filters-label">Filter by</span>
-        <div class="filter-select">
-          <select id="levelFilter" onchange="applyFilters()">
-            <option value="">UG &amp; PG</option>
-            <option value="Undergraduate">Undergraduate</option>
-            <option value="Postgraduate">Postgraduate</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="fieldFilter" onchange="applyFilters()">
-            <option value="">All Fields</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="campusFilter" onchange="applyFilters()">
-            <option value="">Any Campus</option>
-            <option value="Waterford">Waterford</option>
-            <option value="Carlow">Carlow</option>
-            <option value="Wexford">Wexford</option>
-            <option value="Sligo">Sligo</option>
-            <option value="Dublin">Dublin</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="durationFilter" onchange="applyFilters()">
-            <option value="">Any Duration</option>
-            <option value="3">3 Years</option>
-            <option value="4">4 Years</option>
-            <option value="5">5 Years</option>
-            <option value="1">1 Year (PG)</option>
-          </select>
-        </div>
-        <div class="results-count" id="resultsCount"></div>
-      </div>
-    </div>
-
     <div class="main">
       <div id="noResults">
         <h3>No courses found</h3>
-        <p>Try adjusting your filters.</p>
+        <p>Contact admissions for more details.</p>
       </div>
       <div id="courseContainer"></div>
     </div>
@@ -560,2161 +449,269 @@
       const UG_SCORES = { ielts: 5.5, toefl: 70, pte: 50, det: 90 };
       const PG_SCORES = { ielts: 6.0, toefl: 80, pte: 55, det: 100 };
 
-      // level: "Undergraduate" | "Postgraduate"
-      // lvl: NFQ level number (7=ordinary, 8=honours, 9=masters)
-      // dur: duration label
-      // durYrs: for filter (3,4,5 for UG; 1 for PG)
       const C = (name, field, level, lvl, fee, dur, durYrs, campus) => ({
-        name,
-        field,
-        level,
-        lvl,
-        fee,
-        dur,
-        durYrs,
-        campus,
+        name, field, level, lvl, fee, dur, durYrs, campus,
       });
 
       const COURSES = [
         // ══════════════════ UNDERGRADUATE ══════════════════
 
         // Business
-        C(
-          "Business - Common Entry",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Economics & Finance",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Human Resource Management",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Management",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Accounting",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Marketing",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Business",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Accounting",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Marketing & Digital Media",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "International Business",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Business Information Systems",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Fashion Buying & Retail Management",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Business - Common Entry",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Marketing",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "International Business",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Supply Chain Management",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Business Management",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Human Resource Management",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Finance & Accounting",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Business - Common Entry",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Marketing",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "International Business",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Supply Chain Management",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Business Management",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Human Resource Management",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Accounting",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Digital Marketing with Analytics",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Digital Marketing with Analytics",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Business with Law",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Business - Common Entry",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Business",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Digital Marketing",
-          "Business",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Business - Common Entry",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Business",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Digital Marketing",
-          "Business",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
+        C("Business - Common Entry","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Economics & Finance","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Human Resource Management","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Management","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Accounting","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Marketing","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Business","Business","Undergraduate",7,13500,"3 Years",3,"Waterford"),
+        C("Accounting","Business","Undergraduate",8,13500,"3 Years",3,"Waterford"),
+        C("Marketing & Digital Media","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("International Business","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Business Information Systems","Business","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Fashion Buying & Retail Management","Business","Undergraduate",7,13500,"3 Years",3,"Waterford"),
+        C("Business - Common Entry","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Marketing","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("International Business","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Supply Chain Management","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Business Management","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Human Resource Management","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Finance & Accounting","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Business - Common Entry","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Marketing","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("International Business","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Supply Chain Management","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Business Management","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Human Resource Management","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Accounting","Business","Undergraduate",8,13500,"3 Years",3,"Carlow"),
+        C("Digital Marketing with Analytics","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Digital Marketing with Analytics","Business","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Business with Law","Business","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Business - Common Entry","Business","Undergraduate",8,13500,"4 Years",4,"Wexford"),
+        C("Business","Business","Undergraduate",8,13500,"4 Years",4,"Wexford"),
+        C("Digital Marketing","Business","Undergraduate",8,13500,"4 Years",4,"Wexford"),
+        C("Business - Common Entry","Business","Undergraduate",7,13500,"3 Years",3,"Wexford"),
+        C("Business","Business","Undergraduate",7,13500,"3 Years",3,"Wexford"),
+        C("Digital Marketing","Business","Undergraduate",7,13500,"3 Years",3,"Wexford"),
 
         // Architecture
-        C(
-          "Architecture",
-          "Architecture",
-          "Undergraduate",
-          8,
-          14500,
-          "5 Years",
-          5,
-          "Waterford - Granary",
-        ),
-        C(
-          "Architectural & Building Information Modelling Technology",
-          "Architecture",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford - Granary",
-        ),
-        C(
-          "Architectural Technology",
-          "Architecture",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Architectural Technology",
-          "Architecture",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Architectural Technology",
-          "Architecture",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford - Granary",
-        ),
+        C("Architecture","Architecture","Undergraduate",8,14500,"5 Years",5,"Waterford - Granary"),
+        C("Architectural & Building Information Modelling Technology","Architecture","Undergraduate",8,14500,"4 Years",4,"Waterford - Granary"),
+        C("Architectural Technology","Architecture","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Architectural Technology","Architecture","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Architectural Technology","Architecture","Undergraduate",7,14500,"3 Years",3,"Waterford - Granary"),
 
         // Built Environment
-        C(
-          "Construction Management & Engineering",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Construction Management",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Construction Management",
-          "Built Environment",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Civil Engineering",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Civil Engineering",
-          "Built Environment",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Sustainable Civil Engineering",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Quantity Surveying",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Quantity Surveying",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Set Design & Construction",
-          "Built Environment",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Set Design & Construction",
-          "Built Environment",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
+        C("Construction Management & Engineering","Built Environment","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Construction Management","Built Environment","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Construction Management","Built Environment","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Civil Engineering","Built Environment","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Civil Engineering","Built Environment","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Sustainable Civil Engineering","Built Environment","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Quantity Surveying","Built Environment","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Quantity Surveying","Built Environment","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Set Design & Construction","Built Environment","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Set Design & Construction","Built Environment","Undergraduate",7,14500,"3 Years",3,"Carlow"),
 
         // Engineering
-        C(
-          "Aerospace Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Aircraft Systems",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Engineering - Common Entry",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Automation Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Sustainable Energy Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Electronic Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Electrical Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Electrical Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Electronic Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Electronic Systems",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Electronic Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Biomedical Electronics",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Biomedical Electronics",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Robotics & Automated Systems",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Robotics & Automated Systems",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Mechanical Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Mechanical Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Mechanical & Manufacturing Engineering",
-          "Engineering",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Mechanical Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Manufacturing Engineering",
-          "Engineering",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
+        C("Aerospace Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Aircraft Systems","Engineering","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Engineering - Common Entry","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Automation Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Sustainable Energy Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Electronic Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Electrical Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Electrical Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Electronic Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Electronic Systems","Engineering","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Electronic Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Biomedical Electronics","Engineering","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Biomedical Electronics","Engineering","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Robotics & Automated Systems","Engineering","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Robotics & Automated Systems","Engineering","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Mechanical Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Mechanical Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Mechanical & Manufacturing Engineering","Engineering","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Mechanical Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Manufacturing Engineering","Engineering","Undergraduate",7,14500,"3 Years",3,"Waterford"),
 
         // Media, Design & Music
-        C(
-          "TV & Media Production",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "TV & Media Production",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Public Relations & Media",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Public Relations & Media",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Content Creation and Social Media",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Content Creation and Social Media",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Product Design Innovation",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Design",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Visual Communications & Design",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Visual Communications & Design",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Design (Visual Communications)",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
-        C(
-          "Visual Art",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
-        C(
-          "Art",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford – Hill Street",
-        ),
-        C(
-          "Art",
-          "Media, Design & Music",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford – Hill Street",
-        ),
-        C(
-          "Music",
-          "Media, Design & Music",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
+        C("TV & Media Production","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("TV & Media Production","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Public Relations & Media","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Public Relations & Media","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Content Creation and Social Media","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Content Creation and Social Media","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Product Design Innovation","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Design","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Visual Communications & Design","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Wexford"),
+        C("Visual Communications & Design","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Wexford"),
+        C("Design (Visual Communications)","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Waterford – College Street"),
+        C("Visual Art","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Waterford – College Street"),
+        C("Art","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Wexford – Hill Street"),
+        C("Art","Media, Design & Music","Undergraduate",7,13500,"3 Years",3,"Wexford – Hill Street"),
+        C("Music","Media, Design & Music","Undergraduate",8,13500,"4 Years",4,"Waterford – College Street"),
 
         // Law
-        C(
-          "Law (LLB)",
-          "Law",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
-        C(
-          "Law (LLB)",
-          "Law",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Criminal Justice Studies",
-          "Law",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Waterford – College Street",
-        ),
+        C("Law (LLB)","Law","Undergraduate",8,13500,"4 Years",4,"Waterford – College Street"),
+        C("Law (LLB)","Law","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Criminal Justice Studies","Law","Undergraduate",7,13500,"3 Years",3,"Waterford – College Street"),
 
         // Sport Management
-        C(
-          "Recreation & Sport Management",
-          "Sport Management",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Recreation & Sport Management",
-          "Sport Management",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Sport, Business & Coaching",
-          "Sport Management",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Sport, Business & Coaching",
-          "Sport Management",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Sports Management & Coaching (Gaelic Games)",
-          "Sport Management",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Sport Coaching & Business Management (Gaelic Games)",
-          "Sport Management",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Sports Management & Coaching (Rugby)",
-          "Sport Management",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Sport Coaching & Business Management (Rugby)",
-          "Sport Management",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Sports Management & Coaching (Football)",
-          "Sport Management",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Sport Coaching & Business Management (Football)",
-          "Sport Management",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
+        C("Recreation & Sport Management","Sport Management","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Recreation & Sport Management","Sport Management","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Sport, Business & Coaching","Sport Management","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Sport, Business & Coaching","Sport Management","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Sports Management & Coaching (Gaelic Games)","Sport Management","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Sport Coaching & Business Management (Gaelic Games)","Sport Management","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Sports Management & Coaching (Rugby)","Sport Management","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Sport Coaching & Business Management (Rugby)","Sport Management","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Sports Management & Coaching (Football)","Sport Management","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Sport Coaching & Business Management (Football)","Sport Management","Undergraduate",7,14500,"3 Years",3,"Carlow"),
 
         // Sport Science
-        C(
-          "Exercise Sciences – Common Entry",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Sport & Exercise Science",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Nutrition & Exercise Science",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Health & Exercise Science",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Sports Coaching & Performance",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Public Health & Health Promotion",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Sport Rehabilitation & Athletic Therapy",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Strength & Conditioning",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Sport & Exercise Science",
-          "Sport Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
+        C("Exercise Sciences – Common Entry","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Sport & Exercise Science","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Nutrition & Exercise Science","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Health & Exercise Science","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Sports Coaching & Performance","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Public Health & Health Promotion","Sport Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Sport Rehabilitation & Athletic Therapy","Sport Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Strength & Conditioning","Sport Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Sport & Exercise Science","Sport Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
 
         // Nursing, Health & Psychology
-        C(
-          "Applied Health Care",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Public Health & Health Promotion",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Health Sciences – Common Entry",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Applied Health Care",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Psychology",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Early Childhood Education & Practice",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Early Childhood Education & Practice",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Early Childhood Education & Practice",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Early Childhood Education & Practice",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Early Childhood Care & Education",
-          "Nursing, Health & Psychology",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
+        C("Applied Health Care","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Public Health & Health Promotion","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Health Sciences – Common Entry","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Applied Health Care","Nursing, Health & Psychology","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Psychology","Nursing, Health & Psychology","Undergraduate",8,14500,"3 Years",3,"Waterford"),
+        C("Early Childhood Education & Practice","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Early Childhood Education & Practice","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Wexford"),
+        C("Early Childhood Education & Practice","Nursing, Health & Psychology","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Early Childhood Education & Practice","Nursing, Health & Psychology","Undergraduate",7,14500,"3 Years",3,"Wexford"),
+        C("Early Childhood Care & Education","Nursing, Health & Psychology","Undergraduate",8,14500,"4 Years",4,"Waterford – College Street"),
 
         // Arts & Social Studies
-        C(
-          "Arts",
-          "Arts & Social Studies",
-          "Undergraduate",
-          8,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Social Science",
-          "Arts & Social Studies",
-          "Undergraduate",
-          8,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Social Care Practice",
-          "Arts & Social Studies",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford – College Street",
-        ),
-        C(
-          "Applied Social Care",
-          "Arts & Social Studies",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Waterford – College Street",
-        ),
-        C(
-          "Professional Social Care Practice",
-          "Arts & Social Studies",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Professional Social Care Practice",
-          "Arts & Social Studies",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Applied Social Studies in Professional Social Care",
-          "Arts & Social Studies",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
+        C("Arts","Arts & Social Studies","Undergraduate",8,13500,"3 Years",3,"Waterford"),
+        C("Social Science","Arts & Social Studies","Undergraduate",8,13500,"3 Years",3,"Waterford"),
+        C("Social Care Practice","Arts & Social Studies","Undergraduate",8,13500,"4 Years",4,"Waterford – College Street"),
+        C("Applied Social Care","Arts & Social Studies","Undergraduate",7,13500,"3 Years",3,"Waterford – College Street"),
+        C("Professional Social Care Practice","Arts & Social Studies","Undergraduate",8,13500,"4 Years",4,"Carlow"),
+        C("Professional Social Care Practice","Arts & Social Studies","Undergraduate",7,13500,"3 Years",3,"Carlow"),
+        C("Applied Social Studies in Professional Social Care","Arts & Social Studies","Undergraduate",8,13500,"4 Years",4,"Wexford"),
 
         // Hospitality, Tourism & Culinary Arts
-        C(
-          "Hospitality Management",
-          "Hospitality, Tourism & Culinary Arts",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Tourism & Hospitality Services",
-          "Hospitality, Tourism & Culinary Arts",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Tourism and Event Management",
-          "Hospitality, Tourism & Culinary Arts",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Tourism and Event Management",
-          "Hospitality, Tourism & Culinary Arts",
-          "Undergraduate",
-          7,
-          13500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Culinary Arts",
-          "Hospitality, Tourism & Culinary Arts",
-          "Undergraduate",
-          8,
-          13500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
+        C("Hospitality Management","Hospitality, Tourism & Culinary Arts","Undergraduate",8,13500,"4 Years",4,"Waterford"),
+        C("Tourism & Hospitality Services","Hospitality, Tourism & Culinary Arts","Undergraduate",7,13500,"3 Years",3,"Waterford"),
+        C("Tourism and Event Management","Hospitality, Tourism & Culinary Arts","Undergraduate",8,13500,"4 Years",4,"Wexford"),
+        C("Tourism and Event Management","Hospitality, Tourism & Culinary Arts","Undergraduate",7,13500,"3 Years",3,"Wexford"),
+        C("Culinary Arts","Hospitality, Tourism & Culinary Arts","Undergraduate",8,13500,"4 Years",4,"Waterford"),
 
         // Science
-        C(
-          "Science – Common Entry",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Biosciences with Biopharmaceuticals",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Pharmaceutics & Drug Formulation",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Brewing & Distilling",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Science – Common Entry",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Molecular Biology with Biopharmaceutical Science",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Food Science & Innovation",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Physics for Modern Technology",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Pharmaceutical Science",
-          "Science",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Science (General)",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Food Science",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Pharmaceutical Science",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Molecular Biology with Biopharmaceutical Science",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Analytical Science",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Biosciences",
-          "Science",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
+        C("Science – Common Entry","Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Biosciences with Biopharmaceuticals","Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Pharmaceutics & Drug Formulation","Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Brewing & Distilling","Science","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Science – Common Entry","Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Molecular Biology with Biopharmaceutical Science","Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Food Science & Innovation","Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Physics for Modern Technology","Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Pharmaceutical Science","Science","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Science (General)","Science","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Food Science","Science","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Pharmaceutical Science","Science","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Molecular Biology with Biopharmaceutical Science","Science","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Analytical Science","Science","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Biosciences","Science","Undergraduate",7,14500,"3 Years",3,"Carlow"),
 
         // Agriculture, Horticulture & Forestry
-        C(
-          "Agricultural Science",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Agriculture",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Sustainable Farm Management & Agribusiness",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Wexford",
-        ),
-        C(
-          "Sustainable Farm Management & Agribusiness",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Wexford",
-        ),
-        C(
-          "Agricultural Systems Engineering",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Agricultural Systems Engineering",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Horticulture",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford – Kildalton",
-        ),
-        C(
-          "Horticulture",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Dublin – National Botanic Gardens",
-        ),
-        C(
-          "Forestry",
-          "Agriculture, Horticulture & Forestry",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
+        C("Agricultural Science","Agriculture, Horticulture & Forestry","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Agriculture","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Sustainable Farm Management & Agribusiness","Agriculture, Horticulture & Forestry","Undergraduate",8,14500,"4 Years",4,"Wexford"),
+        C("Sustainable Farm Management & Agribusiness","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Wexford"),
+        C("Agricultural Systems Engineering","Agriculture, Horticulture & Forestry","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Agricultural Systems Engineering","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Horticulture","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Waterford – Kildalton"),
+        C("Horticulture","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Dublin – National Botanic Gardens"),
+        C("Forestry","Agriculture, Horticulture & Forestry","Undergraduate",7,14500,"3 Years",3,"Waterford"),
 
         // Computing (UG)
-        C(
-          "Computer Science – Common Entry",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Automotive & Automation Systems",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Cloud & Networks",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Computer Forensics & Security",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Internet of Things",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Game Development",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Information Technology Management",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Information Technology Management",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Information Technology",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Cybercrime & IT Security",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Cybercrime & IT Security",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Software Development",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Software Development",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Software Systems Development",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Software Systems Development",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Creative Computing",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Waterford",
-        ),
-        C(
-          "Creative Computing",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Waterford",
-        ),
-        C(
-          "Computing in Interactive Digital Art & Design",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Computing in Interactive Digital Art & Design",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
-        C(
-          "Computer Games Development",
-          "Computing",
-          "Undergraduate",
-          8,
-          14500,
-          "4 Years",
-          4,
-          "Carlow",
-        ),
-        C(
-          "Computer Games Programming",
-          "Computing",
-          "Undergraduate",
-          7,
-          14500,
-          "3 Years",
-          3,
-          "Carlow",
-        ),
+        C("Computer Science – Common Entry","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Automotive & Automation Systems","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Cloud & Networks","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Computer Forensics & Security","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Internet of Things","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Game Development","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Information Technology Management","Computing","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Information Technology Management","Computing","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Information Technology","Computing","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Cybercrime & IT Security","Computing","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Cybercrime & IT Security","Computing","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Software Development","Computing","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Software Development","Computing","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Software Systems Development","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Software Systems Development","Computing","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Creative Computing","Computing","Undergraduate",8,14500,"4 Years",4,"Waterford"),
+        C("Creative Computing","Computing","Undergraduate",7,14500,"3 Years",3,"Waterford"),
+        C("Computing in Interactive Digital Art & Design","Computing","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Computing in Interactive Digital Art & Design","Computing","Undergraduate",7,14500,"3 Years",3,"Carlow"),
+        C("Computer Games Development","Computing","Undergraduate",8,14500,"4 Years",4,"Carlow"),
+        C("Computer Games Programming","Computing","Undergraduate",7,14500,"3 Years",3,"Carlow"),
 
         // ══════════════════ POSTGRADUATE ══════════════════
 
         // Arts & Social Studies (PG)
-        C(
-          "Master of Arts in Applied Spirituality",
-          "Arts & Social Studies",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Dublin",
-        ),
+        C("Master of Arts in Applied Spirituality","Arts & Social Studies","Postgraduate",9,14000,"1 Year",1,"Dublin"),
 
         // Business (PG)
-        C(
-          "Master of Business (Marketing Stream)",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business (Economics and Finance Stream)",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business (Management Stream)",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business (Human Resource Management Stream)",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business in Internationalisation",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business in Finance and Business Analytics",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Science in Digital Marketing Practice",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "16 Months",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Business",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Supply Chain Management",
-          "Business",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Higher Diploma in Business in Supply Chain Management",
-          "Business",
-          "Postgraduate",
-          8,
-          13500,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Higher Diploma in Business Marketing",
-          "Business",
-          "Postgraduate",
-          8,
-          13500,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Higher Diploma in Business in International Business",
-          "Business",
-          "Postgraduate",
-          8,
-          13500,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
+        C("Master of Business (Marketing Stream)","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Business (Economics and Finance Stream)","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Business (Management Stream)","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Business (Human Resource Management Stream)","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Business in Internationalisation","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Business in Finance and Business Analytics","Business","Postgraduate",9,14000,"1 Year",1,"Waterford"),
+        C("Master of Science in Digital Marketing Practice","Business","Postgraduate",9,14000,"16 Months",1,"Waterford"),
+        C("Master of Business","Business","Postgraduate",9,14000,"1 Year",1,"Carlow"),
+        C("Master of Science in Supply Chain Management","Business","Postgraduate",9,14000,"1 Year",1,"Carlow"),
+        C("Higher Diploma in Business in Supply Chain Management","Business","Postgraduate",8,13500,"1 Year",1,"Carlow"),
+        C("Higher Diploma in Business Marketing","Business","Postgraduate",8,13500,"1 Year",1,"Carlow"),
+        C("Higher Diploma in Business in International Business","Business","Postgraduate",8,13500,"1 Year",1,"Carlow"),
 
         // Computing (PG)
-        C(
-          "Master of Science in Information Technology Management",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Data Science",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Applied Artificial Intelligence",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Industrial Networks and Cybersecurity",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Computing (Information Systems Processes)",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Science in Computing Science (Enterprise Software Systems)",
-          "Computing",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
+        C("Master of Science in Information Technology Management","Computing","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Data Science","Computing","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Applied Artificial Intelligence","Computing","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Industrial Networks and Cybersecurity","Computing","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Computing (Information Systems Processes)","Computing","Postgraduate",9,15000,"1 Year",1,"Waterford"),
+        C("Master of Science in Computing Science (Enterprise Software Systems)","Computing","Postgraduate",9,15000,"1 Year",1,"Waterford"),
 
-        // Early Years Education (PG)
-        C(
-          "Master of Arts in Leadership in Early Years Education and Care",
-          "Nursing, Health & Psychology",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Arts in Child, Youth and Family Studies",
-          "Nursing, Health & Psychology",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
+        // Nursing, Health & Psychology (PG)
+        C("Master of Arts in Leadership in Early Years Education and Care","Nursing, Health & Psychology","Postgraduate",9,14000,"1 Year",1,"Carlow"),
+        C("Master of Arts in Child, Youth and Family Studies","Nursing, Health & Psychology","Postgraduate",9,14000,"1 Year",1,"Carlow"),
 
         // Engineering (PG)
-        C(
-          "Master of Science in Construction Project Management",
-          "Engineering",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Science in Innovative Technology Engineering",
-          "Engineering",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Science in Sustainable Energy Engineering",
-          "Engineering",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
-        C(
-          "Master of Engineering in Applied Materials",
-          "Engineering",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Engineering in Flight Test Engineering",
-          "Engineering",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
+        C("Master of Science in Construction Project Management","Engineering","Postgraduate",9,15000,"1 Year",1,"Waterford"),
+        C("Master of Science in Innovative Technology Engineering","Engineering","Postgraduate",9,15000,"1 Year",1,"Waterford"),
+        C("Master of Science in Sustainable Energy Engineering","Engineering","Postgraduate",9,15000,"1 Year",1,"Waterford"),
+        C("Master of Engineering in Applied Materials","Engineering","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Engineering in Flight Test Engineering","Engineering","Postgraduate",9,15000,"1 Year",1,"Carlow"),
 
         // Law (PG)
-        C(
-          "Master of Arts in Criminology and Criminal Justice",
-          "Law",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Waterford",
-        ),
+        C("Master of Arts in Criminology and Criminal Justice","Law","Postgraduate",9,14000,"1 Year",1,"Waterford"),
 
         // Media & Design (PG)
-        C(
-          "Master of Arts in Interaction Design",
-          "Media, Design & Music",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Digital Media with Business Analytics",
-          "Media, Design & Music",
-          "Postgraduate",
-          9,
-          14000,
-          "1 Year",
-          1,
-          "Wexford",
-        ),
-        C(
-          "Higher Diploma in Arts in Digital Media Design",
-          "Media, Design & Music",
-          "Postgraduate",
-          8,
-          13500,
-          "1 Year",
-          1,
-          "Wexford",
-        ),
+        C("Master of Arts in Interaction Design","Media, Design & Music","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Digital Media with Business Analytics","Media, Design & Music","Postgraduate",9,14000,"1 Year",1,"Wexford"),
+        C("Higher Diploma in Arts in Digital Media Design","Media, Design & Music","Postgraduate",8,13500,"1 Year",1,"Wexford"),
 
         // Science (PG)
-        C(
-          "Master of Science in Medical Device Regulatory Affairs",
-          "Science",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Pharmaceutical Regulatory Affairs",
-          "Science",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
+        C("Master of Science in Medical Device Regulatory Affairs","Science","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Pharmaceutical Regulatory Affairs","Science","Postgraduate",9,15000,"1 Year",1,"Carlow"),
 
         // Sport Science (PG)
-        C(
-          "Master of Science in Strength and Conditioning",
-          "Sport Science",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Sports Performance Analysis",
-          "Sport Science",
-          "Postgraduate",
-          9,
-          15000,
-          "1 Year",
-          1,
-          "Carlow",
-        ),
-        C(
-          "Master of Science in Applied Sport & Exercise Psychology",
-          "Sport Science",
-          "Postgraduate",
-          9,
-          15000,
-          "1.5 Years",
-          1,
-          "Waterford",
-        ),
+        C("Master of Science in Strength and Conditioning","Sport Science","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Sports Performance Analysis","Sport Science","Postgraduate",9,15000,"1 Year",1,"Carlow"),
+        C("Master of Science in Applied Sport & Exercise Psychology","Sport Science","Postgraduate",9,15000,"1.5 Years",1,"Waterford"),
       ];
 
       const FIELD_COLOR = {
@@ -2734,73 +731,20 @@
         Computing: "#5B21B6",
       };
 
-      // Populate field dropdown
-      const fields = [...new Set(COURSES.map((c) => c.field))];
-      const fieldSel = document.getElementById("fieldFilter");
-      fields.forEach((f) => {
-        const o = document.createElement("option");
-        o.value = f;
-        o.textContent = f;
-        fieldSel.appendChild(o);
-      });
-
-      // Stats
       document.getElementById("statTotal").textContent = COURSES.length;
-      document.getElementById("statUG").textContent = COURSES.filter(
-        (c) => c.level === "Undergraduate",
-      ).length;
-      document.getElementById("statPG").textContent = COURSES.filter(
-        (c) => c.level === "Postgraduate",
-      ).length;
+      document.getElementById("statUG").textContent = COURSES.filter(c => c.level === "Undergraduate").length;
+      document.getElementById("statPG").textContent = COURSES.filter(c => c.level === "Postgraduate").length;
 
       const fmt = (fee) => "€" + fee.toLocaleString();
 
-      function campusMatch(campus, f) {
-        if (!f) return true;
-        return campus.toLowerCase().includes(f.toLowerCase());
-      }
-
-      function durMatch(dur, f) {
-        if (!f) return true;
-        if (f === "3") return dur === "3 Years";
-        if (f === "4") return dur === "4 Years";
-        if (f === "5") return dur === "5 Years";
-        if (f === "1")
-          return dur === "1 Year" || dur === "16 Months" || dur === "1.5 Years";
-        return true;
-      }
-
       const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-      function applyFilters() {
-        const level = document.getElementById("levelFilter").value;
-        const field = document.getElementById("fieldFilter").value;
-        const campus = document.getElementById("campusFilter").value;
-        const duration = document.getElementById("durationFilter").value;
-
-        const filtered = COURSES.filter((c) => {
-          if (level && c.level !== level) return false;
-          if (field && c.field !== field) return false;
-          if (!campusMatch(c.campus, campus)) return false;
-          if (!durMatch(c.dur, duration)) return false;
-          return true;
-        });
-
-        document.getElementById("resultsCount").innerHTML =
-          `<strong>${filtered.length}</strong> programme${filtered.length !== 1 ? "s" : ""} found`;
-
+      function renderAll() {
         const container = document.getElementById("courseContainer");
-        const noRes = document.getElementById("noResults");
-        if (filtered.length === 0) {
-          container.innerHTML = "";
-          noRes.style.display = "block";
-          return;
-        }
-        noRes.style.display = "none";
-
         const grouped = {};
         const order = [];
-        filtered.forEach((c) => {
+
+        COURSES.forEach((c) => {
           if (!grouped[c.field]) {
             grouped[c.field] = [];
             order.push(c.field);
@@ -2808,81 +752,71 @@
           grouped[c.field].push(c);
         });
 
-        container.innerHTML = order
-          .map((fieldName) => {
-            const color = FIELD_COLOR[fieldName] || "#1E40AF";
-            const courses = grouped[fieldName];
-            const cards = courses
-              .map((c) => {
-                const sc = c.level === "Undergraduate" ? UG_SCORES : PG_SCORES;
-                const lvlLabel =
-                  c.lvl === 9
-                    ? "Masters"
-                    : c.lvl === 8
-                      ? "Level 8 (Hons)"
-                      : "Level 7";
-                const lvlCls =
-                  c.level === "Postgraduate" ? "award-pg" : "award-level";
-                return `
-        <div class="course-card">
-          <div class="card-top">
-            <div class="card-badges">
-              <span class="card-award ${c.level === "Postgraduate" ? "award-pg" : "award-ug"}">${c.level === "Undergraduate" ? "UG" : "PG"}</span>
-              <span class="card-award ${lvlCls}">${lvlLabel}</span>
-            </div>
-            <span class="card-campus">${c.campus}</span>
-          </div>
-          <div class="course-name">${c.name}</div>
-          <div class="card-info">
-            <div class="info-item">
-              <div class="info-label">Tuition Fee</div>
-              <div class="info-value fee-val">${fmt(c.fee)}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Application Fee</div>
-              <div class="info-value">€30</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Duration</div>
-              <div class="info-value">${c.dur}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Intake</div>
-              <div class="info-value"><div class="intake-row"><span class="intake-badge intake-open">Sep</span></div></div>
-            </div>
-          </div>
-          <div class="test-section">
-            <div class="info-label" style="margin-bottom:7px;">English Test Requirements</div>
-            <div class="score-grid">
-              <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${sc.ielts}</span></div>
-              <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${sc.toefl}</span></div>
-              <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${sc.pte}</span></div>
-              <div class="score-item"><span class="score-label">DET</span><span class="score-val">${sc.det}</span></div>
-            </div>
-          </div>
-          <div class="card-divider"></div>
-          <div class="card-footer">
-            <a href="https://www.setu.ie/" target="_blank" rel="noopener noreferrer" class="learn-btn">
-              Learn More ${ARROW}
-            </a>
-          </div>
-        </div>`;
-              })
-              .join("");
+        container.innerHTML = order.map((fieldName) => {
+          const courses = grouped[fieldName];
+          const cards = courses.map((c) => {
+            const sc = c.level === "Undergraduate" ? UG_SCORES : PG_SCORES;
+            const lvlLabel = c.lvl === 9 ? "Masters" : c.lvl === 8 ? "Level 8 (Hons)" : "Level 7";
+            const lvlCls = c.level === "Postgraduate" ? "award-pg" : "award-level";
             return `
-      <div class="field-section">
-        <div class="field-header">
-          <div class="field-dot"></div>
-          <div class="field-name">${fieldName}</div>
-          <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
-        </div>
-        <div class="course-grid">${cards}</div>
-      </div>`;
-          })
-          .join("");
+              <div class="course-card">
+                <div class="card-top">
+                  <div class="card-badges">
+                    <span class="card-award ${c.level === "Postgraduate" ? "award-pg" : "award-ug"}">${c.level === "Undergraduate" ? "UG" : "PG"}</span>
+                    <span class="card-award ${lvlCls}">${lvlLabel}</span>
+                  </div>
+                  <span class="card-campus">${c.campus}</span>
+                </div>
+                <div class="course-name">${c.name}</div>
+                <div class="card-info">
+                  <div class="info-item">
+                    <div class="info-label">Tuition Fee</div>
+                    <div class="info-value fee-val">${fmt(c.fee)}</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Application Fee</div>
+                    <div class="info-value">€30</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Duration</div>
+                    <div class="info-value">${c.dur}</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-label">Intake</div>
+                    <div class="info-value"><div class="intake-row"><span class="intake-badge intake-open">Sep</span></div></div>
+                  </div>
+                </div>
+                <div class="test-section">
+                  <div class="info-label" style="margin-bottom:7px;">English Test Requirements</div>
+                  <div class="score-grid">
+                    <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${sc.ielts}</span></div>
+                    <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${sc.toefl}</span></div>
+                    <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${sc.pte}</span></div>
+                    <div class="score-item"><span class="score-label">DET</span><span class="score-val">${sc.det}</span></div>
+                  </div>
+                </div>
+                <div class="card-divider"></div>
+                <div class="card-footer">
+                  <a href="https://www.setu.ie/" target="_blank" rel="noopener noreferrer" class="learn-btn">
+                    Learn More ${ARROW}
+                  </a>
+                </div>
+              </div>`;
+          }).join("");
+
+          return `
+            <div class="field-section">
+              <div class="field-header">
+                <div class="field-dot"></div>
+                <div class="field-name">${fieldName}</div>
+                <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
+              </div>
+              <div class="course-grid">${cards}</div>
+            </div>`;
+        }).join("");
       }
 
-      applyFilters();
+      renderAll();
     </script>
   </body>
 </html>
