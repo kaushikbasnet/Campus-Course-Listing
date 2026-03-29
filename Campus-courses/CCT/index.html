@@ -119,76 +119,6 @@
       .hinfo-pill strong {
         color: var(--navy);
       }
-      .filters-wrap {
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 12px rgba(0, 29, 61, 0.07);
-      }
-      .filters-inner {
-        padding: 14px 5%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .filters-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        white-space: nowrap;
-        margin-right: 4px;
-      }
-      .filter-select {
-        position: relative;
-        flex-shrink: 0;
-      }
-      .filter-select select {
-        appearance: none;
-        -webkit-appearance: none;
-        background: var(--bg);
-        border: 1.5px solid var(--border);
-        border-radius: var(--rsm);
-        padding: 9px 32px 9px 13px;
-        font-family: inherit;
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: var(--text);
-        cursor: pointer;
-        outline: none;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-      }
-      .filter-select select:focus {
-        border-color: var(--mid);
-        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-      }
-      .filter-select::after {
-        content: "";
-        position: absolute;
-        right: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid var(--muted);
-        pointer-events: none;
-      }
-      .results-count {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: var(--muted);
-        white-space: nowrap;
-      }
-      .results-count strong {
-        color: var(--blue);
-        font-weight: 600;
-      }
       .main {
         padding: 28px 5% 80px;
       }
@@ -411,21 +341,6 @@
       .learn-btn:hover svg {
         transform: translateX(2px);
       }
-      #noResults {
-        display: none;
-        text-align: center;
-        padding: 80px 20px;
-        color: var(--muted);
-      }
-      #noResults h3 {
-        font-family: "Syne", sans-serif;
-        font-size: 1.1rem;
-        color: var(--text);
-        margin-bottom: 8px;
-      }
-      #noResults p {
-        font-size: 0.85rem;
-      }
       @media (max-width: 1200px) {
         .course-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -453,9 +368,6 @@
         }
       }
       @media (max-width: 600px) {
-        .filters-inner {
-          gap: 8px;
-        }
         .card-info {
           grid-template-columns: 1fr;
         }
@@ -493,44 +405,11 @@
       </div>
     </div>
 
-    <div class="filters-wrap">
-      <div class="filters-inner">
-        <span class="filters-label">Filter by</span>
-        <div class="filter-select">
-          <select id="levelFilter" onchange="applyFilters()">
-            <option value="">UG &amp; PG</option>
-            <option value="Undergraduate">Undergraduate</option>
-            <option value="Postgraduate">Postgraduate</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="fieldFilter" onchange="applyFilters()">
-            <option value="">All Fields</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="intakeFilter" onchange="applyFilters()">
-            <option value="">Any Intake</option>
-            <option value="feb">February</option>
-            <option value="sep">September</option>
-          </select>
-        </div>
-        <div class="results-count" id="resultsCount"></div>
-      </div>
-    </div>
-
     <div class="main">
-      <div id="noResults">
-        <h3>No courses found</h3>
-        <p>Try adjusting your filters.</p>
-      </div>
       <div id="courseContainer"></div>
     </div>
 
     <script>
-      // Scores from CCT's official English requirements page
-      // UG Level 8: IELTS 6.0 / TOEFL 68–73 / DET 105–115 / PTE not listed by CCT
-      // PG Level 9: IELTS 6.5 / TOEFL 80–85 / DET 120–125 / PTE not listed by CCT
       const SCORES = {
         Undergraduate: {
           ielts: "6.0",
@@ -546,9 +425,7 @@
         },
       };
 
-      // fee: first year fee shown; feeNote for instalment breakdown
       const COURSES = [
-        // ── Business ──
         {
           name: "Bachelor of Arts (Honours) in Business",
           award: "BA (Hons)",
@@ -571,7 +448,6 @@
           feb: true,
           sep: true,
         },
-        // ── Computing & IT ──
         {
           name: "Bachelor of Science (Honours) in Computing and IT",
           award: "BSc (Hons)",
@@ -634,136 +510,90 @@
         "Computing & IT": "#6D28D9",
       };
 
-      const fields = [...new Set(COURSES.map((c) => c.field))];
-      const fieldSel = document.getElementById("fieldFilter");
-      fields.forEach((f) => {
-        const o = document.createElement("option");
-        o.value = f;
-        o.textContent = f;
-        fieldSel.appendChild(o);
-      });
-
-      document.getElementById("statTotal").textContent = COURSES.length;
-      document.getElementById("statFields").textContent = fields.length;
-
-      function intakeMatch(c, f) {
-        if (!f) return true;
-        if (f === "feb") return c.feb === true;
-        if (f === "sep") return c.sep === true;
-        return true;
-      }
-
       const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-      function applyFilters() {
-        const level = document.getElementById("levelFilter").value;
-        const field = document.getElementById("fieldFilter").value;
-        const intake = document.getElementById("intakeFilter").value;
-
-        const filtered = COURSES.filter((c) => {
-          if (level && c.level !== level) return false;
-          if (field && c.field !== field) return false;
-          if (!intakeMatch(c, intake)) return false;
-          return true;
-        });
-
-        document.getElementById("resultsCount").innerHTML =
-          `<strong>${filtered.length}</strong> programme${filtered.length !== 1 ? "s" : ""} found`;
+      function renderCourses() {
+        const fields = [...new Set(COURSES.map((c) => c.field))];
+        document.getElementById("statTotal").textContent = COURSES.length;
+        document.getElementById("statFields").textContent = fields.length;
 
         const container = document.getElementById("courseContainer");
-        const noRes = document.getElementById("noResults");
-        if (filtered.length === 0) {
-          container.innerHTML = "";
-          noRes.style.display = "block";
-          return;
-        }
-        noRes.style.display = "none";
-
         const grouped = {};
-        const order = [];
-        filtered.forEach((c) => {
-          if (!grouped[c.field]) {
-            grouped[c.field] = [];
-            order.push(c.field);
-          }
+        
+        COURSES.forEach((c) => {
+          if (!grouped[c.field]) grouped[c.field] = [];
           grouped[c.field].push(c);
         });
 
-        container.innerHTML = order
+        container.innerHTML = Object.keys(grouped)
           .map((fieldName) => {
-            const color = FIELD_COLOR[fieldName] || "#1E40AF";
             const courses = grouped[fieldName];
-            const cards = courses
-              .map((c) => {
-                const sc = SCORES[c.level];
-                const lvlCls =
-                  c.level === "Undergraduate" ? "award-ug" : "award-pg";
-                const openMonths = [];
-                if (c.feb) openMonths.push("Feb");
-                if (c.sep) openMonths.push("Sep");
-                const intakeBadges = openMonths
-                  .map(
-                    (m) => `<span class="intake-badge intake-open">${m}</span>`,
-                  )
-                  .join("");
+            const cards = courses.map((c) => {
+              const sc = SCORES[c.level];
+              const lvlCls = c.level === "Undergraduate" ? "award-ug" : "award-pg";
+              const openMonths = [];
+              if (c.feb) openMonths.push("Feb");
+              if (c.sep) openMonths.push("Sep");
+              const intakeBadges = openMonths
+                .map((m) => `<span class="intake-badge intake-open">${m}</span>`)
+                .join("");
 
-                return `
-        <div class="course-card">
-          <div class="card-top">
-            <span class="card-award ${lvlCls}">${c.award}</span>
-          </div>
-          <div class="course-name">${c.name}</div>
-          <div class="card-info">
-            <div class="info-item">
-              <div class="info-label">Tuition Fee</div>
-              <div class="info-value fee-val">${c.fee}</div>
-              ${c.feeNote ? `<div class="info-note">${c.feeNote}</div>` : ""}
-            </div>
-            <div class="info-item">
-              <div class="info-label">Application Fee</div>
-              <div class="info-value">€50</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Duration</div>
-              <div class="info-value">${c.dur}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Intake</div>
-              <div class="info-value"><div class="intake-row">${intakeBadges}</div></div>
-            </div>
-          </div>
-          <div class="test-section">
-            <div class="info-label" style="margin-bottom:7px;">English Test Requirements</div>
-            <div class="score-grid">
-              <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${sc.ielts}</span></div>
-              <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${sc.toefl}</span></div>
-              <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${sc.pte}</span></div>
-              <div class="score-item"><span class="score-label">DET</span><span class="score-val">${sc.det}</span></div>
-            </div>
-          </div>
-          <div class="card-divider"></div>
-          <div class="card-footer">
-            <a href="https://www.cct.ie/course-delivery/full-time/" target="_blank" rel="noopener noreferrer" class="learn-btn">
-              Learn More ${ARROW}
-            </a>
-          </div>
-        </div>`;
-              })
-              .join("");
+              return `
+                <div class="course-card">
+                  <div class="card-top">
+                    <span class="card-award ${lvlCls}">${c.award}</span>
+                  </div>
+                  <div class="course-name">${c.name}</div>
+                  <div class="card-info">
+                    <div class="info-item">
+                      <div class="info-label">Tuition Fee</div>
+                      <div class="info-value fee-val">${c.fee}</div>
+                      ${c.feeNote ? `<div class="info-note">${c.feeNote}</div>` : ""}
+                    </div>
+                    <div class="info-item">
+                      <div class="info-label">Application Fee</div>
+                      <div class="info-value">€50</div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-label">Duration</div>
+                      <div class="info-value">${c.dur}</div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-label">Intake</div>
+                      <div class="info-value"><div class="intake-row">${intakeBadges}</div></div>
+                    </div>
+                  </div>
+                  <div class="test-section">
+                    <div class="info-label" style="margin-bottom:7px;">English Requirements</div>
+                    <div class="score-grid">
+                      <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${sc.ielts}</span></div>
+                      <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${sc.toefl}</span></div>
+                      <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${sc.pte}</span></div>
+                      <div class="score-item"><span class="score-label">DET</span><span class="score-val">${sc.det}</span></div>
+                    </div>
+                  </div>
+                  <div class="card-divider"></div>
+                  <div class="card-footer">
+                    <a href="https://www.cct.ie/course-delivery/full-time/" target="_blank" rel="noopener noreferrer" class="learn-btn">
+                      Learn More ${ARROW}
+                    </a>
+                  </div>
+                </div>`;
+            }).join("");
+
             return `
-      <div class="field-section">
-        <div class="field-header">
-          <div class="field-dot"></div>
-          <div class="field-name">${fieldName}</div>
-          <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
-        </div>
-        <div class="course-grid">${cards}</div>
-      </div>`;
-          })
-          .join("");
+              <div class="field-section">
+                <div class="field-header">
+                  <div class="field-dot"></div>
+                  <div class="field-name">${fieldName}</div>
+                  <span class="field-count">${courses.length} programmes</span>
+                </div>
+                <div class="course-grid">${cards}</div>
+              </div>`;
+          }).join("");
       }
 
-      applyFilters();
+      renderCourses();
     </script>
   </body>
 </html>
