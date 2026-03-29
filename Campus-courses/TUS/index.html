@@ -121,77 +121,6 @@
         color: var(--navy);
       }
 
-      .filters-wrap {
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 12px rgba(0, 29, 61, 0.07);
-      }
-      .filters-inner {
-        padding: 14px 5%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .filters-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        white-space: nowrap;
-        margin-right: 4px;
-      }
-      .filter-select {
-        position: relative;
-        flex-shrink: 0;
-      }
-      .filter-select select {
-        appearance: none;
-        -webkit-appearance: none;
-        background: var(--bg);
-        border: 1.5px solid var(--border);
-        border-radius: var(--rsm);
-        padding: 9px 32px 9px 13px;
-        font-family: inherit;
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: var(--text);
-        cursor: pointer;
-        outline: none;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-      }
-      .filter-select select:focus {
-        border-color: var(--mid);
-        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-      }
-      .filter-select::after {
-        content: "";
-        position: absolute;
-        right: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid var(--muted);
-        pointer-events: none;
-      }
-      .results-count {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: var(--muted);
-        white-space: nowrap;
-      }
-      .results-count strong {
-        color: var(--blue);
-        font-weight: 600;
-      }
-
       .main {
         padding: 28px 5% 80px;
       }
@@ -424,22 +353,6 @@
         transform: translateX(2px);
       }
 
-      #noResults {
-        display: none;
-        text-align: center;
-        padding: 80px 20px;
-        color: var(--muted);
-      }
-      #noResults h3 {
-        font-family: "Syne", sans-serif;
-        font-size: 1.1rem;
-        color: var(--text);
-        margin-bottom: 8px;
-      }
-      #noResults p {
-        font-size: 0.85rem;
-      }
-
       @media (max-width: 1200px) {
         .course-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -467,9 +380,6 @@
         }
       }
       @media (max-width: 600px) {
-        .filters-inner {
-          gap: 8px;
-        }
         .card-info {
           grid-template-columns: 1fr;
         }
@@ -509,55 +419,14 @@
       </div>
     </div>
 
-    <div class="filters-wrap">
-      <div class="filters-inner">
-        <span class="filters-label">Filter by</span>
-        <div class="filter-select">
-          <select id="fieldFilter" onchange="applyFilters()">
-            <option value="">All Fields</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="campusFilter" onchange="applyFilters()">
-            <option value="">Any Campus</option>
-            <option value="Athlone">Athlone</option>
-            <option value="Moylish">Moylish</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="feeFilter" onchange="applyFilters()">
-            <option value="">Any Tuition Fee</option>
-            <option value="under15">Under €15,000</option>
-            <option value="15to17">€15,000 – €17,000</option>
-            <option value="over17">Over €17,000</option>
-          </select>
-        </div>
-        <div class="filter-select">
-          <select id="durationFilter" onchange="applyFilters()">
-            <option value="">Any Duration</option>
-            <option value="12">12 Months</option>
-            <option value="16">16 Months</option>
-            <option value="24">24 Months</option>
-          </select>
-        </div>
-        <div class="results-count" id="resultsCount"></div>
-      </div>
-    </div>
-
     <div class="main">
-      <div id="noResults">
-        <h3>No courses found</h3>
-        <p>Try adjusting your filters.</p>
-      </div>
       <div id="courseContainer"></div>
     </div>
 
     <script>
       const SCORES = { ielts: 6.5, toefl: 79, pte: 58, det: 120 };
 
-      // campus: array of campuses the course is available at (for filter)
       const COURSES = [
-        // ── Business & Management ──
         {
           name: "MA in Accounting",
           award: "MA",
@@ -614,7 +483,6 @@
           duration: "12 Months",
           campus: ["Athlone", "Moylish"],
         },
-        // ── Computing & Technology ──
         {
           name: "MSc in Data Analytics",
           award: "MSc",
@@ -655,7 +523,6 @@
           duration: "12 Months",
           campus: ["Athlone"],
         },
-        // ── Engineering ──
         {
           name: "MSc in Sustainable Energy System Management",
           award: "MSc",
@@ -680,7 +547,6 @@
           duration: "12 Months",
           campus: ["Athlone", "Moylish"],
         },
-        // ── Health Sciences ──
         {
           name: "MSc in Process Validation and Regulatory Affairs (Medical Technology)",
           award: "MSc",
@@ -745,7 +611,6 @@
           duration: "12 Months",
           campus: ["Athlone", "Moylish"],
         },
-        // ── Social Sciences & Education ──
         {
           name: "Master of Arts - Social Work",
           award: "MA",
@@ -781,73 +646,18 @@
       };
 
       const fields = [...new Set(COURSES.map((c) => c.field))];
-      const fieldSel = document.getElementById("fieldFilter");
-      fields.forEach((f) => {
-        const o = document.createElement("option");
-        o.value = f;
-        o.textContent = f;
-        fieldSel.appendChild(o);
-      });
-
       document.getElementById("statTotal").textContent = COURSES.length;
       document.getElementById("statFields").textContent = fields.length;
 
       const fmt = (fee) => (fee ? "€" + fee.toLocaleString() : null);
-
-      function feeMatch(fee, f) {
-        if (!f) return true;
-        if (!fee) return false;
-        if (f === "under15") return fee < 15000;
-        if (f === "15to17") return fee >= 15000 && fee <= 17000;
-        if (f === "over17") return fee > 17000;
-        return true;
-      }
-
-      function campusMatch(campus, f) {
-        if (!f) return true;
-        return campus.includes(f);
-      }
-
-      function durMatch(dur, f) {
-        if (!f) return true;
-        if (f === "12") return dur === "12 Months";
-        if (f === "16") return dur === "16 Months";
-        if (f === "24") return dur === "24 Months";
-        return true;
-      }
-
       const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-      function applyFilters() {
-        const field = document.getElementById("fieldFilter").value;
-        const campus = document.getElementById("campusFilter").value;
-        const fee = document.getElementById("feeFilter").value;
-        const duration = document.getElementById("durationFilter").value;
-
-        const filtered = COURSES.filter((c) => {
-          if (field && c.field !== field) return false;
-          if (!campusMatch(c.campus, campus)) return false;
-          if (!feeMatch(c.fee, fee)) return false;
-          if (!durMatch(c.duration, duration)) return false;
-          return true;
-        });
-
-        document.getElementById("resultsCount").innerHTML =
-          `<strong>${filtered.length}</strong> programme${filtered.length !== 1 ? "s" : ""} found`;
-
+      function renderCourses() {
         const container = document.getElementById("courseContainer");
-        const noRes = document.getElementById("noResults");
-
-        if (filtered.length === 0) {
-          container.innerHTML = "";
-          noRes.style.display = "block";
-          return;
-        }
-        noRes.style.display = "none";
-
         const grouped = {};
         const order = [];
-        filtered.forEach((c) => {
+
+        COURSES.forEach((c) => {
           if (!grouped[c.field]) {
             grouped[c.field] = [];
             order.push(c.field);
@@ -857,14 +667,11 @@
 
         container.innerHTML = order
           .map((fieldName) => {
-            const color = FIELD_COLOR[fieldName] || "#1E40AF";
             const courses = grouped[fieldName];
-
             const cards = courses
               .map((c) => {
                 const feeStr = fmt(c.fee);
                 const campusLabel = c.campus.join(" / ");
-
                 return `
         <div class="course-card">
           <div class="card-top">
@@ -912,7 +719,7 @@
             return `
       <div class="field-section">
         <div class="field-header">
-          <div class="field-dot"></div>
+          <div class="field-dot" style="background:${FIELD_COLOR[fieldName] || "#16a34a"}"></div>
           <div class="field-name">${fieldName}</div>
           <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
         </div>
@@ -922,7 +729,7 @@
           .join("");
       }
 
-      applyFilters();
+      renderCourses();
     </script>
   </body>
 </html>
