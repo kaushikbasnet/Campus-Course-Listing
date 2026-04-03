@@ -3,12 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maynooth University | Full Programme Catalog</title>
+    <title>Maynooth University — Programme Finder</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
+      * {
+        box-sizing: border-box;
+      }
       :root {
         --primary: #d25822;
         --secondary: #8bc41f;
@@ -17,154 +20,296 @@
         --bg: #f1f5f9;
         --white: #ffffff;
       }
-
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: var(--bg);
+        background: var(--bg);
         margin: 0;
-        padding: 40px 0;
+        padding: 0;
         color: var(--dark);
       }
-
-      .container {
-        max-width: 1440px;
+      .page-header {
+        background: var(--white);
+        border-bottom: 2px solid #e2e8f0;
+        padding: 22px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .logo-box {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        flex-shrink: 0;
+      }
+      .uni-name {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin: 0;
+        line-height: 1.2;
+      }
+      .uni-sub {
+        font-size: 0.75rem;
+        color: var(--grey);
+        font-weight: 500;
+        margin: 2px 0 0;
+      }
+      .header-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hpill {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        color: var(--grey);
+      }
+      .hpill strong {
+        color: var(--dark);
+      }
+      .back-btn {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        padding: 7px 14px;
+        border: 1.5px solid var(--primary);
+        border-radius: 8px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .back-btn:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+      .main-wrap {
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 40px 40px 80px;
       }
-
-      /* Field Section Styling */
       .field-block {
-        margin-bottom: 80px;
+        margin-bottom: 60px;
       }
-
       .field-banner {
         width: 100%;
-        height: 250px;
-        border-radius: 20px;
+        height: 210px;
+        border-radius: 18px;
         background-size: cover;
         background-position: center;
-        margin-bottom: 30px;
+        margin-bottom: 24px;
         display: flex;
         align-items: flex-end;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
       }
-
       .banner-overlay {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-        padding: 30px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+        padding: 24px 30px;
         width: 100%;
       }
-
       .banner-overlay h2 {
-        color: white;
+        color: #fff;
         margin: 0;
-        font-size: 2.2rem;
+        font-size: 1.75rem;
+        font-weight: 800;
       }
-
-      /* Grid */
+      .banner-overlay p {
+        color: #e2e8f0;
+        margin: 4px 0 0;
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
       .grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
       }
-
-      /* Card Styling */
       .card {
         background: var(--white);
-        border-radius: 16px;
+        border-radius: 14px;
         border: 1px solid #e2e8f0;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 18px;
       }
-
       .card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-5px);
         border-color: var(--primary);
-        box-shadow: 0 20px 40px rgba(210, 88, 34, 0.1);
+        box-shadow: 0 14px 32px rgba(210, 88, 34, 0.11);
       }
-
       .badge-row {
-        margin-bottom: 12px;
+        margin-bottom: 9px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
       }
       .badge {
-        font-size: 10px;
+        font-size: 8.5px;
         font-weight: 800;
-        padding: 4px 10px;
-        border-radius: 6px;
+        padding: 3px 8px;
+        border-radius: 5px;
         text-transform: uppercase;
-        margin-right: 5px;
       }
-      .b-fee {
+      .b-open {
+        background: #ecfdf5;
+        color: #059669;
+      }
+      .b-closed {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+      .b-orange {
         background: #fff3ed;
         color: var(--primary);
       }
-      .b-gpa {
+      .b-green {
         background: #f4fae9;
         color: var(--secondary);
       }
-
+      .b-blue {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .b-grey {
+        background: #f1f5f9;
+        color: var(--grey);
+      }
+      .b-purple {
+        background: #f5f3ff;
+        color: #7c3aed;
+      }
       .price-line {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 11px;
       }
       .fee {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         font-weight: 800;
         color: var(--dark);
       }
       .dur {
-        font-size: 11px;
+        font-size: 9.5px;
         color: var(--grey);
-        font-weight: 600;
+        font-weight: 700;
+        background: #f1f5f9;
+        padding: 2px 7px;
+        border-radius: 5px;
       }
-
       .card h3 {
-        font-size: 1rem;
-        color: var(--primary);
-        margin: 0 0 20px 0;
-        line-height: 1.4;
-        min-height: 2.8em;
+        font-size: 0.88rem;
+        color: var(--dark);
+        margin: 0 0 12px;
+        line-height: 1.45;
+        flex-grow: 1;
+        font-weight: 700;
       }
-
-      /* Requirements Table */
       .req-box {
         background: #f8fafc;
-        border-radius: 12px;
-        padding: 12px;
+        border-radius: 9px;
+        padding: 9px 11px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 6px;
         border: 1px solid #f1f5f9;
-        margin-top: auto;
+        margin-bottom: 14px;
       }
-
       .req-item {
         display: flex;
         flex-direction: column;
+        gap: 1px;
       }
       .req-label {
-        font-size: 9px;
+        font-size: 7.5px;
         color: var(--grey);
         font-weight: 700;
         text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
       .req-val {
-        font-size: 12px;
-        font-weight: 700;
+        font-size: 10.5px;
+        font-weight: 800;
         color: var(--dark);
       }
-
-      @media (max-width: 1200px) {
+      .card-meta {
+        font-size: 0.7rem;
+        color: var(--grey);
+        margin-bottom: 10px;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .meta-tag {
+        background: #f1f5f9;
+        padding: 2px 7px;
+        border-radius: 5px;
+        font-weight: 600;
+      }
+      .learn-btn {
+        margin-top: auto;
+        display: block;
+        text-align: center;
+        background: var(--secondary);
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.78rem;
+        transition: all 0.2s;
+      }
+      .learn-btn:hover {
+        background: #76a719;
+        box-shadow: 0 4px 10px rgba(139, 196, 31, 0.3);
+        transform: translateY(-1px);
+      }
+      @media (max-width: 1400px) {
+        .grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
         .grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .main-wrap {
+          padding: 24px 20px 60px;
+        }
+        .page-header {
+          padding: 16px 20px;
+        }
       }
-      @media (max-width: 600px) {
+      @media (max-width: 480px) {
         .grid {
           grid-template-columns: 1fr;
         }
@@ -172,8 +317,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <!-- Computing, AI & Technology -->
+    <div class="main-wrap">
       <div class="field-block">
         <div
           class="field-banner"
@@ -181,13 +325,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Computing, AI & Technology</h2></div>
+          <div class="banner-overlay">
+            <h2>Computing, AI & Technology</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -200,23 +348,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -229,23 +383,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -258,23 +418,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">24 MONTHS</span>
@@ -287,23 +453,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -316,23 +488,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -345,23 +523,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -374,23 +558,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -403,38 +593,44 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Business, Finance & Marketing -->
       <div class="field-block">
         <div
           class="field-banner"
           style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
           <div class="banner-overlay">
             <h2>Business, Finance & Marketing</h2>
+            <p>Postgraduate · Maynooth University</p>
           </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -447,23 +643,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -476,23 +678,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -505,23 +713,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -534,23 +748,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -563,23 +783,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -592,23 +818,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -621,23 +853,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -650,23 +888,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -679,23 +923,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
@@ -708,23 +958,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -737,23 +993,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">24 MONTHS</span>
@@ -766,23 +1028,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -795,22 +1063,26 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Law & Global Justice -->
       <div class="field-block">
         <div
           class="field-banner"
@@ -818,13 +1090,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Law & Global Justice</h2></div>
+          <div class="banner-overlay">
+            <h2>Law & Global Justice</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -837,23 +1113,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -866,23 +1148,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
@@ -895,38 +1183,44 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Social Sciences & Psychology -->
       <div class="field-block">
         <div
           class="field-banner"
           style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1638443436690-db587cc66f12?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+            background-image: url(&quot;https://images.unsplash.com/photo-1638443436690-db587cc66f12?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
           <div class="banner-overlay">
             <h2>Social Sciences & Psychology</h2>
+            <p>Postgraduate · Maynooth University</p>
           </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -939,23 +1233,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -968,23 +1268,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
@@ -997,23 +1303,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1026,23 +1338,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1055,23 +1373,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1084,23 +1408,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1113,23 +1443,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1144,23 +1480,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
@@ -1175,23 +1517,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1204,22 +1552,26 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Arts & Humanities -->
       <div class="field-block">
         <div
           class="field-banner"
@@ -1227,13 +1579,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Arts & Humanities</h2></div>
+          <div class="banner-overlay">
+            <h2>Arts & Humanities</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1246,23 +1602,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1275,23 +1637,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€14,000</span><span class="dur">12 MONTHS</span>
@@ -1304,23 +1672,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1333,23 +1707,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1362,23 +1742,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1391,23 +1777,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1420,23 +1812,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1449,23 +1847,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1478,23 +1882,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1507,23 +1917,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1536,22 +1952,26 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Music -->
       <div class="field-block">
         <div
           class="field-banner"
@@ -1559,13 +1979,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Music</h2></div>
+          <div class="banner-overlay">
+            <h2>Music</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1578,23 +2002,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1607,23 +2037,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1636,23 +2072,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1665,23 +2107,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1694,22 +2142,26 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Science & Environment -->
       <div class="field-block">
         <div
           class="field-banner"
@@ -1717,13 +2169,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Science & Environment</h2></div>
+          <div class="banner-overlay">
+            <h2>Science & Environment</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -1736,23 +2192,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -1765,23 +2227,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -1794,23 +2262,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
@@ -1823,23 +2297,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1852,22 +2332,26 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
-
-      <!-- Education -->
       <div class="field-block">
         <div
           class="field-banner"
@@ -1875,13 +2359,17 @@
             background-image: url(&quot;https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>Education</h2></div>
+          <div class="banner-overlay">
+            <h2>Education</h2>
+            <p>Postgraduate · Maynooth University</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1894,23 +2382,29 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
-
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €50</span
-              ><span class="badge b-gpa">GPA: 50%</span>
+              <span class="badge b-orange">APP FEE: €50</span
+              ><span class="badge b-green">GPA: 50%</span
+              ><span class="badge b-open">SEP 2026</span>
             </div>
             <div class="price-line">
               <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
@@ -1923,17 +2417,23 @@
               </div>
               <div class="req-item">
                 <span class="req-label">TOEFL</span
-                ><span class="req-val">90.0</span>
+                ><span class="req-val">90</span>
               </div>
               <div class="req-item">
                 <span class="req-label">PTE</span
-                ><span class="req-val">63.0</span>
+                ><span class="req-val">63</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
                 ><span class="req-val">120</span>
               </div>
             </div>
+            <a
+              href="https://www.maynoothuniversity.ie/"
+              target="_blank"
+              class="learn-btn"
+              >Learn More</a
+            >
           </div>
         </div>
       </div>
