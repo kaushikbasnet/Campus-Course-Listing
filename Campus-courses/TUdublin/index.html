@@ -3,1058 +3,1810 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TU Dublin — Course Finder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <title>TU Dublin — Programme Finder</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
-      :root {
-        --navy: #001d3d;
-        --blue: #004f9f;
-        --mid: #0066cc;
-        --bg: #f2f5f9;
-        --surface: #ffffff;
-        --surf2: #ebf0f7;
-        --border: rgba(0, 79, 159, 0.13);
-        --text: #0f172a;
-        --muted: #5e7491;
-        --light: #94a3b8;
-        --radius: 12px;
-        --rsm: 8px;
-      }
-      *,
-      *::before,
-      *::after {
+      * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      }
+      :root {
+        --primary: #d25822;
+        --secondary: #8bc41f;
+        --dark: #1a1a1a;
+        --grey: #64748b;
+        --bg: #f1f5f9;
+        --white: #ffffff;
       }
       body {
-        font-family: "DM Sans", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         background: var(--bg);
-        color: var(--text);
-        -webkit-font-smoothing: antialiased;
-        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        color: var(--dark);
       }
-
-      /* ── PAGE HEADER ── */
       .page-header {
-        background: #eef3fa;
-        border-bottom: 1px solid rgba(0, 79, 159, 0.15);
-        padding: 28px 5% 24px;
+        background: var(--white);
+        border-bottom: 2px solid #e2e8f0;
+        padding: 22px 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .page-eyebrow {
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
-      .page-title {
-        font-family: "Syne", sans-serif;
-        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-        font-weight: 800;
-        color: var(--navy);
-        letter-spacing: -0.01em;
-        line-height: 1.15;
-      }
-      .page-title span {
-        color: var(--blue);
-      }
-      .page-sub {
-        margin-top: 5px;
-        font-size: 0.82rem;
-        color: var(--muted);
-        font-weight: 300;
-      }
-      .header-meta {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
-      }
-      .header-counts {
-        display: flex;
-        gap: 24px;
-      }
-      .hcount {
-        text-align: right;
-      }
-      .hcount-num {
-        font-family: "Syne", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--navy);
-        line-height: 1;
-      }
-      .hcount-lbl {
-        font-size: 0.62rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: 2px;
-      }
-      .header-info {
-        display: flex;
         gap: 16px;
         flex-wrap: wrap;
-        justify-content: flex-end;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       }
-      .hinfo-pill {
-        font-size: 0.68rem;
-        font-weight: 500;
-        color: var(--muted);
-        background: rgba(0, 79, 159, 0.07);
-        border: 1px solid rgba(0, 79, 159, 0.15);
-        padding: 4px 12px;
-        border-radius: 100px;
-        white-space: nowrap;
-      }
-      .hinfo-pill strong {
-        color: var(--navy);
-      }
-
-      /* ── MAIN ── */
-      .main {
-        margin: 0 auto;
-        padding: 28px 5% 80px;
-      }
-
-      /* ── FIELD SECTION ── */
-      .field-section {
-        margin-bottom: 38px;
-      }
-      .field-header {
+      .header-left {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--border);
+        gap: 14px;
       }
-      .field-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
+      .logo-box {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
         flex-shrink: 0;
-        background: #16a34a;
       }
-      .field-name {
-        font-family: "Syne", sans-serif;
-        font-size: 1rem;
+      .uni-name {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin: 0;
+        line-height: 1.2;
+      }
+      .uni-sub {
+        font-size: 0.75rem;
+        color: var(--grey);
+        font-weight: 500;
+        margin: 2px 0 0;
+      }
+      .header-pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hpill {
+        font-size: 0.68rem;
         font-weight: 700;
-        color: var(--navy);
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        color: var(--grey);
       }
-      .field-count {
-        font-size: 0.67rem;
-        font-weight: 600;
-        color: var(--muted);
-        background: var(--surf2);
-        padding: 3px 9px;
-        border-radius: 100px;
+      .hpill strong {
+        color: var(--dark);
       }
-
-      /* ── COURSE GRID ── */
-      .course-grid {
+      .back-btn {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        padding: 7px 14px;
+        border: 1.5px solid var(--primary);
+        border-radius: 8px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .back-btn:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+      .main-wrap {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 40px 80px;
+      }
+      .field-block {
+        margin-bottom: 60px;
+      }
+      .field-banner {
+        width: 100%;
+        height: 210px;
+        border-radius: 18px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+      }
+      .banner-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+        padding: 24px 30px;
+        width: 100%;
+      }
+      .banner-overlay h2 {
+        color: #fff;
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 800;
+      }
+      .banner-overlay p {
+        color: #e2e8f0;
+        margin: 4px 0 0;
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
+      .grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
+        gap: 14px;
       }
-
-      /* ── COURSE CARD ── */
-      .course-card {
-        background: var(--surface);
-        border: 1.5px solid var(--border);
-        border-radius: var(--radius);
-        padding: 20px 20px 16px;
+      .card {
+        background: var(--white);
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s,
-          border-color 0.2s;
-        position: relative;
-        overflow: hidden;
+        padding: 18px;
       }
-      .course-card::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: #16a34a;
-        opacity: 0;
-        transition: opacity 0.2s;
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 14px 32px rgba(210, 88, 34, 0.11);
       }
-      .course-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(22, 163, 74, 0.12);
-        border-color: rgba(22, 163, 74, 0.35);
-      }
-      .course-card:hover::after {
-        opacity: 1;
-      }
-
-      .card-top {
+      .badge-row {
+        margin-bottom: 9px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 4px;
       }
-      .card-award {
-        font-size: 0.62rem;
-        font-weight: 700;
+      .badge {
+        font-size: 8.5px;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 5px;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        padding: 3px 9px;
-        border-radius: 100px;
-        background: var(--surf2);
-        color: var(--muted);
-        white-space: nowrap;
       }
-      .card-location {
-        font-size: 0.62rem;
-        color: var(--light);
-        font-weight: 400;
-        text-align: right;
-        line-height: 1.3;
+      .b-open {
+        background: #ecfdf5;
+        color: #059669;
       }
-
-      .course-name {
-        font-family: "Syne", sans-serif;
-        font-size: 0.9rem;
+      .b-closed {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+      .b-orange {
+        background: #fff3ed;
+        color: var(--primary);
+      }
+      .b-green {
+        background: #f4fae9;
+        color: var(--secondary);
+      }
+      .b-blue {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .b-grey {
+        background: #f1f5f9;
+        color: var(--grey);
+      }
+      .b-purple {
+        background: #f5f3ff;
+        color: #7c3aed;
+      }
+      .price-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 11px;
+      }
+      .fee {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+      }
+      .dur {
+        font-size: 9.5px;
+        color: var(--grey);
         font-weight: 700;
-        color: var(--text);
-        line-height: 1.45;
-        margin-bottom: 16px;
-        flex: 1;
+        background: #f1f5f9;
+        padding: 2px 7px;
+        border-radius: 5px;
       }
-
-      /* info grid 2x3 */
-      .card-info {
+      .card h3 {
+        font-size: 0.88rem;
+        color: var(--dark);
+        margin: 0 0 12px;
+        line-height: 1.45;
+        flex-grow: 1;
+        font-weight: 700;
+      }
+      .req-box {
+        background: #f8fafc;
+        border-radius: 9px;
+        padding: 9px 11px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px 12px;
+        gap: 6px;
+        border: 1px solid #f1f5f9;
         margin-bottom: 14px;
       }
-      .info-label {
-        font-size: 0.58rem;
-        font-weight: 600;
+      .req-item {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .req-label {
+        font-size: 7.5px;
+        color: var(--grey);
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--light);
-        margin-bottom: 3px;
+        letter-spacing: 0.05em;
       }
-      .info-value {
-        font-size: 0.78rem;
-        font-weight: 500;
-        color: var(--text);
-        line-height: 1.35;
+      .req-val {
+        font-size: 10.5px;
+        font-weight: 800;
+        color: var(--dark);
       }
-      .fee-val {
-        color: var(--blue);
-        font-weight: 600;
-      }
-      .info-na {
-        color: var(--light);
-        font-style: italic;
-        font-size: 0.75rem;
-      }
-
-      .intake-row {
+      .card-meta {
+        font-size: 0.7rem;
+        color: var(--grey);
+        margin-bottom: 10px;
         display: flex;
         gap: 5px;
         flex-wrap: wrap;
       }
-      .intake-badge {
-        font-size: 0.65rem;
-        font-weight: 600;
-        padding: 2px 8px;
+      .meta-tag {
+        background: #f1f5f9;
+        padding: 2px 7px;
         border-radius: 5px;
-        border: 1px solid;
-      }
-      .intake-open {
-        background: #f0fdf4;
-        color: #166534;
-        border-color: #bbf7d0;
-      }
-
-      .test-section {
-        margin-bottom: 14px;
-      }
-      .score-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-      }
-      .score-item {
-        background: var(--surf2);
-        border-radius: 6px;
-        padding: 6px 8px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-      .score-label {
-        font-size: 0.55rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--light);
-      }
-      .score-val {
-        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--text);
-      }
-      .score-na {
-        font-size: 0.75rem;
-        color: var(--light);
-        font-style: italic;
-      }
-
-      .card-divider {
-        height: 1px;
-        background: var(--border);
-        margin-bottom: 12px;
-      }
-
-      .card-footer {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
       }
       .learn-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-family: inherit;
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: var(--blue);
-        background: transparent;
-        border: 1.5px solid var(--border);
-        border-radius: var(--rsm);
-        padding: 6px 14px;
-        cursor: pointer;
+        margin-top: auto;
+        display: block;
+        text-align: center;
+        background: var(--secondary);
+        color: #fff;
         text-decoration: none;
-        transition:
-          background 0.18s,
-          border-color 0.18s,
-          color 0.18s;
-        white-space: nowrap;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.78rem;
+        transition: all 0.2s;
       }
       .learn-btn:hover {
-        background: var(--blue);
-        border-color: var(--blue);
-        color: #fff;
+        background: #76a719;
+        box-shadow: 0 4px 10px rgba(139, 196, 31, 0.3);
+        transform: translateY(-1px);
       }
-
-      @media (max-width: 1200px) {
-        .course-grid {
+      @media (max-width: 1400px) {
+        .grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (max-width: 1100px) {
+        .grid {
           grid-template-columns: repeat(3, 1fr);
         }
       }
-      @media (max-width: 900px) {
-        .page-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .header-meta {
-          align-items: flex-start;
-        }
-        .course-grid {
+      @media (max-width: 768px) {
+        .grid {
           grid-template-columns: repeat(2, 1fr);
         }
-      }
-      @media (max-width: 600px) {
-        .card-info {
-          grid-template-columns: 1fr;
+        .main-wrap {
+          padding: 24px 20px 60px;
         }
-        .course-grid {
+        .page-header {
+          padding: 16px 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page-header">
-      <div>
-        <div class="page-eyebrow">Course Finder</div>
-        <div class="page-title">
-          Technological University <span>Dublin</span>
+    <div class="main-wrap">
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Architecture & Built Environment</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
         </div>
-        <div class="page-sub">
-          Postgraduate programmes — January &amp; September intake
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MArch</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span><span class="dur">1.5 Years</span>
+            </div>
+            <h3>Architecture</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MArch</span
+              ><span class="meta-tag">Bolton Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Bolton Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Geographic Information Science</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Bolton Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Bolton Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
         </div>
       </div>
-      <div class="header-meta">
-        <div class="header-counts">
-          <div class="hcount">
-            <div class="hcount-num" id="statTotal">—</div>
-            <div class="hcount-lbl">Programmes</div>
-          </div>
-          <div class="hcount">
-            <div class="hcount-num" id="statFields">—</div>
-            <div class="hcount-lbl">Fields</div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Business</h2>
+            <p>Postgraduate · TU Dublin</p>
           </div>
         </div>
-        <div class="header-info">
-          <span class="hinfo-pill">Website <strong>tudublin.ie</strong></span>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">PGDip</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€11,000</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Accounting</h3>
+            <div class="card-meta">
+              <span class="meta-tag">PGDip</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MBS</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Accounting (International)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MBS</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Advertising and Creativity</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Digital and Content Marketing</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-open">JAN</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€15,000</span><span class="dur">1.5 Years</span>
+            </div>
+            <h3>Fashion Buying and Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Finance</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€15,000</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Global Sustainability Leadership</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">—</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Logistics and Supply Chain Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Marketing</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Aungier Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Aungier Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Computing, Digital & Data</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Applied Cyber Security</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Blanchardstown</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Blanchardstown</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span
+              ><span class="dur">1-1.5 Years</span>
+            </div>
+            <h3>Computer Science (Advanced Software Development)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span
+              ><span class="dur">1-1.5 Years</span>
+            </div>
+            <h3>Computer Science (Data Science)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-open">JAN</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Computing (Human Centred AI)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Tallaght</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Tallaght</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Computing with DevOps</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Tallaght</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Tallaght</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Creative Arts, Design & Media</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Creative Arts (Interior Design)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Creative Arts (Visual & Critical Studies)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Creative Arts (Visual Communication)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€20,250</span><span class="dur">1.5 Years</span>
+            </div>
+            <h3>Creative Digital Media (UX)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Graphic Design Practice</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Bolton Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Bolton Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Journalism</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Culinary, Hospitality & Tourism</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">2 Years</span>
+            </div>
+            <h3>Applied Culinary Nutrition</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Tallaght</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Tallaght</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Culinary Innovation & Food Product Development</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Event Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Gastronomy & Food Studies</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-open">JAN</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Hospitality Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">HDip</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Hospitality Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">HDip</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Tourism Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1581093803931-46e730e7622e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Engineering</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MEng</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Civil Engineering (Sustainable Infrastructure)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MEng</span
+              ><span class="meta-tag">Bolton Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Bolton Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Electronic & Communications Engineering</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Energy Management</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MEng</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Mechanical Engineering</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MEng</span
+              ><span class="meta-tag">Bolton Street</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Bolton Street</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Law</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">PGDip</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€11,000</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Law</h3>
+            <div class="card-meta">
+              <span class="meta-tag">PGDip</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€27,000</span><span class="dur">2 Years</span>
+            </div>
+            <h3>Law (Professional)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">7.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Music & Drama</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MMus</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Music (Composition)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MMus</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MMus</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Music (Conducting)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MMus</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MMus</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Music (Performance)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MMus</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Sciences & Health</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">PGDip</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€9,750</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Brewing & Distilling</h3>
+            <div class="card-meta">
+              <span class="meta-tag">PGDip</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Brewing & Distilling</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Data Analytics</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Data Analytics for Sport</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Tallaght</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Tallaght</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Data Analytics (Precision Diagnostics)</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Environmental Health & Safety</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MSc</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€21,750</span><span class="dur">1.5 Years</span>
+            </div>
+            <h3>Pharmaceutical Quality Assurance & Regulation</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MSc</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Social Sciences & Education</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Child, Family & Community Studies</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">PGDip</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€9,000</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Criminology</h3>
+            <div class="card-meta">
+              <span class="meta-tag">PGDip</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-open">SEP</span
+              ><span class="badge b-blue">MA</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€13,500</span><span class="dur">1 Year</span>
+            </div>
+            <h3>Criminology</h3>
+            <div class="card-meta">
+              <span class="meta-tag">MA</span
+              ><span class="meta-tag">Grangegorman</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">Grangegorman</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Bridging & Pre-Sessional</h2>
+            <p>Postgraduate · TU Dublin</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row"><span class="badge b-blue">N/A</span></div>
+            <div class="price-line">
+              <span class="fee">€3,500</span><span class="dur">8 Weeks</span>
+            </div>
+            <h3>International Postgraduate Bridging Programme</h3>
+            <div class="card-meta">
+              <span class="meta-tag">N/A</span><span class="meta-tag">AST</span>
+            </div>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">5.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">Location</span
+                ><span class="req-val">AST</span>
+              </div>
+            </div>
+            <a href="https://tudublin.ie/" target="_blank" class="learn-btn"
+              >Learn More</a
+            >
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="main">
-      <div id="courseContainer"></div>
-    </div>
-
-    <script>
-      const COURSES = [
-        {
-          name: "Architecture",
-          award: "MArch",
-          field: "Architecture & Built Environment",
-          fee: 21750,
-          duration: "1.5 Years",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Bolton Street",
-        },
-        {
-          name: "Geographic Information Science",
-          award: "MSc",
-          field: "Architecture & Built Environment",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Bolton Street",
-        },
-        {
-          name: "Accounting",
-          award: "PGDip",
-          field: "Business",
-          fee: 11000,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Accounting (International)",
-          award: "MBS",
-          field: "Business",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Advertising and Creativity",
-          award: "MSc",
-          field: "Business",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Digital and Content Marketing",
-          award: "MSc",
-          field: "Business",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Fashion Buying and Management",
-          award: "MSc",
-          field: "Business",
-          fee: 15000,
-          duration: "1.5 Years",
-          ielts: 6.5,
-          jan: true,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Finance",
-          award: "MSc",
-          field: "Business",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Global Sustainability Leadership",
-          award: "MA",
-          field: "Business",
-          fee: 15000,
-          duration: "1 Year",
-          ielts: null,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Logistics and Supply Chain Management",
-          award: "MSc",
-          field: "Business",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Marketing",
-          award: "MSc",
-          field: "Business",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Aungier Street",
-        },
-        {
-          name: "Applied Cyber Security",
-          award: "MSc",
-          field: "Computing, Digital & Data",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Blanchardstown",
-        },
-        {
-          name: "Computer Science (Advanced Software Development)",
-          award: "MSc",
-          field: "Computing, Digital & Data",
-          fee: 21750,
-          duration: "1–1.5 Years",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Computer Science (Data Science)",
-          award: "MSc",
-          field: "Computing, Digital & Data",
-          fee: 21750,
-          duration: "1–1.5 Years",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Computing (Human Centred AI)",
-          award: "MSc",
-          field: "Computing, Digital & Data",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: true,
-          sep: true,
-          location: "Tallaght",
-        },
-        {
-          name: "Computing with DevOps",
-          award: "MSc",
-          field: "Computing, Digital & Data",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Tallaght",
-        },
-        {
-          name: "Creative Arts (Interior Design)",
-          award: "MA",
-          field: "Creative Arts, Design & Media",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Creative Arts (Visual & Critical Studies)",
-          award: "MA",
-          field: "Creative Arts, Design & Media",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 7.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Creative Arts (Visual Communication)",
-          award: "MA",
-          field: "Creative Arts, Design & Media",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Creative Digital Media (UX)",
-          award: "MSc",
-          field: "Creative Arts, Design & Media",
-          fee: 20250,
-          duration: "1.5 Years",
-          ielts: 7.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Graphic Design Practice",
-          award: "MA",
-          field: "Creative Arts, Design & Media",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Bolton Street",
-        },
-        {
-          name: "Journalism",
-          award: "MA",
-          field: "Creative Arts, Design & Media",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 7.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Applied Culinary Nutrition",
-          award: "MSc",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 13500,
-          duration: "2 Years",
-          ielts: 7.0,
-          jan: false,
-          sep: true,
-          location: "Tallaght",
-        },
-        {
-          name: "Culinary Innovation & Food Product Development",
-          award: "MSc",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 7.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Event Management",
-          award: "MSc",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Gastronomy & Food Studies",
-          award: "MA",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 7.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Hospitality Management",
-          award: "MSc",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: true,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Hospitality Management",
-          award: "HDip",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Tourism Management",
-          award: "MSc",
-          field: "Culinary, Hospitality & Tourism",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Civil Engineering (Sustainable Infrastructure)",
-          award: "MEng",
-          field: "Engineering",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Bolton Street",
-        },
-        {
-          name: "Electronic & Communications Engineering",
-          award: "MSc",
-          field: "Engineering",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Energy Management",
-          award: "MSc",
-          field: "Engineering",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Mechanical Engineering",
-          award: "MEng",
-          field: "Engineering",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Bolton Street",
-        },
-        {
-          name: "Law",
-          award: "PGDip",
-          field: "Law",
-          fee: 11000,
-          duration: "1 Year",
-          ielts: 7.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Law (Professional)",
-          award: "MA",
-          field: "Law",
-          fee: 27000,
-          duration: "2 Years",
-          ielts: 7.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Music (Composition)",
-          award: "MMus",
-          field: "Music & Drama",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Music (Conducting)",
-          award: "MMus",
-          field: "Music & Drama",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Music (Performance)",
-          award: "MMus",
-          field: "Music & Drama",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Brewing & Distilling",
-          award: "PGDip",
-          field: "Sciences & Health",
-          fee: 9750,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Brewing & Distilling",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Data Analytics",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 21750,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Data Analytics for Sport",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 21750,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Tallaght",
-        },
-        {
-          name: "Data Analytics (Precision Diagnostics)",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 21750,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Environmental Health & Safety",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 14500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Pharmaceutical Quality Assurance & Regulation",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 21750,
-          duration: "1.5 Years",
-          ielts: 6.0,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Child, Family & Community Studies",
-          award: "MA",
-          field: "Social Sciences & Education",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Criminology",
-          award: "PGDip",
-          field: "Social Sciences & Education",
-          fee: 9000,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "Criminology",
-          award: "MA",
-          field: "Social Sciences & Education",
-          fee: 13500,
-          duration: "1 Year",
-          ielts: 6.5,
-          jan: false,
-          sep: true,
-          location: "Grangegorman",
-        },
-        {
-          name: "International Postgraduate Bridging Programme",
-          award: "N/A",
-          field: "Bridging & Pre-Sessional",
-          fee: 3500,
-          duration: "8 Weeks",
-          ielts: 5.5,
-          jan: false,
-          sep: false,
-          location: "AST",
-          july: true,
-        },
-      ];
-
-      const FIELD_COLOR = {
-        "Architecture & Built Environment": "#B45309",
-        Business: "#1E40AF",
-        "Computing, Digital & Data": "#6D28D9",
-        "Creative Arts, Design & Media": "#9D174D",
-        "Culinary, Hospitality & Tourism": "#B91C1C",
-        Engineering: "#0E7490",
-        Law: "#7C3AED",
-        "Music & Drama": "#0F766E",
-        "Sciences & Health": "#065F46",
-        "Social Sciences & Education": "#4338CA",
-        "Bridging & Pre-Sessional": "#78716C",
-      };
-
-      const fields = [...new Set(COURSES.map((c) => c.field))];
-      document.getElementById("statTotal").textContent = COURSES.length;
-      document.getElementById("statFields").textContent = fields.length;
-
-      const fmt = (fee) => (fee ? "€" + fee.toLocaleString() : null);
-      const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-      function render() {
-        const container = document.getElementById("courseContainer");
-        container.innerHTML = "";
-
-        const grouped = {};
-        COURSES.forEach((c) => {
-          if (!grouped[c.field]) grouped[c.field] = [];
-          grouped[c.field].push(c);
-        });
-
-        Object.keys(grouped).sort().forEach((f) => {
-          const section = document.createElement("div");
-          section.className = "field-section";
-
-          section.innerHTML = `
-            <div class="field-header">
-              <div class="field-dot" style="background:${FIELD_COLOR[f] || "#333"}"></div>
-              <div class="field-name">${f}</div>
-              <div class="field-count">${grouped[f].length}</div>
-            </div>
-            <div class="course-grid">
-              ${grouped[f].map((c) => `
-                <div class="course-card">
-                  <div class="card-top">
-                    <span class="card-award">${c.award}</span>
-                    <span class="card-location">${c.location}</span>
-                  </div>
-                  <div class="course-name">${c.name}</div>
-                  
-                  <div class="card-info">
-                    <div>
-                      <div class="info-label">Intake</div>
-                      <div class="intake-row">
-                        ${c.sep ? '<span class="intake-badge intake-open">SEP</span>' : ""}
-                        ${c.jan ? '<span class="intake-badge intake-open">JAN</span>' : ""}
-                        ${c.july ? '<span class="intake-badge intake-open">JULY</span>' : ""}
-                      </div>
-                    </div>
-                    <div>
-                      <div class="info-label">Duration</div>
-                      <div class="info-value">${c.duration}</div>
-                    </div>
-                    <div>
-                      <div class="info-label">Tuition Fee</div>
-                      <div class="info-value fee-val">${fmt(c.fee) || '<span class="info-na">N/A</span>'}</div>
-                    </div>
-                  </div>
-
-                  <div class="test-section">
-                    <div class="info-label">Min. IELTS Score</div>
-                    <div class="score-grid">
-                      <div class="score-item">
-                        <div class="score-label">Avg</div>
-                        <div class="score-val">${c.ielts || "—"}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card-divider"></div>
-                  <div class="card-footer">
-                    <a href="#" class="learn-btn">Details ${ARROW}</a>
-                  </div>
-                </div>
-              `).join("")}
-            </div>
-          `;
-          container.appendChild(section);
-        });
-      }
-
-      render();
-    </script>
   </body>
 </html>
