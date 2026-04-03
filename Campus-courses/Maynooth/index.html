@@ -3,930 +3,1940 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maynooth University — Course Finder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <title>Maynooth University | Full Programme Catalog</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --navy: #001d3d;
-        --blue: #004f9f;
-        --mid: #0066cc;
-        --bg: #f2f5f9;
-        --surface: #ffffff;
-        --surf2: #ebf0f7;
-        --border: rgba(0, 79, 159, 0.13);
-        --text: #0f172a;
-        --muted: #5e7491;
-        --light: #94a3b8;
-        --radius: 12px;
-        --rsm: 8px;
+        --primary: #d25822;
+        --secondary: #8bc41f;
+        --dark: #1a1a1a;
+        --grey: #64748b;
+        --bg: #f1f5f9;
+        --white: #ffffff;
       }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+
       body {
-        font-family: "DM Sans", sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        -webkit-font-smoothing: antialiased;
-        min-height: 100vh;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--bg);
+        margin: 0;
+        padding: 40px 0;
+        color: var(--dark);
       }
 
-      .page-header {
-        background: #eef3fa;
-        border-bottom: 1px solid rgba(0, 79, 159, 0.15);
-        padding: 28px 5% 24px;
+      .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Field Section Styling */
+      .field-block {
+        margin-bottom: 80px;
+      }
+
+      .field-banner {
+        width: 100%;
+        height: 250px;
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 30px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .page-eyebrow {
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
-      .page-title {
-        font-family: "Syne", sans-serif;
-        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-        font-weight: 800;
-        color: var(--navy);
-        letter-spacing: -0.01em;
-        line-height: 1.15;
-      }
-      .page-title span {
-        color: var(--blue);
-      }
-      .page-sub {
-        margin-top: 5px;
-        font-size: 0.82rem;
-        color: var(--muted);
-        font-weight: 300;
-      }
-      .header-meta {
-        display: flex;
-        flex-direction: column;
         align-items: flex-end;
-        gap: 6px;
-      }
-      .header-counts {
-        display: flex;
-        gap: 24px;
-      }
-      .hcount {
-        text-align: right;
-      }
-      .hcount-num {
-        font-family: "Syne", sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--navy);
-        line-height: 1;
-      }
-      .hcount-lbl {
-        font-size: 0.62rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: 2px;
-      }
-      .header-info {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-      .hinfo-pill {
-        font-size: 0.68rem;
-        font-weight: 500;
-        color: var(--muted);
-        background: rgba(0, 79, 159, 0.07);
-        border: 1px solid rgba(0, 79, 159, 0.15);
-        padding: 4px 12px;
-        border-radius: 100px;
-        white-space: nowrap;
-      }
-      .hinfo-pill strong {
-        color: var(--navy);
-      }
-
-      .main {
-        padding: 28px 5% 80px;
-      }
-
-      .field-section {
-        margin-bottom: 38px;
-      }
-      .field-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 14px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--border);
-      }
-      .field-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        background: #16a34a;
-      }
-      .field-name {
-        font-family: "Syne", sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--navy);
-      }
-      .field-count {
-        font-size: 0.67rem;
-        font-weight: 600;
-        color: var(--muted);
-        background: var(--surf2);
-        padding: 3px 9px;
-        border-radius: 100px;
-      }
-
-      .course-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
-      }
-
-      .course-card {
-        background: var(--surface);
-        border: 1.5px solid var(--border);
-        border-radius: var(--radius);
-        padding: 20px 20px 16px;
-        display: flex;
-        flex-direction: column;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s,
-          border-color 0.2s;
-        position: relative;
         overflow: hidden;
-      }
-      .course-card::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: #16a34a;
-        opacity: 0;
-        transition: opacity 0.2s;
-      }
-      .course-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(22, 163, 74, 0.12);
-        border-color: rgba(22, 163, 74, 0.35);
-      }
-      .course-card:hover::after {
-        opacity: 1;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       }
 
-      .card-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 10px;
-      }
-      .card-award {
-        font-size: 0.62rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        padding: 3px 9px;
-        border-radius: 100px;
-        background: #f0fdf4;
-        color: #166534;
-        white-space: nowrap;
+      .banner-overlay {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 30px;
+        width: 100%;
       }
 
-      .course-name {
-        font-family: "Syne", sans-serif;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--text);
-        line-height: 1.45;
-        margin-bottom: 16px;
-        flex: 1;
+      .banner-overlay h2 {
+        color: white;
+        margin: 0;
+        font-size: 2.2rem;
       }
 
-      .card-info {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 12px;
-        margin-bottom: 14px;
-      }
-      .info-label {
-        font-size: 0.58rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--light);
-        margin-bottom: 3px;
-      }
-      .info-value {
-        font-size: 0.78rem;
-        font-weight: 500;
-        color: var(--text);
-        line-height: 1.35;
-      }
-      .fee-val {
-        color: var(--blue);
-        font-weight: 600;
-      }
-      .info-na {
-        color: var(--light);
-        font-style: italic;
-        font-size: 0.75rem;
-      }
-
-      .intake-row {
-        display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
-      }
-      .intake-badge {
-        font-size: 0.65rem;
-        font-weight: 600;
-        padding: 2px 8px;
-        border-radius: 5px;
-        border: 1px solid;
-      }
-      .intake-open {
-        background: #f0fdf4;
-        color: #166534;
-        border-color: #bbf7d0;
-      }
-
-      .test-section {
-        margin-bottom: 14px;
-      }
-      .score-grid {
+      /* Grid */
+      .grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-      }
-      .score-item {
-        background: var(--surf2);
-        border-radius: 6px;
-        padding: 6px 8px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-      .score-label {
-        font-size: 0.55rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--light);
-      }
-      .score-val {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--text);
+        gap: 20px;
       }
 
-      .card-divider {
-        height: 1px;
-        background: var(--border);
+      /* Card Styling */
+      .card {
+        background: var(--white);
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(210, 88, 34, 0.1);
+      }
+
+      .badge-row {
         margin-bottom: 12px;
       }
-      .card-footer {
+      .badge {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        margin-right: 5px;
+      }
+      .b-fee {
+        background: #fff3ed;
+        color: var(--primary);
+      }
+      .b-gpa {
+        background: #f4fae9;
+        color: var(--secondary);
+      }
+
+      .price-line {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: flex-end;
+        margin-bottom: 15px;
       }
-      .learn-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-family: inherit;
-        font-size: 0.72rem;
+      .fee {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--dark);
+      }
+      .dur {
+        font-size: 11px;
+        color: var(--grey);
         font-weight: 600;
-        color: var(--blue);
-        background: transparent;
-        border: 1.5px solid var(--border);
-        border-radius: var(--rsm);
-        padding: 6px 14px;
-        cursor: pointer;
-        text-decoration: none;
-        transition:
-          background 0.18s,
-          border-color 0.18s,
-          color 0.18s;
-        white-space: nowrap;
       }
-      .learn-btn:hover {
-        background: var(--blue);
-        border-color: var(--blue);
-        color: #fff;
+
+      .card h3 {
+        font-size: 1rem;
+        color: var(--primary);
+        margin: 0 0 20px 0;
+        line-height: 1.4;
+        min-height: 2.8em;
       }
-      .learn-btn svg {
-        transition: transform 0.18s;
+
+      /* Requirements Table */
+      .req-box {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        border: 1px solid #f1f5f9;
+        margin-top: auto;
       }
-      .learn-btn:hover svg {
-        transform: translateX(2px);
+
+      .req-item {
+        display: flex;
+        flex-direction: column;
+      }
+      .req-label {
+        font-size: 9px;
+        color: var(--grey);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .req-val {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--dark);
       }
 
       @media (max-width: 1200px) {
-        .course-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-      @media (max-width: 900px) {
-        .page-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .header-meta {
-          align-items: flex-start;
-        }
-        .header-counts {
-          flex-direction: row;
-        }
-        .hcount {
-          text-align: left;
-        }
-        .header-info {
-          justify-content: flex-start;
-        }
-        .course-grid {
+        .grid {
           grid-template-columns: repeat(2, 1fr);
         }
       }
       @media (max-width: 600px) {
-        .card-info {
-          grid-template-columns: 1fr;
-        }
-        .course-grid {
+        .grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page-header">
-      <div>
-        <div class="page-eyebrow">Course Finder</div>
-        <div class="page-title">Maynooth <span>University</span></div>
-        <div class="page-sub">
-          Maynooth, County Kildare — Postgraduate programmes — September 2026
-          intake
+    <div class="container">
+      <!-- Computing, AI & Technology -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Computing, AI & Technology</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Robotics and Embedded AI</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Data Science and Analytics</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc CS - Software Engineering</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">24 MONTHS</span>
+            </div>
+            <h3>MSc Computer Science (Applied)</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc IT Enabled Innovation</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Design Innovation</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Sound and Music Computing</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Geographical Information Systems and Remote Sensing</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="header-meta">
-        <div class="header-counts">
-          <div class="hcount">
-            <div class="hcount-num" id="statTotal">—</div>
-            <div class="hcount-lbl">Programmes</div>
-          </div>
-          <div class="hcount">
-            <div class="hcount-num" id="statFields">—</div>
-            <div class="hcount-lbl">Fields</div>
+
+      <!-- Business, Finance & Marketing -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Business, Finance & Marketing</h2>
           </div>
         </div>
-        <div class="header-info">
-          <span class="hinfo-pill">Application Fee <strong>€50</strong></span>
-          <span class="hinfo-pill"
-            >Website <strong>maynoothuniversity.ie</strong></span
-          >
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Business</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Business Analytics</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc International Business</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Finance</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Strategic Marketing</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Digital Marketing</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Business Management</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Strategy and Innovation</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Economics</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
+            </div>
+            <h3>MSc Economics (Two Year)</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA in Accounting (One Year)</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">24 MONTHS</span>
+            </div>
+            <h3>MA in Accounting (Two Years)</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Comparative Criminology and Criminal Justice</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Law & Global Justice -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Law & Global Justice</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>LLM International Business Law</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>LLM International Justice</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€18,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>LLM Global Legal Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Sciences & Psychology -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1638443436690-db587cc66f12?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+          "
+        >
+          <div class="banner-overlay">
+            <h2>Social Sciences & Psychology</h2>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Psychology</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Environmental Psychology</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
+            </div>
+            <h3>MSocSc Social Work</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSocSc Rights and Social Policy</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA International Development</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Anthropology</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Geography and Spatial Justice</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>
+              MA International Peacebuilding, Security, and Development Practice
+            </h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">24 MONTHS</span>
+            </div>
+            <h3>
+              MA Cultural Differences and Transnational Processes (CREOLE)
+            </h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Critical and Creative Media</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arts & Humanities -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Arts & Humanities</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Creative Writing</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA English - Literatures of Engagement</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€14,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Applied Linguistics and Intercultural Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Irish History</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA European History</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Local History</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Medieval Irish Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Military History and Strategic Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Classical Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Chinese Studies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA French</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Music -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Music</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Music Composition</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Creative Music Technologies</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Musicology</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Performance and Musicology</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MA Irish Traditional Music</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Science & Environment -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Science & Environment</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Immunology and Global Health</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Mathematics</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Mathematical Science</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€17,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Theoretical Physics and Mathematics</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>MSc Climate Change</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="field-block">
+        <div
+          class="field-banner"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80&quot;);
+          "
+        >
+          <div class="banner-overlay"><h2>Education</h2></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>Master of Education</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="badge-row">
+              <span class="badge b-fee">APP FEE: €50</span
+              ><span class="badge b-gpa">GPA: 50%</span>
+            </div>
+            <div class="price-line">
+              <span class="fee">€16,000</span><span class="dur">12 MONTHS</span>
+            </div>
+            <h3>Master of Education - Adult and Community Education</h3>
+            <div class="req-box">
+              <div class="req-item">
+                <span class="req-label">IELTS</span
+                ><span class="req-val">6.5</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">TOEFL</span
+                ><span class="req-val">90.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">PTE</span
+                ><span class="req-val">63.0</span>
+              </div>
+              <div class="req-item">
+                <span class="req-label">DUO</span
+                ><span class="req-val">120</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="main">
-      <div id="courseContainer"></div>
-    </div>
-
-    <script>
-      const SCORES = { ielts: 6.5, toefl: 90, pte: 63, det: 120 };
-      const APP_FEE = "€50";
-
-      const COURSES = [
-        // ── Computing & Technology ──
-        {
-          name: "Master of Science - Robotics and Embedded AI",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Data Science and Analytics",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Business Analytics",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Computer Science - Software Engineering",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Computer Science (Applied)",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 18000,
-          duration: "24 Months",
-        },
-        {
-          name: "Master of Science - IT Enabled Innovation",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Sound and Music Computing",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Geographical Information Systems and Remote Sensing",
-          award: "MSc",
-          field: "Computing & Technology",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        // ── Business & Economics ──
-        {
-          name: "Master of Science - Business",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - International Business",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Finance",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Accounting (one year)",
-          award: "MA",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Accounting (two years)",
-          award: "MA",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "24 Months",
-        },
-        {
-          name: "Master of Arts - Accounting",
-          award: "MA",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "24 Months",
-        },
-        {
-          name: "Master of Science - Digital Marketing",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Strategic Marketing",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Business Management",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Strategy and Innovation",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Economics",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Economics (two year)",
-          award: "MSc",
-          field: "Business & Economics",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        // ── Sciences & Health ──
-        {
-          name: "Master of Science - Immunology and Global Health",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Psychology",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Mathematics",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Climate Change",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Environmental Psychology",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Mathematical Science",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Theoretical Physics and Mathematics",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 17000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Science - Design Innovation",
-          award: "MSc",
-          field: "Sciences & Health",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        // ── Arts & Humanities ──
-        {
-          name: "Master of Arts - English - Literatures of Engagement",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Applied Linguistics and Intercultural Studies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 14000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Music Composition",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Irish History",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - European History",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Creative Music Technologies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Musicology",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Performance and Musicology",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Local History",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Irish Traditional Music",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Medieval Irish Studies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Creative Writing",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Geography and Spatial Justice",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Military History and Strategic Studies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - French",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Classical Studies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Anthropology",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Cultural Differences and Transnational Processes (CREOLE)",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "24 Months",
-        },
-        {
-          name: "Master of Arts - Chinese Studies",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Critical and Creative Media",
-          award: "MA",
-          field: "Arts & Humanities",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        // ── Education & Social Sciences ──
-        {
-          name: "Master of Education",
-          award: "MEd",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Education - Adult and Community Education",
-          award: "MEd",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Social Science - Rights and Social Policy",
-          award: "MSocSc",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - International Development",
-          award: "MA",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Social Science - Social Work",
-          award: "MSocSc",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "24 Months",
-        },
-        {
-          name: "Master of Arts - International Peacebuilding, Security, and Development Practice",
-          award: "MA",
-          field: "Education & Social Sciences",
-          fee: 16000,
-          duration: "12 Months",
-        },
-        // ── Law ──
-        {
-          name: "Masters of Law - International Business Law",
-          award: "LLM",
-          field: "Law",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Masters of Law - Global Legal Studies",
-          award: "LLM",
-          field: "Law",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Master of Arts - Comparative Criminology and Criminal Justice",
-          award: "MA",
-          field: "Law",
-          fee: 18000,
-          duration: "12 Months",
-        },
-        {
-          name: "Masters of Law - International Justice",
-          award: "LLM",
-          field: "Law",
-          fee: 18000,
-          duration: "12 Months",
-        },
-      ];
-
-      const FIELD_COLOR = {
-        "Computing & Technology": "#6D28D9",
-        "Business & Economics": "#1E40AF",
-        "Sciences & Health": "#065F46",
-        "Arts & Humanities": "#9D174D",
-        "Education & Social Sciences": "#4338CA",
-        Law: "#7C3AED",
-      };
-
-      const fields = [...new Set(COURSES.map((c) => c.field))];
-      document.getElementById("statTotal").textContent = COURSES.length;
-      document.getElementById("statFields").textContent = fields.length;
-
-      const fmt = (fee) => (fee ? "€" + fee.toLocaleString() : null);
-      const ARROW = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-      function renderAll() {
-        const container = document.getElementById("courseContainer");
-        const grouped = {};
-        const order = [];
-
-        COURSES.forEach((c) => {
-          if (!grouped[c.field]) {
-            grouped[c.field] = [];
-            order.push(c.field);
-          }
-          grouped[c.field].push(c);
-        });
-
-        container.innerHTML = order
-          .map((fieldName) => {
-            const courses = grouped[fieldName];
-            const cards = courses
-              .map((c) => {
-                const feeStr = fmt(c.fee);
-                return `
-        <div class="course-card">
-          <div class="card-top">
-            <span class="card-award">${c.award}</span>
-          </div>
-          <div class="course-name">${c.name}</div>
-          <div class="card-info">
-            <div class="info-item">
-              <div class="info-label">Tuition Fee</div>
-              <div class="info-value fee-val">${feeStr || '<span class="info-na">On request</span>'}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Application Fee</div>
-              <div class="info-value">${APP_FEE}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Duration</div>
-              <div class="info-value">${c.duration}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Intake</div>
-              <div class="info-value"><div class="intake-row"><span class="intake-badge intake-open">Sep</span></div></div>
-            </div>
-          </div>
-          <div class="test-section">
-            <div class="info-label" style="margin-bottom:7px;">English Test Requirements</div>
-            <div class="score-grid">
-              <div class="score-item"><span class="score-label">IELTS</span><span class="score-val">${SCORES.ielts}</span></div>
-              <div class="score-item"><span class="score-label">TOEFL</span><span class="score-val">${SCORES.toefl}</span></div>
-              <div class="score-item"><span class="score-label">PTE</span><span class="score-val">${SCORES.pte}</span></div>
-              <div class="score-item"><span class="score-label">DET</span><span class="score-val">${SCORES.det}</span></div>
-            </div>
-          </div>
-          <div class="card-divider"></div>
-          <div class="card-footer">
-            <a href="https://www.maynoothuniversity.ie" target="_blank" rel="noopener noreferrer" class="learn-btn">
-              Learn More ${ARROW}
-            </a>
-          </div>
-        </div>`;
-              })
-              .join("");
-
-            return `
-      <div class="field-section">
-        <div class="field-header">
-          <div class="field-dot"></div>
-          <div class="field-name">${fieldName}</div>
-          <span class="field-count">${courses.length} programme${courses.length !== 1 ? "s" : ""}</span>
-        </div>
-        <div class="course-grid">${cards}</div>
-      </div>`;
-          })
-          .join("");
-      }
-
-      renderAll();
-    </script>
   </body>
 </html>
