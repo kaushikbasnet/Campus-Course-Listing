@@ -3,270 +3,206 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>National College of Ireland | Full Programme Catalog</title>
+    <title>National College of Ireland — Programme Finder</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
+      * {
+        box-sizing: border-box;
+      }
       :root {
-        --primary: #d25822;
-        --secondary: #8bc41f;
+        --primary: #d25822; /* Primary Orange */
+        --secondary: #8bc41f; /* Secondary Lime */
         --dark: #1a1a1a;
         --grey: #64748b;
-        --bg: #f1f5f9;
+        --bg: #f8fafc;
         --white: #ffffff;
       }
-
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: var(--bg);
+        background: var(--bg);
         margin: 0;
-        padding: 40px 0;
+        padding: 0;
         color: var(--dark);
       }
-
-      .container {
-        max-width: 1440px;
+      .main-wrap {
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 40px 40px 80px;
       }
-
       .field-block {
-        margin-bottom: 80px;
+        margin-bottom: 60px;
       }
-
       .field-banner {
         width: 100%;
-        height: 250px;
-        border-radius: 20px;
+        height: 210px;
+        border-radius: 18px;
         background-size: cover;
         background-position: center;
-        margin-bottom: 30px;
+        margin-bottom: 24px;
         display: flex;
         align-items: flex-end;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
       }
-
       .banner-overlay {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-        padding: 30px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+        padding: 24px 30px;
         width: 100%;
       }
-
       .banner-overlay h2 {
-        color: white;
+        color: #fff;
         margin: 0;
-        font-size: 2.2rem;
+        font-size: 1.75rem;
+        font-weight: 800;
+      }
+      .banner-overlay p {
+        color: #e2e8f0;
+        margin: 4px 0 0;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
       }
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
       }
-
       .card {
         background: var(--white);
-        border-radius: 16px;
+        border-radius: 14px;
         border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
         padding: 20px;
+        position: relative;
       }
-
       .card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
         border-color: var(--primary);
-        box-shadow: 0 20px 40px rgba(210, 88, 34, 0.1);
+        box-shadow: 0 15px 35px rgba(139, 196, 31, 0.15);
       }
-
       .badge-row {
         margin-bottom: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
       }
       .badge {
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 800;
         padding: 4px 10px;
         border-radius: 6px;
         text-transform: uppercase;
-        margin-right: 5px;
       }
-      .b-fee {
-        background: #fff3ed;
+      .b-free {
+        background: #fff7ed;
         color: var(--primary);
+        border: 1px solid #ffedd5;
       }
-      .b-gpa {
-        background: #f4fae9;
-        color: var(--secondary);
-      }
-      .b-ielts {
-        background: #eef2ff;
-        color: #4338ca;
+      .b-sec {
+        background: #f7fee7;
+        color: #4d7c0f;
+        border: 1px solid #ecfccb;
       }
 
       .price-line {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       .fee {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         font-weight: 800;
         color: var(--dark);
       }
       .dur {
-        font-size: 11px;
+        font-size: 10px;
         color: var(--grey);
-        font-weight: 600;
+        font-weight: 700;
+        background: #f1f5f9;
+        padding: 3px 8px;
+        border-radius: 5px;
       }
 
       .card h3 {
-        font-size: 1rem;
-        color: var(--primary);
-        margin: 0 0 20px 0;
+        font-size: 0.95rem;
+        color: var(--dark);
+        margin: 0 0 15px;
         line-height: 1.4;
-        min-height: 2.8em;
+        flex-grow: 1;
+        font-weight: 700;
       }
 
       .req-box {
-        background: #f8fafc;
-        border-radius: 12px;
+        background: #fdfdfd;
+        border-radius: 10px;
         padding: 12px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
         border: 1px solid #f1f5f9;
-        margin-top: auto;
+        margin-bottom: 18px;
       }
-
       .req-item {
         display: flex;
         flex-direction: column;
+        gap: 2px;
       }
       .req-label {
-        font-size: 9px;
+        font-size: 8px;
         color: var(--grey);
         font-weight: 700;
         text-transform: uppercase;
       }
       .req-val {
-        font-size: 12px;
-        font-weight: 700;
+        font-size: 11px;
+        font-weight: 800;
         color: var(--dark);
       }
 
-      .note-box {
-        background: #fff8f5;
-        border: 1px solid #fde8da;
-        border-radius: 10px;
-        padding: 10px 14px;
-        font-size: 10px;
-        color: var(--grey);
-        line-height: 1.5;
-        margin-top: 10px;
-      }
-      .note-box strong {
-        color: var(--primary);
+      .learn-btn {
+        margin-top: auto;
         display: block;
-        margin-bottom: 2px;
-        font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        text-align: center;
+        background: var(--secondary);
+        color: #fff;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: 0.3s;
       }
-
-      @media (max-width: 1200px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (max-width: 600px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
+      .card:hover .learn-btn {
+        background: var(--secondary);
+        color: #1a1a1a;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <!-- School of Computing -->
+    <div class="main-wrap">
       <div class="field-block">
         <div
           class="field-banner"
           style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80&quot;);
+            background-image: url(&quot;https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>School of Computing</h2></div>
+          <div class="banner-overlay">
+            <h2>School of Computing</h2>
+            <p>Postgraduate Excellence</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.0</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Artificial Intelligence</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.0</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 5.5
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.0</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Cloud Computing</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.0</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 5.5
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.0</span>
+              <span class="badge b-free">Application Fee: €0.00</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
@@ -275,424 +211,72 @@
             <div class="req-box">
               <div class="req-item">
                 <span class="req-label">IELTS</span
-                ><span class="req-val">6.0</span>
+                ><span class="req-val">6.0 (Min 5.5)</span>
               </div>
               <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
+                <span class="req-label">DUO</span
+                ><span class="req-val">105+</span>
               </div>
             </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 5.5
-            </div>
+            <a href="#" class="learn-btn">View Course Details</a>
           </div>
 
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.0</span>
+              <span class="badge b-free">Application Fee: €0.00</span>
             </div>
             <div class="price-line">
               <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
             </div>
-            <h3>MSc in Data Analytics</h3>
+            <h3>MSc in Cloud Computing</h3>
             <div class="req-box">
               <div class="req-item">
                 <span class="req-label">IELTS</span
-                ><span class="req-val">6.0</span>
+                ><span class="req-val">6.0 (Min 5.5)</span>
               </div>
               <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
+                <span class="req-label">DUO</span
+                ><span class="req-val">105+</span>
               </div>
             </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 5.5
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.0</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Open Data Practice</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.0</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 5.5
-            </div>
+            <a href="#" class="learn-btn">View Course Details</a>
           </div>
         </div>
       </div>
 
-      <!-- School of Business -->
       <div class="field-block">
         <div
           class="field-banner"
           style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
+            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80&quot;);
           "
         >
-          <div class="banner-overlay"><h2>School of Business</h2></div>
+          <div class="banner-overlay">
+            <h2>School of Business</h2>
+            <p>Global Leadership</p>
+          </div>
         </div>
         <div class="grid">
           <div class="card">
             <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MA in Human Resource Management</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 5.5</span>
+              <span class="badge b-sec">MBA</span>
+              <span class="badge b-free">Application Fee: €0.00</span>
             </div>
             <div class="price-line">
               <span class="fee">€13,650</span><span class="dur">2 YEARS</span>
             </div>
-            <h3>Master of Business Administration (MBA)</h3>
+            <h3>Master of Business Administration</h3>
             <div class="req-box">
               <div class="req-item">
                 <span class="req-label">IELTS</span
-                ><span class="req-val">5.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">46</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">42</span>
+                ><span class="req-val">5.5+</span>
               </div>
               <div class="req-item">
                 <span class="req-label">DUO</span
-                ><span class="req-val">95–104</span>
+                ><span class="req-val">95-104</span>
               </div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Accounting</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Artificial Intelligence for Business</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Business Analytics for Decision Makers</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Entrepreneurship</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Finance</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Fintech</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in International Business</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,000</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Management</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-fee">APP FEE: €0</span>
-              <span class="badge b-ielts">IELTS: 6.5</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">1 YEAR</span>
-            </div>
-            <h3>MSc in Marketing</h3>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span><span class="req-val">—</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DUO</span><span class="req-val">—</span>
-              </div>
-            </div>
-            <div class="note-box">
-              <strong>Note</strong>No band less than 6.0
-            </div>
+            <a href="#" class="learn-btn">View Course Details</a>
           </div>
         </div>
       </div>
