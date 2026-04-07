@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>South East Technological University – Programs</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --brand: #003087;
+        --brand-light: #e8edf7;
+        --accent: #e63312;
+        --bg: #f4f6fb;
+        --card-bg: #ffffff;
+        --text: #1a1a2e;
+        --muted: #5a6175;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* HERO */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #003087 0%,
+          #001a4d 60%,
+          #0a0a2e 100%
+        );
+        color: white;
+        padding: 60px 40px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(230, 51, 18, 0.18);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: 10%;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-tag {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 4px;
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 5vw, 52px);
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 16px;
+      }
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 24px;
+      }
+      .hero-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .hero-meta-item i {
+        color: var(--accent);
+      }
+      .hero-meta-item a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: underline;
+      }
+
+      /* WRAPPER */
+      .wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+      }
+
+      /* SECTION */
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 48px 0 20px;
+      }
+      .section-label h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--brand);
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--brand-light), transparent);
+      }
+
+      /* GRID */
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 18px;
+        margin-bottom: 12px;
+      }
+
+      /* CARD */
+      .course-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 20px;
+        border-left: 5px solid var(--brand);
+        box-shadow: 0 2px 12px rgba(0, 48, 135, 0.07);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .course-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 48, 135, 0.13);
+      }
+      .course-title {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+      .detail {
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .detail i {
+        color: var(--brand);
+        width: 14px;
+        text-align: center;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--brand-light);
+        color: var(--brand);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+      }
+      .btn-group {
+        display: flex;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 14px;
+      }
+      .btn {
+        flex: 1;
+        padding: 9px 8px;
+        border-radius: 7px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        transition: opacity 0.2s;
+      }
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .btn-primary {
+        background: var(--brand);
+        color: white;
+      }
+      .btn-secondary {
+        background: #eef1f8;
+        color: var(--brand);
+      }
+
+      /* PG TAG */
+      .pg-badge {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag">Ireland · Waterford / Carlow / Wexford</div>
+        <h1>South East Technological<br />University</h1>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-calendar-days"></i> Intake: September 2026
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-file-invoice"></i> Application Fee: €30 EUR
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-graduation-cap"></i> Min. Education: 4-Year
+            Bachelor's
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-globe"></i>
+            <a href="https://www.setu.ie/" target="_blank">www.setu.ie</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" id="app"></div>
+
+    <script>
+      const BRAND = "#003087";
+      const ugSections = [
+        {
+          title: "Business",
+          pg: false,
+          courses: [
+            ["Business - Common Entry", "€13,500", "4 Years", "Waterford"],
+            ["Economics & Finance", "€13,500", "4 Years", "Waterford"],
+            ["Human Resource Management", "€13,500", "4 Years", "Waterford"],
+            ["Management", "€13,500", "4 Years", "Waterford"],
+            ["Accounting", "€13,500", "4 Years", "Waterford"],
+            ["Marketing", "€13,500", "4 Years", "Waterford"],
+            ["Business (Diploma)", "€13,500", "3 Years", "Waterford"],
+            ["Business - Common Entry", "€13,500", "4 Years", "Carlow"],
+            ["Marketing", "€13,500", "4 Years", "Carlow"],
+            ["International Business", "€13,500", "4 Years", "Carlow"],
+            ["Supply Chain Management", "€13,500", "4 Years", "Carlow"],
+            ["Business Management", "€13,500", "4 Years", "Carlow"],
+            ["Human Resource Management", "€13,500", "4 Years", "Carlow"],
+            ["Finance & Accounting", "€13,500", "4 Years", "Carlow"],
+            [
+              "Business - Common Entry (Diploma)",
+              "€13,500",
+              "3 Years",
+              "Carlow",
+            ],
+            [
+              "Digital Marketing with Analytics",
+              "€13,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Business - Common Entry", "€13,500", "4 Years", "Wexford"],
+            ["Digital Marketing", "€13,500", "4 Years", "Wexford"],
+            ["Marketing & Digital Media", "€13,500", "4 Years", "Waterford"],
+            ["International Business", "€13,500", "4 Years", "Waterford"],
+            ["Business Information Systems", "€13,500", "4 Years", "Waterford"],
+            [
+              "Fashion Buying & Retail Management",
+              "€13,500",
+              "3 Years",
+              "Waterford",
+            ],
+            ["Business with Law", "€13,500", "4 Years", "Carlow"],
+          ],
+        },
+        {
+          title: "Architecture",
+          pg: false,
+          courses: [
+            ["Architecture", "€14,500", "5 Years", "Waterford – Granary"],
+            [
+              "Architectural & Building Information Modelling Technology",
+              "€14,500",
+              "4 Years",
+              "Waterford – Granary",
+            ],
+            ["Architectural Technology", "€14,500", "4 Years", "Carlow"],
+            [
+              "Architectural Technology (Diploma)",
+              "€14,500",
+              "3 Years",
+              "Carlow",
+            ],
+            [
+              "Architectural Technology (Diploma)",
+              "€14,500",
+              "3 Years",
+              "Waterford – Granary",
+            ],
+          ],
+        },
+        {
+          title: "Built Environment",
+          pg: false,
+          courses: [
+            [
+              "Construction Management & Engineering",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Construction Management", "€14,500", "4 Years", "Carlow"],
+            [
+              "Construction Management (Diploma)",
+              "€14,500",
+              "3 Years",
+              "Carlow",
+            ],
+            ["Civil Engineering", "€14,500", "4 Years", "Carlow"],
+            [
+              "Sustainable Civil Engineering",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Quantity Surveying", "€14,500", "4 Years", "Waterford"],
+            ["Quantity Surveying", "€14,500", "4 Years", "Carlow"],
+            ["Set Design & Construction", "€14,500", "4 Years", "Carlow"],
+          ],
+        },
+        {
+          title: "Engineering",
+          pg: false,
+          courses: [
+            ["Aerospace Engineering", "€14,500", "4 Years", "Carlow"],
+            ["Aircraft Systems (Diploma)", "€14,500", "3 Years", "Carlow"],
+            ["Engineering - Common Entry", "€14,500", "4 Years", "Waterford"],
+            ["Automation Engineering", "€14,500", "4 Years", "Waterford"],
+            [
+              "Sustainable Energy Engineering",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Electronic Engineering", "€14,500", "4 Years", "Waterford"],
+            ["Electrical Engineering", "€14,500", "4 Years", "Waterford"],
+            ["Electronic Systems", "€14,500", "4 Years", "Carlow"],
+            ["Biomedical Electronics", "€14,500", "4 Years", "Carlow"],
+            ["Robotics & Automated Systems", "€14,500", "4 Years", "Carlow"],
+            ["Mechanical Engineering", "€14,500", "4 Years", "Carlow"],
+            [
+              "Mechanical & Manufacturing Engineering",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+          ],
+        },
+        {
+          title: "Media, Design & Music",
+          pg: false,
+          courses: [
+            ["TV & Media Production", "€13,500", "4 Years", "Carlow"],
+            ["Public Relations & Media", "€13,500", "4 Years", "Carlow"],
+            [
+              "Content Creation and Social Media",
+              "€13,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Product Design Innovation", "€13,500", "4 Years", "Carlow"],
+            ["Visual Communications & Design", "€13,500", "4 Years", "Wexford"],
+            [
+              "Design (Visual Communications)",
+              "€13,500",
+              "4 Years",
+              "Waterford – College Street",
+            ],
+            ["Visual Art", "€13,500", "4 Years", "Waterford – College Street"],
+            ["Art", "€13,500", "4 Years", "Wexford – Hill Street"],
+            [
+              "Music (Audition Required)",
+              "€13,500",
+              "4 Years",
+              "Waterford – College Street",
+            ],
+          ],
+        },
+        {
+          title: "Law",
+          pg: false,
+          courses: [
+            ["Law (LLB)", "€13,500", "4 Years", "Waterford – College Street"],
+            ["Law (LLB)", "€13,500", "3 Years", "Carlow"],
+            [
+              "Criminal Justice Studies",
+              "€13,500",
+              "3 Years",
+              "Waterford – College Street",
+            ],
+          ],
+        },
+        {
+          title: "Sport Management",
+          pg: false,
+          courses: [
+            [
+              "Recreation & Sport Management",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Sport, Business & Coaching", "€14,500", "4 Years", "Carlow"],
+            [
+              "Sports Management & Coaching (Gaelic Games)",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            [
+              "Sports Management & Coaching (Rugby)",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            [
+              "Sports Management & Coaching (Football)",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+          ],
+        },
+        {
+          title: "Sport Science",
+          pg: false,
+          courses: [
+            [
+              "Exercise Sciences – Common Entry",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Sport & Exercise Science", "€14,500", "4 Years", "Waterford"],
+            ["Nutrition & Exercise Science", "€14,500", "4 Years", "Waterford"],
+            ["Health & Exercise Science", "€14,500", "4 Years", "Waterford"],
+            [
+              "Sports Coaching & Performance",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            [
+              "Sport Rehabilitation & Athletic Therapy",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Strength & Conditioning", "€14,500", "4 Years", "Carlow"],
+            [
+              "Public Health & Health Promotion",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+          ],
+        },
+        {
+          title: "Nursing, Health & Psychology",
+          pg: false,
+          courses: [
+            ["Applied Health Care", "€14,500", "4 Years", "Waterford"],
+            [
+              "Public Health & Health Promotion",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            [
+              "Health Sciences – Common Entry",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Psychology", "€14,500", "3 Years", "Waterford"],
+            [
+              "Early Childhood Education & Practice",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            [
+              "Early Childhood Education & Practice",
+              "€14,500",
+              "4 Years",
+              "Wexford",
+            ],
+            [
+              "Early Childhood Care & Education",
+              "€14,500",
+              "4 Years",
+              "Waterford – College Street",
+            ],
+          ],
+        },
+        {
+          title: "Arts & Social Studies",
+          pg: false,
+          courses: [
+            ["Arts", "€13,500", "3 Years", "Waterford"],
+            ["Social Science", "€13,500", "3 Years", "Waterford"],
+            [
+              "Social Care Practice",
+              "€13,500",
+              "4 Years",
+              "Waterford – College Street",
+            ],
+            [
+              "Professional Social Care Practice",
+              "€13,500",
+              "4 Years",
+              "Carlow",
+            ],
+            [
+              "Applied Social Studies in Professional Social Care",
+              "€13,500",
+              "4 Years",
+              "Wexford",
+            ],
+          ],
+        },
+        {
+          title: "Hospitality, Tourism & Culinary Arts",
+          pg: false,
+          courses: [
+            ["Hospitality Management", "€13,500", "4 Years", "Waterford"],
+            [
+              "Tourism & Hospitality Services",
+              "€13,500",
+              "3 Years",
+              "Waterford",
+            ],
+            ["Tourism and Event Management", "€13,500", "4 Years", "Wexford"],
+            ["Culinary Arts", "€13,500", "4 Years", "Waterford"],
+          ],
+        },
+        {
+          title: "Science",
+          pg: false,
+          courses: [
+            ["Science – Common Entry", "€14,500", "4 Years", "Carlow"],
+            [
+              "Biosciences with Biopharmaceuticals",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            [
+              "Pharmaceutics & Drug Formulation",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Brewing & Distilling", "€14,500", "4 Years", "Carlow"],
+            ["Science – Common Entry", "€14,500", "4 Years", "Waterford"],
+            [
+              "Molecular Biology with Biopharmaceutical Science",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Food Science & Innovation", "€14,500", "4 Years", "Waterford"],
+            [
+              "Physics for Modern Technology",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Pharmaceutical Science", "€14,500", "4 Years", "Waterford"],
+          ],
+        },
+        {
+          title: "Agriculture, Horticulture & Forestry",
+          pg: false,
+          courses: [
+            ["Agricultural Science", "€14,500", "4 Years", "Waterford"],
+            ["Agriculture", "€14,500", "3 Years", "Waterford"],
+            [
+              "Sustainable Farm Management & Agribusiness",
+              "€14,500",
+              "4 Years",
+              "Wexford",
+            ],
+            [
+              "Agricultural Systems Engineering",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Horticulture", "€14,500", "3 Years", "Waterford – Kildalton"],
+            [
+              "Horticulture",
+              "€14,500",
+              "3 Years",
+              "Dublin – National Botanic Gardens",
+            ],
+            ["Forestry", "€14,500", "3 Years", "Waterford"],
+          ],
+        },
+        {
+          title: "Computing",
+          pg: false,
+          courses: [
+            [
+              "Computer Science – Common Entry",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            [
+              "Automotive & Automation Systems",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Cloud & Networks", "€14,500", "4 Years", "Waterford"],
+            [
+              "Computer Forensics & Security",
+              "€14,500",
+              "4 Years",
+              "Waterford",
+            ],
+            ["Internet of Things", "€14,500", "4 Years", "Waterford"],
+            ["Game Development", "€14,500", "4 Years", "Waterford"],
+            [
+              "Information Technology Management",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Cybercrime & IT Security", "€14,500", "4 Years", "Carlow"],
+            ["Software Development", "€14,500", "4 Years", "Carlow"],
+            ["Software Systems Development", "€14,500", "4 Years", "Waterford"],
+            ["Creative Computing", "€14,500", "4 Years", "Waterford"],
+            [
+              "Computing in Interactive Digital Art & Design",
+              "€14,500",
+              "4 Years",
+              "Carlow",
+            ],
+            ["Computer Games Development", "€14,500", "4 Years", "Carlow"],
+          ],
+        },
+        // --- POSTGRADUATE ---
+        {
+          title: "Postgraduate · Arts & Social Studies",
+          pg: true,
+          courses: [
+            [
+              "Master of Arts in Applied Spirituality",
+              "€14,000",
+              "1 Year",
+              "Dublin",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Business",
+          pg: true,
+          courses: [
+            [
+              "Master of Business (Marketing Stream)",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Business (Economics and Finance)",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Business (Management Stream)",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Business (Human Resource Management)",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Business in Internationalisation",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Business in Finance and Business Analytics",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "MSc Digital Marketing Practice",
+              "€14,000",
+              "16 Months",
+              "Waterford",
+            ],
+            ["Master of Business", "€14,000", "1 Year", "Carlow"],
+            ["MSc Supply Chain Management", "€14,000", "1 Year", "Carlow"],
+            [
+              "Higher Diploma – Supply Chain Management",
+              "€13,500",
+              "1 Year",
+              "Carlow",
+            ],
+            ["Higher Diploma – Marketing", "€13,500", "1 Year", "Carlow"],
+            [
+              "Higher Diploma – International Business",
+              "€13,500",
+              "1 Year",
+              "Carlow",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Computing",
+          pg: true,
+          courses: [
+            [
+              "MSc Information Technology Management",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+            ["MSc Data Science", "€15,000", "1 Year", "Carlow"],
+            [
+              "MSc Applied Artificial Intelligence",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+            [
+              "MSc Industrial Networks and Cybersecurity",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+            [
+              "MSc Computing (Information Systems Processes)",
+              "€15,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "MSc Computing Science (Enterprise Software Systems)",
+              "€15,000",
+              "1 Year",
+              "Waterford",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Early Years Education",
+          pg: true,
+          courses: [
+            [
+              "MA Leadership in Early Years Education and Care",
+              "€14,000",
+              "1 Year",
+              "Carlow",
+            ],
+            [
+              "MA Child, Youth and Family Studies",
+              "€14,000",
+              "1 Year",
+              "Carlow",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Engineering",
+          pg: true,
+          courses: [
+            [
+              "MSc Construction Project Management",
+              "€15,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "MSc Innovative Technology Engineering",
+              "€15,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "MSc Sustainable Energy Engineering",
+              "€15,000",
+              "1 Year",
+              "Waterford",
+            ],
+            [
+              "Master of Engineering – Applied Materials",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+            [
+              "Master of Engineering – Flight Test Engineering",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Law",
+          pg: true,
+          courses: [
+            [
+              "MA Criminology and Criminal Justice",
+              "€14,000",
+              "1 Year",
+              "Waterford",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Media & Design",
+          pg: true,
+          courses: [
+            ["MA Interaction Design", "€15,000", "1 Year", "Carlow"],
+            [
+              "MSc Digital Media with Business Analytics",
+              "€14,000",
+              "1 Year",
+              "Wexford",
+            ],
+            [
+              "Higher Diploma – Digital Media Design",
+              "€13,500",
+              "1 Year",
+              "Wexford",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Science",
+          pg: true,
+          courses: [
+            [
+              "MSc Medical Device Regulatory Affairs",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+            [
+              "MSc Pharmaceutical Regulatory Affairs",
+              "€15,000",
+              "1 Year",
+              "Carlow",
+            ],
+          ],
+        },
+        {
+          title: "Postgraduate · Sport Science",
+          pg: true,
+          courses: [
+            ["MSc Strength and Conditioning", "€15,000", "1 Year", "Carlow"],
+            ["MSc Sports Performance Analysis", "€15,000", "1 Year", "Carlow"],
+            [
+              "MSc Applied Sport & Exercise Psychology",
+              "€15,000",
+              "1.5 Years",
+              "Waterford",
+            ],
+          ],
+        },
+      ];
+
+      const app = document.getElementById("app");
+
+      ugSections.forEach((sec) => {
+        const lbl = document.createElement("div");
+        lbl.className = "section-label";
+        lbl.innerHTML = `<h2>${sec.title}</h2>`;
+        app.appendChild(lbl);
+
+        const grid = document.createElement("div");
+        grid.className = "course-grid";
+
+        sec.courses.forEach((c) => {
+          const card = document.createElement("div");
+          card.className = "course-card";
+          card.innerHTML = `
+      ${sec.pg ? '<span class="pg-badge">Postgraduate</span>' : '<span class="badge">Undergraduate</span>'}
+      <div class="course-title">${c[0]}</div>
+      <div class="detail"><i class="fa-solid fa-euro-sign"></i> ${c[1]}</div>
+      <div class="detail"><i class="fa-solid fa-clock"></i> ${c[2]}</div>
+      <div class="detail"><i class="fa-solid fa-location-dot"></i> ${c[3]}</div>
+      <div class="detail"><i class="fa-solid fa-language"></i> IELTS 5.5 / TOEFL 70</div>
+      <div class="btn-group">
+        <a href="https://www.setu.ie/" target="_blank" class="btn btn-secondary">Learn More</a>
+        <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn btn-primary">Apply Now</a>
+      </div>
+    `;
+          grid.appendChild(card);
+        });
+
+        app.appendChild(grid);
+      });
+    </script>
+  </body>
+</html>

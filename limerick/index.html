@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University of Limerick – Programs</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Mulish:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --brand: #005f86;
+        --brand-dark: #003d56;
+        --brand-light: #e6f2f7;
+        --accent: #f5a623;
+        --bg: #f0f6f9;
+        --card-bg: #ffffff;
+        --text: #0d2233;
+        --muted: #4a6070;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Mulish", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #005f86 0%,
+          #003d56 55%,
+          #001824 100%
+        );
+        color: white;
+        padding: 60px 40px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        right: -40px;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: rgba(245, 166, 35, 0.12);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        right: 15%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-tag {
+        display: inline-block;
+        border-left: 4px solid var(--accent);
+        padding-left: 12px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(28px, 5vw, 52px);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 14px;
+      }
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 22px;
+      }
+      .hero-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .hero-meta-item i {
+        color: var(--accent);
+      }
+      .hero-meta-item a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: underline;
+      }
+
+      .wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+      }
+
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 50px 0 20px;
+      }
+      .section-label h2 {
+        font-family: "Sora", sans-serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--brand);
+        white-space: nowrap;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--brand-light), transparent);
+      }
+
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 18px;
+      }
+
+      .course-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 20px;
+        border-bottom: 4px solid var(--brand);
+        box-shadow: 0 2px 12px rgba(0, 95, 134, 0.08);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .course-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 95, 134, 0.15);
+      }
+
+      .course-title {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 12px;
+      }
+      .detail {
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .detail i {
+        color: var(--brand);
+        width: 14px;
+      }
+      .faculty-badge {
+        display: inline-block;
+        background: var(--brand-light);
+        color: var(--brand-dark);
+        font-size: 10.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 14px;
+      }
+      .btn {
+        flex: 1;
+        padding: 9px 8px;
+        border-radius: 7px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 12px;
+        transition: opacity 0.2s;
+      }
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .btn-primary {
+        background: var(--brand);
+        color: white;
+      }
+      .btn-secondary {
+        background: var(--brand-light);
+        color: var(--brand);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag">Limerick, Ireland</div>
+        <h1>University of Limerick</h1>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-calendar-days"></i> Intake: Jan & Sept 2026
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-file-invoice"></i> Application Fee: €50 EUR
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-graduation-cap"></i> Min. GPA: 70%
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-language"></i> IELTS 6.5 / TOEFL 90
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-globe"></i>
+            <a href="https://www.ul.ie/" target="_blank">www.ul.ie</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" id="app"></div>
+
+    <script>
+      const sections = [
+        {
+          title: "Health Sciences & Medicine",
+          courses: [
+            [
+              "MSc Public Health",
+              "Health Sciences, Medicine, Nursing",
+              "€14,300",
+              "12 Months",
+            ],
+            [
+              "MSc Health Informatics",
+              "Health Sciences, Medicine, Nursing",
+              "€20,600",
+              "12 Months",
+            ],
+            [
+              "MSc Physiotherapy (Professional Qualification)",
+              "Health Sciences, Medicine, Nursing",
+              "€24,828",
+              "12 Months",
+            ],
+            [
+              "MSc Occupational Therapy (Professional Qualification)",
+              "Health Sciences, Medicine, Nursing",
+              "€20,542",
+              "24 Months",
+            ],
+            [
+              "MSc Speech and Language Therapy",
+              "Health Sciences, Medicine, Nursing",
+              "€19,846",
+              "24 Months",
+            ],
+            [
+              "MSc Advanced Healthcare Practice",
+              "Health Sciences, Medicine, Nursing",
+              "€13,738",
+              "24 Months",
+            ],
+            [
+              "MSc Digital Health Transformation",
+              "Health Sciences, Medicine, Nursing",
+              "€18,000",
+              "18 Months",
+            ],
+          ],
+        },
+        {
+          title: "Engineering & Technology",
+          courses: [
+            [
+              "Master of Engineering – Mechatronics",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Mechanical Engineering",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Artificial Intelligence and Machine Learning",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "Master of Engineering – Edge Computing",
+              "Engineering & Technology",
+              "€18,900",
+              "12 Months",
+            ],
+            [
+              "Master of Engineering – Computer Vision and AI",
+              "Engineering & Technology",
+              "€18,900",
+              "12 Months",
+            ],
+            [
+              "MSc Software Development – International Systems",
+              "Engineering & Technology",
+              "€19,200",
+              "24 Months",
+            ],
+            [
+              "MSc Advanced Engineering Materials",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Civil Engineering",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "Master of Engineering – Cyber Security",
+              "Engineering & Technology",
+              "€18,800",
+              "12 Months",
+            ],
+            [
+              "MSc Software Engineering",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Aeronautical Engineering",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Biomedical Device Materials",
+              "Engineering & Technology",
+              "€19,200",
+              "12 Months",
+            ],
+          ],
+        },
+        {
+          title: "Business",
+          courses: [
+            [
+              "MSc International Management and Global Business",
+              "Business",
+              "€19,692",
+              "12 Months",
+            ],
+            ["MA Business Management", "Business", "€17,444", "12 Months"],
+            ["MSc Financial Services", "Business", "€18,622", "12 Months"],
+            [
+              "MSc Marketing, Consumption and Society",
+              "Business",
+              "€17,544",
+              "12 Months",
+            ],
+            ["MSc Business Analytics", "Business", "€19,478", "12 Months"],
+            ["MSc Project Management", "Business", "€17,444", "12 Months"],
+            [
+              "MSc Human Resource Management",
+              "Business",
+              "€18,622",
+              "12 Months",
+            ],
+            ["MSc Accounting", "Business", "€18,000", "12 Months"],
+            [
+              "MSc Risk Management and Insurance",
+              "Business",
+              "€18,622",
+              "12 Months",
+            ],
+            [
+              "MSc Work and Organisational Behaviour",
+              "Business",
+              "€18,622",
+              "12 Months",
+            ],
+            [
+              "Masters in International Entrepreneurship Management",
+              "Business",
+              "€17,444",
+              "12 Months",
+            ],
+            ["MA International Tourism", "Business", "€18,942", "12 Months"],
+          ],
+        },
+        {
+          title: "Sciences",
+          courses: [
+            ["MA Psychology", "Sciences", "€15,900", "12 Months"],
+            [
+              "MSc Work and Organisational Psychology",
+              "Sciences",
+              "€18,772",
+              "12 Months",
+            ],
+            [
+              "MSc Functional Foods and Product Development",
+              "Sciences",
+              "€18,000",
+              "12 Months",
+            ],
+            [
+              "MSc Human Nutrition and Dietetics",
+              "Sciences",
+              "€24,314",
+              "24 Months",
+            ],
+            [
+              "MSc Mental Skills & Mental Health in Sports",
+              "Sciences",
+              "€12,754",
+              "12 Months",
+            ],
+            ["MSc Psychological Science", "Sciences", "€15,700", "12 Months"],
+            ["MSc Applied Physics", "Sciences", "€19,200", "12 Months"],
+            [
+              "MSc Data Science and Statistical Learning",
+              "Sciences",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Sociology and Data Analytics",
+              "Arts",
+              "€18,000",
+              "12 Months",
+            ],
+          ],
+        },
+        {
+          title: "Arts & Design",
+          courses: [
+            [
+              "Master's Degree – Interaction and Experience Design",
+              "Arts",
+              "€19,200",
+              "12 Months",
+            ],
+            [
+              "MSc Design for Health and Wellbeing",
+              "Arts",
+              "€19,200",
+              "12 Months",
+            ],
+            ["MA Ethnochoreology", "Arts", "€16,800", "12 Months"],
+          ],
+        },
+        {
+          title: "Education & Community",
+          courses: [
+            [
+              "Professional Master of Education",
+              "Community Service and Teaching",
+              "€9,954",
+              "24 Months",
+            ],
+            [
+              "MSc Sustainable Resource Management Policy and Practice",
+              "—",
+              "€15,600",
+              "12 Months",
+            ],
+          ],
+        },
+      ];
+
+      const app = document.getElementById("app");
+      sections.forEach((sec) => {
+        const lbl = document.createElement("div");
+        lbl.className = "section-label";
+        lbl.innerHTML = `<h2>${sec.title}</h2>`;
+        app.appendChild(lbl);
+
+        const grid = document.createElement("div");
+        grid.className = "course-grid";
+
+        sec.courses.forEach((c) => {
+          const card = document.createElement("div");
+          card.className = "course-card";
+          card.innerHTML = `
+      <div class="faculty-badge">${c[1]}</div>
+      <div class="course-title">${c[0]}</div>
+      <div class="detail"><i class="fa-solid fa-euro-sign"></i> ${c[2]}</div>
+      <div class="detail"><i class="fa-solid fa-clock"></i> ${c[3]}</div>
+      <div class="detail"><i class="fa-solid fa-location-dot"></i> Limerick, Ireland</div>
+      <div class="detail"><i class="fa-solid fa-language"></i> IELTS 6.5 / TOEFL 90</div>
+      <div class="btn-group">
+        <a href="https://www.ul.ie/" target="_blank" class="btn btn-secondary">Learn More</a>
+        <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn btn-primary">Apply Now</a>
+      </div>
+    `;
+          grid.appendChild(card);
+        });
+        app.appendChild(grid);
+      });
+    </script>
+  </body>
+</html>
