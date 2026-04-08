@@ -3,1342 +3,426 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TUS — Programme Finder</title>
+    <title>TUS – Programs</title>
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
+
     <style>
+      :root {
+        --brand: #7a003c;
+        --brand-light: #f4e6ec;
+        --accent: #c2185b;
+        --bg: #f4f6fb;
+        --card-bg: #ffffff;
+        --text: #1a1a2e;
+        --muted: #5a6175;
+      }
+
       * {
         box-sizing: border-box;
-      }
-      :root {
-        --primary: #d25822;
-        --secondary: #8bc41f;
-        --dark: #1a1a1a;
-        --grey: #64748b;
-        --bg: #f1f5f9;
-        --white: #ffffff;
-      }
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        background: var(--bg);
         margin: 0;
         padding: 0;
-        color: var(--dark);
       }
-      .page-header {
-        background: var(--white);
-        border-bottom: 2px solid #e2e8f0;
-        padding: 22px 40px;
+      body {
+        font-family: "Source Sans 3", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* HERO */
+      .hero {
+        background: linear-gradient(135deg, #7a003c, #3d001f, #1a000d);
+        color: white;
+        padding: 60px 40px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-inner {
+        max-width: 1200px;
+        margin: auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-tag {
+        background: var(--accent);
+        font-size: 11px;
+        padding: 5px 14px;
+        border-radius: 4px;
+        margin-bottom: 18px;
+        display: inline-block;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .hero-title-row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        gap: 20px;
+        margin-bottom: 16px;
       }
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .logo-box {
-        width: 44px;
-        height: 44px;
-        border-radius: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-weight: 800;
-        font-size: 0.68rem;
-        letter-spacing: 0.04em;
+      .hero-logo {
+        width: 150px;
+        height: 100px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
         flex-shrink: 0;
       }
-      .uni-name {
-        font-size: 1.15rem;
+
+      .hero-title-row h1 {
+        font-size: clamp(26px, 4vw, 48px);
         font-weight: 800;
-        color: var(--dark);
-        margin: 0;
-        line-height: 1.2;
       }
-      .uni-sub {
-        font-size: 0.75rem;
-        color: var(--grey);
-        font-weight: 500;
-        margin: 2px 0 0;
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 24px;
       }
-      .header-pills {
+
+      .hero-meta-item {
         display: flex;
         gap: 8px;
-        flex-wrap: wrap;
-        align-items: center;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
       }
-      .hpill {
-        font-size: 0.68rem;
-        font-weight: 700;
-        padding: 4px 12px;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        background: #f8fafc;
-        color: var(--grey);
+
+      /* WRAPPER */
+      .wrapper {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 24px 60px;
       }
-      .hpill strong {
-        color: var(--dark);
-      }
-      .back-btn {
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--primary);
-        text-decoration: none;
-        padding: 7px 14px;
-        border: 1.5px solid var(--primary);
-        border-radius: 8px;
-        transition: all 0.2s;
-        white-space: nowrap;
-      }
-      .back-btn:hover {
-        background: var(--primary);
-        color: #fff;
-      }
-      .main-wrap {
-        max-width: 1600px;
-        margin: 0 auto;
-        padding: 40px 40px 80px;
-      }
-      .field-block {
-        margin-bottom: 60px;
-      }
-      .field-banner {
-        width: 100%;
-        height: 210px;
-        border-radius: 18px;
-        background-size: cover;
-        background-position: center;
-        margin-bottom: 24px;
+
+      /* SECTION */
+      .section-label {
         display: flex;
-        align-items: flex-end;
-        overflow: hidden;
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
-      }
-      .banner-overlay {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
-        padding: 24px 30px;
-        width: 100%;
-      }
-      .banner-overlay h2 {
-        color: #fff;
-        margin: 0;
-        font-size: 1.75rem;
-        font-weight: 800;
-      }
-      .banner-overlay p {
-        color: #e2e8f0;
-        margin: 4px 0 0;
-        font-weight: 500;
-        font-size: 0.85rem;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
         gap: 14px;
+        margin: 48px 0 20px;
       }
-      .card {
-        background: var(--white);
-        border-radius: 14px;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        padding: 18px;
-      }
-      .card:hover {
-        transform: translateY(-5px);
-        border-color: var(--primary);
-        box-shadow: 0 14px 32px rgba(210, 88, 34, 0.11);
-      }
-      .badge-row {
-        margin-bottom: 9px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-      }
-      .badge {
-        font-size: 8.5px;
-        font-weight: 800;
-        padding: 3px 8px;
-        border-radius: 5px;
-        text-transform: uppercase;
-      }
-      .b-open {
-        background: #ecfdf5;
-        color: #059669;
-      }
-      .b-closed {
-        background: #fef2f2;
-        color: #dc2626;
-      }
-      .b-orange {
-        background: #fff3ed;
-        color: var(--primary);
-      }
-      .b-green {
-        background: #f4fae9;
-        color: var(--secondary);
-      }
-      .b-blue {
-        background: #eff6ff;
-        color: #1d4ed8;
-      }
-      .b-grey {
-        background: #f1f5f9;
-        color: var(--grey);
-      }
-      .b-purple {
-        background: #f5f3ff;
-        color: #7c3aed;
-      }
-      .price-line {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 11px;
-      }
-      .fee {
-        font-size: 1.15rem;
-        font-weight: 800;
-        color: var(--dark);
-      }
-      .dur {
-        font-size: 9.5px;
-        color: var(--grey);
+      .section-label h2 {
+        font-size: 22px;
         font-weight: 700;
-        background: #f1f5f9;
-        padding: 2px 7px;
-        border-radius: 5px;
+        color: var(--brand);
       }
-      .card h3 {
-        font-size: 0.88rem;
-        color: var(--dark);
-        margin: 0 0 12px;
-        line-height: 1.45;
-        flex-grow: 1;
-        font-weight: 700;
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--brand-light), transparent);
       }
-      .req-box {
-        background: #f8fafc;
-        border-radius: 9px;
-        padding: 9px 11px;
+
+      /* GRID */
+      .course-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 14px;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        gap: 18px;
       }
-      .req-item {
+
+      /* CARD */
+      .course-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        border-left: 5px solid var(--brand);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        transition: 0.2s;
       }
-      .req-label {
-        font-size: 7.5px;
-        color: var(--grey);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+      .course-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
       }
-      .req-val {
-        font-size: 10.5px;
-        font-weight: 800;
-        color: var(--dark);
+
+      .course-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 12px;
       }
-      .card-meta {
-        font-size: 0.7rem;
-        color: var(--grey);
-        margin-bottom: 10px;
+
+      .detail {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 6px;
         display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
       }
-      .meta-tag {
-        background: #f1f5f9;
-        padding: 2px 7px;
-        border-radius: 5px;
+
+      .badge {
+        display: inline-block;
+        background: var(--brand-light);
+        color: var(--brand);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 20px;
+        margin-bottom: 10px;
         font-weight: 600;
       }
-      .learn-btn {
+
+      .btn-group {
+        display: flex;
+        gap: 8px;
         margin-top: auto;
-        display: block;
+        padding-top: 14px;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 9px;
         text-align: center;
-        background: var(--secondary);
-        color: #fff;
+        border-radius: 7px;
         text-decoration: none;
-        padding: 10px;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 0.78rem;
-        transition: all 0.2s;
+        font-size: 12px;
+        font-weight: 600;
       }
-      .learn-btn:hover {
-        background: #76a719;
-        box-shadow: 0 4px 10px rgba(139, 196, 31, 0.3);
-        transform: translateY(-1px);
+
+      .btn-primary {
+        background: var(--brand);
+        color: white;
       }
-      @media (max-width: 1400px) {
-        .grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-      @media (max-width: 1100px) {
-        .grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-      @media (max-width: 768px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .main-wrap {
-          padding: 24px 20px 60px;
-        }
-        .page-header {
-          padding: 16px 20px;
-        }
-      }
-      @media (max-width: 480px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
+      .btn-secondary {
+        background: #eef1f8;
+        color: var(--brand);
       }
     </style>
   </head>
+
   <body>
-    <div class="main-wrap">
-      <div class="field-block">
-        <div
-          class="field-banner"
-          style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80&quot;);
-          "
-        >
-          <div class="banner-overlay">
-            <h2>Business & Management</h2>
-            <p>Postgraduate · Athlone & Moylish Campuses</p>
-          </div>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag">Ireland · Athlone / Moylish</div>
+
+        <div class="hero-title-row">
+          <img
+            class="hero-logo"
+            src="https://tus.ie/app/themes/app-theme/assets//main/img/layout/logo.svg"
+            alt="TUS Logo"
+          />
+          <h1>Technological University Of Shannon</h1>
         </div>
-        <div class="grid">
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€16,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MA in Accounting</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-calendar-days"></i> Intake: September 2026
           </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MBus</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MBus in Business</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MBus</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-file-invoice"></i> Application Fee: €50
           </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Business Analytics</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-graduation-cap"></i> Min: 4-Year Bachelor's
           </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Digital Marketing & Analytics</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MBus</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MBus in International and Sustainable Business Strategy</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MBus</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">Contact TUS</span
-              ><span class="dur">12 Months</span>
-            </div>
-            <h3>
-              MSc in Sustainable Supply Chain Management and Global Logistics
-            </h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">Contact TUS</span
-              ><span class="dur">12 Months</span>
-            </div>
-            <h3>MA in Sustainable Innovation Design</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="field-block">
-        <div
-          class="field-banner"
-          style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80&quot;);
-          "
-        >
-          <div class="banner-overlay">
-            <h2>Computing & Technology</h2>
-            <p>Postgraduate · Athlone & Moylish Campuses</p>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Data Analytics</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Applied Software Engineering</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Software Design with Artificial Intelligence</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Software Design with Cloud Native Computing</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Software Design with Cybersecurity</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="field-block">
-        <div
-          class="field-banner"
-          style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1581093803931-46e730e7622e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
-          "
-        >
-          <div class="banner-overlay">
-            <h2>Engineering</h2>
-            <p>Postgraduate · Athlone & Moylish Campuses</p>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">Contact TUS</span
-              ><span class="dur">16 Months</span>
-            </div>
-            <h3>MSc in Sustainable Energy System Management</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MEng</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€16,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MEng - Mechanical Engineering</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MEng</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc - Quantity Surveying</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="field-block">
-        <div
-          class="field-banner"
-          style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1630959301035-27da17911d17?q=80&w=1010&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;);
-          "
-        >
-          <div class="banner-overlay">
-            <h2>Health Sciences</h2>
-            <p>Postgraduate · Athlone & Moylish Campuses</p>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>
-              MSc in Process Validation and Regulatory Affairs (Medical
-              Technology)
-            </h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€17,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>
-              MSc in Process Validation and Regulatory Affairs (Pharmaceutical)
-            </h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€16,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Product Design Control - Medical Devices</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€16,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Digital Health</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Nursing in Leadership and Quality Healthcare</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Athlone</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Biopharmaceutical Technology</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Athlone</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MSc</span
-              ><span class="badge b-grey">Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€18,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MSc in Pharmaceutical and Chemical Analysis</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MSc</span
-              ><span class="meta-tag">Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">12 Months</span>
-            </div>
-            <h3>MA in Strategic Health and Wellbeing Leadership</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="field-block">
-        <div
-          class="field-banner"
-          style="
-            background-image: url(&quot;https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80&quot;);
-          "
-        >
-          <div class="banner-overlay">
-            <h2>Social Sciences & Education</h2>
-            <p>Postgraduate · Athlone & Moylish Campuses</p>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€15,500</span><span class="dur">24 Months</span>
-            </div>
-            <h3>MA - Social Work</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">16 Months</span>
-            </div>
-            <h3>MA - Fine Art</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
-          </div>
-          <div class="card">
-            <div class="badge-row">
-              <span class="badge b-open">SEP 2026</span
-              ><span class="badge b-blue">MA</span
-              ><span class="badge b-grey">Athlone / Moylish</span>
-            </div>
-            <div class="price-line">
-              <span class="fee">€14,500</span><span class="dur">16 Months</span>
-            </div>
-            <h3>MA - Instructional and Learning Design</h3>
-            <div class="card-meta">
-              <span class="meta-tag">MA</span
-              ><span class="meta-tag">Athlone / Moylish</span>
-            </div>
-            <div class="req-box">
-              <div class="req-item">
-                <span class="req-label">IELTS</span
-                ><span class="req-val">6.5</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">TOEFL</span
-                ><span class="req-val">79</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">PTE</span
-                ><span class="req-val">58</span>
-              </div>
-              <div class="req-item">
-                <span class="req-label">DET</span
-                ><span class="req-val">120</span>
-              </div>
-            </div>
-            <a href="https://tus.ie/" target="_blank" class="learn-btn"
-              >Learn More</a
-            >
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-globe"></i
+            ><a href="https://tus.ie/" target="_blank">tus.ie</a>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="wrapper" id="app"></div>
+
+    <script>
+      const ugSections = [
+        {
+          title: "Business & Management",
+          pg: true,
+          courses: [
+            [
+              "MA in Accounting (Athlone)",
+              "€16,500",
+              "12 month",
+              "55% | 6.5 / 79 /58 /120",
+            ],
+            [
+              "MBus in Business (Athlone)",
+              "€14,500",
+              "12 month",
+              "55% | 6.5 / 79 /58 /120",
+            ],
+            [
+              "MBus International & Sustainable Business Strategy (Moylish)",
+              "€14,500",
+              "12 month",
+              "55% | 6.5 / 79 /58 /120",
+            ],
+          ],
+        },
+
+        {
+          title: "Data & Analytics",
+          pg: true,
+          courses: [
+            [
+              "MSc Business Analytics (Moylish)",
+              "€18,500",
+              "12 month",
+              "55% | 6.5 / 79 /58 /120",
+            ],
+            [
+              "MSc Data Analytics (Athlone/Moylish)",
+              "€18,500",
+              "12 month",
+              "55% | 6.5 / 79 /58 /120",
+            ],
+          ],
+        },
+
+        {
+          title: "Computing & IT",
+          pg: true,
+          courses: [
+            [
+              "MSc Applied Software Engineering",
+              "€17,500",
+              "12 month",
+              "55% | 6.5",
+            ],
+            [
+              "MSc Software Design with Artificial Intelligence",
+              "€17,500",
+              "12 month",
+              "55% | 6.5",
+            ],
+            [
+              "MSc Software Design with Cloud Native Computing",
+              "€17,500",
+              "12 month",
+              "55% | 6.5",
+            ],
+            [
+              "MSc Software Design with Cybersecurity",
+              "€17,500",
+              "12 month",
+              "55% | 6.5",
+            ],
+          ],
+        },
+
+        {
+          title: "Science & Pharmaceutical",
+          pg: true,
+          courses: [
+            ["MSc Biopharmaceutical Technology", "€18,500", "12 month", "55%"],
+            [
+              "MSc Pharmaceutical & Chemical Analysis",
+              "€18,500",
+              "12 month",
+              "55%",
+            ],
+            [
+              "MSc Process Validation (Medical Technology)",
+              "€17,500",
+              "12 month",
+              "55%",
+            ],
+            [
+              "MSc Process Validation (Pharmaceutical)",
+              "€17,500",
+              "12 month",
+              "55%",
+            ],
+            [
+              "MSc Product Design Control – Medical Devices",
+              "€16,500",
+              "12 month",
+              "55%",
+            ],
+          ],
+        },
+
+        {
+          title: "Engineering & Built Environment",
+          pg: true,
+          courses: [
+            ["MEng Mechanical Engineering", "€16,500", "12 month", "55%"],
+            ["MSc Quantity Surveying", "€18,500", "12 month", "55%"],
+            [
+              "MSc Sustainable Energy System Management",
+              "N/A",
+              "16 month",
+              "55%",
+            ],
+          ],
+        },
+
+        {
+          title: "Health & Nursing",
+          pg: true,
+          courses: [
+            ["MSc Digital Health", "€16,500", "12 month", "55%"],
+            [
+              "MSc Nursing Leadership & Quality Healthcare",
+              "€18,500",
+              "12 month",
+              "55%",
+            ],
+          ],
+        },
+
+        {
+          title: "Arts, Design & Social Sciences",
+          pg: true,
+          courses: [
+            ["MA Social Work", "€15,500", "24 month", "55%"],
+            ["MA Fine Art", "€14,500", "16 month", "55%"],
+            [
+              "MA Instructional & Learning Design",
+              "€14,500",
+              "16 month",
+              "55%",
+            ],
+            [
+              "MA Strategic Health & Wellbeing Leadership",
+              "€14,500",
+              "12 month",
+              "55%",
+            ],
+          ],
+        },
+      ];
+
+      const app = document.getElementById("app");
+
+      ugSections.forEach((sec) => {
+        const lbl = document.createElement("div");
+        lbl.className = "section-label";
+        lbl.innerHTML = `<h2>${sec.title}</h2>`;
+        app.appendChild(lbl);
+
+        const grid = document.createElement("div");
+        grid.className = "course-grid";
+
+        sec.courses.forEach((c) => {
+          const card = document.createElement("div");
+          card.className = "course-card";
+          card.innerHTML = `
+<span class="badge">Postgraduate</span>
+
+<div class="course-title">${c[0]}</div>
+
+<div class="detail"><i class="fa-solid fa-euro-sign"></i> ${c[1]}</div>
+<div class="detail"><i class="fa-solid fa-clock"></i> ${c[2]}</div>
+<div class="detail"><i class="fa-solid fa-language"></i> ${c[3]}</div>
+
+<div class="btn-group">
+<a href="https://tus.ie/" target="_blank" class="btn btn-secondary">Learn More</a>
+<a href="#" class="btn btn-primary">Apply Now</a>
+</div>
+`;
+          grid.appendChild(card);
+        });
+
+        app.appendChild(grid);
+      });
+    </script>
   </body>
 </html>
