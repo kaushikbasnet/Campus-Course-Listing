@@ -368,28 +368,12 @@
     </style>
   </head>
   <body>
-    <!-- ═══════════════════════════════════════════════════════════════
-     HERO BANNER – background image + overlay
-═══════════════════════════════════════════════════════════════════ -->
     <section class="hero">
       <div class="hero-img"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content max-w-6xl mx-auto">
-        <!-- breadcrumb -->
-        <nav
-          class="text-xs text-white/50 flex items-center gap-1.5 mb-5 flex-wrap"
-        >
-          <a href="#" class="hover:text-white/80 transition">Home</a>
-          <i class="fa-solid fa-chevron-right text-[9px]"></i>
-          <a href="#" class="hover:text-white/80 transition">Ireland</a>
-          <i class="fa-solid fa-chevron-right text-[9px]"></i>
-          <a href="#" class="hover:text-white/80 transition">Universities</a>
-          <i class="fa-solid fa-chevron-right text-[9px]"></i>
-          <span class="text-white/80">TU Dublin</span>
-        </nav>
 
         <div class="flex flex-col md:flex-row md:items-end gap-6">
-          <!-- Logo -->
           <div
             class="flex-shrink-0 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 w-28 h-20 flex items-center justify-center"
           >
@@ -400,7 +384,6 @@
             />
           </div>
 
-          <!-- Title block -->
           <div class="flex-1">
             <h1
               class="font-head text-3xl sm:text-4xl md:text-5xl font-900 text-white leading-tight mb-3"
@@ -425,7 +408,6 @@
               <span class="badge bg-gold text-white">Est. 2019</span>
             </div>
 
-            <!-- Stat strip row -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
               <div class="stat-strip">
                 <div
@@ -467,7 +449,6 @@
               </div>
             </div>
 
-            <!-- CTA row -->
             <div class="flex flex-wrap gap-3">
               <a
                 href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
@@ -488,9 +469,6 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-     STICKY COURSE SEARCH BAR
-═══════════════════════════════════════════════════════════════════ -->
     <div class="search-bar">
       <div
         class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
@@ -519,9 +497,6 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-     TAB NAVIGATION
-═══════════════════════════════════════════════════════════════════ -->
     <div class="tab-nav">
       <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scroll">
         <button class="tab-btn active" data-tab="overview">
@@ -548,13 +523,8 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-     MAIN CONTENT
-═══════════════════════════════════════════════════════════════════ -->
     <div class="max-w-6xl mx-auto px-4 py-6 space-y-5">
-      <!-- ─── OVERVIEW ──────────────────────────────────────────────── -->
       <div id="tab-overview" class="tab-pane active fade-up">
-        <!-- About + Image row -->
         <div class="grid md:grid-cols-5 gap-5 mb-5">
           <div class="md:col-span-3 info-card p-5">
             <div class="flex items-center gap-3 mb-4">
@@ -606,7 +576,6 @@
               alt="TU Dublin Campus"
               class="about-img w-full"
             />
-            <!-- Quick facts -->
             <div class="info-card p-4 space-y-2.5">
               <div class="flex items-center gap-3 text-[14px]">
                 <i
@@ -639,7 +608,6 @@
           </div>
         </div>
 
-        <!-- Campus photo gallery -->
         <div class="info-card p-5 mb-5">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-1 h-7 bg-sky rounded-full"></div>
@@ -671,7 +639,6 @@
           </div>
         </div>
 
-        <!-- Research strengths + Academic strengths -->
         <div class="grid sm:grid-cols-2 gap-5 mb-5">
           <div class="info-card p-5">
             <div class="flex items-center gap-3 mb-4">
@@ -743,7 +710,6 @@
           </div>
         </div>
 
-        <!-- Why Ireland banner -->
         <div
           class="rounded-2xl overflow-hidden relative"
           style="background: #004c6c"
@@ -777,12 +743,10 @@
         </div>
       </div>
 
-      <!-- ─── COURSES ──────────────────────────────────────────────── -->
       <div id="tab-courses" class="tab-pane fade-up">
         <div id="courseContainer"></div>
       </div>
 
-      <!-- ─── RANKINGS ─────────────────────────────────────────────── -->
       <div id="tab-rankings" class="tab-pane fade-up">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5">
           <div class="rank-chip">
@@ -855,7 +819,6 @@
         </div>
       </div>
 
-      <!-- ─── ADMISSION ─────────────────────────────────────────────── -->
       <div id="tab-admission" class="tab-pane fade-up">
         <div class="grid md:grid-cols-2 gap-5">
           <div class="info-card p-5">
@@ -909,9 +872,9 @@
                     Documents Required
                   </div>
                   <div class="text-[14px] text-gray-500 mt-0.5">
-                    Academic transcripts, Passport copy, SOP/Personal Statement,
-                    2 Reference Letters, Updated CV, English proficiency
-                    certificate
+                    Academic transcripts, Passport copy, SOP/Personal
+                    Statement, 2 Reference Letters, Updated CV, English
+                    proficiency certificate
                   </div>
                 </div>
               </div>
@@ -1010,7 +973,6 @@
         </div>
       </div>
 
-      <!-- ─── SCHOLARSHIPS ──────────────────────────────────────────── -->
       <div id="tab-scholarships" class="tab-pane fade-up">
         <div class="grid sm:grid-cols-2 gap-5 mb-5">
           <div class="info-card p-5 hover:shadow-md transition">
@@ -1099,7 +1061,6 @@
             </div>
           </div>
         </div>
-        <!-- Edu loan -->
         <div
           class="rounded-2xl p-6"
           style="background: linear-gradient(135deg, #004c6c, #00b4c6)"
@@ -1124,17 +1085,17 @@
         </div>
       </div>
 
-      <!-- ─── CONTACT ────────────────────────────────────────────────── -->
       <div id="tab-contact" class="tab-pane fade-up">
         <div class="grid md:grid-cols-3 gap-5 mb-5">
-          <!-- Office card -->
           <div class="contact-card md:col-span-2">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-1 h-7 bg-brand rounded-full"></div>
               <h2 class="font-head font-800 text-xl text-brand">Our Office</h2>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
+              <div
+                class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl"
+              >
                 <i
                   class="fa-solid fa-location-dot text-brand mt-1 text-base"
                 ></i>
@@ -1147,7 +1108,9 @@
                   </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
+              <div
+                class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl"
+              >
                 <i class="fa-solid fa-envelope text-brand mt-1 text-base"></i>
                 <div>
                   <div class="font-head font-700 text-[15px] text-gray-800">
@@ -1166,250 +1129,105 @@
                 ></i>
                 <div>
                   <div class="font-head font-700 text-[15px] text-gray-800">
-                    WhatsApp
+                    WhatsApp/Call
                   </div>
                   <a
-                    href="https://wa.me/+977-9803100720"
+                    href="https://wa.me/9851351123"
                     target="_blank"
-                    class="text-[14px] text-green-700 hover:underline mt-0.5 block"
-                    >+977-9803100720</a
+                    class="text-[14px] text-green-700 font-600 mt-0.5 hover:underline block"
+                    >+977 9851351123</a
                   >
                 </div>
               </div>
               <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-phone text-brand mt-1 text-base"></i>
+                <i class="fa-solid fa-clock text-brand mt-1 text-base"></i>
                 <div>
                   <div class="font-head font-700 text-[15px] text-gray-800">
-                    Call Us
+                    Working Hours
                   </div>
-                  <a
-                    href="tel:+919877983783"
-                    class="text-[14px] text-brand hover:underline mt-0.5 block"
-                    >+977-9803100720</a
-                  >
+                  <div class="text-[14px] text-gray-500 mt-0.5">
+                    Sun - Fri: 9:30 AM - 5:30 PM
+                  </div>
                 </div>
               </div>
             </div>
-
-            <!-- Social -->
-            <div class="mt-4 pt-4 border-t border-gray-100">
-              <div class="font-head font-700 text-[14px] text-gray-600 mb-3">
-                Follow us
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <a
-                  href="https://www.facebook.com/RaceEducare/"
-                  target="_blank"
-                  class="bg-blue-600 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:opacity-80 transition"
-                  ><i class="fa-brands fa-facebook-f"></i
-                ></a>
-                <a
-                  href="https://www.instagram.com/studyabroadbyraceeducare"
-                  target="_blank"
-                  class="bg-pink-500 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:opacity-80 transition"
-                  ><i class="fa-brands fa-instagram"></i
-                ></a>
-                <a
-                  href="https://www.youtube.com/@raceeducare8613"
-                  target="_blank"
-                  class="bg-red-600 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:opacity-80 transition"
-                  ><i class="fa-brands fa-youtube"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/company/race-educare/posts/?feedView=all"
-                  target="_blank"
-                  class="bg-blue-700 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:opacity-80 transition"
-                  ><i class="fa-brands fa-linkedin-in"></i
-                ></a>
-              </div>
-            </div>
           </div>
-
-          <!-- Free counselling -->
           <div
-            class="rounded-2xl overflow-hidden"
-            style="background: linear-gradient(160deg, #004c6c, #00334a)"
+            class="rounded-2xl p-5 text-white flex flex-col justify-between"
+            style="background: #004c6c"
           >
-            <div class="p-5 text-white h-full flex flex-col">
-              <div
-                class="text-sky text-xs font-head font-700 uppercase tracking-wider mb-2"
-              >
-                100% Free Service
+            <div>
+              <div class="font-head font-800 text-xl mb-2">
+                Need Personal Guidance?
               </div>
-              <h3 class="font-head font-800 text-xl leading-snug mb-3">
-                Get Expert Study Abroad Counselling
-              </h3>
-              <p class="text-white/70 text-[14px] leading-relaxed mb-4">
-                Our counsellors specialise in Ireland study pathways. We help
-                you choose the right programme, prepare your application, and
-                get your visa — completely free.
+              <p class="text-[14px] text-white/75 leading-relaxed mb-4">
+                Book a 1-on-1 free counselling session with our European
+                education experts to plan your profile evaluation, course shortlisting,
+                and application submission.
               </p>
-              <ul class="space-y-2 mb-5 text-[14px]">
-                <li class="flex items-center gap-2 text-white/80">
-                  <i class="fa-solid fa-check text-sky text-xs"></i>Programme
-                  shortlisting
-                </li>
-                <li class="flex items-center gap-2 text-white/80">
-                  <i class="fa-solid fa-check text-sky text-xs"></i>SOP &
-                  document review
-                </li>
-                <li class="flex items-center gap-2 text-white/80">
-                  <i class="fa-solid fa-check text-sky text-xs"></i>Visa
-                  guidance
-                </li>
-                <li class="flex items-center gap-2 text-white/80">
-                  <i class="fa-solid fa-check text-sky text-xs"></i
-                  >Pre-departure support
-                </li>
-              </ul>
-              <div class="mt-auto space-y-2">
-                <a
-                  href="https://studyinireland.info/contact/"
-                  target="_blank"
-                  class="block bg-green-500 hover:bg-green-600 text-white font-head font-700 text-[15px] py-3 rounded-xl text-center transition"
-                >
-                  <i class="fa-solid fa-phone mr-2"></i>Contact Us
-                </a>
-                <a
-                  href="mailto:admissions@studyinireland.info"
-                  class="block bg-white/15 hover:bg-white/25 text-white font-head font-600 text-[14px] py-2.5 rounded-xl text-center transition"
-                >
-                  <i class="fa-solid fa-envelope mr-2"></i>Send Email
-                </a>
-              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- TU Dublin direct contact -->
-        <div class="info-card p-5">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-1 h-7 bg-sky rounded-full"></div>
-            <h2 class="font-head font-800 text-xl text-brand">
-              TU Dublin Direct Contact
-            </h2>
-          </div>
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div class="flex items-center gap-3 text-[15px]">
-              <i class="fa-solid fa-phone text-brand"></i
-              ><a href="tel:+35314022000" class="text-gray-600 hover:text-brand"
-                >+353 1 402 2000</a
-              >
-            </div>
-            <div class="flex items-center gap-3 text-[15px]">
-              <i class="fa-solid fa-globe text-brand"></i
-              ><a
-                href="https://www.tudublin.ie/"
-                target="_blank"
-                class="text-brand underline"
-                >www.tudublin.ie</a
-              >
-            </div>
-            <div class="flex items-center gap-3 text-[15px]">
-              <i class="fa-solid fa-location-dot text-brand"></i
-              ><span class="text-gray-600"
-                >Grangegorman, Dublin 7, D07 H6K8</span
-              >
-            </div>
+            <a
+              href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+              target="_blank"
+              class="w-full bg-white text-brand font-head font-700 text-center py-2.5 rounded-xl block hover:bg-yellow-50 transition shadow"
+            >
+              Book Free Counselling
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- ─── KEY INFO ──────────────────────────────────────────────── -->
       <div id="tab-info" class="tab-pane fade-up">
         <div class="info-card overflow-hidden">
-          <div
-            class="px-5 py-4 border-b border-gray-100 flex items-center gap-3"
-          >
-            <div class="w-1 h-7 bg-brand rounded-full"></div>
-            <h2 class="font-head font-800 text-xl text-brand">
-              Important Information
-            </h2>
-          </div>
-          <table class="w-full info-table">
+          <table class="w-full text-left info-table border-collapse">
             <tbody>
               <tr>
-                <td class="font-head font-700 text-gray-700">Founding Year</td>
-                <td class="text-gray-600">2019</td>
+                <td class="font-head font-700 text-brand w-1/3">University Name</td>
+                <td class="text-gray-700">Technological University Dublin (TU Dublin)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Institution Type
-                </td>
-                <td class="text-gray-600">Public Technological University</td>
+                <td class="font-head font-700 text-brand">Location</td>
+                <td class="text-gray-700">Dublin, Ireland (Campuses in Grangegorman, Blanchardstown, Tallaght)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Scholarships Available
-                </td>
-                <td>
-                  <span class="text-green-600 font-head font-700">✓ Yes</span>
-                </td>
+                <td class="font-head font-700 text-brand">Type</td>
+                <td class="text-gray-700">Public Technological University</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Application Fee
-                </td>
-                <td class="text-gray-600">€50</td>
+                <td class="font-head font-700 text-brand">Established</td>
+                <td class="text-gray-700">2019 (Via merger of DIT, ITB, and ITT)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">Tuition Fees</td>
-                <td class="text-gray-600">€9,000 – €27,000 per year</td>
+                <td class="font-head font-700 text-brand">Total Students</td>
+                <td class="text-gray-700">28,000+</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">Intakes</td>
-                <td class="text-gray-600">January, September</td>
+                <td class="font-head font-700 text-brand">QS World Ranking</td>
+                <td class="text-gray-700">801–1000</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Language of Instruction
-                </td>
-                <td class="text-gray-600">English</td>
+                <td class="font-head font-700 text-brand">Main Intakes</td>
+                <td class="text-gray-700">September (Major) & January (Minor)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  QS World Ranking
-                </td>
-                <td class="text-gray-600">801–1000</td>
+                <td class="font-head font-700 text-brand">Average Tuition Fee</td>
+                <td class="text-gray-700">€9,000 – €27,000 per year (depending on programme)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">THE Ranking</td>
-                <td class="text-gray-600">801–1000</td>
+                <td class="font-head font-700 text-brand">Application Fee</td>
+                <td class="text-gray-700">€50</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Number of Students
-                </td>
-                <td class="text-gray-600">28,000+</td>
+                <td class="font-head font-700 text-brand">Post-Study Work Visa</td>
+                <td class="text-gray-700">2 Years (Third Level Graduate Scheme)</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-gray-700">
-                  Number of Campuses
-                </td>
-                <td class="text-gray-600">
-                  5 (Grangegorman, Blanchardstown, Tallaght, Bolton St, Aungier
-                  St)
-                </td>
-              </tr>
-              <tr>
-                <td class="font-head font-700 text-gray-700">Location</td>
-                <td class="text-gray-600">Dublin, Ireland</td>
-              </tr>
-              <tr>
-                <td class="font-head font-700 text-gray-700">Phone</td>
-                <td>
-                  <a href="tel:+35314022000" class="text-brand hover:underline"
-                    >+353 1 402 2000</a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="font-head font-700 text-gray-700">Website</td>
+                <td class="font-head font-700 text-brand">Official Website</td>
                 <td>
                   <a
                     href="https://www.tudublin.ie/"
                     target="_blank"
-                    class="text-brand hover:underline"
+                    class="text-brand underline"
                     >www.tudublin.ie</a
                   >
                 </td>
@@ -1420,536 +1238,151 @@
       </div>
     </div>
 
+    
     <script>
-      // ── DATA ──────────────────────────────────────────
-      const sections = [
+      // ── DATA ───────────────────────────────────────────
+      const courses = [
         {
-          title: "Initial Programs",
-          category: "Business",
-          courses: [
-            [
-              "M.Sc. Fashion Buying and Management",
-              "CLOSE / OPEN",
-              "€15,000",
-              "1.5 Years",
-              "–",
-              "Postgraduate",
-            ],
-            [
-              "M.Sc. Event Management",
-              "CLOSE / OPEN",
-              "€13,500",
-              "1 Year",
-              "–",
-              "Postgraduate",
-            ],
-            [
-              "M.Sc. Hospitality Management",
-              "CLOSE / OPEN",
-              "€13,500",
-              "1 Year",
-              "–",
-              "Postgraduate",
-            ],
-            [
-              "M.Sc. Tourism Management",
-              "CLOSE / OPEN",
-              "€13,500",
-              "1 Year",
-              "–",
-              "Postgraduate",
-            ],
-          ],
+          title: "MSc in Computer Science (Data Science)",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€16,500",
+          intake: "September",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/computer-science-data-science-msc-tu256/",
         },
         {
-          title: "Architecture & Built Environment",
-          category: "Engineering",
-          courses: [
-            [
-              "Architecture (MArch)",
-              "Sept 2026",
-              "€21,750",
-              "1.5 Years",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Geographic Information Science (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-          ],
+          title: "MSc in Advanced Software Development",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€16,500",
+          intake: "September",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/advanced-software-dev-msc-tu257/",
         },
         {
-          title: "Business",
-          category: "Business",
-          courses: [
-            [
-              "Accounting (PGDip)",
-              "Sept 2026",
-              "€11,000",
-              "1 Year",
-              "6.5",
-              "PG Diploma",
-            ],
-            [
-              "Accounting – International (MBS)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Advertising and Creativity (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Digital and Content Marketing (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Fashion Buying and Management (MSc)",
-              "Jan & Sept 2026",
-              "€15,000",
-              "1.5 Years",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Finance (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Global Sustainability Leadership (MA)",
-              "Sept 2026",
-              "€15,000",
-              "1 Year",
-              "–",
-              "Masters",
-            ],
-            [
-              "Logistics and Supply Chain Management (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-          ],
+          title: "Master of Business Administration (MBA)",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€21,000",
+          intake: "September",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/business-administration-mba-tu290/",
         },
         {
-          title: "Computing & IT",
-          category: "Computing",
-          courses: [
-            [
-              "Artificial Intelligence (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Computer Science – Advanced Software Dev (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1–1.5 Years",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Computer Science – Data Science (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1–1.5 Years",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Computing – Human Centred AI (MSc)",
-              "Jan & Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Computing with DevOps (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-          ],
+          title: "MSc in Mechanical Engineering",
+          faculty: "Engineering",
+          duration: "1 Year",
+          fee: "€16,000",
+          intake: "September",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/mechanical-engineering-msc-tu214/",
         },
         {
-          title: "Creative Arts, Design & Media",
-          category: "Arts",
-          courses: [
-            [
-              "Creative Arts – Interior Design (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Creative Arts – Visual & Critical Studies (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "7.0",
-              "Masters",
-            ],
-            [
-              "Creative Arts – Visual Communication (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Creative Digital Media (UX) (MSc)",
-              "Sept 2026",
-              "€20,250",
-              "1.5 Years",
-              "7.0",
-              "Masters",
-            ],
-            [
-              "Graphic Design Practice (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Journalism (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "7.5",
-              "Masters",
-            ],
-          ],
+          title: "MSc in Electronic Communication Engineering",
+          faculty: "Engineering",
+          duration: "1 Year",
+          fee: "€16,000",
+          intake: "September",
+          ielts: "6.0",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/electronic-communications-eng-msc-tu219/",
         },
         {
-          title: "Culinary, Hospitality & Tourism",
-          category: "Arts",
-          courses: [
-            [
-              "Applied Culinary Nutrition (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "2 Years",
-              "7.0",
-              "Masters",
-            ],
-            [
-              "Culinary Innovation & Food Product Development (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "7.0",
-              "Masters",
-            ],
-            [
-              "Event Management (MSc)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Gastronomy & Food Studies (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "7.0",
-              "Masters",
-            ],
-            [
-              "Hospitality Management (MSc)",
-              "Jan & Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Hospitality Management (HDip)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "PG Diploma",
-            ],
-          ],
+          title: "MSc in Pharmaceutical Quality Assurance & Regulation",
+          faculty: "Sciences",
+          duration: "1 Year",
+          fee: "€17,200",
+          intake: "September & January",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/pharmaceutical-qa-reg-msc-tu288/",
         },
         {
-          title: "Engineering",
-          category: "Engineering",
-          courses: [
-            [
-              "Civil Engineering – Sustainable Infrastructure (MEng)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Electronic & Communications Engineering (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Energy Management (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Mechanical Engineering (MEng)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-          ],
+          title: "MSc in International Business",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€15,500",
+          intake: "September & January",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/international-business-msc-tu294/",
         },
         {
-          title: "Law",
-          category: "Arts",
-          courses: [
-            [
-              "Law (PGDip)",
-              "Sept 2026",
-              "€11,000",
-              "1 Year",
-              "7.5",
-              "PG Diploma",
-            ],
-            [
-              "Law – Professional (MA)",
-              "Sept 2026",
-              "€27,000",
-              "2 Years",
-              "7.5",
-              "Masters",
-            ],
-          ],
+          title: "MSc in Digital Marketing",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€15,500",
+          intake: "September",
+          ielts: "6.5",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/digital-marketing-msc-tu295/",
         },
         {
-          title: "Sciences & Health",
-          category: "Sciences",
-          courses: [
-            [
-              "Brewing & Distilling (PGDip)",
-              "Sept 2026",
-              "€9,750",
-              "1 Year",
-              "6.0",
-              "PG Diploma",
-            ],
-            [
-              "Brewing & Distilling (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.0",
-              "Masters",
-            ],
-            [
-              "Data Analytics (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Data Analytics for Sport (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Data Analytics – Precision Diagnostics (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Environmental Health & Safety (MSc)",
-              "Sept 2026",
-              "€14,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Pharmaceutical Quality Assurance & Regulation (MSc)",
-              "Sept 2026",
-              "€21,750",
-              "1.5 Years",
-              "6.0",
-              "Masters",
-            ],
-          ],
-        },
-        {
-          title: "Social Sciences & Education",
-          category: "Arts",
-          courses: [
-            [
-              "Child, Family & Community Studies (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-            [
-              "Criminology (PGDip)",
-              "Sept 2026",
-              "€9,000",
-              "1 Year",
-              "6.5",
-              "PG Diploma",
-            ],
-            [
-              "Criminology (MA)",
-              "Sept 2026",
-              "€13,500",
-              "1 Year",
-              "6.5",
-              "Masters",
-            ],
-          ],
-        },
-        {
-          title: "Bridging & Pre-Sessional",
-          category: "Computing",
-          courses: [
-            [
-              "International Postgraduate Bridging Programme",
-              "July 2026",
-              "€3,500",
-              "8 Weeks",
-              "5.5",
-              "Bridging",
-            ],
-          ],
+          title: "MA in Criminology",
+          faculty: "Arts",
+          duration: "1 Year",
+          fee: "€14,500",
+          intake: "September",
+          ielts: "7.0",
+          link: "https://www.tudublin.ie/study/postgraduate/courses/criminology-ma-tu263/",
         },
       ];
 
-      // ── BADGE COLORS ───────────────────────────────────
-      const typeColor = {
-        Masters: "bg-blue-50 text-blue-700",
-        "PG Diploma": "bg-purple-50 text-purple-700",
-        Bridging: "bg-orange-50 text-orange-700",
-        Postgraduate: "bg-teal-50 text-teal-700",
-      };
+      let activeFilter = "all";
+      let searchVal = "";
 
-      // ── RENDER ─────────────────────────────────────────
-      let activeFilter = "all",
-        searchVal = "";
-
+      // ── RENDER FUNCTION ────────────────────────────────
       function renderCourses() {
         const container = document.getElementById("courseContainer");
         container.innerHTML = "";
-        let shown = 0;
 
-        sections
-          .filter((s) => activeFilter === "all" || s.category === activeFilter)
-          .forEach((sec) => {
-            const matched = sec.courses.filter((c) =>
-              c[0].toLowerCase().includes(searchVal.toLowerCase()),
-            );
-            if (!matched.length) return;
-            shown += matched.length;
+        const filtered = courses.filter((c) => {
+          const matchFilter =
+            activeFilter === "all" || c.faculty === activeFilter;
+          const matchSearch = c.title
+            .toLowerCase()
+            .includes(searchVal.toLowerCase());
+          return matchFilter && matchSearch;
+        });
 
-            const hdr = document.createElement("div");
-            hdr.className = "sec-label";
-            hdr.innerHTML = `<h2>${sec.title}</h2><span class="text-xs font-head font-600 text-gray-400">${matched.length} programme${matched.length > 1 ? "s" : ""}</span>`;
-            container.appendChild(hdr);
-
-            const grid = document.createElement("div");
-            grid.className = "grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2";
-
-            matched.forEach((c) => {
-              const tc = typeColor[c[5]] || "bg-gray-100 text-gray-600";
-              const ielts =
-                c[4] && c[4] !== "–"
-                  ? `<div class="flex items-center gap-2 text-[14px] text-gray-500"><i class="fa-solid fa-language text-brand/60 w-4 text-center"></i><span>IELTS ${c[4]}</span></div>`
-                  : "";
-              const card = document.createElement("div");
-              card.className = "course-card p-4 flex flex-col";
-              card.innerHTML = `
-          <div class="flex items-start justify-between gap-2 mb-2.5">
-            <span class="badge ${tc}">${c[5]}</span>
-            <span class="text-[14px] font-head font-700 text-sky whitespace-nowrap">${c[2]}</span>
-          </div>
-          <div class="font-head font-700 text-[15px] text-gray-800 leading-snug mb-4 flex-1">${c[0]}</div>
-          <div class="space-y-1.5 mb-4">
-            <div class="flex items-center gap-2 text-[14px] text-gray-500"><i class="fa-solid fa-calendar text-brand/60 w-4 text-center"></i><span>${c[1]}</span></div>
-            <div class="flex items-center gap-2 text-[14px] text-gray-500"><i class="fa-solid fa-clock text-brand/60 w-4 text-center"></i><span>${c[3]}</span></div>
-            ${ielts}
-          </div>
-          <div class="flex gap-2 pt-3 border-t border-gray-100">
-            <a href="https://www.tudublin.ie/" target="_blank"
-               class="flex-1 text-center bg-brand-l text-brand text-[13px] font-head font-700 py-2.5 rounded-xl hover:bg-brand hover:text-white transition">Learn More</a>
-            <a href="https://wa.me/917009034921?text=I+want+to+apply+for+${encodeURIComponent(c[0])}" target="_blank"
-               class="flex-1 text-center text-white text-[13px] font-head font-700 py-2.5 rounded-xl transition"
-               style="background:#004c6c">Apply Now</a>
-          </div>`;
-              grid.appendChild(card);
-            });
-            container.appendChild(grid);
-          });
-
-        if (!shown) {
-          container.innerHTML = `<div class="text-center py-16 text-gray-400"><i class="fa-solid fa-graduation-cap text-4xl mb-3 block opacity-25"></i><div class="font-head font-700 text-lg">No courses found</div><div class="text-[15px] mt-1">Try a different search or filter</div></div>`;
+        if (filtered.length === 0) {
+          container.innerHTML = `
+            <div class="info-card p-8 text-center text-gray-400 font-body">
+              <i class="fa-solid fa-folder-open text-4xl mb-2 text-gray-300"></i>
+              <p>No courses match your search or filter configuration.</p>
+            </div>`;
+          return;
         }
+
+        filtered.forEach((c) => {
+          const card = document.createElement("div");
+          card.className = "course-card p-5 mb-3 flex flex-col sm:flex-row justify-between sm:items-center gap-4";
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                <span class="text-xs bg-brand-l text-brand px-2.5 py-0.5 rounded font-600 font-head">${c.faculty}</span>
+                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-clock mr-1 text-[11px]"></i>${c.duration}</span>
+                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-calendar mr-1 text-[11px]"></i>Intake: ${c.intake}</span>
+              </div>
+              <h3 class="font-head font-700 text-[17px] text-gray-800 leading-snug hover:text-brand transition">
+                <a href="${c.link}" target="_blank">${c.title}</a>
+              </h3>
+              <div class="flex gap-4 mt-2 text-xs text-gray-500">
+                <span><strong>Tuition Fee:</strong> <span class="text-brand font-600">${c.fee}</span></span>
+                <span><strong>IELTS Requirement:</strong> <span class="text-brand font-600">${c.ielts}</span></span>
+              </div>
+            </div>
+            <div class="flex-shrink-0 flex items-center gap-2">
+              <a href="${c.link}" target="_blank" class="btn-outline text-xs px-4 py-2 border-brand/30 hover:border-brand">View Details</a>
+              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-xs px-4 py-2">Apply</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
       }
 
-      // ── FILTER BUTTONS ─────────────────────────────────
-      document.querySelectorAll(".filter-btn").forEach((btn) => {
+      // ── FILTERS ─────────────────────────────────────────
+      document.querySelectorAll("#filterBtns button").forEach((btn) => {
         btn.addEventListener("click", () => {
           document
-            .querySelectorAll(".filter-btn")
+            .querySelectorAll("#filterBtns button")
             .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           activeFilter = btn.dataset.filter;
@@ -1961,12 +1394,11 @@
           document
             .querySelectorAll(".tab-pane")
             .forEach((p) => p.classList.remove("active"));
-          document
-            .querySelector('[data-tab="courses"]')
-            .classList.add("active");
+          document.querySelector('[data-tab="courses"]').classList.add("active");
           document.getElementById("tab-courses").classList.add("active");
 
           renderCourses();
+
           document
             .getElementById("tab-courses")
             .scrollIntoView({ behavior: "smooth", block: "start" });
