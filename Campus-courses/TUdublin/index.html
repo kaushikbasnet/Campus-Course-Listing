@@ -1441,50 +1441,5 @@
       // ── INIT ────────────────────────────────────────────
       renderCourses();
     </script>
-
-    <script>
-
-        function sendHeight() {
-
-        const height = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.offsetHeight
-        );
-
-        window.parent.postMessage(
-            {
-            type: "resize-iframe",
-            height: height
-            },
-            "*"
-        );
-
-        }
-
-        window.addEventListener("load", sendHeight);
-
-        window.addEventListener("resize", sendHeight);
-
-        document.addEventListener("click", () => {
-        setTimeout(sendHeight, 300);
-        });
-
-        document.addEventListener("input", () => {
-        setTimeout(sendHeight, 300);
-        });
-
-        const observer = new MutationObserver(() => {
-        sendHeight();
-        });
-
-        observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true
-        });
-
-    </script>
   </body>
 </html>
