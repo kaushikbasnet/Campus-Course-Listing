@@ -4,52 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maynooth University | Study in Ireland</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: "#5b2d8e",
-              "brand-d": "#3e1e6b",
-              "brand-l": "#f3eeff",
-              "brand-m": "#7040a8",
-              accent: "#F42534",
-              sky: "#9b59b6",
-              gold: "#f0a500",
-            },
-            fontFamily: {
-              head: ["Figtree", "sans-serif"],
-              body: ["Figtree", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
     <style>
-      * { box-sizing: border-box; }
+      /* ── CSS RESET & GLOBAL VARIABLES ──────────────── */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --brand: #5b2d8e;
+        --brand-d: #3e1e6b;
+        --brand-l: #f3eeff;
+        --brand-m: #7040a8;
+        --accent: #f42534;
+        --sky: #9b59b6;
+        --gold: #f0a500;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e2e8f0;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --gray-600: #475569;
+        --gray-700: #334155;
+        --gray-800: #1e293b;
+      }
       body {
-        font-family: "Poppins", sans-serif;
+        font-family: "Figtree", sans-serif;
         background: #f2f5f9;
         color: #1a2332;
-        margin: 0;
+        overflow-x: hidden;
       }
-      h1, h2, h3, h4, h5, .font-head {
-        font-family: "Poppins", sans-serif;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .font-head {
+        font-family: "Figtree", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
       }
 
-      .ireland-green { background-color: #169b62; }
-      .mu-purple { background-color: #5b2d8e; }
+      /* ── UTILITY LAYOUT CLASSES ────────────────────── */
+      .max-w-6xl {
+        max-width: 72rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .py-6 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .space-y-5 > * + * {
+        margin-top: 1.25rem;
+      }
+      .ireland-green {
+        background-color: #169b62;
+      }
 
-      /* ── HERO ─────────────────────────────── */
+      /* ── HERO SECTION ──────────────────────────────── */
       .hero {
         position: relative;
         min-height: 480px;
@@ -81,60 +111,301 @@
         width: 100%;
         padding: 24px 16px 28px;
       }
-
-      /* ── STICKY SEARCH BAR ────────────────── */
-      .search-bar {
-        background: #fff;
-        border-bottom: 2px solid #e2e8f0;
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      .hero-flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .logo-box {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        padding: 0.75rem;
+        width: 7rem;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo-box img {
+        width: 6rem;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+      .hero-text-block {
+        flex: 1 1 0%;
+      }
+      .hero-text-block h1 {
+        font-size: 1.875rem;
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+      }
+      .hero-meta-p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-meta-p a:hover {
+        color: var(--sky);
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .hero-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
       }
 
       /* ── TAB NAV ──────────────────────────── */
       .tab-nav {
         background: #fff;
-        border-bottom: 2px solid #e2e8f0;
+        border-bottom: 2px solid var(--gray-200);
         position: sticky;
-        top: 64px;
+        top: 0;
         z-index: 39;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      .tab-nav-inner {
+        max-width: 72rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: flex;
+        overflow-x: auto;
       }
       .tab-btn {
-        font-family: "Poppins", sans-serif;
+        font-family: "Figtree", sans-serif;
         font-weight: 600;
         font-size: 14px;
-        padding: 12px 18px;
+        padding: 16px 18px;
         border: none;
         background: transparent;
-        color: #64748b;
+        color: var(--gray-500);
         cursor: pointer;
         white-space: nowrap;
         border-bottom: 3px solid transparent;
         margin-bottom: -2px;
         transition: all 0.2s;
       }
-      .tab-btn:hover { color: #5b2d8e; background: #f5f0ff; }
-      .tab-btn.active {
-        color: #5b2d8e;
-        border-bottom-color: #5b2d8e;
-        background: #f5f0ff;
+      .tab-btn:hover {
+        color: var(--brand);
+        background: var(--brand-l);
       }
-      .tab-pane { display: none; }
-      .tab-pane.active { display: block; }
+      .tab-btn.active {
+        color: var(--brand);
+        border-bottom-color: var(--brand);
+        background: var(--brand-l);
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+
+      /* ── COURSES MODAL ──────────────────────────────── */
+      .courses-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .courses-modal.open {
+        display: flex;
+      }
+      .courses-modal-content {
+        background: #f2f5f9;
+        width: 100%;
+        max-width: 54rem;
+        max-height: 90vh;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: fadeUp 0.3s ease out;
+      }
+      .courses-modal-header {
+        background: #fff;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--gray-200);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .courses-modal-header h2 {
+        font-size: 1.25rem;
+        color: var(--brand);
+        font-weight: 800;
+      }
+      .close-modal-btn {
+        background: var(--gray-100);
+        border: none;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 9999px;
+        color: var(--gray-600);
+        font-size: 1.125rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+      }
+      .close-modal-btn:hover {
+        background: var(--gray-200);
+        color: var(--brand);
+      }
+      .courses-modal-search-sticky {
+        background: #fff;
+        padding: 0.75rem 1.25rem;
+        border-bottom: 2px solid var(--gray-200);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .search-input-wrapper {
+        position: relative;
+        width: 100%;
+      }
+      .search-input-wrapper i {
+        position: absolute;
+        left: 0.875rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-400);
+      }
+      .search-input-wrapper input {
+        width: 100%;
+        padding-left: 2.5rem;
+        padding-right: 1rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        font-size: 15px;
+        border: 2px solid var(--gray-200);
+        border-radius: 0.75rem;
+        outline: none;
+        background-color: var(--gray-50);
+        font-family: "Figtree", sans-serif;
+        transition: border-color 0.2s;
+      }
+      .search-input-wrapper input:focus {
+        border-color: var(--brand);
+      }
+      .filter-buttons-wrapper {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+      .courses-modal-body {
+        padding: 1.25rem;
+        overflow-y: auto;
+        flex: 1 1 0%;
+      }
 
       /* ── CARDS ────────────────────────────── */
       .course-card {
         background: #fff;
         border-radius: 14px;
         border: 1px solid #e2eaf0;
-        border-left: 5px solid #5b2d8e;
-        transition: transform 0.2s, box-shadow 0.2s;
+        border-left: 5px solid var(--brand);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
         overflow: hidden;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
       .course-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 28px rgba(91, 45, 142, 0.14);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(91, 45, 142, 0.1);
+      }
+      .course-card-meta-tags {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.375rem;
+        flex-wrap: wrap;
+      }
+      .faculty-tag {
+        font-size: 0.75rem;
+        background-color: var(--brand-l);
+        color: var(--brand);
+        padding: 0.125rem 0.625rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+      }
+      .duration-tag,
+      .intake-tag {
+        font-size: 0.75rem;
+        background-color: var(--gray-100);
+        color: var(--gray-600);
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+      }
+      .duration-tag i,
+      .intake-tag i {
+        margin-right: 0.25rem;
+        font-size: 11px;
+      }
+      .course-card h3 {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--gray-800);
+        line-height: 1.3;
+      }
+      .course-card h3 a:hover {
+        color: var(--brand);
+      }
+      .course-card-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin-top: 0.5rem;
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+      .course-card-details span strong {
+        color: var(--gray-700);
+      }
+      .course-card-details .text-brand {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .course-card-actions {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
       }
 
       .info-card {
@@ -143,32 +414,61 @@
         border: 1px solid #e2eaf0;
         overflow: hidden;
       }
+      .info-card.p-5 {
+        padding: 1.25rem;
+      }
+      .info-card.p-4 {
+        padding: 1rem;
+      }
+
       .rank-chip {
         border-radius: 12px;
         border: 1px solid #e2eaf0;
         background: #fff;
         text-align: center;
-        padding: 18px 10px;
-        transition: transform 0.15s, box-shadow 0.15s;
-        cursor: default;
+        padding: 14px 8px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
       }
       .rank-chip:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(91, 45, 142, 0.12);
       }
+      .rank-chip .text-3xl {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 0.25rem;
+      }
+      .rank-chip .text-brand {
+        color: var(--brand);
+      }
+      .rank-chip .text-accent {
+        color: var(--accent);
+      }
+      .rank-chip .text-gold {
+        color: var(--gold);
+      }
+      .rank-chip .rank-label {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
 
-      /* ── SECTION LABEL ───────────────────── */
+      /* ── SECTION LABELS & CONTENT HEADERS ─────────── */
       .sec-label {
         display: flex;
         align-items: center;
         gap: 12px;
-        margin: 28px 0 14px;
+        margin: 20px 0 12px;
       }
       .sec-label h2 {
-        font-family: "Poppins", sans-serif;
+        font-family: "Figtree", sans-serif;
         font-weight: 800;
-        font-size: 18px;
-        color: #5b2d8e;
+        font-size: 16px;
+        color: var(--brand);
         white-space: nowrap;
       }
       .sec-label::after {
@@ -178,154 +478,712 @@
         background: linear-gradient(to right, #d4b8f0, transparent);
         border-radius: 99px;
       }
+      .card-header-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .card-header-block .indicator-bar {
+        width: 0.25rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+      }
+      .card-header-block .indicator-bar.bg-brand {
+        background-color: var(--brand);
+      }
+      .card-header-block .indicator-bar.bg-sky {
+        background-color: var(--sky);
+      }
+      .card-header-block h2 {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .card-header-block h3 {
+        font-weight: 800;
+        font-size: 1.125rem;
+        color: var(--brand);
+      }
+
+      .about-paragraph {
+        font-size: 14px;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+      .about-paragraph.mb-3 {
+        margin-bottom: 0.75rem;
+      }
+      .about-paragraph.mb-4 {
+        margin-bottom: 1rem;
+      }
+
+      /* About Stats Matrix */
+      .about-stats-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+      }
+      .about-stat-item {
+        text-align: center;
+      }
+      .about-stat-item .stat-val {
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .about-stat-item .stat-lbl {
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .about-stat-item.border-x {
+        border-left: 1px solid var(--gray-200);
+        border-right: 1px solid var(--gray-200);
+      }
+
+      /* List Components */
+      .icon-list-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .icon-list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 14px;
+        color: var(--gray-600);
+      }
+      .icon-list-item i.text-sky {
+        color: var(--sky);
+      }
+      .icon-list-item i.text-gold {
+        color: var(--gold);
+      }
 
       /* ── STAT STRIP ───────────────────────── */
       .stat-strip {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 12px;
-        padding: 12px 18px;
+        padding: 10px;
         text-align: center;
+      }
+      .stat-strip-title {
+        color: rgba(255, 255, 255, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+      }
+      .stat-strip-val {
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.95rem;
       }
 
       /* ── BADGE ────────────────────────────── */
       .badge {
-        font-family: "Poppins", sans-serif;
-        font-size: 11px;
+        font-family: "Figtree", sans-serif;
+        font-size: 10px;
         font-weight: 700;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        padding: 3px 10px;
+        padding: 3px 8px;
         border-radius: 20px;
+      }
+      .badge.bg-white-20 {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .badge.bg-accent {
+        background-color: var(--accent);
+      }
+      .badge.bg-gold {
+        background-color: var(--gold);
+      }
+      .badge.text-white {
+        color: #fff;
       }
 
       /* ── INFO TABLE ───────────────────────── */
-      .info-table tr:nth-child(odd) { background: #f8fafc; }
+      .info-table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      .info-table tr:nth-child(odd) {
+        background: #f8fafc;
+      }
       .info-table td {
-        padding: 11px 18px;
-        font-size: 15px;
+        padding: 12px;
+        font-size: 14px;
         border-bottom: 1px solid #eef2f7;
+      }
+      .info-table td.font-bold-brand {
+        font-weight: 700;
+        color: var(--brand);
+        width: 40%;
+      }
+      .info-table td.text-gray-700 {
+        color: var(--gray-700);
+      }
+      .info-table td a.underline {
+        color: var(--brand);
+        text-decoration: underline;
       }
 
       /* ── IMAGE GALLERY ───────────────────── */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
       .gallery-img {
         width: 100%;
-        height: 200px;
+        height: 120px;
         object-fit: cover;
-        border-radius: 12px;
-        transition: transform 0.3s;
-        cursor: zoom-in;
+        border-radius: 8px;
       }
-      .gallery-img:hover { transform: scale(1.03); }
 
-      /* ── CONTACT CARD ─────────────────────── */
+      /* ── ADMISSION ─────────── */
+      .admission-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .admission-reqs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .admission-req-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.875rem;
+        background-color: var(--brand-l);
+        border-radius: 0.75rem;
+      }
+      .admission-req-card i {
+        color: var(--brand);
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .admission-req-card .req-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-req-card .req-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .admission-process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .admission-step-item {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .admission-step-number {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-color: var(--brand);
+        color: #fff;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 800;
+        font-size: 0.8rem;
+      }
+      .admission-step-content .step-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-step-content .step-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+
+      /* ── SCHOLARSHIPS ────────────────────── */
+      .scholarship-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .scholarship-card {
+        padding: 1.25rem;
+      }
+      .scholarship-title-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .scholarship-icon-box {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .scholarship-icon-box.bg-yellow-50 {
+        background-color: #fef9c3;
+      }
+      .scholarship-icon-box.bg-blue-50 {
+        background-color: #eff6ff;
+      }
+      .scholarship-icon-box.bg-purple-50 {
+        background-color: #faf5ff;
+      }
+      .scholarship-icon-box.bg-orange-50 {
+        background-color: #fff7ed;
+      }
+      .scholarship-icon-box i.text-yellow-500 {
+        color: #eab308;
+      }
+      .scholarship-icon-box i.text-blue-500 {
+        color: #3b82f6;
+      }
+      .scholarship-icon-box i.text-purple-500 {
+        color: #a855f7;
+      }
+      .scholarship-icon-box i.text-orange-500 {
+        color: #f97316;
+      }
+      .scholarship-card .scholarship-name {
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .scholarship-card .scholarship-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+      .scholarship-card .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .scholarship-card .badge-group .bg-green-50 {
+        background-color: #f0fdf4;
+        color: #15803d;
+      }
+      .scholarship-card .badge-group .bg-brand-l {
+        background-color: var(--brand-l);
+        color: var(--brand);
+      }
+
+      /* ── CALLOUT BANNER ─────────────────────────── */
+      .callout-banner {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        background-color: var(--brand);
+        padding: 1.25rem;
+      }
+      .callout-banner-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        background-image: url("https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=1200&q=60");
+        background-size: cover;
+        background-position: center;
+      }
+      .callout-banner-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .callout-text-block {
+        flex: 1 1 0%;
+        color: #fff;
+        text-align: center;
+      }
+      .callout-text-block .banner-title {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.25rem;
+      }
+      .callout-text-block p {
+        margin-bottom: 0.25rem;
+        font-size: 14px;
+      }
+      .callout-text-block .banner-subtext {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .callout-banner-inner .banner-btn {
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.75rem;
+        white-space: nowrap;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .callout-banner-inner .banner-btn:hover {
+        background-color: #fef9c3;
+      }
+
+      /* ── CONTACT ─────────────────────── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
       .contact-card {
         background: #fff;
         border-radius: 14px;
         border: 1px solid #e2eaf0;
-        padding: 20px;
-        transition: box-shadow 0.2s;
+        padding: 1rem;
       }
-      .contact-card:hover {
-        box-shadow: 0 8px 24px rgba(91, 45, 142, 0.1);
+      .contact-cards-subgrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .contact-subcard {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+      }
+      .contact-subcard.bg-brand-l {
+        background-color: var(--brand-l);
+      }
+      .contact-subcard.bg-green-50 {
+        background-color: #f0fdf4;
+      }
+      .contact-subcard i {
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .contact-subcard i.text-brand {
+        color: var(--brand);
+      }
+      .contact-subcard i.text-green-600 {
+        color: #16a34a;
+      }
+      .contact-subcard .info-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .contact-subcard .info-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .contact-subcard .info-link-brand {
+        font-size: 13px;
+        color: var(--brand);
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-brand:hover {
+        text-decoration: underline;
+      }
+      .contact-subcard .info-link-green {
+        font-size: 13px;
+        color: #15803d;
+        font-weight: 600;
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-green:hover {
+        text-decoration: underline;
       }
 
-      /* ── APPLY BTN ─────────────────────────── */
+      /* Sidebar CTA Block */
+      .sidebar-cta-box {
+        border-radius: 1rem;
+        padding: 1.25rem;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--brand);
+      }
+      .sidebar-cta-box .cta-heading {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+      }
+      .sidebar-cta-box .cta-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .sidebar-cta-box .cta-action-btn {
+        width: 100%;
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        border-radius: 0.75rem;
+        display: block;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .sidebar-cta-box .cta-action-btn:hover {
+        background-color: #fef9c3;
+      }
+
+      /* Overview Layout Grid */
+      .overview-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .overview-right-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .about-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+      .campus-info-mini-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .campus-info-mini-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 13px;
+      }
+      .campus-info-mini-item i {
+        color: var(--brand);
+        width: 1.25rem;
+        text-align: center;
+      }
+      .campus-info-mini-item span {
+        color: var(--gray-600);
+      }
+      .campus-info-mini-item a.text-brand {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+      .campus-info-mini-item a.text-gray-600 {
+        color: var(--gray-600);
+      }
+
+      .grid-2-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      /* ── BUTTONS ───────────────── */
       .btn-apply {
         background: #169b62;
         color: #fff;
-        font-family: "Poppins", sans-serif;
+        font-family: "Figtree", sans-serif;
         font-weight: 700;
         border-radius: 10px;
-        padding: 12px 24px;
+        padding: 10px 20px;
         text-align: center;
         display: inline-block;
-        transition: opacity 0.2s, transform 0.2s;
-        text-decoration: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
         border: none;
         cursor: pointer;
       }
       .btn-apply:hover {
-        opacity: 0.8;
-        transform: translateY(-2px);
-        transition: ease-in-out 0.5s;
-        background: #fff;
-        color: #169b62;
+        opacity: 0.85;
+        transform: translateY(-1px);
       }
-
       .btn-outline {
         background: transparent;
-        border: 2px solid #5b2d8e;
-        color: #5b2d8e;
-        font-family: "Poppins", sans-serif;
+        border: 2px solid var(--brand);
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
         font-weight: 600;
         border-radius: 10px;
-        padding: 10px 22px;
+        padding: 8px 18px;
         text-align: center;
         display: inline-block;
         transition: all 0.2s;
-        text-decoration: none;
         cursor: pointer;
       }
       .btn-outline:hover {
-        background: #5b2d8e;
+        background: var(--brand);
         color: #fff;
-        transition: ease-in-out 0.5s;
+      }
+      .btn-outline-white {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .btn-outline-white:hover {
+        background: #fff;
+        color: var(--brand);
       }
 
-      /* ── FILTER BTN ───────────────────────── */
+      /* ── FILTER BUTTONS ───────────────────────── */
       .filter-btn {
-        font-family: "Poppins", sans-serif;
+        font-family: "Figtree", sans-serif;
         font-weight: 600;
         font-size: 13px;
-        padding: 8px 16px;
+        padding: 6px 14px;
         border-radius: 8px;
-        border: 1.5px solid #cbd5e0;
+        border: 1.5px solid var(--gray-300);
         background: #fff;
-        color: #4a5568;
+        color: var(--gray-600);
         cursor: pointer;
         transition: all 0.2s;
         white-space: nowrap;
       }
-      .filter-btn:hover, .filter-btn.active {
-        background: #5b2d8e;
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--brand);
         color: #fff;
-        border-color: #5b2d8e;
+        border-color: var(--brand);
       }
 
       /* ── SCROLLBAR HIDE ───────────────────── */
-      .no-scroll { scrollbar-width: none; -ms-overflow-style: none; }
-      .no-scroll::-webkit-scrollbar { display: none; }
-
-      /* ── ABOUT IMAGE ─────────────────────── */
-      .about-img {
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        border-radius: 14px;
+      .no-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .no-scroll::-webkit-scrollbar {
+        display: none;
       }
 
-      /* ── MOBILE ────────────────────────────── */
-      @media (max-width: 640px) {
-        .hero { min-height: 380px; }
-        .tab-btn { font-size: 12px; padding: 10px 12px; }
-        .sec-label h2 { font-size: 16px; }
-      }
-
-      /* fade in */
+      /* ── ANIMATIONS ─────────────────────────── */
       @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(14px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      .fade-up { animation: fadeUp 0.35s ease both; }
+      .fade-up {
+        animation: fadeUp 0.35s ease both;
+      }
 
-      .text-brand { color: #5b2d8e; }
-      .text-sky { color: #9b59b6; }
-      .bg-brand-l { background-color: #f3eeff; }
-      .border-brand { border-color: #5b2d8e; }
-      .bg-brand { background-color: #5b2d8e; }
-      .focus\:border-brand:focus { border-color: #5b2d8e; }
+      /* ── DESKTOP BREAKPOINTS ────────────────────── */
+      @media (min-width: 640px) {
+        .hero-flex-wrapper {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        .hero-text-block h1 {
+          font-size: 2.75rem;
+        }
+        .hero-stats-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .overview-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+        .overview-grid > .info-card {
+          grid-column: span 3 / span 3;
+        }
+        .overview-grid > .overview-right-column {
+          grid-column: span 2 / span 2;
+        }
+        .about-img {
+          height: 250px;
+        }
+        .course-card {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .course-card-actions {
+          width: auto;
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gallery-img {
+          height: 160px;
+        }
+        .grid-2-col {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .contact-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .contact-grid > .contact-card {
+          grid-column: span 2 / span 2;
+        }
+        .contact-cards-subgrid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .callout-banner-inner {
+          flex-direction: row;
+        }
+        .callout-text-block {
+          text-align: left;
+        }
+        .admission-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .scholarship-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .courses-modal-search-sticky {
+          flex-direction: row;
+          align-items: center;
+        }
+        .search-input-wrapper {
+          flex: 1;
+        }
+        .ranking-chips-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+        .about-stats-matrix .stat-val {
+          font-size: 1.5rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -333,310 +1191,400 @@
     <section class="hero">
       <div class="hero-img"></div>
       <div class="hero-overlay"></div>
-      <div class="hero-content max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end gap-6">
-          <div class="flex-shrink-0 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 w-28 h-20 flex items-center justify-center">
-            <img
-              src="https://wp.logos-download.com/wp-content/uploads/2021/01/Maynooth_University_Logo.png?dl"
-              alt="Maynooth University"
-              class="w-24 object-contain brightness-0 invert"
-            />
-          </div>
-
-          <div class="flex-1">
-            <h1 class="font-head text-3xl sm:text-4xl md:text-5xl font-900 text-white leading-tight mb-3">
-              Maynooth<br class="hidden md:block" />University
-            </h1>
-            <p class="text-white/65 text-base mb-5">
-              <i class="fa-solid fa-location-dot mr-1.5"></i>Maynooth, Co. Kildare, Ireland &nbsp;·&nbsp;
-              <a href="https://www.maynoothuniversity.ie/" target="_blank" class="underline hover:text-purple-300 transition">www.maynoothuniversity.ie</a>
-            </p>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span class="badge ireland-green text-white">Ireland</span>
-              <span class="badge bg-white/20 text-white">Co. Kildare</span>
-              <span class="badge bg-accent text-white">Public University</span>
-              <span class="badge bg-gold text-white">Est. 1997</span>
+      <div class="hero-content">
+        <div class="max-w-6xl mx-auto">
+          <div class="hero-flex-wrapper">
+            <div class="logo-box">
+              <img
+                src="https://wp.logos-download.com/wp-content/uploads/2021/01/Maynooth_University_Logo.png?dl"
+                alt="Maynooth University"
+              />
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">Intakes</div>
-                <div class="text-white font-head font-800 text-base">Sep & Jan</div>
+            <div class="hero-text-block">
+              <h1>Maynooth<br />University</h1>
+              <p class="hero-meta-p">
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="margin-right: 0.375rem"
+                ></i
+                >Maynooth, Co. Kildare, Ireland &nbsp;·&nbsp;
+                <a href="https://www.maynoothuniversity.ie/" target="_blank"
+                  >www.maynoothuniversity.ie</a
+                >
+              </p>
+              <div class="badge-container">
+                <span class="badge ireland-green text-white">Ireland</span>
+                <span class="badge bg-white-20 text-white">Co. Kildare</span>
+                <span class="badge bg-accent text-white"
+                  >Public University</span
+                >
+                <span class="badge bg-gold text-white">Est. 1997</span>
               </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">App Fee</div>
-                <div class="text-white font-head font-800 text-base">€50</div>
-              </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">Tuition</div>
-                <div class="text-white font-head font-800 text-base">€12K–€22K</div>
-              </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">QS Rank</div>
-                <div class="text-white font-head font-800 text-base">771–780</div>
-              </div>
-            </div>
 
-            <div class="flex flex-wrap gap-3">
-              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-base px-6 py-3">
-                Apply Now
-              </a>
-              <a href="#tab-courses" class="btn-outline text-base px-6 py-3 border-white/50 text-white hover:bg-white" style="border-color:rgba(255,255,255,0.5); color:#fff;">
-                <i class="fa-solid fa-graduation-cap mr-2"></i>Browse Courses
-              </a>
+              <div class="hero-stats-grid">
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Intakes</div>
+                  <div class="stat-strip-val">Sep &amp; Jan</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">App Fee</div>
+                  <div class="stat-strip-val">€50</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Tuition</div>
+                  <div class="stat-strip-val">€12K–€22K</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">QS Rank</div>
+                  <div class="stat-strip-val">771–780</div>
+                </div>
+              </div>
+
+              <div class="hero-btn-group">
+                <a
+                  href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+                  target="_blank"
+                  class="btn-apply"
+                >
+                  Apply Now
+                </a>
+                <button class="btn-outline-white" id="browseCoursesHeroBtn">
+                  <i
+                    class="fa-solid fa-graduation-cap"
+                    style="margin-right: 0.5rem"
+                  ></i
+                  >Browse Courses
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── SEARCH BAR ─────────────────────────── -->
-    <div class="search-bar">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-        <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input
-            type="text"
-            id="courseSearch"
-            placeholder="Search programmes (e.g. Data Science, Business Analytics, CS…)"
-            class="w-full pl-10 pr-4 py-2.5 text-[15px] border-2 border-gray-200 rounded-xl focus:outline-none bg-gray-50 font-body transition"
-            style="font-family:Poppins,sans-serif;"
-          />
-        </div>
-        <div class="flex gap-2 overflow-x-auto no-scroll" id="filterBtns">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="Computing">Computing</button>
-          <button class="filter-btn" data-filter="Business">Business</button>
-          <button class="filter-btn" data-filter="Data">Data Science</button>
-          <button class="filter-btn" data-filter="Sciences">Health & Sciences</button>
-          <button class="filter-btn" data-filter="Social">Education & Social</button>
-          <button class="filter-btn" data-filter="Arts">Arts & Humanities</button>
-          <button class="filter-btn" data-filter="History">History & Geo</button>
-          <button class="filter-btn" data-filter="Music">Music</button>
-        </div>
-      </div>
-    </div>
-
     <!-- ── TAB NAV ────────────────────────────── -->
     <div class="tab-nav">
-      <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scroll">
+      <div class="tab-nav-inner no-scroll">
         <button class="tab-btn active" data-tab="overview">
-          <i class="fa-solid fa-house mr-1.5"></i>Overview
-        </button>
-        <button class="tab-btn" data-tab="courses">
-          <i class="fa-solid fa-graduation-cap mr-1.5"></i>Courses
+          <i class="fa-solid fa-house" style="margin-right: 0.375rem"></i
+          >Overview
         </button>
         <button class="tab-btn" data-tab="rankings">
-          <i class="fa-solid fa-ranking-star mr-1.5"></i>Rankings
+          <i class="fa-solid fa-ranking-star" style="margin-right: 0.375rem"></i
+          >Rankings
         </button>
         <button class="tab-btn" data-tab="admission">
-          <i class="fa-solid fa-file-circle-check mr-1.5"></i>Admission
+          <i
+            class="fa-solid fa-file-circle-check"
+            style="margin-right: 0.375rem"
+          ></i
+          >Admission
         </button>
         <button class="tab-btn" data-tab="scholarships">
-          <i class="fa-solid fa-award mr-1.5"></i>Scholarships
+          <i class="fa-solid fa-award" style="margin-right: 0.375rem"></i
+          >Scholarships
         </button>
         <button class="tab-btn" data-tab="contact">
-          <i class="fa-solid fa-headset mr-1.5"></i>Contact Us
+          <i class="fa-solid fa-headset" style="margin-right: 0.375rem"></i
+          >Contact Us
         </button>
         <button class="tab-btn" data-tab="info">
-          <i class="fa-solid fa-table mr-1.5"></i>Key Info
+          <i class="fa-solid fa-table" style="margin-right: 0.375rem"></i>Key
+          Info
         </button>
       </div>
     </div>
 
     <!-- ── MAIN CONTENT ───────────────────────── -->
     <div class="max-w-6xl mx-auto px-4 py-6 space-y-5">
-
       <!-- OVERVIEW TAB -->
       <div id="tab-overview" class="tab-pane active fade-up">
-        <div class="grid md:grid-cols-5 gap-5 mb-5">
-          <div class="md:col-span-3 info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 rounded-full" style="background:#5b2d8e;"></div>
-              <h2 class="font-head font-800 text-xl text-brand">About Maynooth University</h2>
+        <div class="overview-grid">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>About Maynooth University</h2>
             </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed mb-3">
-              Maynooth University (MU) is one of Ireland's fastest-growing universities, formally established in 1997 as an autonomous institution. Rooted in a 230-year heritage — the Royal College of St Patrick was founded in 1795 — MU blends rich history with a modern, forward-thinking academic culture set on a stunning campus in County Kildare, just 25km west of Dublin city.
+            <p class="about-paragraph mb-3">
+              Maynooth University (MU) is one of Ireland's fastest-growing
+              universities, formally established in 1997 as an autonomous
+              institution. Rooted in a 230-year heritage — the Royal College of
+              St Patrick was founded in 1795 — MU blends rich history with a
+              modern, forward-thinking academic culture set on a stunning campus
+              in County Kildare, just 25km west of Dublin city.
             </p>
-            <p class="text-[15px] text-gray-600 leading-relaxed mb-4">
-              With over 15,000 students from 100+ countries, Maynooth University is recognised globally for excellence in Computer Science, Mathematics, Humanities, Business, and Social Sciences. MU consistently ranks among the top young universities in Europe and is a key partner in Ireland's thriving tech ecosystem, with alumni at Google, Microsoft, Intel, and Amazon.
+            <p class="about-paragraph mb-4">
+              With over 15,000 students from 100+ countries, Maynooth University
+              is recognised globally for excellence in Computer Science,
+              Mathematics, Humanities, Business, and Social Sciences. MU
+              consistently ranks among the top young universities in Europe and
+              is a key partner in Ireland's thriving tech ecosystem, with alumni
+              at Google, Microsoft, Intel, and Amazon.
             </p>
-            <div class="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
-              <div class="text-center">
-                <div class="font-head font-900 text-2xl text-brand">15K+</div>
-                <div class="text-xs text-gray-500 mt-0.5">Students</div>
+            <div class="about-stats-matrix">
+              <div class="about-stat-item">
+                <div class="stat-val">15K+</div>
+                <div class="stat-lbl">Students</div>
               </div>
-              <div class="text-center border-x border-gray-100">
-                <div class="font-head font-900 text-2xl text-brand">100+</div>
-                <div class="text-xs text-gray-500 mt-0.5">Countries</div>
+              <div class="about-stat-item border-x">
+                <div class="stat-val">100+</div>
+                <div class="stat-lbl">Countries</div>
               </div>
-              <div class="text-center">
-                <div class="font-head font-900 text-2xl text-brand">230+</div>
-                <div class="text-xs text-gray-500 mt-0.5">Years Heritage</div>
+              <div class="about-stat-item">
+                <div class="stat-val">230+</div>
+                <div class="stat-lbl">Years Heritage</div>
               </div>
             </div>
           </div>
-          <div class="md:col-span-2 flex flex-col gap-4">
+
+          <div class="overview-right-column">
             <img
               src="https://keystoneacademic-res.cloudinary.com/image/upload/c_fill,w_1920,h_636,g_auto/dpr_1/f_auto/q_auto/v1/element/24/246506_246495_cover_photo-MU-library.png"
               alt="Maynooth University Campus"
-              class="about-img w-full"
+              class="about-img"
             />
-            <div class="info-card p-4 space-y-2.5">
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-location-dot w-5 text-center text-brand"></i>
-                <span class="text-gray-600">Maynooth, Co. Kildare (25km from Dublin)</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-calendar w-5 text-center text-brand"></i>
-                <span class="text-gray-600">Intakes: September & January</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-globe w-5 text-center text-brand"></i>
-                <a href="https://www.maynoothuniversity.ie/" target="_blank" class="text-brand underline">www.maynoothuniversity.ie</a>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-phone w-5 text-center text-brand"></i>
-                <a href="tel:+35317086000" class="text-gray-600 hover:text-brand">+353 1 708 6000</a>
+            <div class="info-card p-4">
+              <div class="campus-info-mini-list">
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Maynooth, Co. Kildare (25km from Dublin)</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-calendar"></i>
+                  <span>Intakes: September &amp; January</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-globe"></i>
+                  <a
+                    href="https://www.maynoothuniversity.ie/"
+                    target="_blank"
+                    class="text-brand"
+                    >www.maynoothuniversity.ie</a
+                  >
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:+35317086000" class="text-gray-600"
+                    >+353 1 708 6000</a
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- GALLERY -->
-        <div class="info-card p-5 mb-5">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-1 h-7 rounded-full" style="background:#9b59b6;"></div>
-            <h2 class="font-head font-800 text-xl text-brand">Campuses</h2>
+        <div class="info-card p-5" style="margin-bottom: 1.25rem">
+          <div class="card-header-block">
+            <div class="indicator-bar bg-sky"></div>
+            <h2>Campuses</h2>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <img src="https://www.maynoothuniversity.ie/sites/default/files/Library%20-%20External%20-%20NUI%20Maynooth%20%283%29%20.jpg" alt="South-Campus" class="gallery-img" />
-            <img src="https://www.maynoothuniversity.ie/sites/default/files/Studying%20in%20Russel%20library---NUI%20Maynooth.JPG" alt="Library" class="gallery-img" />
-            <img src="https://www.maynoothuniversity.ie/sites/default/files/St%20Joes%20Sq%20-%20Summer---NUI%20Maynooth.JPG" alt="North-Campus" class="gallery-img" />
-            <img src="https://www.maynoothuniversity.ie/sites/default/files/IMG_8447.jpg" alt="Student Life" class="gallery-img" />
+          <div class="gallery-grid">
+            <img
+              src="https://www.maynoothuniversity.ie/sites/default/files/Library%20-%20External%20-%20NUI%20Maynooth%20%283%29%20.jpg"
+              alt="South Campus"
+              class="gallery-img"
+            />
+            <img
+              src="https://www.maynoothuniversity.ie/sites/default/files/Studying%20in%20Russel%20library---NUI%20Maynooth.JPG"
+              alt="Library"
+              class="gallery-img"
+            />
+            <img
+              src="https://www.maynoothuniversity.ie/sites/default/files/St%20Joes%20Sq%20-%20Summer---NUI%20Maynooth.JPG"
+              alt="North Campus"
+              class="gallery-img"
+            />
+            <img
+              src="https://www.maynoothuniversity.ie/sites/default/files/IMG_8447.jpg"
+              alt="Student Life"
+              class="gallery-img"
+            />
           </div>
         </div>
 
         <!-- STRENGTHS -->
-        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div class="grid-2-col" style="margin-bottom: 1.25rem">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-brand-l">
-                <i class="fa-solid fa-flask text-brand text-sm"></i>
+            <div class="card-header-block">
+              <div
+                class="scholarship-icon-box"
+                style="background-color: var(--brand-l)"
+              >
+                <i
+                  class="fa-solid fa-flask"
+                  style="color: var(--brand); font-size: 0.875rem"
+                ></i>
               </div>
-              <h3 class="font-head font-700 text-lg text-brand">Research Strengths</h3>
+              <h3>Research Strengths</h3>
             </div>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-sm" style="color:#9b59b6;"></i>Mathematics & Statistics
+            <ul class="icon-list-block">
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Mathematics &amp; Statistics
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-sm" style="color:#9b59b6;"></i>Computer Science & AI
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Computer Science &amp; AI
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-sm" style="color:#9b59b6;"></i>Humanities & Social Sciences
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Humanities &amp; Social Sciences
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-sm" style="color:#9b59b6;"></i>Immunology & Life Sciences
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Immunology &amp; Life Sciences
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-sm" style="color:#9b59b6;"></i>Education & Sustainability
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Education &amp; Sustainability
               </li>
             </ul>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-brand-l">
-                <i class="fa-solid fa-star text-brand text-sm"></i>
+            <div class="card-header-block">
+              <div
+                class="scholarship-icon-box"
+                style="background-color: var(--brand-l)"
+              >
+                <i
+                  class="fa-solid fa-star"
+                  style="color: var(--brand); font-size: 0.875rem"
+                ></i>
               </div>
-              <h3 class="font-head font-700 text-lg text-brand">Academic Strengths</h3>
+              <h3>Academic Strengths</h3>
             </div>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Computer Science & Data Science
+            <ul class="icon-list-block">
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Computer Science &amp; Data Science
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Business & Management
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Business &amp; Management
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Engineering & Robotics
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Engineering &amp; Robotics
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Law & Criminology
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Law
+                &amp; Criminology
               </li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600">
-                <i class="fa-solid fa-check-circle text-gold text-sm"></i>Psychology & Social Sciences
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Psychology &amp; Social Sciences
               </li>
             </ul>
           </div>
         </div>
 
         <!-- KEY STATS BANNER -->
-        <div class="rounded-2xl overflow-hidden relative" style="background:#5b2d8e;">
-          <div class="absolute inset-0 opacity-10" style="background-image:url('https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=1200&q=60');background-size:cover;background-position:center;"></div>
-          <div class="relative p-6 grid sm:grid-cols-4 gap-4 text-white">
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">92%</div>
-              <div class="text-sm text-white/75 mt-1">Graduate Employment</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">100%</div>
-              <div class="text-sm text-white/75 mt-1">English Medium</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">2yr</div>
-              <div class="text-sm text-white/75 mt-1">Post-Study Work Visa</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">Top 5%</div>
-              <div class="text-sm text-white/75 mt-1">Young Universities – THE</div>
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div class="callout-banner-inner">
+            <div
+              class="callout-text-block"
+              style="
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+                gap: 1rem 0;
+              "
+            >
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">92%</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Graduate Employment
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">100%</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  English Medium
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">2yr</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Post-Study Work Visa
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">Top 5%</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Young Universities – THE
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- COURSES TAB -->
-      <div id="tab-courses" class="tab-pane fade-up">
-        <div id="courseContainer"></div>
       </div>
 
       <!-- RANKINGS TAB -->
       <div id="tab-rankings" class="tab-pane fade-up">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5">
+        <div
+          class="grid-2-col ranking-chips-grid"
+          style="
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 1.25rem;
+          "
+        >
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-brand mb-1">771–780</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">QS World 2026</div>
+            <div class="text-3xl text-brand">771–780</div>
+            <div class="rank-label">QS World 2026</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-brand mb-1">501</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">THE Ranking 2026</div>
+            <div class="text-3xl text-brand">501</div>
+            <div class="rank-label">THE Ranking 2026</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-accent mb-1">#1</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">Young Univ – Ireland</div>
+            <div class="text-3xl text-accent">#1</div>
+            <div class="rank-label">Young Univ – Ireland</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-gold mb-1">Top 5%</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">National Rank</div>
+            <div class="text-3xl text-gold">Top 5%</div>
+            <div class="rank-label">National Rank</div>
           </div>
         </div>
-        <div class="grid sm:grid-cols-2 gap-5">
+        <div class="grid-2-col">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-1 h-7 rounded-full bg-brand"></div>
-              <h3 class="font-head font-800 text-lg text-brand">QS World University Rankings</h3>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h3>QS World University Rankings</h3>
             </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed">
-              Maynooth University is ranked #771–780 in QS World University Rankings 2026 — a significant achievement placing it among the world's top universities globally. QS evaluates institutions on academic reputation, employer reputation, faculty/student ratio, international diversity, and research citations.
+            <p class="about-paragraph">
+              Maynooth University is ranked #771–780 in QS World University
+              Rankings 2026 — a significant achievement placing it among the
+              world's top universities globally. QS evaluates institutions on
+              academic reputation, employer reputation, faculty/student ratio,
+              international diversity, and research citations.
             </p>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-1 h-7 rounded-full" style="background:#9b59b6;"></div>
-              <h3 class="font-head font-800 text-lg text-brand">Times Higher Education (THE)</h3>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h3>Times Higher Education (THE)</h3>
             </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed">
-              Ranked #501 in THE World University Rankings 2026, Maynooth University holds the position as Ireland's highest-ranked young university. It consistently tops the THE Young University Rankings for Irish institutions under 50 years old, reflecting outstanding teaching quality and research output.
+            <p class="about-paragraph">
+              Ranked #501 in THE World University Rankings 2026, Maynooth
+              University holds the position as Ireland's highest-ranked young
+              university. It consistently tops the THE Young University Rankings
+              for Irish institutions under 50 years old, reflecting outstanding
+              teaching quality and research output.
             </p>
           </div>
         </div>
@@ -644,214 +1592,286 @@
 
       <!-- ADMISSION TAB -->
       <div id="tab-admission" class="tab-pane fade-up">
-        <div class="grid md:grid-cols-2 gap-5">
+        <div class="admission-grid">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 rounded-full bg-brand"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Entry Requirements</h2>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Entry Requirements</h2>
             </div>
-            <div class="space-y-3">
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-language text-brand mt-1 text-base"></i>
+            <div class="admission-reqs-list">
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">IELTS</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Overall 6.5 (no band below 6.0). Business programmes: 6.5 with 6.0 in all components.</div>
+                  <div class="req-title">IELTS</div>
+                  <div class="req-desc">
+                    Overall 6.5 (no band below 6.0). Business programmes: 6.5
+                    with 6.0 in all components.
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-language text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">TOEFL iBT</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Minimum 90 overall (21 in writing, 19 in all other sections)</div>
+                  <div class="req-title">TOEFL iBT</div>
+                  <div class="req-desc">
+                    Minimum 90 overall (21 in writing, 19 in all other sections)
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-graduation-cap text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-graduation-cap"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Academic Qualification</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Recognised bachelor's degree (Level 8). Minimum 2nd class honours or 55–75% GPA equivalent.</div>
+                  <div class="req-title">Academic Qualification</div>
+                  <div class="req-desc">
+                    Recognised bachelor's degree (Level 8). Minimum 2nd class
+                    honours or 55–75% GPA equivalent.
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-file-lines text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-file-lines"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Documents Required</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Academic transcripts, Passport copy, Personal Statement, 2 Reference Letters, Updated CV, English proficiency certificate</div>
+                  <div class="req-title">Documents Required</div>
+                  <div class="req-desc">
+                    Academic transcripts, Passport copy, Personal Statement, 2
+                    Reference Letters, Updated CV, English proficiency
+                    certificate
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 rounded-full" style="background:#9b59b6;"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Application Process</h2>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h2>Application Process</h2>
             </div>
-            <ol class="space-y-4">
-              <li class="flex gap-4">
-                <div class="w-8 h-8 text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm bg-brand">1</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Choose Your Programme</div>
-                  <div class="text-[14px] text-gray-500">Browse postgraduate programmes on the MU website and confirm entry requirements.</div>
+            <div class="admission-process-steps">
+              <div class="admission-step-item">
+                <div class="admission-step-number">1</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Choose Your Programme</div>
+                  <div class="step-desc">
+                    Browse postgraduate programmes on the MU website and confirm
+                    entry requirements.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm bg-brand">2</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Submit Online Application</div>
-                  <div class="text-[14px] text-gray-500">Apply via MU's postgraduate application portal. September intake deadline: May 31; January intake: October 31.</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">2</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Submit Online Application</div>
+                  <div class="step-desc">
+                    Apply via MU's postgraduate application portal. September
+                    intake deadline: May 31; January intake: October 31.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm bg-brand">3</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Receive Offer Letter</div>
-                  <div class="text-[14px] text-gray-500">Accept conditional/unconditional offer and pay the deposit to secure your place.</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">3</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Receive Offer Letter</div>
+                  <div class="step-desc">
+                    Accept conditional/unconditional offer and pay the deposit
+                    to secure your place.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm bg-brand">4</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Apply for Student Visa (D-Visa)</div>
-                  <div class="text-[14px] text-gray-500">Submit Irish student visa application with offer letter, financial proof, and health insurance documents.</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">4</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Apply for Student Visa (D-Visa)</div>
+                  <div class="step-desc">
+                    Submit Irish student visa application with offer letter,
+                    financial proof, and health insurance documents.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm bg-brand">5</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Travel & Enrol</div>
-                  <div class="text-[14px] text-gray-500">Complete pre-departure checklist and begin your journey at beautiful Maynooth campus!</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">5</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Travel &amp; Enrol</div>
+                  <div class="step-desc">
+                    Complete pre-departure checklist and begin your journey at
+                    beautiful Maynooth campus!
+                  </div>
                 </div>
-              </li>
-            </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- SCHOLARSHIPS TAB -->
       <div id="tab-scholarships" class="tab-pane fade-up">
-        <div class="grid sm:grid-cols-2 gap-5 mb-5">
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-yellow-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-medal text-yellow-500 text-base"></i>
+        <div class="scholarship-grid">
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-yellow-50">
+                <i class="fa-solid fa-medal text-yellow-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">MU International Office Scholarship</div>
+              <div class="scholarship-name">
+                MU International Office Scholarship
+              </div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">
-              Merit-based scholarship for outstanding international postgraduate students. Awarded based on academic excellence, leadership, and research potential.
+            <p class="scholarship-desc">
+              Merit-based scholarship for outstanding international postgraduate
+              students. Awarded based on academic excellence, leadership, and
+              research potential.
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Up to €3,000</span>
-              <span class="badge bg-brand-l text-brand">Postgraduate</span>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Up to €3,000</span>
+              <span class="badge bg-brand-l">Postgraduate</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-earth-europe text-blue-500 text-base"></i>
+
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-blue-50">
+                <i class="fa-solid fa-earth-europe text-blue-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Government of Ireland Scholarship</div>
+              <div class="scholarship-name">
+                Government of Ireland Scholarship
+              </div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">
-              Competitive Irish government scholarship for top international students — covers full tuition and a €10,000 living stipend for one academic year.
+            <p class="scholarship-desc">
+              Competitive Irish government scholarship for top international
+              students — covers full tuition and a €10,000 living stipend for
+              one academic year.
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Full Tuition + Stipend</span>
-              <span class="badge bg-brand-l text-brand">Competitive</span>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Full Tuition + Stipend</span>
+              <span class="badge bg-brand-l">Competitive</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-flask text-purple-500 text-base"></i>
+
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-purple-50">
+                <i class="fa-solid fa-flask text-purple-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Postgraduate Research Scholarship</div>
+              <div class="scholarship-name">
+                Postgraduate Research Scholarship
+              </div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">
-              Funding available for students pursuing PhD or research masters programmes. Includes fee waivers and monthly stipend for qualified candidates.
+            <p class="scholarship-desc">
+              Funding available for students pursuing PhD or research masters
+              programmes. Includes fee waivers and monthly stipend for qualified
+              candidates.
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Stipend + Fees</span>
-              <span class="badge bg-brand-l text-brand">Research</span>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Stipend + Fees</span>
+              <span class="badge bg-brand-l">Research</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-handshake text-orange-500 text-base"></i>
+
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-orange-50">
+                <i class="fa-solid fa-handshake text-orange-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Departmental Bursaries & Awards</div>
+              <div class="scholarship-name">
+                Departmental Bursaries &amp; Awards
+              </div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">
-              Individual faculties offer partial fee waivers and bursaries for high-achieving international students in specific programmes such as CS, Business, and Sciences.
+            <p class="scholarship-desc">
+              Individual faculties offer partial fee waivers and bursaries for
+              high-achieving international students in specific programmes such
+              as CS, Business, and Sciences.
             </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Partial Fee Waiver</span>
-              <span class="badge bg-brand-l text-brand">Varies by Dept</span>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Partial Fee Waiver</span>
+              <span class="badge bg-brand-l">Varies by Dept</span>
             </div>
           </div>
         </div>
-        <div class="rounded-2xl p-6" style="background:#5b2d8e;">
-          <div class="flex flex-col sm:flex-row items-center gap-5">
-            <div class="flex-1 text-white">
-              <div class="font-head font-800 text-xl mb-1">Why Study in Ireland?</div>
+
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div class="callout-banner-inner">
+            <div class="callout-text-block">
+              <div class="banner-title">Why Study in Ireland?</div>
               <p>Your Gateway to Europe's Silicon Valley</p>
-              <div class="text-base text-white/80">English-speaking EU hub · Top 10 globally for education · World-class research labs · Direct global tech pipelines</div>
+              <div class="banner-subtext">
+                English-speaking EU hub · Top 10 globally for education ·
+                World-class research labs · Direct global tech pipelines
+              </div>
             </div>
-            <a href="https://studyinireland.info/why-ireland/" class="bg-white font-head font-700 text-base px-7 py-3 rounded-xl whitespace-nowrap hover:bg-yellow-50 transition shadow text-brand">
-              Learn More →
-            </a>
+            <a
+              href="https://studyinireland.info/why-ireland/"
+              class="banner-btn"
+              target="_blank"
+              >Learn More →</a
+            >
           </div>
         </div>
       </div>
 
       <!-- CONTACT TAB -->
       <div id="tab-contact" class="tab-pane fade-up">
-        <div class="grid md:grid-cols-3 gap-5 mb-5">
-          <div class="contact-card md:col-span-2">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 rounded-full bg-brand"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Our Office</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Our Office</h2>
             </div>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-location-dot text-brand mt-1 text-base"></i>
+            <div class="contact-cards-subgrid">
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-location-dot text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Office Address</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Kumaripati - Mahalaximisthan Rd, Lalitpur 44700</div>
+                  <div class="info-title">Office Address</div>
+                  <div class="info-desc">
+                    Kumaripati - Mahalaximisthan Rd, Lalitpur 44700
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-envelope text-brand mt-1 text-base"></i>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-envelope text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Email Us</div>
-                  <a href="mailto:admissions@studyinireland.info" class="text-[14px] text-brand hover:underline mt-0.5 block">admissions@studyinireland.info</a>
+                  <div class="info-title">Email Us</div>
+                  <a
+                    href="mailto:admissions@studyinireland.info"
+                    class="info-link-brand"
+                    >admissions@studyinireland.info</a
+                  >
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-green-50 rounded-xl">
-                <i class="fa-brands fa-whatsapp text-green-600 mt-1 text-base"></i>
+              <div class="contact-subcard bg-green-50">
+                <i class="fa-brands fa-whatsapp text-green-600"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">WhatsApp/Call</div>
-                  <a href="https://wa.me/9851351123" target="_blank" class="text-[14px] text-green-700 font-600 mt-0.5 hover:underline block">+977 9851351123</a>
+                  <div class="info-title">WhatsApp/Call</div>
+                  <a
+                    href="https://wa.me/9851351123"
+                    target="_blank"
+                    class="info-link-green"
+                    >+977 9851351123</a
+                  >
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-l">
-                <i class="fa-solid fa-clock text-brand mt-1 text-base"></i>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-clock text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Working Hours</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Sun - Fri: 9:30 AM - 5:30 PM</div>
+                  <div class="info-title">Working Hours</div>
+                  <div class="info-desc">Sun - Fri: 9:30 AM - 5:30 PM</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="rounded-2xl p-5 text-white flex flex-col justify-between" style="background:#5b2d8e;">
+
+          <div class="sidebar-cta-box">
             <div>
-              <div class="font-head font-800 text-xl mb-2">Need Personal Guidance?</div>
-              <p class="text-[14px] text-white/75 leading-relaxed mb-4">
-                Book a 1-on-1 free counselling session with our European education experts for profile evaluation, course shortlisting, and application support.
+              <div class="cta-heading">Need Personal Guidance?</div>
+              <p class="cta-desc">
+                Book a 1-on-1 free counselling session with our European
+                education experts for profile evaluation, course shortlisting,
+                and application support.
               </p>
             </div>
-            <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="w-full bg-white text-brand font-head font-700 text-center py-2.5 rounded-xl block hover:bg-yellow-50 transition shadow">
+            <a
+              href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+              target="_blank"
+              class="cta-action-btn"
+            >
               Book Free Counselling
             </a>
           </div>
@@ -860,80 +1880,176 @@
 
       <!-- KEY INFO TAB -->
       <div id="tab-info" class="tab-pane fade-up">
-        <div class="info-card overflow-hidden">
-          <table class="w-full text-left info-table border-collapse">
+        <div
+          class="info-card"
+          style="overflow-x: auto; -webkit-overflow-scrolling: touch"
+        >
+          <table class="info-table">
             <tbody>
               <tr>
-                <td class="font-head font-700 text-brand w-1/3">University Name</td>
-                <td class="text-gray-700">Maynooth University (National University of Ireland, Maynooth)</td>
+                <td class="font-bold-brand">University Name</td>
+                <td class="text-gray-700">
+                  Maynooth University (National University of Ireland, Maynooth)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Location</td>
-                <td class="text-gray-700">Maynooth, Co. Kildare, Ireland (25km from Dublin City Centre)</td>
+                <td class="font-bold-brand">Location</td>
+                <td class="text-gray-700">
+                  Maynooth, Co. Kildare, Ireland (25km from Dublin City Centre)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Type</td>
+                <td class="font-bold-brand">Type</td>
                 <td class="text-gray-700">Public Research University</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Established</td>
-                <td class="text-gray-700">1997 (Autonomous); Historical roots in Royal College of St Patrick, 1795</td>
+                <td class="font-bold-brand">Established</td>
+                <td class="text-gray-700">
+                  1997 (Autonomous); Historical roots in Royal College of St
+                  Patrick, 1795
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Total Students</td>
-                <td class="text-gray-700">15,000+ (2,000+ International from 100+ countries)</td>
+                <td class="font-bold-brand">Total Students</td>
+                <td class="text-gray-700">
+                  15,000+ (2,000+ International from 100+ countries)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">QS World Ranking</td>
-                <td class="text-gray-700">771–780 (QS World University Rankings 2026)</td>
+                <td class="font-bold-brand">QS World Ranking</td>
+                <td class="text-gray-700">
+                  771–780 (QS World University Rankings 2026)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">THE Ranking</td>
-                <td class="text-gray-700">501 (Times Higher Education World University Rankings 2026)</td>
+                <td class="font-bold-brand">THE Ranking</td>
+                <td class="text-gray-700">
+                  501 (Times Higher Education World University Rankings 2026)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Main Intakes</td>
-                <td class="text-gray-700">September (Major) & January (Minor)</td>
+                <td class="font-bold-brand">Main Intakes</td>
+                <td class="text-gray-700">
+                  September (Major) &amp; January (Minor)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Average Tuition Fee</td>
-                <td class="text-gray-700">€12,000 – €22,000 per year (depending on programme)</td>
+                <td class="font-bold-brand">Average Tuition Fee</td>
+                <td class="text-gray-700">
+                  €12,000 – €22,000 per year (depending on programme)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Application Fee</td>
+                <td class="font-bold-brand">Application Fee</td>
                 <td class="text-gray-700">€50</td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Post-Study Work Visa</td>
-                <td class="text-gray-700">2 Years (Third Level Graduate Scheme)</td>
+                <td class="font-bold-brand">Post-Study Work Visa</td>
+                <td class="text-gray-700">
+                  2 Years (Third Level Graduate Scheme)
+                </td>
               </tr>
               <tr>
-                <td class="font-head font-700 text-brand">Official Website</td>
+                <td class="font-bold-brand">Official Website</td>
                 <td>
-                  <a href="https://www.maynoothuniversity.ie/" target="_blank" class="text-brand underline">www.maynoothuniversity.ie</a>
+                  <a
+                    href="https://www.maynoothuniversity.ie/"
+                    target="_blank"
+                    class="underline"
+                    >www.maynoothuniversity.ie</a
+                  >
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+    </div>
+    <!-- end main content -->
 
-    </div><!-- end main content -->
+    <!-- ── COURSES MODAL ─────────────────────── -->
+    <div id="coursesModal" class="courses-modal">
+      <div class="courses-modal-content">
+        <div class="courses-modal-header">
+          <h2>Programmes – Maynooth University</h2>
+          <button id="closeModalBtn" class="close-modal-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="courses-modal-search-sticky">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="courseSearch"
+              placeholder="Search programmes (e.g. Data Science, Business Analytics, CS…)"
+            />
+          </div>
+          <div class="filter-buttons-wrapper no-scroll" id="filterBtns">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Computing">
+              Computing
+            </button>
+            <button class="filter-btn" data-filter="Business">Business</button>
+            <button class="filter-btn" data-filter="Data">Data Science</button>
+            <button class="filter-btn" data-filter="Sciences">
+              Health &amp; Sciences
+            </button>
+            <button class="filter-btn" data-filter="Social">
+              Education &amp; Social
+            </button>
+            <button class="filter-btn" data-filter="Arts">
+              Arts &amp; Humanities
+            </button>
+            <button class="filter-btn" data-filter="History">
+              History &amp; Geo
+            </button>
+            <button class="filter-btn" data-filter="Music">Music</button>
+          </div>
+        </div>
+        <div class="courses-modal-body">
+          <div id="courseContainer"></div>
+        </div>
+      </div>
+    </div>
 
-    <!-- ── SCRIPTS ─────────────────────────────── -->
     <script>
-      // ── COURSE DATA (exact from studyinireland.info/MaynoothUniversity-Courses) ──
+      // ── COURSE DATA ──────────────────────────────────────
       const sections = [
         {
           title: "Technology & Computing",
           filter: "Computing",
           courses: [
-            { title: "MSc Robotics and Embedded AI", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Computer Science – Software Engineering", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Computer Science (Applied)", fee: "€18,000", duration: "24 Months" },
-            { title: "MSc IT Enabled Innovation", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Geographical Information Systems and Remote Sensing", fee: "€16,000", duration: "12 Months" },
-            { title: "MSc Sound and Music Computing", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MSc Robotics and Embedded AI",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Computer Science – Software Engineering",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Computer Science (Applied)",
+              fee: "€18,000",
+              duration: "24 Months",
+            },
+            {
+              title: "MSc IT Enabled Innovation",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Geographical Information Systems and Remote Sensing",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Sound and Music Computing",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
           ],
         },
         {
@@ -941,90 +2057,259 @@
           filter: "Business",
           courses: [
             { title: "MSc Business", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Business Analytics", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc International Business", fee: "€18,000", duration: "12 Months" },
+            {
+              title: "MSc Business Analytics",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc International Business",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
             { title: "MSc Finance", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Digital Marketing", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Strategic Marketing", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Business Management", fee: "€18,000", duration: "12 Months" },
-            { title: "MSc Strategy and Innovation", fee: "€18,000", duration: "12 Months" },
-            { title: "MA Accounting (1 Year)", fee: "€18,000", duration: "12 Months" },
-            { title: "MA Accounting (2 Years)", fee: "€18,000", duration: "24 Months" },
-            { title: "Masters of Law – International Business Law", fee: "€18,000", duration: "12 Months" },
-            { title: "Masters of Law – Global Legal Studies", fee: "€18,000", duration: "12 Months" },
-            { title: "Masters of Law – International Justice", fee: "€18,000", duration: "12 Months" },
-            { title: "MA Comparative Criminology and Criminal Justice", fee: "€18,000", duration: "12 Months" },
+            {
+              title: "MSc Digital Marketing",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Strategic Marketing",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Business Management",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Strategy and Innovation",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Accounting (1 Year)",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Accounting (2 Years)",
+              fee: "€18,000",
+              duration: "24 Months",
+            },
+            {
+              title: "Masters of Law – International Business Law",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "Masters of Law – Global Legal Studies",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "Masters of Law – International Justice",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Comparative Criminology and Criminal Justice",
+              fee: "€18,000",
+              duration: "12 Months",
+            },
           ],
         },
         {
           title: "Data Science & Analytics",
           filter: "Data",
           courses: [
-            { title: "MSc Data Science and Analytics", fee: "€17,000", duration: "12 Months" },
+            {
+              title: "MSc Data Science and Analytics",
+              fee: "€17,000",
+              duration: "12 Months",
+            },
             { title: "MSc Mathematics", fee: "€17,000", duration: "12 Months" },
-            { title: "MSc Mathematical Science", fee: "€17,000", duration: "12 Months" },
-            { title: "MSc Theoretical Physics and Mathematics", fee: "€17,000", duration: "12 Months" },
+            {
+              title: "MSc Mathematical Science",
+              fee: "€17,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Theoretical Physics and Mathematics",
+              fee: "€17,000",
+              duration: "12 Months",
+            },
             { title: "MSc Economics", fee: "€16,000", duration: "12 Months" },
-            { title: "MSc Economics (Two Year)", fee: "€16,000", duration: "24 Months" },
+            {
+              title: "MSc Economics (Two Year)",
+              fee: "€16,000",
+              duration: "24 Months",
+            },
           ],
         },
         {
           title: "Health & Sciences",
           filter: "Sciences",
           courses: [
-            { title: "MSc Immunology and Global Health", fee: "€17,000", duration: "12 Months" },
+            {
+              title: "MSc Immunology and Global Health",
+              fee: "€17,000",
+              duration: "12 Months",
+            },
             { title: "MSc Psychology", fee: "€17,000", duration: "12 Months" },
-            { title: "MSc Environmental Psychology", fee: "€17,000", duration: "12 Months" },
-            { title: "MSc Climate Change", fee: "€16,000", duration: "12 Months" },
-            { title: "MSc Design Innovation", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Critical and Creative Media", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MSc Environmental Psychology",
+              fee: "€17,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Climate Change",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MSc Design Innovation",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Critical and Creative Media",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
           ],
         },
         {
           title: "Education & Social Sciences",
           filter: "Social",
           courses: [
-            { title: "Master of Education", fee: "€16,000", duration: "12 Months" },
-            { title: "Master of Education – Adult and Community Education", fee: "€16,000", duration: "12 Months" },
-            { title: "Master of Social Science – Rights and Social Policy", fee: "€16,000", duration: "12 Months" },
-            { title: "Master of Social Science – Social Work", fee: "€16,000", duration: "24 Months" },
-            { title: "MA International Development", fee: "€16,000", duration: "12 Months" },
-            { title: "MA International Peacebuilding, Security & Development Practice", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "Master of Education",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "Master of Education – Adult and Community Education",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "Master of Social Science – Rights and Social Policy",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "Master of Social Science – Social Work",
+              fee: "€16,000",
+              duration: "24 Months",
+            },
+            {
+              title: "MA International Development",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title:
+                "MA International Peacebuilding, Security & Development Practice",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
           ],
         },
         {
           title: "Arts, Humanities & Languages",
           filter: "Arts",
           courses: [
-            { title: "MA English – Literatures of Engagement", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Applied Linguistics and Intercultural Studies", fee: "€14,000", duration: "12 Months" },
-            { title: "MA Creative Writing", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MA English – Literatures of Engagement",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Applied Linguistics and Intercultural Studies",
+              fee: "€14,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Creative Writing",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
             { title: "MA French", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Chinese Studies", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Classical Studies", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MA Chinese Studies",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Classical Studies",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
             { title: "MA Anthropology", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Cultural Differences and Transnational Processes", fee: "€16,000", duration: "24 Months" },
+            {
+              title: "MA Cultural Differences and Transnational Processes",
+              fee: "€16,000",
+              duration: "24 Months",
+            },
           ],
         },
         {
           title: "History, Geography & Social Studies",
           filter: "History",
           courses: [
-            { title: "MA Irish History", fee: "€16,000", duration: "12 Months" },
-            { title: "MA European History", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Local History", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Military History and Strategic Studies", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Medieval Irish Studies", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Geography and Spatial Justice", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MA Irish History",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA European History",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Local History",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Military History and Strategic Studies",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Medieval Irish Studies",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Geography and Spatial Justice",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
           ],
         },
         {
           title: "Music",
           filter: "Music",
           courses: [
-            { title: "MA Music Composition", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Creative Music Technologies", fee: "€16,000", duration: "12 Months" },
-            { title: "MA Irish Traditional Music", fee: "€16,000", duration: "12 Months" },
+            {
+              title: "MA Music Composition",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Creative Music Technologies",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
+            {
+              title: "MA Irish Traditional Music",
+              fee: "€16,000",
+              duration: "12 Months",
+            },
           ],
         },
       ];
@@ -1032,50 +2317,49 @@
       let activeFilter = "all";
       let searchVal = "";
 
-      // ── RENDER ─────────────────────────────────────────
+      // ── RENDER ──────────────────────────────────────────
       function renderCourses() {
         const container = document.getElementById("courseContainer");
         container.innerHTML = "";
-
         let totalShown = 0;
 
         sections.forEach((sec) => {
-          // Filter courses in this section
           const filtered = sec.courses.filter((c) => {
-            const matchFilter = activeFilter === "all" || sec.filter === activeFilter;
-            const matchSearch = c.title.toLowerCase().includes(searchVal.toLowerCase());
+            const matchFilter =
+              activeFilter === "all" || sec.filter === activeFilter;
+            const matchSearch = c.title
+              .toLowerCase()
+              .includes(searchVal.toLowerCase());
             return matchFilter && matchSearch;
           });
-
           if (filtered.length === 0) return;
           totalShown += filtered.length;
 
-          // Section heading
-          const heading = document.createElement("div");
-          heading.className = "sec-label";
-          heading.innerHTML = `<h2>${sec.title}</h2>`;
-          container.appendChild(heading);
+          // Section label
+          const lbl = document.createElement("div");
+          lbl.className = "sec-label";
+          lbl.innerHTML = `<h2>${sec.title}</h2>`;
+          container.appendChild(lbl);
 
-          // Cards wrapper
           filtered.forEach((c) => {
             const card = document.createElement("div");
-            card.className = "course-card p-5 mb-3 flex flex-col sm:flex-row justify-between sm:items-center gap-4";
+            card.className = "course-card";
             card.innerHTML = `
               <div>
-                <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <span class="text-xs px-2.5 py-0.5 rounded font-600 font-head bg-brand-l text-brand">${sec.title}</span>
-                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-clock mr-1 text-[11px]"></i>${c.duration}</span>
-                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-calendar mr-1 text-[11px]"></i>Intake: September 2026</span>
+                <div class="course-card-meta-tags">
+                  <span class="faculty-tag">${sec.title}</span>
+                  <span class="duration-tag"><i class="fa-solid fa-clock"></i>${c.duration}</span>
+                  <span class="intake-tag"><i class="fa-solid fa-calendar"></i>Intake: September 2026</span>
                 </div>
-                <h3 class="font-head font-700 text-[17px] text-gray-800 leading-snug hover:text-brand transition">
+                <h3>
                   <a href="https://www.maynoothuniversity.ie/study-maynooth/postgraduate-studies/courses" target="_blank">${c.title}</a>
                 </h3>
-                <div class="flex gap-4 mt-2 text-xs text-gray-500">
-                  <span><strong>Tuition Fee:</strong> <span class="text-brand font-600">${c.fee} / year</span></span>
-                  <span><strong>IELTS:</strong> <span class="text-brand font-600">6.5</span></span>
+                <div class="course-card-details">
+                  <span><strong>Tuition Fee:</strong> <span class="text-brand">${c.fee} / year</span></span>
+                  <span><strong>IELTS:</strong> <span class="text-brand">6.5</span></span>
                 </div>
               </div>
-              <div class="flex-shrink-0 flex items-center gap-2">
+              <div class="course-card-actions">
                 <a href="https://www.maynoothuniversity.ie/study-maynooth/postgraduate-studies/courses" target="_blank" class="btn-outline" style="font-size:12px;padding:8px 16px;">View Details</a>
                 <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply" style="font-size:12px;padding:8px 16px;">Apply</a>
               </div>
@@ -1086,53 +2370,70 @@
 
         if (totalShown === 0) {
           container.innerHTML = `
-            <div class="info-card p-8 text-center text-gray-400 font-body">
-              <i class="fa-solid fa-folder-open text-4xl mb-2 text-gray-300"></i>
-              <p>No courses match your search or filter.</p>
+            <div class="info-card p-5 text-center" style="color: #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem;">
+              <i class="fa-solid fa-folder-open" style="font-size: 2.25rem; margin-bottom: 0.5rem; color: #cbd5e1;"></i>
+              <p style="font-size: 14px;">No courses match your search or filter.</p>
             </div>`;
         }
       }
 
-      // ── FILTERS ─────────────────────────────────────────
+      // ── MODAL ────────────────────────────────────────────
+      const modal = document.getElementById("coursesModal");
+
+      function openModal() {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderCourses();
+      }
+      function closeModal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document
+        .getElementById("browseCoursesHeroBtn")
+        .addEventListener("click", openModal);
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // ── FILTERS ──────────────────────────────────────────
       document.querySelectorAll("#filterBtns button").forEach((btn) => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll("#filterBtns button").forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll("#filterBtns button")
+            .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           activeFilter = btn.dataset.filter;
-
-          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-          document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
-          document.querySelector('[data-tab="courses"]').classList.add("active");
-          document.getElementById("tab-courses").classList.add("active");
-
           renderCourses();
-          document.getElementById("tab-courses").scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
-      // ── SEARCH ─────────────────────────────────────────
+      // ── SEARCH ───────────────────────────────────────────
       document.getElementById("courseSearch").addEventListener("input", (e) => {
         searchVal = e.target.value;
-
-        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-        document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
-        document.querySelector('[data-tab="courses"]').classList.add("active");
-        document.getElementById("tab-courses").classList.add("active");
-
         renderCourses();
       });
 
-      // ── TABS ────────────────────────────────────────────
+      // ── TABS ─────────────────────────────────────────────
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-          document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-pane")
+            .forEach((p) => p.classList.remove("active"));
           btn.classList.add("active");
-          document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+          document
+            .getElementById("tab-" + btn.dataset.tab)
+            .classList.add("active");
         });
       });
 
-      // ── INIT ────────────────────────────────────────────
       renderCourses();
     </script>
   </body>
