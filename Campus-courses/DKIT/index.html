@@ -3,373 +3,2099 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DKIT – Programs</title>
+    <title>Dundalk Institute of Technology | Study in Ireland</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
-      :root {
-        --brand: #003087;
-        --brand-light: #e8edf7;
-        --accent: #e63312;
-        --bg: #f4f6fb;
-        --card-bg: #ffffff;
-        --text: #1a1a2e;
-        --muted: #5a6175;
-      }
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+      :root {
+        --brand: #003087;
+        --brand-d: #001a4d;
+        --brand-l: #e8edf7;
+        --brand-m: #004ab0;
+        --accent: #e63312;
+        --sky: #5588cc;
+        --gold: #c4933f;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e2e8f0;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --gray-600: #475569;
+        --gray-700: #334155;
+        --gray-800: #1e293b;
+      }
       body {
-        font-family: "Source Sans 3", sans-serif;
-        background: var(--bg);
-        color: var(--text);
+        font-family: "Figtree", sans-serif;
+        background: #f2f5f9;
+        color: #1a2332;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .font-head {
+        font-family: "Figtree", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .max-w-6xl {
+        max-width: 72rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .py-6 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .space-y-5 > * + * {
+        margin-top: 1.25rem;
+      }
+      .ireland-green {
+        background-color: #169b62;
       }
 
       .hero {
-        background: linear-gradient(
-          135deg,
-          #003087 0%,
-          #001a4d 60%,
-          #0a0a2e 100%
-        );
-        color: white;
-        padding: 60px 40px 50px;
         position: relative;
+        min-height: 480px;
+        display: flex;
+        align-items: flex-end;
         overflow: hidden;
       }
-      .hero::before {
-        content: "";
+      .hero-img {
         position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        background: rgba(230, 51, 18, 0.18);
+        inset: 0;
+        background-image: url("https://image.cdn.uscholars.in/media/institutions_banner/1673005267-banner-Dundalk_Institute_of_Technology.jpg");
+        background-size: cover;
+        background-position: center 35%;
+        filter: brightness(0.35) saturate(1.1);
       }
-      .hero::after {
-        content: "";
+      .hero-overlay {
         position: absolute;
-        bottom: -80px;
-        left: 10%;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 10, 30, 0.97) 0%,
+          rgba(0, 30, 87, 0.6) 50%,
+          rgba(0, 48, 135, 0.2) 100%
+        );
       }
-      .hero-inner {
-        max-width: 1200px;
-        margin: 0 auto;
+      .hero-content {
         position: relative;
         z-index: 2;
+        width: 100%;
+        padding: 24px 16px 28px;
       }
-      .hero-tag {
-        display: inline-block;
-        background: var(--accent);
-        color: white;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        padding: 5px 14px;
-        border-radius: 4px;
-        margin-bottom: 18px;
+      .hero-flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
       }
-
-      .hero-title-row {
+      .logo-box {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        padding: 0.75rem;
+        width: 7rem;
+        height: 5rem;
         display: flex;
         align-items: center;
-        gap: 20px;
-        margin-bottom: 16px;
+        justify-content: center;
       }
-      .hero-logo {
-        width: 150px;
-        height: 100px;
+      .logo-box img {
+        width: 6rem;
         object-fit: contain;
         filter: brightness(0) invert(1);
-        flex-shrink: 0;
       }
-      .hero-title-row h1 {
-        font-family: "Raleway", sans-serif;
-        font-size: clamp(24px, 4vw, 48px);
-        font-weight: 800;
-        line-height: 1.15;
+      .hero-text-block {
+        flex: 1 1 0%;
       }
-
-      .hero-meta {
+      .hero-text-block h1 {
+        font-size: 1.875rem;
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+      }
+      .hero-meta-p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-meta-p a:hover {
+        color: var(--sky);
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .badge-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 24px;
-        margin-top: 24px;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
       }
-      .hero-meta-item {
+      .hero-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-btn-group {
         display: flex;
-        align-items: center;
-        gap: 8px;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .tab-nav {
+        background: #fff;
+        border-bottom: 2px solid var(--gray-200);
+        position: sticky;
+        top: 0;
+        z-index: 39;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      .tab-nav-inner {
+        max-width: 72rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: flex;
+        overflow-x: auto;
+      }
+      .tab-btn {
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.8);
+        padding: 16px 18px;
+        border: none;
+        background: transparent;
+        color: var(--gray-500);
+        cursor: pointer;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
       }
-      .hero-meta-item i {
-        color: var(--accent);
+      .tab-btn:hover {
+        color: var(--brand);
+        background: var(--brand-l);
       }
-      .hero-meta-item a {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: underline;
+      .tab-btn.active {
+        color: var(--brand);
+        border-bottom-color: var(--brand);
+        background: var(--brand-l);
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
       }
 
-      .wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 24px 60px;
+      .courses-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
       }
-
-      .section-label {
+      .courses-modal.open {
+        display: flex;
+      }
+      .courses-modal-content {
+        background: #f2f5f9;
+        width: 100%;
+        max-width: 54rem;
+        max-height: 90vh;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: fadeUp 0.3s ease out;
+      }
+      .courses-modal-header {
+        background: #fff;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--gray-200);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .courses-modal-header h2 {
+        font-size: 1.25rem;
+        color: var(--brand);
+        font-weight: 800;
+      }
+      .close-modal-btn {
+        background: var(--gray-100);
+        border: none;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 9999px;
+        color: var(--gray-600);
+        font-size: 1.125rem;
+        cursor: pointer;
         display: flex;
         align-items: center;
-        gap: 14px;
-        margin: 48px 0 20px;
+        justify-content: center;
+        transition: background-color 0.2s;
       }
-      .section-label h2 {
-        font-family: "Raleway", sans-serif;
-        font-size: 22px;
-        font-weight: 700;
+      .close-modal-btn:hover {
+        background: var(--gray-200);
         color: var(--brand);
       }
-      .section-label::after {
-        content: "";
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(to right, var(--brand-light), transparent);
+      .courses-modal-search-sticky {
+        background: #fff;
+        padding: 0.75rem 1.25rem;
+        border-bottom: 2px solid var(--gray-200);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .search-input-wrapper {
+        position: relative;
+        width: 100%;
+      }
+      .search-input-wrapper i {
+        position: absolute;
+        left: 0.875rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-400);
+      }
+      .search-input-wrapper input {
+        width: 100%;
+        padding-left: 2.5rem;
+        padding-right: 1rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        font-size: 15px;
+        border: 2px solid var(--gray-200);
+        border-radius: 0.75rem;
+        outline: none;
+        background-color: var(--gray-50);
+        font-family: "Figtree", sans-serif;
+        transition: border-color 0.2s;
+      }
+      .search-input-wrapper input:focus {
+        border-color: var(--brand);
+      }
+      .filter-buttons-wrapper {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+      .courses-modal-body {
+        padding: 1.25rem;
+        overflow-y: auto;
+        flex: 1 1 0%;
       }
 
-      .course-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 18px;
-        margin-bottom: 12px;
-      }
       .course-card {
-        background: var(--card-bg);
-        border-radius: 12px;
-        padding: 20px;
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
         border-left: 5px solid var(--brand);
-        box-shadow: 0 2px 12px rgba(0, 48, 135, 0.07);
         transition:
           transform 0.2s,
           box-shadow 0.2s;
+        overflow: hidden;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
         display: flex;
         flex-direction: column;
+        gap: 1rem;
       }
       .course-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(0, 48, 135, 0.13);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 48, 135, 0.1);
       }
-      .course-title {
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 1.4;
-        margin-bottom: 12px;
-        color: var(--text);
-      }
-      .detail {
-        font-size: 13px;
-        color: var(--muted);
+      .course-card-meta-tags {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 6px;
+        gap: 0.5rem;
+        margin-bottom: 0.375rem;
+        flex-wrap: wrap;
       }
-      .detail i {
+      .faculty-tag {
+        font-size: 0.75rem;
+        background-color: var(--brand-l);
         color: var(--brand);
-        width: 14px;
+        padding: 0.125rem 0.625rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+      }
+      .duration-tag,
+      .intake-tag {
+        font-size: 0.75rem;
+        background-color: var(--gray-100);
+        color: var(--gray-600);
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+      }
+      .duration-tag i,
+      .intake-tag i {
+        margin-right: 0.25rem;
+        font-size: 11px;
+      }
+      .course-card h3 {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--gray-800);
+        line-height: 1.3;
+      }
+      .course-card h3 a:hover {
+        color: var(--brand);
+      }
+      .course-card-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin-top: 0.5rem;
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+      .course-card-details span strong {
+        color: var(--gray-700);
+      }
+      .course-card-details .text-brand {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .course-card-actions {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .info-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
+        overflow: hidden;
+      }
+      .info-card.p-5 {
+        padding: 1.25rem;
+      }
+      .info-card.p-4 {
+        padding: 1rem;
+      }
+      .rank-chip {
+        border-radius: 12px;
+        border: 1px solid #e2eaf0;
+        background: #fff;
         text-align: center;
+        padding: 14px 8px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .rank-chip:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 48, 135, 0.12);
+      }
+      .rank-chip .text-3xl {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 0.25rem;
+      }
+      .rank-chip .text-brand {
+        color: var(--brand);
+      }
+      .rank-chip .text-accent {
+        color: var(--accent);
+      }
+      .rank-chip .text-gold {
+        color: var(--gold);
+      }
+      .rank-chip .rank-label {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+      .sec-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 28px 0 14px;
+      }
+      .sec-label h2 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        color: var(--brand);
+        white-space: nowrap;
+      }
+      .sec-label::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--brand-l), transparent);
+        border-radius: 99px;
+      }
+      .card-header-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .card-header-block .indicator-bar {
+        width: 0.25rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+      }
+      .card-header-block .indicator-bar.bg-brand {
+        background-color: var(--brand);
+      }
+      .card-header-block .indicator-bar.bg-sky {
+        background-color: var(--sky);
+      }
+      .card-header-block h2 {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .card-header-block h3 {
+        font-weight: 800;
+        font-size: 1.125rem;
+        color: var(--brand);
+      }
+      .about-paragraph {
+        font-size: 14px;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+      .about-paragraph.mb-3 {
+        margin-bottom: 0.75rem;
+      }
+      .about-paragraph.mb-4 {
+        margin-bottom: 1rem;
+      }
+      .about-stats-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+      }
+      .about-stat-item {
+        text-align: center;
+      }
+      .about-stat-item .stat-val {
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .about-stat-item .stat-lbl {
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .about-stat-item.border-x {
+        border-left: 1px solid var(--gray-200);
+        border-right: 1px solid var(--gray-200);
+      }
+      .icon-list-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .icon-list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 14px;
+        color: var(--gray-600);
+      }
+      .icon-list-item i.text-sky {
+        color: var(--sky);
+      }
+      .icon-list-item i.text-gold {
+        color: var(--gold);
+      }
+      .stat-strip {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 10px;
+        text-align: center;
+      }
+      .stat-strip-title {
+        color: rgba(255, 255, 255, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+      }
+      .stat-strip-val {
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.95rem;
       }
       .badge {
-        display: inline-block;
-        background: var(--brand-light);
-        color: var(--brand);
-        font-size: 11px;
-        font-weight: 600;
-        padding: 2px 8px;
-        border-radius: 20px;
-        margin-bottom: 10px;
-      }
-      .btn-group {
-        display: flex;
-        gap: 8px;
-        margin-top: auto;
-        padding-top: 14px;
-      }
-      .btn {
-        flex: 1;
-        padding: 9px 8px;
-        border-radius: 7px;
-        text-align: center;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 12px;
-        letter-spacing: 0.3px;
-        transition: opacity 0.2s;
-      }
-      .btn:hover {
-        opacity: 0.85;
-      }
-      .btn-primary {
-        background: var(--brand);
-        color: white;
-      }
-      .btn-secondary {
-        background: #eef1f8;
-        color: var(--brand);
-      }
-      .pg-badge {
-        display: inline-block;
-        background: var(--accent);
-        color: white;
+        font-family: "Poppins", sans-serif;
         font-size: 10px;
         font-weight: 700;
-        letter-spacing: 1px;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
-        padding: 2px 8px;
+        padding: 3px 8px;
         border-radius: 20px;
-        margin-bottom: 10px;
+      }
+      .badge.bg-white\/20 {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .badge.bg-accent {
+        background-color: var(--accent);
+      }
+      .badge.bg-gold {
+        background-color: var(--gold);
+      }
+      .badge.text-white {
+        color: #fff;
+      }
+      .info-table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      .info-table tr:nth-child(odd) {
+        background: #f8fafc;
+      }
+      .info-table td {
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #eef2f7;
+      }
+      .info-table td.font-bold-brand {
+        font-weight: 700;
+        color: var(--brand);
+        width: 40%;
+      }
+      .info-table td.text-gray-700 {
+        color: var(--gray-700);
+      }
+      .info-table td a.underline {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+      .gallery-img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .admission-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .admission-reqs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .admission-req-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.875rem;
+        background-color: var(--brand-l);
+        border-radius: 0.75rem;
+      }
+      .admission-req-card i {
+        color: var(--brand);
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .admission-req-card .req-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-req-card .req-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .admission-process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .admission-step-item {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .admission-step-number {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-color: var(--brand);
+        color: #fff;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 800;
+        font-size: 0.8rem;
+      }
+      .admission-step-content .step-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-step-content .step-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+      .scholarship-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .scholarship-card {
+        padding: 1.25rem;
+      }
+      .scholarship-title-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .scholarship-icon-box {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .scholarship-icon-box.bg-yellow-50 {
+        background-color: #fef08a;
+      }
+      .scholarship-icon-box.bg-blue-50 {
+        background-color: #bfdbfe;
+      }
+      .scholarship-icon-box.bg-purple-50 {
+        background-color: #e9d5ff;
+      }
+      .scholarship-icon-box.bg-orange-50 {
+        background-color: #fed7aa;
+      }
+      .scholarship-icon-box i.text-yellow-500 {
+        color: #eab308;
+      }
+      .scholarship-icon-box i.text-blue-500 {
+        color: #3b82f6;
+      }
+      .scholarship-icon-box i.text-purple-500 {
+        color: #a855f7;
+      }
+      .scholarship-icon-box i.text-orange-500 {
+        color: #f97316;
+      }
+      .scholarship-card .scholarship-name {
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .scholarship-card .scholarship-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+      .scholarship-card .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .scholarship-card .badge-group .bg-green-50 {
+        background-color: #f0fdf4;
+        color: #15803d;
+      }
+      .scholarship-card .badge-group .bg-brand-l {
+        background-color: var(--brand-l);
+        color: var(--brand);
+      }
+      .callout-banner {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        background-color: var(--brand);
+        padding: 1.25rem;
+      }
+      .callout-banner-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        background-image: url("https://images.unsplash.com/photo-1588072432836-e10032774350?w=1200&q=60");
+        background-size: cover;
+        background-position: center;
+      }
+      .callout-banner-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .callout-text-block {
+        flex: 1 1 0%;
+        color: #fff;
+        text-align: center;
+      }
+      .callout-text-block .banner-title {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.25rem;
+      }
+      .callout-text-block p {
+        margin-bottom: 0.25rem;
+        font-size: 14px;
+      }
+      .callout-text-block .banner-subtext {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .callout-banner-inner .banner-btn {
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.75rem;
+        white-space: nowrap;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .callout-banner-inner .banner-btn:hover {
+        background-color: #fef08a;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .contact-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
+        padding: 1rem;
+      }
+      .contact-cards-subgrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .contact-subcard {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+      }
+      .contact-subcard.bg-brand-l {
+        background-color: var(--brand-l);
+      }
+      .contact-subcard.bg-green-50 {
+        background-color: #f0fdf4;
+      }
+      .contact-subcard i {
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .contact-subcard i.text-brand {
+        color: var(--brand);
+      }
+      .contact-subcard i.text-green-600 {
+        color: #16a34a;
+      }
+      .contact-subcard .info-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .contact-subcard .info-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .contact-subcard .info-link-brand {
+        font-size: 13px;
+        color: var(--brand);
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-brand:hover {
+        text-decoration: underline;
+      }
+      .contact-subcard .info-link-green {
+        font-size: 13px;
+        color: #15803d;
+        font-weight: 600;
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-green:hover {
+        text-decoration: underline;
+      }
+      .sidebar-cta-box {
+        border-radius: 1rem;
+        padding: 1.25rem;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--brand);
+      }
+      .sidebar-cta-box .cta-heading {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+      }
+      .sidebar-cta-box .cta-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .sidebar-cta-box .cta-action-btn {
+        width: 100%;
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        border-radius: 0.75rem;
+        display: block;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .sidebar-cta-box .cta-action-btn:hover {
+        background-color: #fef08a;
+      }
+      .overview-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .overview-right-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .about-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+      .campus-info-mini-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .campus-info-mini-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 13px;
+      }
+      .campus-info-mini-item i {
+        color: var(--brand);
+        width: 1.25rem;
+        text-align: center;
+      }
+      .campus-info-mini-item span {
+        color: var(--gray-600);
+      }
+      .campus-info-mini-item a.text-brand {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+      .campus-info-mini-item a.text-gray-600 {
+        color: var(--gray-600);
+      }
+      .grid-2-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .btn-apply {
+        background: #169b62;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-apply:hover {
+        opacity: 0.8;
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--brand);
+        color: var(--brand);
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 8px 18px;
+        text-align: center;
+        display: inline-block;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .btn-outline:hover {
+        background: var(--brand);
+        color: #fff;
+      }
+      .hero-content .btn-apply.text-base {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+      }
+      .hero-content .btn-outline.text-base {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+        border-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+      }
+      .hero-content .btn-outline.text-base:hover {
+        background-color: #fff;
+        color: var(--brand);
+      }
+      .course-card-actions .btn-outline.text-xs {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        flex: 1;
+        border-color: rgba(0, 48, 135, 0.3);
+      }
+      .course-card-actions .btn-apply.text-xs {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        flex: 1;
+      }
+      .filter-btn {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1.5px solid #cbd5e0;
+        background: #fff;
+        color: #4a5568;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--brand);
+        color: #fff;
+        border-color: var(--brand);
+      }
+      .no-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .no-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        animation: fadeUp 0.35s ease both;
+      }
+      @media (min-width: 540px) {
+        .hero-stats-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gallery-img {
+          height: 140px;
+        }
+        .grid-2-col {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .scholarship-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .contact-cards-subgrid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .ranking-chips-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+        .info-table td.font-bold-brand {
+          width: 30%;
+        }
+      }
+      @media (min-width: 768px) {
+        .hero {
+          min-height: 440px;
+        }
+        .hero-flex-wrapper {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        .hero-text-block h1 {
+          font-size: 2.75rem;
+        }
+        .overview-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+        .overview-grid > .info-card {
+          grid-column: span 3 / span 3;
+        }
+        .overview-grid > .overview-right-column {
+          grid-column: span 2 / span 2;
+        }
+        .about-img {
+          height: 250px;
+        }
+        .course-card {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .course-card-actions {
+          width: auto;
+        }
+        .course-card-actions .btn-outline.text-xs,
+        .course-card-actions .btn-apply.text-xs {
+          flex: none;
+          padding: 0.5rem 1rem;
+        }
+        .contact-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .contact-grid > .contact-card {
+          grid-column: span 2 / span 2;
+        }
+        .callout-banner-inner {
+          flex-direction: row;
+        }
+        .callout-text-block {
+          text-align: left;
+        }
+        .callout-text-block .banner-title {
+          font-size: 1.25rem;
+        }
+        .admission-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .about-stats-matrix .stat-val {
+          font-size: 1.5rem;
+        }
+        .courses-modal-search-sticky {
+          flex-direction: row;
+          align-items: center;
+        }
+        .search-input-wrapper {
+          flex: 1;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-tag">Ireland · Dundalk</div>
-        <div class="hero-title-row">
-          <img class="hero-logo" src="../DKIT.png" alt="DKIT Logo" />
-          <h1>Dundalk Institute of Technology (DKIT)</h1>
+    <section class="hero">
+      <div class="hero-img"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="max-w-6xl mx-auto">
+          <div class="hero-flex-wrapper">
+            <div class="logo-box">
+              <img
+                src="https://www.dkit.ie/sites/default/files/images/dkit-logo-white.png"
+                alt="DkIT"
+                onerror="this.style.display = 'none'"
+              />
+            </div>
+            <div class="hero-text-block">
+              <h1>Dundalk Institute<br />of Technology (DkIT)</h1>
+              <p class="hero-meta-p">
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="margin-right: 0.375rem"
+                ></i
+                >Dundalk, Co. Louth, Ireland &nbsp;·&nbsp;
+                <a href="https://www.dkit.ie/" target="_blank">www.dkit.ie</a>
+              </p>
+              <div class="badge-container">
+                <span class="badge ireland-green text-white">Ireland</span>
+                <span class="badge bg-white/20 text-white">Dundalk</span>
+                <span class="badge bg-accent text-white">QUB Partnership</span>
+                <span class="badge bg-gold text-white">Est. 1969</span>
+              </div>
+              <div class="hero-stats-grid">
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Intake</div>
+                  <div class="stat-strip-val">Sep 2026</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">App Fee</div>
+                  <div class="stat-strip-val">€30</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Tuition</div>
+                  <div class="stat-strip-val">€9K–€17K</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">IELTS</div>
+                  <div class="stat-strip-val">6.0</div>
+                </div>
+              </div>
+              <div class="hero-btn-group">
+                <a
+                  href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+                  target="_blank"
+                  class="btn-apply text-base"
+                  >Apply Now</a
+                >
+                <button class="btn-outline text-base" id="browseCoursesHeroBtn">
+                  <i
+                    class="fa-solid fa-graduation-cap"
+                    style="margin-right: 0.5rem"
+                  ></i
+                  >Browse Courses
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <section class="DKITdesc">
-          <div>
-            <p>
-              Dundalk Institute of Technology (DkIT) is partnering with Queen’s
+      </div>
+    </section>
+
+    <div class="tab-nav">
+      <div class="tab-nav-inner no-scroll">
+        <button class="tab-btn active" data-tab="overview">
+          <i class="fa-solid fa-house" style="margin-right: 0.375rem"></i
+          >Overview
+        </button>
+        <button class="tab-btn" data-tab="rankings">
+          <i class="fa-solid fa-ranking-star" style="margin-right: 0.375rem"></i
+          >Rankings
+        </button>
+        <button class="tab-btn" data-tab="admission">
+          <i
+            class="fa-solid fa-file-circle-check"
+            style="margin-right: 0.375rem"
+          ></i
+          >Admission
+        </button>
+        <button class="tab-btn" data-tab="scholarships">
+          <i class="fa-solid fa-award" style="margin-right: 0.375rem"></i
+          >Scholarships
+        </button>
+        <button class="tab-btn" data-tab="contact">
+          <i class="fa-solid fa-headset" style="margin-right: 0.375rem"></i
+          >Contact Us
+        </button>
+        <button class="tab-btn" data-tab="info">
+          <i class="fa-solid fa-table" style="margin-right: 0.375rem"></i>Key
+          Info
+        </button>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 py-6 space-y-5">
+      <div id="tab-overview" class="tab-pane active fade-up">
+        <div class="overview-grid">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>About DkIT</h2>
+            </div>
+            <p class="about-paragraph mb-3">
+              Dundalk Institute of Technology (DkIT) is partnering with Queen's
               University Belfast (QUB) to become a University College of QUB,
-              with the formal agreement to be signed in late 2025. Starting in
-              September 2026, students will graduate with Queen’s University
-              Belfast (QUB)
+              with the formal agreement signed in 2025. Starting from September
+              2026, students will graduate with a Queen's University Belfast
+              (QUB) degree — one of the UK's most prestigious universities.
+            </p>
+            <p class="about-paragraph mb-4">
+              Located in Dundalk, Co. Louth — on the Ireland-Northern Ireland
+              border — DkIT has a strong track record of applied education and
+              industry engagement. With this QUB partnership, graduates receive
+              internationally recognised degrees from a Russell Group-affiliated
+              institution, opening doors globally.
+            </p>
+            <div class="about-stats-matrix">
+              <div class="about-stat-item">
+                <div class="stat-val">7K+</div>
+                <div class="stat-lbl">Students</div>
+              </div>
+              <div class="about-stat-item border-x">
+                <div class="stat-val">QUB</div>
+                <div class="stat-lbl">Degree Partner</div>
+              </div>
+              <div class="about-stat-item">
+                <div class="stat-val">11</div>
+                <div class="stat-lbl">PG Programmes</div>
+              </div>
+            </div>
+          </div>
+          <div class="overview-right-column">
+            <img
+              src="https://brive.com/media/images/brive-dundalk-institute-of-technology-1.jpg"
+              alt="DkIT Campus"
+              class="about-img"
+            />
+            <div class="info-card p-4">
+              <div class="campus-info-mini-list">
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-location-dot"></i
+                  ><span>Dundalk, Co. Louth, Ireland</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-calendar"></i
+                  ><span>Intake: September 2026</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-globe"></i
+                  ><a
+                    href="https://www.dkit.ie/"
+                    target="_blank"
+                    class="text-brand"
+                    >www.dkit.ie</a
+                  >
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-university"></i
+                  ><span>QUB Degree from Sep 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card p-5" style="margin-bottom: 1.25rem">
+          <div class="card-header-block">
+            <div class="indicator-bar bg-sky"></div>
+            <h2>Gallery: Dundalk Institute of Technology</h2>
+          </div>
+          <div class="gallery-grid">
+            <img
+              src="https://www.educationinireland.com/resource/image/182276/landscape_ratio16x9/440/247/2ab0752bc27685c0f44da50fc50a5ce5/F74790B061A3BCE88E43B55FA4A3562C/dundalk-institute-of-technology-dkit-.jpg"
+              alt="Campus"
+              class="gallery-img"
+            />
+            <img
+              src="https://media.licdn.com/dms/image/v2/C4D1BAQEwBDydGQB4IQ/company-background_10000/company-background_10000/0/1582943522803/dundalk_institute_of_technology_cover?e=2147483647&v=beta&t=UFZ6ITBiNpaFUbDdWvbm6MANJoi8nVTk-W1zzMy0PRM"
+              alt="Labs"
+              class="gallery-img"
+            />
+            <img
+              src="https://www.dundalkdemocrat.ie/jpim-static/image/2026/05/15/9/29/DkIT-to-be-named-Dundalk-University-College.jpeg?width=1200&height=640&fit=crop"
+              alt="Library"
+              class="gallery-img"
+            />
+            <img
+              src="https://www.gaelicplayers.com/wp-content/uploads/2022/05/DKIT-webfi-1024x665.jpg"
+              alt="Student Life"
+              class="gallery-img"
+            />
+          </div>
+        </div>
+
+        <div class="grid-2-col" style="margin-bottom: 1.25rem">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div
+                class="scholarship-icon-box"
+                style="background-color: var(--brand-l)"
+              >
+                <i class="fa-solid fa-flask text-brand text-sm"></i>
+              </div>
+              <h3>Research Strengths</h3>
+            </div>
+            <ul class="icon-list-block">
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Agricultural Biotechnology
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i>Data
+                Analytics & Computing
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i
+                >Sustainable Food Technology
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i>Music
+                Technology
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-sky text-sm"></i>Medical
+                Device Engineering
+              </li>
+            </ul>
+          </div>
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div
+                class="scholarship-icon-box"
+                style="background-color: var(--brand-l)"
+              >
+                <i class="fa-solid fa-star text-brand text-sm"></i>
+              </div>
+              <h3>Academic Strengths</h3>
+            </div>
+            <ul class="icon-list-block">
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Computing & MSc Programmes
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Business & Entrepreneurship
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Tourism & Heritage
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >Science & Biotechnology
+              </li>
+              <li class="icon-list-item">
+                <i class="fa-solid fa-check-circle text-gold text-sm"></i
+                >QUB-Recognised Degrees
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div class="callout-banner-inner">
+            <div
+              class="callout-text-block"
+              style="
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+                gap: 1rem 0;
+              "
+            >
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">QUB</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Degree from Sep 2026
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">100%</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  English Medium
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">2yr</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Post-Study Work Visa
+                </div>
+              </div>
+              <div style="text-align: center">
+                <div style="font-weight: 900; font-size: 1.5rem">€30</div>
+                <div
+                  class="banner-subtext"
+                  style="font-size: 0.8rem; margin-top: 0.125rem"
+                >
+                  Application Fee
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-rankings" class="tab-pane fade-up">
+        <div
+          class="grid-2-col ranking-chips-grid"
+          style="
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 1.25rem;
+          "
+        >
+          <div class="rank-chip">
+            <div class="text-3xl text-brand">QUB</div>
+            <div class="rank-label">Degree Awarded By</div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-3xl text-brand">201–250</div>
+            <div class="rank-label">QUB QS Rank</div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-3xl text-accent">Russell</div>
+            <div class="rank-label">Group Affiliate</div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-3xl text-gold">Top 1%</div>
+            <div class="rank-label">World Universities</div>
+          </div>
+        </div>
+        <div class="grid-2-col">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h3>Queen's University Belfast Partnership</h3>
+            </div>
+            <p class="about-paragraph">
+              From September 2026, DkIT students will graduate with Queen's
+              University Belfast (QUB) degrees. QUB is ranked 201–250 globally
+              by QS and is a member of the Russell Group — the UK's most
+              prestigious university alliance, known for world-leading research
+              and exceptional graduate outcomes.
             </p>
           </div>
-        </section>
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-calendar-days"></i> Intake: September 2026
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h3>DkIT Academic Standing</h3>
+            </div>
+            <p class="about-paragraph">
+              DkIT has a strong record of producing work-ready graduates with
+              deep industry connections across computing, engineering, business,
+              and sciences. The QUB partnership elevates this with globally
+              recognised degree certification and expanded research
+              infrastructure.
+            </p>
           </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-file-invoice"></i> Application Fee: €30 EUR
+        </div>
+      </div>
+
+      <div id="tab-admission" class="tab-pane fade-up">
+        <div class="admission-grid">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Entry Requirements</h2>
+            </div>
+            <div class="admission-reqs-list">
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
+                <div>
+                  <div class="req-title">IELTS</div>
+                  <div class="req-desc">
+                    Overall 6.0 (no band below 5.5) for most programmes.
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
+                <div>
+                  <div class="req-title">TOEFL iBT</div>
+                  <div class="req-desc">
+                    Minimum 80 overall (programme dependent)
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                  <div class="req-title">Academic Qualification</div>
+                  <div class="req-desc">
+                    4-Year Bachelor's degree or equivalent international
+                    qualification in a relevant discipline.
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-file-lines"></i>
+                <div>
+                  <div class="req-title">Documents Required</div>
+                  <div class="req-desc">
+                    Academic transcripts, Passport copy, SOP/Personal Statement,
+                    2 Reference Letters, Updated CV, English proficiency
+                    certificate
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-graduation-cap"></i> Min. Education: 4-Year
-            Bachelor's
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h2>Application Process</h2>
+            </div>
+            <ol class="admission-process-steps">
+              <li class="admission-step-item">
+                <div class="admission-step-number">1</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Choose Your Programme</div>
+                  <div class="step-desc">
+                    Browse available postgraduate programmes and verify entry
+                    requirements for your chosen field.
+                  </div>
+                </div>
+              </li>
+              <li class="admission-step-item">
+                <div class="admission-step-number">2</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Submit Online Application</div>
+                  <div class="step-desc">
+                    Apply via DkIT's postgraduate portal with the €30
+                    application fee.
+                  </div>
+                </div>
+              </li>
+              <li class="admission-step-item">
+                <div class="admission-step-number">3</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Receive Offer Letter</div>
+                  <div class="step-desc">
+                    Accept your conditional/unconditional offer and pay the
+                    deposit to secure your place.
+                  </div>
+                </div>
+              </li>
+              <li class="admission-step-item">
+                <div class="admission-step-number">4</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Apply for Student Visa (D-Visa)</div>
+                  <div class="step-desc">
+                    Submit Irish student visa application with offer letter,
+                    financial proof, and health insurance.
+                  </div>
+                </div>
+              </li>
+              <li class="admission-step-item">
+                <div class="admission-step-number">5</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Travel & Enrol</div>
+                  <div class="step-desc">
+                    Complete your pre-departure checklist and begin your
+                    academic journey at DkIT with a QUB degree!
+                  </div>
+                </div>
+              </li>
+            </ol>
           </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-globe"></i
-            ><a href="https://www.dkit.ie/" target="_blank">www.dkit.ie</a>
+        </div>
+      </div>
+
+      <div id="tab-scholarships" class="tab-pane fade-up">
+        <div class="scholarship-grid">
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-yellow-50">
+                <i class="fa-solid fa-medal text-yellow-500"></i>
+              </div>
+              <div class="scholarship-name">DkIT Merit Scholarship</div>
+            </div>
+            <p class="scholarship-desc">
+              Merit-based award for outstanding international postgraduate
+              applicants with exceptional academic records and relevant work
+              experience.
+            </p>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Up to €2,000</span
+              ><span class="badge bg-brand-l">Postgraduate</span>
+            </div>
           </div>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-blue-50">
+                <i class="fa-solid fa-earth-europe text-blue-500"></i>
+              </div>
+              <div class="scholarship-name">
+                Government of Ireland Scholarship
+              </div>
+            </div>
+            <p class="scholarship-desc">
+              Competitive Irish government scholarship for top international
+              students covering full tuition and living stipend for one academic
+              year.
+            </p>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Full Tuition + Stipend</span
+              ><span class="badge bg-brand-l">Competitive</span>
+            </div>
+          </div>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-purple-50">
+                <i class="fa-solid fa-flask text-purple-500"></i>
+              </div>
+              <div class="scholarship-name">
+                QUB Research Partnership Awards
+              </div>
+            </div>
+            <p class="scholarship-desc">
+              Special research awards available through the DkIT-QUB partnership
+              for eligible postgraduate research students.
+            </p>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Stipend + Fees</span
+              ><span class="badge bg-brand-l">Research</span>
+            </div>
+          </div>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-orange-50">
+                <i class="fa-solid fa-handshake text-orange-500"></i>
+              </div>
+              <div class="scholarship-name">Faculty & Departmental Awards</div>
+            </div>
+            <p class="scholarship-desc">
+              Individual departments offer partial fee waivers and bursaries for
+              high-achieving international students.
+            </p>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Partial Fee Waiver</span
+              ><span class="badge bg-brand-l">Varies by Dept</span>
+            </div>
+          </div>
+        </div>
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div class="callout-banner-inner">
+            <div class="callout-text-block">
+              <div class="banner-title">Why Study in Ireland?</div>
+              <p>Your Gateway to Europe's Silicon Valley</p>
+              <div class="banner-subtext">
+                English-speaking EU hub · Top 10 globally for education ·
+                World-class research labs · Direct global tech pipelines
+              </div>
+            </div>
+            <a
+              href="https://studyinireland.info/why-ireland/"
+              class="banner-btn"
+              target="_blank"
+              >Learn More →</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-contact" class="tab-pane fade-up">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Our Office</h2>
+            </div>
+            <div class="contact-cards-subgrid">
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-location-dot text-brand"></i>
+                <div>
+                  <div class="info-title">Office Address</div>
+                  <div class="info-desc">
+                    Kumaripati - Mahalaximisthan Rd, Lalitpur 44700
+                  </div>
+                </div>
+              </div>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-envelope text-brand"></i>
+                <div>
+                  <div class="info-title">Email Us</div>
+                  <a
+                    href="mailto:admissions@studyinireland.info"
+                    class="info-link-brand"
+                    >admissions@studyinireland.info</a
+                  >
+                </div>
+              </div>
+              <div class="contact-subcard bg-green-50">
+                <i class="fa-brands fa-whatsapp text-green-600"></i>
+                <div>
+                  <div class="info-title">WhatsApp/Call</div>
+                  <a
+                    href="https://wa.me/9851351123"
+                    target="_blank"
+                    class="info-link-green"
+                    >+977 9851351123</a
+                  >
+                </div>
+              </div>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-clock text-brand"></i>
+                <div>
+                  <div class="info-title">Working Hours</div>
+                  <div class="info-desc">Sun - Fri: 9:30 AM - 5:30 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-cta-box">
+            <div>
+              <div class="cta-heading">Need Personal Guidance?</div>
+              <p class="cta-desc">
+                Book a 1-on-1 free counselling session with our European
+                education experts to plan your profile evaluation, course
+                shortlisting, and application submission.
+              </p>
+            </div>
+            <a
+              href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+              target="_blank"
+              class="cta-action-btn"
+              >Book Free Counselling</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-info" class="tab-pane fade-up">
+        <div
+          class="info-card"
+          style="overflow-x: auto; -webkit-overflow-scrolling: touch"
+        >
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <td class="font-bold-brand">University Name</td>
+                <td class="text-gray-700">
+                  Dundalk Institute of Technology (DkIT)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Degree Awarded By</td>
+                <td class="text-gray-700">
+                  Queen's University Belfast (QUB) — from September 2026
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Location</td>
+                <td class="text-gray-700">Dundalk, Co. Louth, Ireland</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Type</td>
+                <td class="text-gray-700">
+                  Institute of Technology (QUB University College partner)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Established</td>
+                <td class="text-gray-700">1969</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Total Students</td>
+                <td class="text-gray-700">7,000+</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Main Intake</td>
+                <td class="text-gray-700">September 2026</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Average Tuition Fee</td>
+                <td class="text-gray-700">
+                  €9,950 – €16,583 per year (postgraduate)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Application Fee</td>
+                <td class="text-gray-700">€30</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">IELTS Requirement</td>
+                <td class="text-gray-700">6.0 overall / TOEFL 80</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Post-Study Work Visa</td>
+                <td class="text-gray-700">
+                  2 Years (Third Level Graduate Scheme)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Official Website</td>
+                <td>
+                  <a
+                    href="https://www.dkit.ie/"
+                    target="_blank"
+                    class="underline"
+                    >www.dkit.ie</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <div class="wrapper" id="app"></div>
+    <div id="coursesModal" class="courses-modal">
+      <div class="courses-modal-content">
+        <div class="courses-modal-header">
+          <h2>Programmes</h2>
+          <button id="closeModalBtn" class="close-modal-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="courses-modal-search-sticky">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i
+            ><input
+              type="text"
+              id="courseSearch"
+              placeholder="Search programmes (e.g. Computing, Management, Data Analytics…)"
+            />
+          </div>
+          <div class="filter-buttons-wrapper no-scroll" id="filterBtns">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Business">Business</button>
+            <button class="filter-btn" data-filter="Computing">
+              Computing
+            </button>
+            <button class="filter-btn" data-filter="Science">Science</button>
+            <button class="filter-btn" data-filter="Arts">Arts</button>
+          </div>
+        </div>
+        <div class="courses-modal-body"><div id="courseContainer"></div></div>
+      </div>
+    </div>
 
     <script>
-      const ugSections = [
+      const courses = [
         {
-          title: "Postgraduate · Arts, Science & Business",
-          pg: true,
-          courses: [
-            [
-              "MA in Tourism and Heritage Management",
-              "€9,950",
-              "12 Months",
-              "Dundalk",
-            ],
-            ["MA/MSc in Music Technology", "€12,000", "12 Months", "Dundalk"],
-            [
-              "MBS in Entrepreneurship and Marketing",
-              "€12,000",
-              "12 Months",
-              "Dundalk",
-            ],
-            [
-              "MSc / Postgraduate Diploma in Agricultural Biotechnology",
-              "€12,000",
-              "12 Months",
-              "Dundalk",
-            ],
-            ["MSc in Computing", "€16,583", "12 Months", "Dundalk"],
-            ["MSc in Data Analytics", "€12,000", "12 Months", "Dundalk"],
-            ["MSc in Management", "€9,950", "12 Months", "Dundalk"],
-            [
-              "MBS in Strategic Data Analytics for Business",
-              "€12,000",
-              "12 Months",
-              "Dundalk",
-            ],
-            [
-              "MSc in Sustainable Food Technology and Innovation",
-              "€12,000",
-              "1-2 Years",
-              "Dundalk",
-            ],
-            [
-              "Postgraduate Diploma in Sustainable Food Technology and Innovation",
-              "€12,000",
-              "1-2 Years",
-              "Dundalk",
-            ],
-            [
-              "MSc in Computing in Medical Device Software Engineering",
-              "€495/€10,000",
-              "1-2 Years",
-              "Dundalk",
-            ],
-          ],
+          title: "MA in Tourism and Heritage Management",
+          faculty: "Arts",
+          duration: "12 Months",
+          fee: "€9,950",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MA/MSc in Music Technology",
+          faculty: "Arts",
+          duration: "12 Months",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MBS in Entrepreneurship and Marketing",
+          faculty: "Business",
+          duration: "12 Months",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc / Postgraduate Diploma in Agricultural Biotechnology",
+          faculty: "Science",
+          duration: "12 Months",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc in Computing",
+          faculty: "Computing",
+          duration: "12 Months",
+          fee: "€16,583",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc in Data Analytics",
+          faculty: "Computing",
+          duration: "12 Months",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc in Management",
+          faculty: "Business",
+          duration: "12 Months",
+          fee: "€9,950",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MBS in Strategic Data Analytics for Business",
+          faculty: "Business",
+          duration: "12 Months",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc in Sustainable Food Technology and Innovation",
+          faculty: "Science",
+          duration: "1-2 Years",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title:
+            "Postgraduate Diploma in Sustainable Food Technology and Innovation",
+          faculty: "Science",
+          duration: "1-2 Years",
+          fee: "€12,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
+        },
+        {
+          title: "MSc in Computing in Medical Device Software Engineering",
+          faculty: "Computing",
+          duration: "1-2 Years",
+          fee: "€495 / €10,000",
+          intake: "Sep 2026",
+          ielts: "6.0",
+          link: "https://www.dkit.ie/",
         },
       ];
 
-      const app = document.getElementById("app");
-      ugSections.forEach((sec) => {
-        const lbl = document.createElement("div");
-        lbl.className = "section-label";
-        lbl.innerHTML = `<h2>${sec.title}</h2>`;
-        app.appendChild(lbl);
-
-        const grid = document.createElement("div");
-        grid.className = "course-grid";
-
-        sec.courses.forEach((c) => {
+      let activeFilter = "all",
+        searchVal = "";
+      function renderCourses() {
+        const container = document.getElementById("courseContainer");
+        container.innerHTML = "";
+        const filtered = courses.filter(
+          (c) =>
+            (activeFilter === "all" || c.faculty === activeFilter) &&
+            c.title.toLowerCase().includes(searchVal.toLowerCase()),
+        );
+        if (!filtered.length) {
+          container.innerHTML = `<div class="info-card" style="padding:2.5rem;display:flex;flex-direction:column;align-items:center;"><i class="fa-solid fa-folder-open" style="font-size:2.25rem;color:#cbd5e1;margin-bottom:0.5rem;"></i><p style="color:#94a3b8;font-size:14px;">No courses match your search or filter.</p></div>`;
+          return;
+        }
+        filtered.forEach((c) => {
           const card = document.createElement("div");
           card.className = "course-card";
-          card.innerHTML = `
-            ${sec.pg ? '<span class="pg-badge">Postgraduate</span>' : '<span class="badge">Undergraduate</span>'}
-            <div class="course-title">${c[0]}</div>
-            <div class="detail"><i class="fa-solid fa-euro-sign"></i> ${c[1]}</div>
-            <div class="detail"><i class="fa-solid fa-clock"></i> ${c[2]}</div>
-            <div class="detail"><i class="fa-solid fa-location-dot"></i> ${c[3]}</div>
-            <div class="detail"><i class="fa-solid fa-language"></i> IELTS 6.0 / TOEFL 80</div>
-            <div class="btn-group">
-              <a href="https://www.dkit.ie/" target="_blank" class="btn btn-secondary">Learn More</a>
-              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn btn-primary">Apply Now</a>
-            </div>
-          `;
-          grid.appendChild(card);
+          card.innerHTML = `<div><div class="course-card-meta-tags"><span class="faculty-tag">${c.faculty}</span><span class="duration-tag"><i class="fa-solid fa-clock"></i>${c.duration}</span><span class="intake-tag"><i class="fa-solid fa-calendar"></i>${c.intake}</span></div><h3><a href="${c.link}" target="_blank">${c.title}</a></h3><div class="course-card-details"><span><strong>Tuition Fee:</strong> <span class="text-brand">${c.fee}</span></span><span><strong>IELTS:</strong> <span class="text-brand">${c.ielts}</span></span></div></div><div class="course-card-actions"><a href="${c.link}" target="_blank" class="btn-outline text-xs">View Details</a><a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-xs">Apply</a></div>`;
+          container.appendChild(card);
         });
-
-        app.appendChild(grid);
+      }
+      const modal = document.getElementById("coursesModal");
+      function openModal() {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderCourses();
+      }
+      function closeModal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document
+        .getElementById("browseCoursesHeroBtn")
+        .addEventListener("click", openModal);
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
       });
+      document.querySelectorAll("#filterBtns button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll("#filterBtns button")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.dataset.filter;
+          renderCourses();
+        });
+      });
+      document.getElementById("courseSearch").addEventListener("input", (e) => {
+        searchVal = e.target.value;
+        renderCourses();
+      });
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-pane")
+            .forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .getElementById("tab-" + btn.dataset.tab)
+            .classList.add("active");
+        });
+      });
+      renderCourses();
     </script>
   </body>
 </html>
