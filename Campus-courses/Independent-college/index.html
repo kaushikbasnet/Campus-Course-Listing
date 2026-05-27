@@ -4,360 +4,1604 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Independent College Dublin | Study in Ireland</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: "#2c3e50",
-              "brand-d": "#1a252f",
-              "brand-l": "#eaf2f8",
-              "brand-m": "#34495e",
-              accent: "#c0392b",
-              sky: "#2980b9",
-              gold: "#f39c12",
-            },
-            fontFamily: {
-              head: ["Figtree", "sans-serif"],
-              body: ["Figtree", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      * { box-sizing: border-box; }
-      body { font-family: "Figtree", sans-serif; background: #f2f5f9; color: #1a2332; margin: 0; }
-      h1,h2,h3,h4,h5,.font-head { font-family: "Figtree", sans-serif; }
+      /* ── CSS RESET & GLOBAL VARIABLES ──────────────── */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --brand: #2c3e50;
+        --brand-d: #1a252f;
+        --brand-l: #eaf2f8;
+        --brand-m: #34495e;
+        --accent: #c0392b;
+        --sky: #2980b9;
+        --gold: #f39c12;
+        --gray-50: #f8fafc;
+        --gray-100: #f1f5f9;
+        --gray-200: #e2e8f0;
+        --gray-300: #cbd5e1;
+        --gray-400: #94a3b8;
+        --gray-500: #64748b;
+        --gray-600: #475569;
+        --gray-700: #334155;
+        --gray-800: #1e293b;
+      }
+      body {
+        font-family: "Figtree", sans-serif;
+        background: #f2f5f9;
+        color: #1a2332;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      .font-head {
+        font-family: "Figtree", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
 
-      .ireland-green { background-color: #169b62; }
+      /* ── UTILITY LAYOUT CLASSES ────────────────────── */
+      .max-w-6xl {
+        max-width: 72rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .py-6 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .space-y-5 > * + * {
+        margin-top: 1.25rem;
+      }
+      .ireland-green {
+        background-color: #169b62;
+      }
 
+      /* ── HERO SECTION ──────────────────────────────── */
       .hero {
-        position: relative; min-height: 480px;
-        display: flex; align-items: flex-end; overflow: hidden;
+        position: relative;
+        min-height: 480px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
       }
       .hero-img {
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         background-image: url("https://independentcollege.ie/wp-content/uploads/2022/06/shutterstock_442339726-scaled-1.jpg");
-        background-size: cover; background-position: center 40%;
-        filter: brightness(0.38) saturate(1.0);
+        background-size: cover;
+        background-position: center 40%;
+        filter: brightness(0.38) saturate(1);
       }
       .hero-overlay {
-        position: absolute; inset: 0;
-        background: linear-gradient(to top, rgba(20,30,48,0.97) 0%, rgba(44,62,80,0.65) 50%, rgba(44,62,80,0.2) 100%);
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(20, 30, 48, 0.97) 0%,
+          rgba(44, 62, 80, 0.65) 50%,
+          rgba(44, 62, 80, 0.2) 100%
+        );
       }
-      .hero-content { position: relative; z-index: 2; width: 100%; padding: 24px 16px 28px; }
-
-      .search-bar { background: #fff; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 40; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-
-      .tab-nav { background: #fff; border-bottom: 2px solid #e2e8f0; position: sticky; top: 64px; z-index: 39; }
-      .tab-btn { font-family: "Figtree", sans-serif; font-weight: 600; font-size: 14px; padding: 12px 18px; border: none; background: transparent; color: #64748b; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
-      .tab-btn:hover { color: #2c3e50; background: #eaf2f8; }
-      .tab-btn.active { color: #2c3e50; border-bottom-color: #2c3e50; background: #eaf2f8; }
-      .tab-pane { display: none; }
-      .tab-pane.active { display: block; }
-
-      .course-card { background: #fff; border-radius: 14px; border: 1px solid #e2eaf0; border-left: 5px solid #2c3e50; transition: transform 0.2s, box-shadow 0.2s; overflow: hidden; }
-      .course-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(44,62,80,0.14); }
-
-      .info-card { background: #fff; border-radius: 14px; border: 1px solid #e2eaf0; overflow: hidden; }
-      .rank-chip { border-radius: 12px; border: 1px solid #e2eaf0; background: #fff; text-align: center; padding: 18px 10px; transition: transform 0.15s, box-shadow 0.15s; cursor: default; }
-      .rank-chip:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(44,62,80,0.12); }
-
-      .sec-label { display: flex; align-items: center; gap: 12px; margin: 28px 0 14px; }
-      .sec-label h2 { font-family: "Poppins", sans-serif; font-weight: 800; font-size: 18px; color: #2c3e50; white-space: nowrap; }
-      .sec-label::after { content: ""; flex: 1; height: 2px; background: linear-gradient(to right, #aed6f1, transparent); border-radius: 99px; }
-
-      .stat-strip { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 12px 18px; text-align: center; }
-
-      .badge { font-family: "Poppins", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
-
-      .info-table tr:nth-child(odd) { background: #f8fafc; }
-      .info-table td { padding: 11px 18px; font-size: 15px; border-bottom: 1px solid #eef2f7; }
-
-      .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; transition: transform 0.3s; cursor: zoom-in; }
-      .gallery-img:hover { transform: scale(1.03); }
-
-      .contact-card { background: #fff; border-radius: 14px; border: 1px solid #e2eaf0; padding: 20px; transition: box-shadow 0.2s; }
-      .contact-card:hover { box-shadow: 0 8px 24px rgba(44,62,80,0.1); }
-
-      .btn-apply { background: #169b62; color: #fff; font-family: "Poppins", sans-serif; font-weight: 700; border-radius: 10px; padding: 12px 24px; text-align: center; display: inline-block; transition: opacity 0.2s, transform 0.2s; text-decoration: none; border: none; cursor: pointer; }
-      .btn-apply:hover { opacity: 0.8; transform: translateY(-2px); transition: ease-in-out 0.5s; background: #fff; color: #169b62; }
-
-      .btn-outline { background: transparent; border: 2px solid #2c3e50; color: #2c3e50; font-family: "Poppins", sans-serif; font-weight: 600; border-radius: 10px; padding: 10px 22px; text-align: center; display: inline-block; transition: all 0.2s; text-decoration: none; cursor: pointer; }
-      .btn-outline:hover { background: #2c3e50; color: #fff; transition: ease-in-out 0.5s; }
-
-      .filter-btn { font-family: "Poppins", sans-serif; font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 8px; border: 1.5px solid #cbd5e0; background: #fff; color: #4a5568; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-      .filter-btn:hover, .filter-btn.active { background: #2c3e50; color: #fff; border-color: #2c3e50; }
-
-      .no-scroll { scrollbar-width: none; -ms-overflow-style: none; }
-      .no-scroll::-webkit-scrollbar { display: none; }
-
-      .about-img { width: 100%; height: 260px; object-fit: cover; border-radius: 14px; }
-
-      @media (max-width: 640px) {
-        .hero { min-height: 380px; }
-        .tab-btn { font-size: 12px; padding: 10px 12px; }
-        .sec-label h2 { font-size: 16px; }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 24px 16px 28px;
+      }
+      .hero-flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .logo-box {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        padding: 0.75rem;
+        width: 7rem;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo-box img {
+        width: 6rem;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+      .hero-text-block {
+        flex: 1 1 0%;
+      }
+      .hero-text-block h1 {
+        font-size: 1.875rem;
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+      }
+      .hero-meta-p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-meta-p a:hover {
+        color: var(--sky);
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .hero-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
       }
 
-      @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-      .fade-up { animation: fadeUp 0.35s ease both; }
+      /* ── STAT STRIP ──────────────────────── */
+      .stat-strip {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 12px 18px;
+        text-align: center;
+      }
+      .stat-strip-title {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.25rem;
+      }
+      .stat-strip-val {
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+
+      /* ── BADGE ───────────────────────────── */
+      .badge {
+        font-family: "Poppins", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+      .badge.ireland-green {
+        background-color: #169b62;
+        color: #fff;
+      }
+      .badge.bg-white-20 {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+      .badge.bg-accent {
+        background-color: var(--accent);
+        color: #fff;
+      }
+      .badge.bg-gold {
+        background-color: var(--gold);
+        color: #fff;
+      }
+
+      /* ── TAB NAV ──────────────────────────── */
+      .tab-nav {
+        background: #fff;
+        border-bottom: 2px solid var(--gray-200);
+        position: sticky;
+        top: 0;
+        z-index: 39;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      .tab-nav-inner {
+        max-width: 72rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: flex;
+        overflow-x: auto;
+      }
+      .tab-btn {
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 16px 18px;
+        border: none;
+        background: transparent;
+        color: var(--gray-500);
+        cursor: pointer;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
+      }
+      .tab-btn:hover {
+        color: var(--brand);
+        background: var(--brand-l);
+      }
+      .tab-btn.active {
+        color: var(--brand);
+        border-bottom-color: var(--brand);
+        background: var(--brand-l);
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+
+      /* ── COURSES MODAL ─────────────────────── */
+      .courses-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .courses-modal.open {
+        display: flex;
+      }
+      .courses-modal-content {
+        background: #f2f5f9;
+        width: 100%;
+        max-width: 54rem;
+        max-height: 90vh;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: fadeUp 0.3s ease out;
+      }
+      .courses-modal-header {
+        background: #fff;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--gray-200);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .courses-modal-header h2 {
+        font-size: 1.25rem;
+        color: var(--brand);
+        font-weight: 800;
+      }
+      .close-modal-btn {
+        background: var(--gray-100);
+        border: none;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 9999px;
+        color: var(--gray-600);
+        font-size: 1.125rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+      }
+      .close-modal-btn:hover {
+        background: var(--gray-200);
+        color: var(--brand);
+      }
+      .courses-modal-search-sticky {
+        background: #fff;
+        padding: 0.75rem 1.25rem;
+        border-bottom: 2px solid var(--gray-200);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .search-input-wrapper {
+        position: relative;
+        width: 100%;
+      }
+      .search-input-wrapper i {
+        position: absolute;
+        left: 0.875rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-400);
+      }
+      .search-input-wrapper input {
+        width: 100%;
+        padding-left: 2.5rem;
+        padding-right: 1rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        font-size: 15px;
+        border: 2px solid var(--gray-200);
+        border-radius: 0.75rem;
+        outline: none;
+        background-color: var(--gray-50);
+        font-family: "Figtree", sans-serif;
+        transition: border-color 0.2s;
+      }
+      .search-input-wrapper input:focus {
+        border-color: var(--brand);
+      }
+      .filter-buttons-wrapper {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+      .courses-modal-body {
+        padding: 1.25rem;
+        overflow-y: auto;
+        flex: 1 1 0%;
+      }
+
+      /* ── CARDS ────────────────────────────── */
+      .course-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
+        border-left: 5px solid var(--brand);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        overflow: hidden;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(44, 62, 80, 0.1);
+      }
+      .course-card-meta-tags {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.375rem;
+        flex-wrap: wrap;
+      }
+      .faculty-tag {
+        font-size: 0.75rem;
+        background-color: var(--brand-l);
+        color: var(--brand);
+        padding: 0.125rem 0.625rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+      }
+      .duration-tag,
+      .intake-tag {
+        font-size: 0.75rem;
+        background-color: var(--gray-100);
+        color: var(--gray-600);
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+      }
+      .duration-tag i,
+      .intake-tag i {
+        margin-right: 0.25rem;
+        font-size: 11px;
+      }
+      .course-card h3 {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--gray-800);
+        line-height: 1.3;
+      }
+      .course-card h3 a:hover {
+        color: var(--brand);
+      }
+      .course-card-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin-top: 0.5rem;
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+      .course-card-details span strong {
+        color: var(--gray-700);
+      }
+      .course-card-details .text-brand {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .course-card-actions {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .info-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
+        overflow: hidden;
+      }
+      .info-card.p-5 {
+        padding: 1.25rem;
+      }
+      .info-card.p-4 {
+        padding: 1rem;
+      }
+
+      .rank-chip {
+        border-radius: 12px;
+        border: 1px solid #e2eaf0;
+        background: #fff;
+        text-align: center;
+        padding: 14px 8px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .rank-chip:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(44, 62, 80, 0.12);
+      }
+      .rank-chip .text-3xl {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 0.25rem;
+      }
+      .rank-chip .text-brand {
+        color: var(--brand);
+      }
+      .rank-chip .text-accent {
+        color: var(--accent);
+      }
+      .rank-chip .text-gold {
+        color: var(--gold);
+      }
+      .rank-chip .rank-label {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      /* ── SECTION LABELS & HEADERS ─────────── */
+      .sec-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 28px 0 14px;
+      }
+      .sec-label h2 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        color: var(--brand);
+        white-space: nowrap;
+      }
+      .sec-label::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, #aed6f1, transparent);
+        border-radius: 99px;
+      }
+      .card-header-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .card-header-block .indicator-bar {
+        width: 0.25rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+      }
+      .card-header-block .indicator-bar.bg-brand {
+        background-color: var(--brand);
+      }
+      .card-header-block .indicator-bar.bg-sky {
+        background-color: var(--sky);
+      }
+      .card-header-block h2 {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .card-header-block h3 {
+        font-weight: 800;
+        font-size: 1.125rem;
+        color: var(--brand);
+      }
+
+      .about-paragraph {
+        font-size: 14px;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+      .about-paragraph.mb-3 {
+        margin-bottom: 0.75rem;
+      }
+      .about-paragraph.mb-4 {
+        margin-bottom: 1rem;
+      }
+
+      /* About Stats Matrix */
+      .about-stats-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+      }
+      .about-stat-item {
+        text-align: center;
+      }
+      .about-stat-item .stat-val {
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: var(--brand);
+      }
+      .about-stat-item .stat-lbl {
+        font-size: 0.7rem;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .about-stat-item.border-x {
+        border-left: 1px solid var(--gray-200);
+        border-right: 1px solid var(--gray-200);
+      }
+
+      /* ── STRENGTH LISTS ─────────────────── */
+      .strength-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .strength-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 14px;
+        color: var(--gray-600);
+      }
+      .strength-item i.text-sky {
+        color: var(--sky);
+        font-size: 0.875rem;
+      }
+      .strength-item i.text-gold {
+        color: var(--gold);
+        font-size: 0.875rem;
+      }
+      .strength-icon-box {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background-color: var(--brand-l);
+      }
+      .strength-icon-box i {
+        color: var(--brand);
+        font-size: 0.875rem;
+      }
+
+      /* ── STATS BANNER ─────────────────── */
+      .stats-banner {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        background-color: var(--brand);
+        padding: 1.5rem;
+      }
+      .stats-banner-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        color: #fff;
+      }
+      .stats-banner-item {
+        text-align: center;
+      }
+      .stats-banner-item .stat-val {
+        font-weight: 900;
+        font-size: 1.75rem;
+      }
+      .stats-banner-item .stat-lbl {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.75);
+        margin-top: 0.25rem;
+      }
+
+      /* ── INFO TABLE ───────────────────────── */
+      .info-table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      .info-table tr:nth-child(odd) {
+        background: #f8fafc;
+      }
+      .info-table td {
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #eef2f7;
+      }
+      .info-table td.font-bold-brand {
+        font-weight: 700;
+        color: var(--brand);
+        width: 40%;
+      }
+      .info-table td.text-gray-700 {
+        color: var(--gray-700);
+      }
+      .info-table td a.underline {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+
+      /* ── IMAGE GALLERY ───────────────────── */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+      .gallery-img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      /* ── ADMISSION ─────────────────────── */
+      .admission-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .admission-reqs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .admission-req-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.875rem;
+        background-color: var(--brand-l);
+        border-radius: 0.75rem;
+      }
+      .admission-req-card i {
+        color: var(--brand);
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .admission-req-card .req-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-req-card .req-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .admission-process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .admission-step-item {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .admission-step-number {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-color: var(--brand);
+        color: #fff;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 800;
+        font-size: 0.8rem;
+      }
+      .admission-step-content .step-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .admission-step-content .step-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+
+      /* ── SCHOLARSHIPS ────────────────────── */
+      .scholarship-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .scholarship-card {
+        padding: 1.25rem;
+      }
+      .scholarship-title-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .scholarship-icon-box {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .scholarship-icon-box.bg-yellow-50 {
+        background-color: #fef9c3;
+      }
+      .scholarship-icon-box.bg-blue-50 {
+        background-color: #dbeafe;
+      }
+      .scholarship-icon-box.bg-purple-50 {
+        background-color: #f3e8ff;
+      }
+      .scholarship-icon-box.bg-orange-50 {
+        background-color: #ffedd5;
+      }
+      .scholarship-icon-box i.text-yellow-500 {
+        color: #eab308;
+      }
+      .scholarship-icon-box i.text-blue-500 {
+        color: #3b82f6;
+      }
+      .scholarship-icon-box i.text-purple-500 {
+        color: #a855f7;
+      }
+      .scholarship-icon-box i.text-orange-500 {
+        color: #f97316;
+      }
+      .scholarship-card .scholarship-name {
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .scholarship-card .scholarship-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+      .scholarship-card .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .badge.bg-green-50 {
+        background-color: #f0fdf4;
+        color: #15803d;
+      }
+      .badge.bg-brand-l {
+        background-color: var(--brand-l);
+        color: var(--brand);
+      }
+
+      /* Callout Banner */
+      .callout-banner {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        background-color: var(--brand);
+        padding: 1.25rem;
+      }
+      .callout-banner-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .callout-text-block {
+        flex: 1 1 0%;
+        color: #fff;
+        text-align: center;
+      }
+      .callout-text-block .banner-title {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.25rem;
+      }
+      .callout-text-block p {
+        margin-bottom: 0.25rem;
+        font-size: 14px;
+      }
+      .callout-text-block .banner-subtext {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .callout-banner-inner .banner-btn {
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.75rem;
+        white-space: nowrap;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .callout-banner-inner .banner-btn:hover {
+        background-color: #fef9c3;
+      }
+
+      /* ── CONTACT ─────────────────────────── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .contact-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e2eaf0;
+        padding: 1rem;
+      }
+      .contact-cards-subgrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .contact-subcard {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+      }
+      .contact-subcard.bg-brand-l {
+        background-color: var(--brand-l);
+      }
+      .contact-subcard.bg-green-50 {
+        background-color: #f0fdf4;
+      }
+      .contact-subcard i {
+        margin-top: 0.25rem;
+        font-size: 0.95rem;
+      }
+      .contact-subcard i.text-brand {
+        color: var(--brand);
+      }
+      .contact-subcard i.text-green-600 {
+        color: #16a34a;
+      }
+      .contact-subcard .info-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--gray-800);
+      }
+      .contact-subcard .info-desc {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 0.125rem;
+      }
+      .contact-subcard .info-link-brand {
+        font-size: 13px;
+        color: var(--brand);
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-brand:hover {
+        text-decoration: underline;
+      }
+      .contact-subcard .info-link-green {
+        font-size: 13px;
+        color: #15803d;
+        font-weight: 600;
+        margin-top: 0.125rem;
+        display: block;
+      }
+      .contact-subcard .info-link-green:hover {
+        text-decoration: underline;
+      }
+
+      .sidebar-cta-box {
+        border-radius: 1rem;
+        padding: 1.25rem;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--brand);
+      }
+      .sidebar-cta-box .cta-heading {
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 0.5rem;
+      }
+      .sidebar-cta-box .cta-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .sidebar-cta-box .cta-action-btn {
+        width: 100%;
+        background-color: #fff;
+        color: var(--brand);
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        border-radius: 0.75rem;
+        display: block;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      .sidebar-cta-box .cta-action-btn:hover {
+        background-color: #fef9c3;
+      }
+
+      /* Overview Layout */
+      .overview-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .overview-right-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .about-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+      .campus-info-mini-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .campus-info-mini-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 13px;
+      }
+      .campus-info-mini-item i {
+        color: var(--brand);
+        width: 1.25rem;
+        text-align: center;
+      }
+      .campus-info-mini-item span {
+        color: var(--gray-600);
+      }
+      .campus-info-mini-item a.text-brand {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+      .campus-info-mini-item a.text-gray-600 {
+        color: var(--gray-600);
+      }
+
+      .grid-2-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      /* ── BUTTONS ────────────────────────── */
+      .btn-apply {
+        background: #169b62;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-apply:hover {
+        opacity: 0.8;
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--brand);
+        color: var(--brand);
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 8px 18px;
+        text-align: center;
+        display: inline-block;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .btn-outline:hover {
+        background: var(--brand);
+        color: #fff;
+      }
+      .hero-content .btn-apply.text-base {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+      }
+      .hero-content .btn-outline.text-base {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+        border-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+      }
+      .hero-content .btn-outline.text-base:hover {
+        background-color: #fff;
+        color: var(--brand);
+      }
+      .course-card-actions .btn-outline.text-xs {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        flex: 1;
+        border-color: rgba(44, 62, 80, 0.3);
+      }
+      .course-card-actions .btn-apply.text-xs {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        flex: 1;
+      }
+
+      /* ── FILTER BUTTONS ─────────────────────── */
+      .filter-btn {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1.5px solid #cbd5e0;
+        background: #fff;
+        color: #4a5568;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--brand);
+        color: #fff;
+        border-color: var(--brand);
+      }
+
+      /* ── SCROLLBAR HIDE ───────────────────── */
+      .no-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .no-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ── RANKINGS ─────────────────────────── */
+      .ranking-chips-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      /* ── ANIMATION ────────────────────────── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        animation: fadeUp 0.35s ease both;
+      }
+
+      /* ── RESPONSIVE ───────────────────────── */
+      @media (min-width: 540px) {
+        .hero-stats-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gallery-img {
+          height: 140px;
+        }
+        .grid-2-col {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .scholarship-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .contact-cards-subgrid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .ranking-chips-grid {
+          grid-template-columns: repeat(4, 1fr) !important;
+        }
+        .info-table td.font-bold-brand {
+          width: 30%;
+        }
+        .stats-banner-inner {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (min-width: 768px) {
+        .hero-flex-wrapper {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        .hero-text-block h1 {
+          font-size: 2.75rem;
+        }
+        .overview-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+        .overview-grid > .info-card {
+          grid-column: span 3 / span 3;
+        }
+        .overview-grid > .overview-right-column {
+          grid-column: span 2 / span 2;
+        }
+        .about-img {
+          height: 250px;
+        }
+        .course-card {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .course-card-actions {
+          width: auto;
+        }
+        .course-card-actions .btn-outline.text-xs,
+        .course-card-actions .btn-apply.text-xs {
+          flex: none;
+          padding: 0.5rem 1rem;
+        }
+        .contact-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .contact-grid > .contact-card {
+          grid-column: span 2 / span 2;
+        }
+        .callout-banner-inner {
+          flex-direction: row;
+        }
+        .callout-text-block {
+          text-align: left;
+        }
+        .callout-text-block .banner-title {
+          font-size: 1.25rem;
+        }
+        .admission-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .about-stats-matrix .stat-val {
+          font-size: 1.5rem;
+        }
+        .courses-modal-search-sticky {
+          flex-direction: row;
+          align-items: center;
+        }
+        .search-input-wrapper {
+          flex: 1;
+        }
+      }
     </style>
   </head>
   <body>
-
     <!-- HERO -->
     <section class="hero">
       <div class="hero-img"></div>
       <div class="hero-overlay"></div>
-      <div class="hero-content max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end gap-6">
-          <div class="flex-shrink-0 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 w-28 h-20 flex items-center justify-center">
-            <img src="https://independentcollege.ie/wp-content/themes/independantstg/img/logo_1.svg" onerror="this.src='https://independentcollege.ie/wp-content/uploads/2022/08/ICDublin_Logo_RGB_Colour.png'" alt="Independent College Dublin" class="w-24 object-contain brightness-0 invert" />
-          </div>
-          <div class="flex-1">
-            <h1 class="font-head text-3xl sm:text-4xl md:text-5xl font-900 text-white leading-tight mb-3">
-              Independent College Dublin
-            </h1>
-            <p class="text-white/65 text-base mb-5">
-              <i class="fa-solid fa-location-dot mr-1.5"></i>The Steelworks, Foley Street, Dublin 1, Ireland &nbsp;·&nbsp;
-              <a href="https://independentcollege.ie/" target="_blank" class="underline hover:text-sky transition">independentcollege.ie</a>
-            </p>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span class="badge ireland-green text-white">Ireland</span>
-              <span class="badge bg-white/20 text-white">Dublin</span>
-              <span class="badge bg-accent text-white">Private College</span>
-              <span class="badge bg-gold text-white">Est. 2007</span>
+      <div class="hero-content">
+        <div class="max-w-6xl mx-auto">
+          <div class="hero-flex-wrapper">
+            <div class="logo-box">
+              <img
+                src="https://independentcollege.ie/wp-content/themes/independantstg/img/logo_1.svg"
+                onerror="
+                  this.src =
+                    'https://independentcollege.ie/wp-content/uploads/2022/08/ICDublin_Logo_RGB_Colour.png'
+                "
+                alt="Independent College Dublin"
+              />
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">Intakes</div>
-                <div class="text-white font-head font-800 text-base">Sep & Feb</div>
+            <div class="hero-text-block">
+              <h1>Independent College Dublin</h1>
+              <p class="hero-meta-p">
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="margin-right: 0.375rem"
+                ></i
+                >The Steelworks, Foley Street, Dublin 1, Ireland &nbsp;·&nbsp;
+                <a href="https://independentcollege.ie/" target="_blank"
+                  >independentcollege.ie</a
+                >
+              </p>
+              <div class="badge-container">
+                <span class="badge ireland-green">Ireland</span>
+                <span class="badge bg-white-20">Dublin</span>
+                <span class="badge bg-accent">Private College</span>
+                <span class="badge bg-gold">Est. 2007</span>
               </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">App Fee</div>
-                <div class="text-white font-head font-800 text-base">Free</div>
+              <div class="hero-stats-grid">
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Intakes</div>
+                  <div class="stat-strip-val">Sep &amp; Feb</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">App Fee</div>
+                  <div class="stat-strip-val">Free</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Tuition (PG)</div>
+                  <div class="stat-strip-val">€8,800</div>
+                </div>
+                <div class="stat-strip">
+                  <div class="stat-strip-title">Tuition (UG)</div>
+                  <div class="stat-strip-val">€6,800</div>
+                </div>
               </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">Tuition (PG)</div>
-                <div class="text-white font-head font-800 text-base">€8,800</div>
+              <div class="hero-btn-group">
+                <a
+                  href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+                  target="_blank"
+                  class="btn-apply text-base"
+                  >Apply Now</a
+                >
+                <button class="btn-outline text-base" id="browseCoursesHeroBtn">
+                  <i
+                    class="fa-solid fa-graduation-cap"
+                    style="margin-right: 0.5rem"
+                  ></i
+                  >Browse Courses
+                </button>
               </div>
-              <div class="stat-strip">
-                <div class="text-white/55 text-xs font-head font-600 uppercase tracking-wider mb-1">Tuition (UG)</div>
-                <div class="text-white font-head font-800 text-base">€6,800</div>
-              </div>
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-base px-6 py-3">Apply Now</a>
-              <a href="#tab-courses" class="btn-outline text-base px-6 py-3 border-white/50 text-white hover:bg-white hover:text-brand">
-                <i class="fa-solid fa-graduation-cap mr-2"></i>Browse Courses
-              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- STICKY SEARCH -->
-    <div class="search-bar">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-        <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input type="text" id="courseSearch" placeholder="Search programmes (e.g. Business, Dispute Resolution, Marketing…)" class="w-full pl-10 pr-4 py-2.5 text-[15px] border-2 border-gray-200 rounded-xl focus:outline-none focus:border-brand bg-gray-50 font-body transition" />
-        </div>
-        <div class="flex gap-2 overflow-x-auto no-scroll" id="filterBtns">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="Business">Business</button>
-          <button class="filter-btn" data-filter="Law">Law</button>
-          <button class="filter-btn" data-filter="Marketing">Marketing</button>
-          <button class="filter-btn" data-filter="Postgraduate">Postgraduate</button>
-          <button class="filter-btn" data-filter="Undergraduate">Undergraduate</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- TABS -->
+    <!-- TAB NAV -->
     <div class="tab-nav">
-      <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scroll">
-        <button class="tab-btn active" data-tab="overview"><i class="fa-solid fa-house mr-1.5"></i>Overview</button>
-        <button class="tab-btn" data-tab="courses"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Courses</button>
-        <button class="tab-btn" data-tab="rankings"><i class="fa-solid fa-ranking-star mr-1.5"></i>Rankings</button>
-        <button class="tab-btn" data-tab="admission"><i class="fa-solid fa-file-circle-check mr-1.5"></i>Admission</button>
-        <button class="tab-btn" data-tab="scholarships"><i class="fa-solid fa-award mr-1.5"></i>Scholarships</button>
-        <button class="tab-btn" data-tab="contact"><i class="fa-solid fa-headset mr-1.5"></i>Contact Us</button>
-        <button class="tab-btn" data-tab="info"><i class="fa-solid fa-table mr-1.5"></i>Key Info</button>
+      <div class="tab-nav-inner no-scroll">
+        <button class="tab-btn active" data-tab="overview">
+          <i class="fa-solid fa-house" style="margin-right: 0.375rem"></i
+          >Overview
+        </button>
+        <button class="tab-btn" data-tab="rankings">
+          <i class="fa-solid fa-ranking-star" style="margin-right: 0.375rem"></i
+          >Rankings
+        </button>
+        <button class="tab-btn" data-tab="admission">
+          <i
+            class="fa-solid fa-file-circle-check"
+            style="margin-right: 0.375rem"
+          ></i
+          >Admission
+        </button>
+        <button class="tab-btn" data-tab="scholarships">
+          <i class="fa-solid fa-award" style="margin-right: 0.375rem"></i
+          >Scholarships
+        </button>
+        <button class="tab-btn" data-tab="contact">
+          <i class="fa-solid fa-headset" style="margin-right: 0.375rem"></i
+          >Contact Us
+        </button>
+        <button class="tab-btn" data-tab="info">
+          <i class="fa-solid fa-table" style="margin-right: 0.375rem"></i>Key
+          Info
+        </button>
       </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-4 py-6 space-y-5">
-
       <!-- OVERVIEW -->
       <div id="tab-overview" class="tab-pane active fade-up">
-        <div class="grid md:grid-cols-5 gap-5 mb-5">
-          <div class="md:col-span-3 info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 bg-brand rounded-full"></div>
-              <h2 class="font-head font-800 text-xl text-brand">About Independent College Dublin</h2>
-            </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed mb-3">
-              Independent College Dublin is a dynamic, career-focused private third-level institution located in the heart of Dublin's business and tech district. Founded in 2007, the college specialises in Business, Law, Marketing, Accounting, Finance, and Dispute Resolution at both undergraduate and postgraduate levels.
-            </p>
-            <p class="text-[15px] text-gray-600 leading-relaxed mb-4">
-              All programmes are validated by Quality and Qualifications Ireland (QQI). The college is a member of Education in Ireland (Enterprise Ireland) and is renowned for its Law Society FE1 Preparatory Course — the largest and most successful in Ireland. Small class sizes, expert lecturers, and a prime city-centre location at The Steelworks make it a standout choice for international students.
-            </p>
-            <div class="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-100">
-              <div class="text-center">
-                <div class="font-head font-900 text-2xl text-brand">#1</div>
-                <div class="text-xs text-gray-500 mt-0.5">FE1 Prep Provider</div>
-              </div>
-              <div class="text-center border-x border-gray-100">
-                <div class="font-head font-900 text-2xl text-brand">QQI</div>
-                <div class="text-xs text-gray-500 mt-0.5">Validated Programmes</div>
-              </div>
-              <div class="text-center">
-                <div class="font-head font-900 text-2xl text-brand">2007</div>
-                <div class="text-xs text-gray-500 mt-0.5">Established</div>
-              </div>
-            </div>
-          </div>
-          <div class="md:col-span-2 flex flex-col gap-4">
-            <img src="https://www.educationinireland.com/resource/image/182282/landscape_ratio16x9/440/247/c39587c8bc94725d8933f7e1eb845226/5FF66F59998A0AE5C4CB5A5D6F0DD6EF/independent-college.jpg" class="about-img w-full" />
-            <div class="info-card p-4 space-y-2.5">
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-location-dot text-brand w-5 text-center"></i>
-                <span class="text-gray-600">The Steelworks, Foley Street, Dublin 1</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-calendar text-brand w-5 text-center"></i>
-                <span class="text-gray-600">Intakes: September & February</span>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-globe text-brand w-5 text-center"></i>
-                <a href="https://independentcollege.ie/" target="_blank" class="text-brand underline">independentcollege.ie</a>
-              </div>
-              <div class="flex items-center gap-3 text-[14px]">
-                <i class="fa-solid fa-envelope text-brand w-5 text-center"></i>
-                <a href="mailto:admissions@independentcollege.ie" class="text-gray-600 hover:text-brand">admissions@independentcollege.ie</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-card p-5 mb-5">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-1 h-7 bg-sky rounded-full"></div>
-            <h2 class="font-head font-800 text-xl text-brand">Campus — The Steelworks, Dublin 1</h2>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <img src="https://independentcollege.ie/wp-content/uploads/2022/07/INDEPENDENT-COLLEGE-GRADUATION-JB10-0622-1024x683.jpg" alt="Campus Building" class="gallery-img" />
-            <img src="https://independentcollege.ie/wp-content/uploads/2022/06/Campus.png" alt="Lecture Room" class="gallery-img" />
-            <img src="https://independentcollege.ie/wp-content/uploads/2024/06/20240614_151057.jpg" alt="graduation" class="gallery-img" />
-            <img src="https://images.shiksha.com/mediadata/images/1753862984phpiHqtVp.jpeg" alt="Students" class="gallery-img" />
-          </div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div class="overview-grid">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 bg-brand-l rounded-lg flex items-center justify-center">
-                <i class="fa-solid fa-flask text-brand text-sm"></i>
-              </div>
-              <h3 class="font-head font-700 text-lg text-brand">Research Strengths</h3>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>About Independent College Dublin</h2>
             </div>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-sky text-sm"></i>Commercial & International Law</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-sky text-sm"></i>Dispute Resolution & Mediation</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-sky text-sm"></i>Business Strategy & Management</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-sky text-sm"></i>Accounting & Finance</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-sky text-sm"></i>Digital Marketing & Analytics</li>
-            </ul>
+            <p class="about-paragraph mb-3">
+              Independent College Dublin is a dynamic, career-focused private
+              third-level institution located in the heart of Dublin's business
+              and tech district. Founded in 2007, the college specialises in
+              Business, Law, Marketing, Accounting, Finance, and Dispute
+              Resolution at both undergraduate and postgraduate levels.
+            </p>
+            <p class="about-paragraph mb-4">
+              All programmes are validated by Quality and Qualifications Ireland
+              (QQI). The college is a member of Education in Ireland (Enterprise
+              Ireland) and is renowned for its Law Society FE1 Preparatory
+              Course — the largest and most successful in Ireland. Small class
+              sizes, expert lecturers, and a prime city-centre location at The
+              Steelworks make it a standout choice for international students.
+            </p>
+            <div class="about-stats-matrix">
+              <div class="about-stat-item">
+                <div class="stat-val">#1</div>
+                <div class="stat-lbl">FE1 Prep Provider</div>
+              </div>
+              <div class="about-stat-item border-x">
+                <div class="stat-val">QQI</div>
+                <div class="stat-lbl">Validated Programmes</div>
+              </div>
+              <div class="about-stat-item">
+                <div class="stat-val">2007</div>
+                <div class="stat-lbl">Established</div>
+              </div>
+            </div>
+          </div>
+          <div class="overview-right-column">
+            <img
+              src="https://www.educationinireland.com/resource/image/182282/landscape_ratio16x9/440/247/c39587c8bc94725d8933f7e1eb845226/5FF66F59998A0AE5C4CB5A5D6F0DD6EF/independent-college.jpg"
+              alt="Independent College Dublin"
+              class="about-img"
+            />
+            <div class="info-card p-4">
+              <div class="campus-info-mini-list">
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-location-dot"></i
+                  ><span>The Steelworks, Foley Street, Dublin 1</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-calendar"></i
+                  ><span>Intakes: September &amp; February</span>
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-globe"></i
+                  ><a
+                    href="https://independentcollege.ie/"
+                    target="_blank"
+                    class="text-brand"
+                    >independentcollege.ie</a
+                  >
+                </div>
+                <div class="campus-info-mini-item">
+                  <i class="fa-solid fa-envelope"></i
+                  ><a
+                    href="mailto:admissions@independentcollege.ie"
+                    class="text-gray-600"
+                    >admissions@independentcollege.ie</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campus Gallery -->
+        <div class="info-card p-5" style="margin-bottom: 1.25rem">
+          <div class="card-header-block">
+            <div class="indicator-bar bg-sky"></div>
+            <h2>Campus — The Steelworks, Dublin 1</h2>
+          </div>
+          <div class="gallery-grid">
+            <img
+              src="https://independentcollege.ie/wp-content/uploads/2022/07/INDEPENDENT-COLLEGE-GRADUATION-JB10-0622-1024x683.jpg"
+              alt="Campus Building"
+              class="gallery-img"
+            />
+            <img
+              src="https://independentcollege.ie/wp-content/uploads/2022/06/Campus.png"
+              alt="Lecture Room"
+              class="gallery-img"
+            />
+            <img
+              src="https://independentcollege.ie/wp-content/uploads/2024/06/20240614_151057.jpg"
+              alt="Graduation"
+              class="gallery-img"
+            />
+            <img
+              src="https://images.shiksha.com/mediadata/images/1753862984phpiHqtVp.jpeg"
+              alt="Students"
+              class="gallery-img"
+            />
+          </div>
+        </div>
+
+        <!-- Strengths -->
+        <div class="grid-2-col" style="margin-bottom: 1.25rem">
+          <div class="info-card p-5">
+            <div class="card-header-block">
+              <div class="strength-icon-box">
+                <i class="fa-solid fa-flask"></i>
+              </div>
+              <h3>Research Strengths</h3>
+            </div>
+            <div class="strength-list">
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-sky"></i>Commercial
+                &amp; International Law
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-sky"></i>Dispute
+                Resolution &amp; Mediation
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-sky"></i>Business
+                Strategy &amp; Management
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-sky"></i>Accounting
+                &amp; Finance
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-sky"></i>Digital
+                Marketing &amp; Analytics
+              </div>
+            </div>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 bg-brand-l rounded-lg flex items-center justify-center">
-                <i class="fa-solid fa-star text-brand text-sm"></i>
+            <div class="card-header-block">
+              <div class="strength-icon-box">
+                <i class="fa-solid fa-star"></i>
               </div>
-              <h3 class="font-head font-700 text-lg text-brand">Academic Strengths</h3>
+              <h3>Academic Strengths</h3>
             </div>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-gold text-sm"></i>Law Society FE1 Preparation</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-gold text-sm"></i>Business Studies & Management</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-gold text-sm"></i>Dispute Resolution & Negotiation</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-gold text-sm"></i>Accounting & Finance</li>
-              <li class="flex items-center gap-3 text-[15px] text-gray-600"><i class="fa-solid fa-check-circle text-gold text-sm"></i>Marketing & International Business</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="rounded-2xl overflow-hidden relative" style="background: #2c3e50">
-          <div class="absolute inset-0 opacity-10" style="background-color: #2c3e50')"></div>
-          <div class="relative p-6 grid sm:grid-cols-4 gap-4 text-white">
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">4yr</div>
-              <div class="text-sm text-white/75 mt-1">Top FE1 Results in a Row</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">100%</div>
-              <div class="text-sm text-white/75 mt-1">English Medium</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">2yr</div>
-              <div class="text-sm text-white/75 mt-1">Post-Study Work Visa</div>
-            </div>
-            <div class="text-center">
-              <div class="font-head font-900 text-3xl">22+</div>
-              <div class="text-sm text-white/75 mt-1">Purpose-Built Lecture Rooms</div>
+            <div class="strength-list">
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-gold"></i>Law Society
+                FE1 Preparation
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-gold"></i>Business
+                Studies &amp; Management
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-gold"></i>Dispute
+                Resolution &amp; Negotiation
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-gold"></i>Accounting
+                &amp; Finance
+              </div>
+              <div class="strength-item">
+                <i class="fa-solid fa-check-circle text-gold"></i>Marketing
+                &amp; International Business
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- COURSES -->
-      <div id="tab-courses" class="tab-pane fade-up">
-        <div id="courseContainer"></div>
+        <!-- Stats Banner -->
+        <div class="stats-banner">
+          <div class="stats-banner-inner">
+            <div class="stats-banner-item">
+              <div class="stat-val">4yr</div>
+              <div class="stat-lbl">Top FE1 Results in a Row</div>
+            </div>
+            <div class="stats-banner-item">
+              <div class="stat-val">100%</div>
+              <div class="stat-lbl">English Medium</div>
+            </div>
+            <div class="stats-banner-item">
+              <div class="stat-val">2yr</div>
+              <div class="stat-lbl">Post-Study Work Visa</div>
+            </div>
+            <div class="stats-banner-item">
+              <div class="stat-val">22+</div>
+              <div class="stat-lbl">Purpose-Built Lecture Rooms</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- RANKINGS -->
       <div id="tab-rankings" class="tab-pane fade-up">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5">
+        <div class="ranking-chips-grid">
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-brand mb-1">QQI</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">NFQ Level 9</div>
+            <div class="text-3xl text-brand">QQI</div>
+            <div class="rank-label">NFQ Level 9</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-brand mb-1">2007</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">Established</div>
+            <div class="text-3xl text-brand">2007</div>
+            <div class="rank-label">Established</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-accent mb-1">#1</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">FE1 Law Prep Ireland</div>
+            <div class="text-3xl text-accent">#1</div>
+            <div class="rank-label">FE1 Law Prep Ireland</div>
           </div>
           <div class="rank-chip">
-            <div class="text-3xl font-head font-900 text-gold mb-1">Axis</div>
-            <div class="text-xs text-gray-500 font-head font-600 uppercase tracking-wide">Education Group</div>
+            <div class="text-3xl text-gold">Axis</div>
+            <div class="rank-label">Education Group</div>
           </div>
         </div>
-        <div class="grid sm:grid-cols-2 gap-5">
+        <div class="grid-2-col">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-1 h-7 bg-brand rounded-full"></div>
-              <h3 class="font-head font-800 text-lg text-brand">QQI Accreditation</h3>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h3>QQI Accreditation</h3>
             </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed">
-              All Independent College Dublin programmes are validated by Quality and Qualifications Ireland (QQI) — Ireland's national awarding body. Postgraduate degrees are awarded at NFQ Level 9 and are internationally recognised, meeting the standards required for professional advancement globally.
+            <p class="about-paragraph">
+              All Independent College Dublin programmes are validated by Quality
+              and Qualifications Ireland (QQI) — Ireland's national awarding
+              body. Postgraduate degrees are awarded at NFQ Level 9 and are
+              internationally recognised, meeting the standards required for
+              professional advancement globally.
             </p>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-1 h-7 bg-sky rounded-full"></div>
-              <h3 class="font-head font-800 text-lg text-brand">Law Society Excellence</h3>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h3>Law Society Excellence</h3>
             </div>
-            <p class="text-[15px] text-gray-600 leading-relaxed">
-              Independent College's School of Law is the largest provider in Ireland for Law Society FE1 Preparatory programmes. For four of the past five years, its students have finished 1st overall in the nationwide FE1 examinations — a testament to its world-class legal education.
+            <p class="about-paragraph">
+              Independent College's School of Law is the largest provider in
+              Ireland for Law Society FE1 Preparatory programmes. For four of
+              the past five years, its students have finished 1st overall in the
+              nationwide FE1 examinations — a testament to its world-class legal
+              education.
             </p>
           </div>
         </div>
@@ -365,234 +1609,411 @@
 
       <!-- ADMISSION -->
       <div id="tab-admission" class="tab-pane fade-up">
-        <div class="grid md:grid-cols-2 gap-5">
+        <div class="admission-grid">
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 bg-brand rounded-full"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Entry Requirements</h2>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Entry Requirements</h2>
             </div>
-            <div class="space-y-3">
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-language text-brand mt-1 text-base"></i>
+            <div class="admission-reqs-list">
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">IELTS</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Level 8 (UG): Overall 6.0 · Level 9 (PG): Overall 6.5. Equivalent tests including TOEFL, PTE, Duolingo, and Cambridge also accepted.</div>
+                  <div class="req-title">IELTS</div>
+                  <div class="req-desc">
+                    Level 8 (UG): Overall 6.0 · Level 9 (PG): Overall 6.5.
+                    Equivalent tests including TOEFL, PTE, Duolingo, and
+                    Cambridge also accepted.
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-language text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Pre-Sessional English</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">4-week Pre-Sessional English programme available for applicants who are one band below the required IELTS score.</div>
+                  <div class="req-title">Pre-Sessional English</div>
+                  <div class="req-desc">
+                    4-week Pre-Sessional English programme available for
+                    applicants who are one band below the required IELTS score.
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-graduation-cap text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-graduation-cap"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Academic Qualification</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">For MA (PG): Honours degree (NFQ Level 8) or equivalent in law, business, or related discipline. Relevant work experience also considered (APEL).</div>
+                  <div class="req-title">Academic Qualification</div>
+                  <div class="req-desc">
+                    For MA (PG): Honours degree (NFQ Level 8) or equivalent in
+                    law, business, or related discipline. Relevant work
+                    experience also considered (APEL).
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-file-lines text-brand mt-1 text-base"></i>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-file-lines"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Documents Required</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Academic transcripts, Passport copy, Personal Statement, 2 References, Updated CV, English proficiency certificate, Interview (online)</div>
+                  <div class="req-title">Documents Required</div>
+                  <div class="req-desc">
+                    Academic transcripts, Passport copy, Personal Statement, 2
+                    References, Updated CV, English proficiency certificate,
+                    Interview (online)
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="info-card p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 bg-sky rounded-full"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Application Process</h2>
+            <div class="card-header-block">
+              <div class="indicator-bar bg-sky"></div>
+              <h2>Application Process</h2>
             </div>
-            <ol class="space-y-4">
-              <li class="flex gap-4">
-                <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm">1</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Choose Your Programme</div>
-                  <div class="text-[14px] text-gray-500">Browse available programmes and confirm entry requirements for your chosen course.</div>
+            <div class="admission-process-steps">
+              <div class="admission-step-item">
+                <div class="admission-step-number">1</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Choose Your Programme</div>
+                  <div class="step-desc">
+                    Browse available programmes and confirm entry requirements
+                    for your chosen course.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm">2</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Submit Application & Interview</div>
-                  <div class="text-[14px] text-gray-500">Apply online (free of charge). Complete a personal online interview with the Admissions team before enrolment.</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">2</div>
+                <div class="admission-step-content">
+                  <div class="step-title">
+                    Submit Application &amp; Interview
+                  </div>
+                  <div class="step-desc">
+                    Apply online (free of charge). Complete a personal online
+                    interview with the Admissions team before enrolment.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm">3</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Receive Offer Letter</div>
-                  <div class="text-[14px] text-gray-500">Accept your conditional/unconditional offer and pay tuition to secure your place.</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">3</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Receive Offer Letter</div>
+                  <div class="step-desc">
+                    Accept your conditional/unconditional offer and pay tuition
+                    to secure your place.
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm">4</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Apply for Student Visa (D-Visa)</div>
-                  <div class="text-[14px] text-gray-500">Submit Irish student visa application. Visa deadline: June 5 for September intake (international students needing entry visa).</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">4</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Apply for Student Visa (D-Visa)</div>
+                  <div class="step-desc">
+                    Submit Irish student visa application. Visa deadline: June 5
+                    for September intake (international students needing entry
+                    visa).
+                  </div>
                 </div>
-              </li>
-              <li class="flex gap-4">
-                <div class="w-8 h-8 bg-brand text-white rounded-full flex items-center justify-center flex-shrink-0 font-head font-800 text-sm">5</div>
-                <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Travel & Enrol</div>
-                  <div class="text-[14px] text-gray-500">Attend comprehensive college induction and begin your academic journey in Dublin's city centre!</div>
+              </div>
+              <div class="admission-step-item">
+                <div class="admission-step-number">5</div>
+                <div class="admission-step-content">
+                  <div class="step-title">Travel &amp; Enrol</div>
+                  <div class="step-desc">
+                    Attend comprehensive college induction and begin your
+                    academic journey in Dublin's city centre!
+                  </div>
                 </div>
-              </li>
-            </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- SCHOLARSHIPS -->
       <div id="tab-scholarships" class="tab-pane fade-up">
-        <div class="grid sm:grid-cols-2 gap-5 mb-5">
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-yellow-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-medal text-yellow-500 text-base"></i>
+        <div class="scholarship-grid">
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-yellow-50">
+                <i class="fa-solid fa-medal text-yellow-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Academic Excellence Award</div>
+              <div class="scholarship-name">Academic Excellence Award</div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">Partial fee reduction for high-achieving international applicants with strong academic records and demonstrated leadership potential in their field.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Partial Fee Reduction</span>
-              <span class="badge bg-brand-l text-brand">All Levels</span>
+            <div class="scholarship-desc">
+              Partial fee reduction for high-achieving international applicants
+              with strong academic records and demonstrated leadership potential
+              in their field.
+            </div>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Partial Fee Reduction</span
+              ><span class="badge bg-brand-l">All Levels</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-blue-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-earth-europe text-blue-500 text-base"></i>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-blue-50">
+                <i class="fa-solid fa-earth-europe text-blue-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Government of Ireland Scholarship</div>
+              <div class="scholarship-name">
+                Government of Ireland Scholarship
+              </div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">Competitive Irish government scholarship for top international students — covers full tuition and living stipend for one academic year.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Full Tuition + Stipend</span>
-              <span class="badge bg-brand-l text-brand">Competitive</span>
+            <div class="scholarship-desc">
+              Competitive Irish government scholarship for top international
+              students — covers full tuition and living stipend for one academic
+              year.
+            </div>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Full Tuition + Stipend</span
+              ><span class="badge bg-brand-l">Competitive</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-handshake text-purple-500 text-base"></i>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-purple-50">
+                <i class="fa-solid fa-handshake text-purple-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">Early Application Discount</div>
+              <div class="scholarship-name">Early Application Discount</div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">Students who apply and confirm their enrolment by early deadlines may be eligible for a reduced tuition rate. Contact admissions for current availability.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Fee Reduction</span>
-              <span class="badge bg-brand-l text-brand">Early Applicants</span>
+            <div class="scholarship-desc">
+              Students who apply and confirm their enrolment by early deadlines
+              may be eligible for a reduced tuition rate. Contact admissions for
+              current availability.
+            </div>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Fee Reduction</span
+              ><span class="badge bg-brand-l">Early Applicants</span>
             </div>
           </div>
-          <div class="info-card p-5 hover:shadow-md transition">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-award text-orange-500 text-base"></i>
+          <div class="info-card scholarship-card">
+            <div class="scholarship-title-block">
+              <div class="scholarship-icon-box bg-orange-50">
+                <i class="fa-solid fa-award text-orange-500"></i>
               </div>
-              <div class="font-head font-800 text-[15px] text-gray-800">IPMO Membership Pathway</div>
+              <div class="scholarship-name">IPMO Membership Pathway</div>
             </div>
-            <p class="text-[14px] text-gray-500 mb-3 leading-relaxed">Graduates of the MA in Dispute Resolution are eligible to apply for membership with the Irish Professional Mediators' Organisation (IPMO) — a professional pathway with significant career value.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge bg-green-50 text-green-700">Professional Recognition</span>
-              <span class="badge bg-brand-l text-brand">MA Graduates</span>
+            <div class="scholarship-desc">
+              Graduates of the MA in Dispute Resolution are eligible to apply
+              for membership with the Irish Professional Mediators' Organisation
+              (IPMO) — a professional pathway with significant career value.
+            </div>
+            <div class="badge-group">
+              <span class="badge bg-green-50">Professional Recognition</span
+              ><span class="badge bg-brand-l">MA Graduates</span>
             </div>
           </div>
         </div>
-        <div class="rounded-2xl p-6" style="background: #2c3e50">
-          <div class="flex flex-col sm:flex-row items-center gap-5">
-            <div class="flex-1 text-white">
-              <div class="font-head font-800 text-xl mb-1">Why Study in Ireland?</div>
+        <div class="callout-banner">
+          <div class="callout-banner-inner">
+            <div class="callout-text-block">
+              <div class="banner-title">Why Study in Ireland?</div>
               <p>Your Gateway to Europe's Silicon Valley</p>
-              <div class="text-base text-white/80">English-speaking EU hub · Top 10 globally for education · World-class professional networks · Direct global business pipelines</div>
+              <div class="banner-subtext">
+                English-speaking EU hub · Top 10 globally for education ·
+                World-class professional networks · Direct global business
+                pipelines
+              </div>
             </div>
-            <a href="https://studyinireland.info/why-ireland/" class="bg-white text-brand font-head font-700 text-base px-7 py-3 rounded-xl whitespace-nowrap hover:bg-yellow-50 transition shadow">Learn More →</a>
+            <a
+              href="https://studyinireland.info/why-ireland/"
+              class="banner-btn"
+              >Learn More →</a
+            >
           </div>
         </div>
       </div>
 
       <!-- CONTACT -->
       <div id="tab-contact" class="tab-pane fade-up">
-        <div class="grid md:grid-cols-3 gap-5 mb-5">
-          <div class="contact-card md:col-span-2">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-7 bg-brand rounded-full"></div>
-              <h2 class="font-head font-800 text-xl text-brand">Our Office</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="card-header-block">
+              <div class="indicator-bar bg-brand"></div>
+              <h2>Our Office</h2>
             </div>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-location-dot text-brand mt-1 text-base"></i>
+            <div class="contact-cards-subgrid">
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-location-dot text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Office Address</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Kumaripati - Mahalaximisthan Rd, Lalitpur 44700</div>
+                  <div class="info-title">Office Address</div>
+                  <div class="info-desc">
+                    Kumaripati - Mahalaximisthan Rd, Lalitpur 44700
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-envelope text-brand mt-1 text-base"></i>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-envelope text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Email Us</div>
-                  <a href="mailto:admissions@studyinireland.info" class="text-[14px] text-brand hover:underline mt-0.5 block">admissions@studyinireland.info</a>
+                  <div class="info-title">Email Us</div>
+                  <a
+                    href="mailto:admissions@studyinireland.info"
+                    class="info-link-brand"
+                    >admissions@studyinireland.info</a
+                  >
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-green-50 rounded-xl">
-                <i class="fa-brands fa-whatsapp text-green-600 mt-1 text-base"></i>
+              <div class="contact-subcard bg-green-50">
+                <i class="fa-brands fa-whatsapp text-green-600"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">WhatsApp/Call</div>
-                  <a href="https://wa.me/9851351123" target="_blank" class="text-[14px] text-green-700 font-600 mt-0.5 hover:underline block">+977 9851351123</a>
+                  <div class="info-title">WhatsApp/Call</div>
+                  <a
+                    href="https://wa.me/9851351123"
+                    target="_blank"
+                    class="info-link-green"
+                    >+977 9851351123</a
+                  >
                 </div>
               </div>
-              <div class="flex items-start gap-3 p-3.5 bg-brand-l rounded-xl">
-                <i class="fa-solid fa-clock text-brand mt-1 text-base"></i>
+              <div class="contact-subcard bg-brand-l">
+                <i class="fa-solid fa-clock text-brand"></i>
                 <div>
-                  <div class="font-head font-700 text-[15px] text-gray-800">Working Hours</div>
-                  <div class="text-[14px] text-gray-500 mt-0.5">Sun - Fri: 9:30 AM - 5:30 PM</div>
+                  <div class="info-title">Working Hours</div>
+                  <div class="info-desc">Sun - Fri: 9:30 AM - 5:30 PM</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="rounded-2xl p-5 text-white flex flex-col justify-between" style="background: #2c3e50">
+          <div class="sidebar-cta-box">
             <div>
-              <div class="font-head font-800 text-xl mb-2">Need Personal Guidance?</div>
-              <p class="text-[14px] text-white/75 leading-relaxed mb-4">Book a 1-on-1 free counselling session with our European education experts to plan your profile evaluation, course shortlisting, and application submission.</p>
+              <div class="cta-heading">Need Personal Guidance?</div>
+              <div class="cta-desc">
+                Book a 1-on-1 free counselling session with our European
+                education experts to plan your profile evaluation, course
+                shortlisting, and application submission.
+              </div>
             </div>
-            <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="w-full bg-white text-brand font-head font-700 text-center py-2.5 rounded-xl block hover:bg-yellow-50 transition shadow">Book Free Counselling</a>
+            <a
+              href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms"
+              target="_blank"
+              class="cta-action-btn"
+              >Book Free Counselling</a
+            >
           </div>
         </div>
       </div>
 
       <!-- KEY INFO -->
       <div id="tab-info" class="tab-pane fade-up">
-        <div class="info-card overflow-hidden">
-          <table class="w-full text-left info-table border-collapse">
+        <div class="info-card">
+          <table class="info-table">
             <tbody>
-              <tr><td class="font-head font-700 text-brand w-1/3">College Name</td><td class="text-gray-700">Independent College Dublin</td></tr>
-              <tr><td class="font-head font-700 text-brand">Location</td><td class="text-gray-700">The Steelworks, Foley Street, Dublin 1, Ireland</td></tr>
-              <tr><td class="font-head font-700 text-brand">Type</td><td class="text-gray-700">Private Third-Level Institution</td></tr>
-              <tr><td class="font-head font-700 text-brand">Established</td><td class="text-gray-700">2007</td></tr>
-              <tr><td class="font-head font-700 text-brand">Awarding Body</td><td class="text-gray-700">Quality and Qualifications Ireland (QQI)</td></tr>
-              <tr><td class="font-head font-700 text-brand">Specialisations</td><td class="text-gray-700">Business, Law, Marketing, Accounting, Finance, Dispute Resolution</td></tr>
-              <tr><td class="font-head font-700 text-brand">Main Intakes</td><td class="text-gray-700">September (Major) & February (Minor)</td></tr>
-              <tr><td class="font-head font-700 text-brand">Postgraduate Tuition Fee</td><td class="text-gray-700">€8,800 per year (International Students)</td></tr>
-              <tr><td class="font-head font-700 text-brand">Undergraduate Tuition Fee</td><td class="text-gray-700">€6,800 per year (International Students)</td></tr>
-              <tr><td class="font-head font-700 text-brand">Application Fee</td><td class="text-gray-700">Free (No application fee)</td></tr>
-              <tr><td class="font-head font-700 text-brand">Post-Study Work Visa</td><td class="text-gray-700">2 Years (Third Level Graduate Scheme)</td></tr>
-              <tr><td class="font-head font-700 text-brand">IELTS Requirement</td><td class="text-gray-700">UG: 6.0 · PG: 6.5</td></tr>
-              <tr><td class="font-head font-700 text-brand">Official Website</td><td><a href="https://independentcollege.ie/" target="_blank" class="text-brand underline">independentcollege.ie</a></td></tr>
+              <tr>
+                <td class="font-bold-brand">College Name</td>
+                <td class="text-gray-700">Independent College Dublin</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Location</td>
+                <td class="text-gray-700">
+                  The Steelworks, Foley Street, Dublin 1, Ireland
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Type</td>
+                <td class="text-gray-700">Private Third-Level Institution</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Established</td>
+                <td class="text-gray-700">2007</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Awarding Body</td>
+                <td class="text-gray-700">
+                  Quality and Qualifications Ireland (QQI)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Specialisations</td>
+                <td class="text-gray-700">
+                  Business, Law, Marketing, Accounting, Finance, Dispute
+                  Resolution
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Main Intakes</td>
+                <td class="text-gray-700">
+                  September (Major) &amp; February (Minor)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Postgraduate Tuition Fee</td>
+                <td class="text-gray-700">
+                  €8,800 per year (International Students)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Undergraduate Tuition Fee</td>
+                <td class="text-gray-700">
+                  €6,800 per year (International Students)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Application Fee</td>
+                <td class="text-gray-700">Free (No application fee)</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Post-Study Work Visa</td>
+                <td class="text-gray-700">
+                  2 Years (Third Level Graduate Scheme)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">IELTS Requirement</td>
+                <td class="text-gray-700">UG: 6.0 · PG: 6.5</td>
+              </tr>
+              <tr>
+                <td class="font-bold-brand">Official Website</td>
+                <td>
+                  <a
+                    href="https://independentcollege.ie/"
+                    target="_blank"
+                    class="underline"
+                    >independentcollege.ie</a
+                  >
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
+    </div>
 
+    <!-- COURSES MODAL -->
+    <div id="coursesModal" class="courses-modal">
+      <div class="courses-modal-content">
+        <div class="courses-modal-header">
+          <h2>Programmes</h2>
+          <button id="closeModalBtn" class="close-modal-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="courses-modal-search-sticky">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="courseSearch"
+              placeholder="Search programmes (e.g. Business, Dispute Resolution, Marketing…)"
+            />
+          </div>
+          <div class="filter-buttons-wrapper no-scroll" id="filterBtns">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Business">Business</button>
+            <button class="filter-btn" data-filter="Law">Law</button>
+            <button class="filter-btn" data-filter="Marketing">
+              Marketing
+            </button>
+            <button class="filter-btn" data-filter="Postgraduate">
+              Postgraduate
+            </button>
+            <button class="filter-btn" data-filter="Undergraduate">
+              Undergraduate
+            </button>
+          </div>
+        </div>
+        <div class="courses-modal-body">
+          <div id="courseContainer"></div>
+        </div>
+      </div>
     </div>
 
     <script>
       const courses = [
-        // Postgraduate
         {
           title: "MA in Dispute Resolution (Full-Time)",
           faculty: "Postgraduate",
@@ -611,7 +2032,6 @@
           ielts: "6.5",
           link: "https://independentcollege.ie/courses/master-of-arts-in-dispute-resolution-part-time/",
         },
-        // Undergraduate - Business
         {
           title: "BA (Hons) in Business Studies",
           faculty: "Business",
@@ -648,7 +2068,6 @@
           ielts: "6.0",
           link: "https://independentcollege.ie/courses/ba-hons-in-marketing/",
         },
-        // Law
         {
           title: "FE1 Exams Preparatory Course",
           faculty: "Law",
@@ -685,9 +2104,9 @@
           ielts: "6.0",
           link: "https://independentcollege.ie/courses/diploma-in-professional-legal-studies/",
         },
-        // Undergraduate add-on
         {
-          title: "Diploma in Radio & Podcast Production – Today FM School of Radio",
+          title:
+            "Diploma in Radio & Podcast Production – Today FM School of Radio",
           faculty: "Business",
           duration: "1 Year",
           fee: "Contact Us",
@@ -713,69 +2132,89 @@
         const container = document.getElementById("courseContainer");
         container.innerHTML = "";
         const filtered = courses.filter((c) => {
-          const matchFilter = activeFilter === "all" || c.faculty === activeFilter;
-          const matchSearch = c.title.toLowerCase().includes(searchVal.toLowerCase());
+          const matchFilter =
+            activeFilter === "all" || c.faculty === activeFilter;
+          const matchSearch = c.title
+            .toLowerCase()
+            .includes(searchVal.toLowerCase());
           return matchFilter && matchSearch;
         });
         if (filtered.length === 0) {
-          container.innerHTML = `<div class="info-card p-8 text-center text-gray-400 font-body"><i class="fa-solid fa-folder-open text-4xl mb-2 text-gray-300"></i><p>No courses match your search or filter configuration.</p></div>`;
+          container.innerHTML = `<div class="info-card" style="padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><i class="fa-solid fa-folder-open" style="font-size:2.25rem;color:#cbd5e1;margin-bottom:0.5rem"></i><p style="color:#94a3b8;font-size:14px">No courses match your search or filter configuration.</p></div>`;
           return;
         }
         filtered.forEach((c) => {
           const card = document.createElement("div");
-          card.className = "course-card p-5 mb-3 flex flex-col sm:flex-row justify-between sm:items-center gap-4";
+          card.className = "course-card";
           card.innerHTML = `
             <div>
-              <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-                <span class="text-xs bg-brand-l text-brand px-2.5 py-0.5 rounded font-600 font-head">${c.faculty}</span>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-clock mr-1 text-[11px]"></i>${c.duration}</span>
-                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-500"><i class="fa-solid fa-calendar mr-1 text-[11px]"></i>Intake: ${c.intake}</span>
+              <div class="course-card-meta-tags">
+                <span class="faculty-tag">${c.faculty}</span>
+                <span class="duration-tag"><i class="fa-solid fa-clock"></i>${c.duration}</span>
+                <span class="intake-tag"><i class="fa-solid fa-calendar"></i>Intake: ${c.intake}</span>
               </div>
-              <h3 class="font-head font-700 text-[17px] text-gray-800 leading-snug hover:text-brand transition">
-                <a href="${c.link}" target="_blank">${c.title}</a>
-              </h3>
-              <div class="flex gap-4 mt-2 text-xs text-gray-500">
-                <span><strong>Tuition Fee:</strong> <span class="text-brand font-600">${c.fee}</span></span>
-                <span><strong>IELTS Requirement:</strong> <span class="text-brand font-600">${c.ielts}</span></span>
+              <h3><a href="${c.link}" target="_blank">${c.title}</a></h3>
+              <div class="course-card-details">
+                <span><strong>Tuition Fee:</strong> <span class="text-brand">${c.fee}</span></span>
+                <span><strong>IELTS Requirement:</strong> <span class="text-brand">${c.ielts}</span></span>
               </div>
             </div>
-            <div class="flex-shrink-0 flex items-center gap-2">
-              <a href="${c.link}" target="_blank" class="btn-outline text-xs px-4 py-2 border-brand/30 hover:border-brand">View Details</a>
-              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-xs px-4 py-2">Apply</a>
+            <div class="course-card-actions">
+              <a href="${c.link}" target="_blank" class="btn-outline text-xs">View Details</a>
+              <a href="https://cmst.xyz/form/7e8a525a-8729-4d95-8938-5ee4355d29ec/general-inquiry-forms" target="_blank" class="btn-apply text-xs">Apply</a>
             </div>`;
           container.appendChild(card);
         });
       }
 
+      const modal = document.getElementById("coursesModal");
+      function openModal() {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderCourses();
+      }
+      function closeModal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document
+        .getElementById("browseCoursesHeroBtn")
+        .addEventListener("click", openModal);
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
       document.querySelectorAll("#filterBtns button").forEach((btn) => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll("#filterBtns button").forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll("#filterBtns button")
+            .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           activeFilter = btn.dataset.filter;
-          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-          document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
-          document.querySelector('[data-tab="courses"]').classList.add("active");
-          document.getElementById("tab-courses").classList.add("active");
           renderCourses();
-          document.getElementById("tab-courses").scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
       document.getElementById("courseSearch").addEventListener("input", (e) => {
         searchVal = e.target.value;
-        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-        document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
-        document.querySelector('[data-tab="courses"]').classList.add("active");
-        document.getElementById("tab-courses").classList.add("active");
         renderCourses();
       });
 
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-          document.querySelectorAll(".tab-pane").forEach((p) => p.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-pane")
+            .forEach((p) => p.classList.remove("active"));
           btn.classList.add("active");
-          document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+          document
+            .getElementById("tab-" + btn.dataset.tab)
+            .classList.add("active");
         });
       });
 
