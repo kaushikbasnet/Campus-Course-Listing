@@ -3,312 +3,1593 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>National College of Ireland – Programs</title>
-
+    <title>National College of Ireland | Study in Ireland</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              figtree: ["Figtree", "sans-serif"],
+              poppins: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              /* NCI Official Brand Palette */
+              brand: "#022b55" /* NCI Navy  – primary */,
+              "brand-d": "#011a38" /* darker navy */,
+              "brand-m": "#004284" /* mid navy */,
+              "brand-l": "#e8f2fa" /* navy tint – light bg */,
+              accent: "#0069b4" /* NCI Blue  – secondary/accent */,
+              "accent-l": "#d0e8f7" /* blue tint */,
+              "accent-d": "#00508a" /* darker blue */,
+            },
+          },
+        },
+      };
+    </script>
     <style>
-      :root {
-        --brand: #022b55;
-        --brand-light: #f3e5f5;
-        --accent: #0069b4;
-        --bg: #f4f6fb;
-        --card-bg: #ffffff;
-        --text: #1a1a2e;
-        --muted: #5a6175;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
       body {
-        font-family: "Source Sans 3", sans-serif;
-        background: var(--bg);
-        color: var(--text);
+        font-family: "Figtree", sans-serif;
+        background: #f0f4f8;
+        color: #1a2332;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Figtree", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
       }
 
-      /* HERO (same as original) */
-      .hero {
+      /* Hero */
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://www.ncirl.ie/Portals/0/Images/1600x500-Banner-Landing/img-banner-research.jpg");
+        background-size: cover;
+        background-position: center 40%;
+        filter: brightness(0.35) saturate(1);
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
         background: linear-gradient(
-          135deg,
-          #022b55 0%,
-          #004284 60%,
-          #1a0033 100%
+          to top,
+          rgba(1, 18, 38, 0.98) 0%,
+          rgba(2, 43, 85, 0.72) 50%,
+          rgba(0, 66, 132, 0.22) 100%
         );
-        color: white;
-        padding: 60px 40px 50px;
-        position: relative;
+      }
+      .stat-strip {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        padding: 10px;
+        text-align: center;
+      }
+
+      /* Tab nav */
+      .tab-nav {
+        background: #fff;
+        border-bottom: 2px solid #dde4ed;
+        position: sticky;
+        top: 0;
+        z-index: 39;
+        box-shadow: 0 2px 12px rgba(2, 43, 85, 0.07);
+      }
+      .tab-btn {
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 16px 18px;
+        border: none;
+        background: transparent;
+        color: #64748b;
+        cursor: pointer;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
+      }
+      .tab-btn:hover {
+        color: #022b55;
+        background: #eef4fb;
+      }
+      .tab-btn.active {
+        color: #022b55;
+        border-bottom-color: #0069b4;
+        background: #eef4fb;
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+      .no-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .no-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Cards */
+      .info-card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #dde8f2;
         overflow: hidden;
       }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        bottom: -80px;
-        left: 10%;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .hero-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 2;
-      }
-
-      .hero-tag {
-        display: inline-block;
-        background: var(--accent);
-        font-size: 11px;
-        font-weight: 700;
-        padding: 5px 14px;
-        border-radius: 4px;
-        margin-bottom: 18px;
-      }
-
-      .hero-title-row {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .hero-logo {
-        width: 150px;
-        filter: brightness(0) invert(1);
-      }
-
-      .hero-title-row h1 {
-        font-size: clamp(24px, 4vw, 48px);
-        font-weight: 800;
-      }
-
-      .hero-meta {
-        display: flex;
-        gap: 24px;
-        margin-top: 24px;
-        flex-wrap: wrap;
-      }
-
-      .hero-meta-item {
-        display: flex;
-        gap: 8px;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.85);
-      }
-
-      .wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 24px 60px;
-      }
-
-      .section-label {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin: 48px 0 20px;
-      }
-
-      .section-label h2 {
-        font-size: 22px;
-        color: var(--brand);
-      }
-
-      .section-label::after {
-        content: "";
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(to right, var(--brand-light), transparent);
-      }
-
-      .course-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 18px;
-      }
-
+      /* NCI Navy left-border on course cards */
       .course-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        border-left: 5px solid var(--brand);
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-        transition: 0.2s;
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #dde8f2;
+        border-left: 5px solid #0069b4;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
         display: flex;
         flex-direction: column;
+        gap: 1rem;
       }
-
       .course-card:hover {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 105, 180, 0.13);
       }
 
-      .course-title {
-        font-size: 15px;
-        font-weight: 600;
-        margin-bottom: 12px;
-      }
-
-      .detail {
-        font-size: 13px;
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
-
-      .btn-group {
-        display: flex;
-        gap: 8px;
-        margin-top: auto;
-        padding-top: 14px;
-      }
-
-      .btn {
-        flex: 1;
-        padding: 9px;
+      /* Rank chip */
+      .rank-chip {
+        border-radius: 12px;
+        border: 1px solid #dde8f2;
+        background: #fff;
         text-align: center;
+        padding: 14px 8px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .rank-chip:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 105, 180, 0.14);
+      }
+
+      /* Indicator bar */
+      .indicator-bar {
+        width: 0.25rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+        flex-shrink: 0;
+      }
+
+      /* Admission req card – NCI blue tint bg */
+      .admission-req-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.875rem;
+        background: #e8f2fa;
+        border-radius: 0.75rem;
+      }
+      /* Step number – NCI blue accent */
+      .admission-step-number {
+        width: 1.75rem;
+        height: 1.75rem;
+        background: #0069b4;
+        color: #fff;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 800;
+        font-size: 0.8rem;
+      }
+
+      /* Callout banner – NCI Navy */
+      .callout-banner {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        background: #022b55;
+        padding: 1.5rem;
+      }
+      .callout-banner-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0.06;
+        background-image: url("https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?w=1200&q=60");
+        background-size: cover;
+        background-position: center;
+      }
+      /* Blue top-border accent stripe on callout */
+      .callout-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #0069b4;
+      }
+
+      /* Modal */
+      .courses-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background-color: rgba(1, 18, 38, 0.65);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .courses-modal.open {
+        display: flex;
+      }
+      .courses-modal-content {
+        background: #f0f4f8;
+        width: 100%;
+        max-width: 54rem;
+        max-height: 90vh;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(2, 43, 85, 0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        animation: fadeUp 0.3s ease;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        animation: fadeUp 0.35s ease both;
+      }
+
+      /* Filter buttons – active = NCI blue */
+      .filter-btn {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
         font-size: 12px;
-        border-radius: 7px;
-        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1.5px solid #c4d5e8;
+        background: #fff;
+        color: #4a5568;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #0069b4;
+        color: #fff;
+        border-color: #0069b4;
       }
 
-      .btn-primary {
-        background: var(--brand);
-        color: white;
+      /* Primary CTA – NCI Blue */
+      .btn-apply {
+        background: #0069b4;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-apply:hover {
+        background: #00508a;
+        transform: translateY(-1px);
+      }
+      /* Ghost hero button */
+      .btn-outline {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.55);
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .btn-outline:hover {
+        background: #fff;
+        color: #022b55;
+      }
+      /* Outline dark – NCI navy border */
+      .btn-outline-dark {
+        background: transparent;
+        border: 2px solid rgba(0, 105, 180, 0.35);
+        color: #022b55;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 8px 16px;
+        text-align: center;
+        display: inline-block;
+        transition: all 0.2s;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .btn-outline-dark:hover {
+        background: #022b55;
+        color: #fff;
+        border-color: #022b55;
+      }
+      /* Small apply button */
+      .btn-apply-sm {
+        background: #0069b4;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 8px 16px;
+        text-align: center;
+        display: inline-block;
+        transition: background 0.2s;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .btn-apply-sm:hover {
+        background: #00508a;
       }
 
-      .btn-secondary {
-        background: #eef1f8;
-        color: var(--brand);
+      /* Info table */
+      .info-table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      .info-table tr:nth-child(odd) {
+        background: #f5f9fd;
+      }
+      .info-table td {
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #e8f0f8;
       }
 
-      .pg-badge {
-        background: var(--accent);
-        color: white;
-        text-transform: uppercase;
-        font-size: 10px;
-        padding: 2px 8px;
+      /* Contact sidebar – NCI navy gradient */
+      .sidebar-cta-box {
+        border-radius: 1rem;
+        padding: 1.25rem;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(140deg, #022b55 0%, #004284 100%);
+      }
+
+      /* Scholarship badge helper */
+      .schol-badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
         border-radius: 20px;
-        margin-bottom: 10px;
+        display: inline-block;
+      }
+
+      @media (min-width: 768px) {
+        .course-card {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .course-card-actions {
+          width: auto;
+          flex-shrink: 0;
+        }
       }
     </style>
   </head>
-
   <body>
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-tag">Ireland · Dublin</div>
+    <!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+    <section class="relative min-h-[480px] flex items-end overflow-hidden">
+      <div class="hero-img"></div>
+      <div class="hero-overlay"></div>
+      <div class="relative z-10 w-full px-4 pb-7 pt-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end gap-6">
+            <!-- Logo box – NCI navy frosted glass -->
+            <div
+              class="flex-shrink-0 bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 w-28 h-20 flex items-center justify-center"
+            >
+              <img
+                src="https://www.ncirl.ie/Portals/_default/Skins/NCIRL/Images/logo-NCI-negative.png"
+                alt="NCI Logo"
+                class="w-24 object-contain brightness-0 invert"
+              />
+            </div>
 
-        <div class="hero-title-row">
-          <img
-            class="hero-logo"
-            src="https://www.ncirl.ie/Portals/_default/Skins/NCIRL/Images/logo-NCI-negative.png"
-          />
-          <h1>National College of Ireland</h1>
-        </div>
+            <!-- Text block -->
+            <div class="flex-1">
+              <h1
+                class="text-3xl md:text-5xl font-black text-white leading-tight mb-3"
+              >
+                National College<br />of Ireland
+              </h1>
+              <p class="text-white/65 text-base mb-4">
+                <i class="fa-solid fa-location-dot mr-1.5"></i>
+                Mayor Street Lower, IFSC, Dublin 1, Ireland &nbsp;·&nbsp;
+                <a
+                  href="https://www.ncirl.ie/"
+                  target="_blank"
+                  class="hover:text-accent-l hover:underline transition-colors"
+                  >www.ncirl.ie</a
+                >
+              </p>
 
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-calendar-days"></i> Intake: Rolling
-          </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-file-invoice"></i> Application Fee: €0
-          </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-graduation-cap"></i> Postgraduate Only
-          </div>
-          <div class="hero-meta-item">
-            <i class="fa-solid fa-globe"></i>
-            <a href="https://www.ncirl.ie/" target="_blank">www.ncirl.ie</a>
+              <!-- Badges – NCI palette only -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full bg-[#169b62] text-white"
+                  >Ireland</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full bg-white/20 text-white"
+                  >Dublin</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full bg-accent text-white"
+                  >Private College</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-full bg-brand-m text-white"
+                  >Est. 1951</span
+                >
+              </div>
+
+              <!-- Stats strip -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                <div class="stat-strip">
+                  <div
+                    class="text-white/55 uppercase tracking-wider font-semibold text-[10px] mb-1"
+                  >
+                    Intakes
+                  </div>
+                  <div class="text-white font-extrabold text-[15px]">
+                    Rolling
+                  </div>
+                </div>
+                <div class="stat-strip">
+                  <div
+                    class="text-white/55 uppercase tracking-wider font-semibold text-[10px] mb-1"
+                  >
+                    App Fee
+                  </div>
+                  <div class="text-white font-extrabold text-[15px]">€0</div>
+                </div>
+                <div class="stat-strip">
+                  <div
+                    class="text-white/55 uppercase tracking-wider font-semibold text-[10px] mb-1"
+                  >
+                    Tuition
+                  </div>
+                  <div class="text-white font-extrabold text-[15px]">
+                    €13K–€17K
+                  </div>
+                </div>
+                <div class="stat-strip">
+                  <div
+                    class="text-white/55 uppercase tracking-wider font-semibold text-[10px] mb-1"
+                  >
+                    Level
+                  </div>
+                  <div class="text-white font-extrabold text-[15px]">
+                    Postgrad
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="https://www.ncirl.ie/how-to-apply"
+                  target="_blank"
+                  class="btn-apply text-[15px]"
+                  >Apply Now</a
+                >
+                <button
+                  id="browseCoursesHeroBtn"
+                  class="btn-outline text-[15px]"
+                >
+                  <i class="fa-solid fa-graduation-cap mr-2"></i>Browse Courses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+     STICKY TAB NAV
+════════════════════════════════════════════ -->
+    <div class="tab-nav">
+      <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scroll">
+        <button class="tab-btn active" data-tab="overview">
+          <i class="fa-solid fa-house mr-1.5"></i>Overview
+        </button>
+        <button class="tab-btn" data-tab="rankings">
+          <i class="fa-solid fa-ranking-star mr-1.5"></i>Rankings
+        </button>
+        <button class="tab-btn" data-tab="admission">
+          <i class="fa-solid fa-file-circle-check mr-1.5"></i>Admission
+        </button>
+        <button class="tab-btn" data-tab="scholarships">
+          <i class="fa-solid fa-award mr-1.5"></i>Scholarships
+        </button>
+        <button class="tab-btn" data-tab="contact">
+          <i class="fa-solid fa-headset mr-1.5"></i>Contact Us
+        </button>
+        <button class="tab-btn" data-tab="info">
+          <i class="fa-solid fa-table mr-1.5"></i>Key Info
+        </button>
+      </div>
     </div>
 
-    <div class="wrapper" id="app"></div>
+    <!-- ═══════════════════════════════════════════
+     TAB CONTENT
+════════════════════════════════════════════ -->
+    <div class="max-w-6xl mx-auto px-4 py-6 space-y-5">
+      <!-- ── OVERVIEW ── -->
+      <div id="tab-overview" class="tab-pane active fade-up">
+        <!-- About + image -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-5">
+          <div class="info-card p-5 md:col-span-3">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="indicator-bar" style="background: #022b55"></div>
+              <h2 class="font-extrabold text-xl text-brand font-poppins">
+                About NCI
+              </h2>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed mb-3">
+              National College of Ireland (NCI) is a dynamic, student-centred
+              institution located in the heart of Dublin's International
+              Financial Services Centre (IFSC). Founded in 1951, NCI has grown
+              into one of Ireland's most forward-thinking colleges, delivering
+              career-focused postgraduate programmes in business, finance, and
+              technology.
+            </p>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              NCI's location in Ireland's financial district gives students
+              unrivalled access to multinational employers including Google,
+              Meta, LinkedIn, and Citibank. With a €0 application fee, rolling
+              intakes, and a compact city-centre campus, NCI is ideal for
+              ambitious international professionals looking to fast-track their
+              careers in Europe.
+            </p>
+            <!-- Stats row – NCI navy values -->
+            <div class="grid grid-cols-3 mt-4 pt-4 border-t border-slate-100">
+              <div class="text-center">
+                <div class="text-xl font-black text-brand">5,000+</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">Students</div>
+              </div>
+              <div class="text-center border-x border-slate-200">
+                <div class="text-xl font-black text-accent">70+</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">
+                  Nationalities
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-black text-brand">€0</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">App Fee</div>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-2 flex flex-col gap-4">
+            <img
+              src="https://www.ncirl.ie/Portals/0/Outside%20College_Night_2.jpg"
+              alt="NCI Campus"
+              class="w-full h-52 object-cover rounded-[14px]"
+            />
+            <div class="info-card p-4">
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center gap-3 text-[13px]">
+                  <i
+                    class="fa-solid fa-location-dot text-accent w-5 text-center"
+                  ></i
+                  ><span class="text-slate-600">IFSC, Mayor St, Dublin 1</span>
+                </div>
+                <div class="flex items-center gap-3 text-[13px]">
+                  <i
+                    class="fa-solid fa-calendar text-accent w-5 text-center"
+                  ></i
+                  ><span class="text-slate-600"
+                    >Intakes: Rolling / September</span
+                  >
+                </div>
+                <div class="flex items-center gap-3 text-[13px]">
+                  <i class="fa-solid fa-globe text-accent w-5 text-center"></i
+                  ><a
+                    href="https://www.ncirl.ie/"
+                    target="_blank"
+                    class="text-accent underline"
+                    >www.ncirl.ie</a
+                  >
+                </div>
+                <div class="flex items-center gap-3 text-[13px]">
+                  <i class="fa-solid fa-phone text-accent w-5 text-center"></i
+                  ><a href="tel:+35314498500" class="text-slate-600"
+                    >+353 1 449 8500</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campus gallery -->
+        <div class="info-card p-5 mb-5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="indicator-bar" style="background: #0069b4"></div>
+            <h2 class="font-extrabold text-xl text-brand font-poppins">
+              Gallery: National College of Ireland
+            </h2>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <img
+              src="https://www.ncirl.ie/Portals/0/Images/650x366-Cards-Teasers-Inners/img-student-standing-outside-nci-entrance-holding-documents.jpg"
+              alt="Library"
+              class="w-full h-28 sm:h-36 object-cover rounded-lg"
+            />
+            <img
+              src="https://www.ncirl.ie/Portals/0/Images/450x253-Cards-Teasers/Event-in-the-atrium-at-NCI.jpg"
+              alt="Building"
+              class="w-full h-28 sm:h-36 object-cover rounded-lg"
+            />
+            <img
+              src="https://www.ncirl.ie/Portals/0/Images/450x253-Cards-Teasers/img-female-graduate-standing-beside-stairs.jpg"
+              alt="Students"
+              class="w-full h-28 sm:h-36 object-cover rounded-lg"
+            />
+            <img
+              src="https://www.ncirl.ie/Portals/0/Images/650x366-Cards-Teasers-Inners/img-student-fees-and-grants-2.jpg"
+              alt="Classroom"
+              class="w-full h-28 sm:h-36 object-cover rounded-lg"
+            />
+          </div>
+        </div>
+
+        <!-- Two strength cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <!-- Programme strengths – NCI blue checks -->
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-flask text-accent text-sm"></i>
+              </div>
+              <h3 class="font-extrabold text-[18px] text-brand">
+                Programme Strengths
+              </h3>
+            </div>
+            <ul class="flex flex-col gap-2.5">
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-accent text-sm"></i>Data
+                Analytics &amp; AI
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-accent text-sm"></i
+                >Cloud &amp; Cybersecurity
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-accent text-sm"></i
+                >Fintech &amp; Finance
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-accent text-sm"></i
+                >Human Resource Management
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-accent text-sm"></i
+                >Marketing &amp; Entrepreneurship
+              </li>
+            </ul>
+          </div>
+          <!-- Why NCI – NCI navy checks -->
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-star text-brand text-sm"></i>
+              </div>
+              <h3 class="font-extrabold text-[18px] text-brand">
+                Why Choose NCI
+              </h3>
+            </div>
+            <ul class="flex flex-col gap-2.5">
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-brand text-sm"></i>IFSC
+                Location – Tech &amp; Finance Hub
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-brand text-sm"></i>Zero
+                Application Fee
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-brand text-sm"></i>QQI /
+                NFQ Accredited Degrees
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-brand text-sm"></i
+                >2-Year Post-Study Work Visa
+              </li>
+              <li class="flex items-center gap-3 text-sm text-slate-600">
+                <i class="fa-solid fa-check-circle text-brand text-sm"></i
+                >Flexible Online &amp; On-Campus Options
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stats callout – NCI navy banner -->
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div class="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div class="text-center text-white">
+              <div class="text-2xl font-black">90%</div>
+              <div class="text-[12px] text-white/70 mt-0.5">
+                Graduate Employment
+              </div>
+            </div>
+            <div class="text-center text-white">
+              <div class="text-2xl font-black">100%</div>
+              <div class="text-[12px] text-white/70 mt-0.5">English Medium</div>
+            </div>
+            <div class="text-center text-white">
+              <div class="text-2xl font-black">2yr</div>
+              <div class="text-[12px] text-white/70 mt-0.5">
+                Post-Study Work Visa
+              </div>
+            </div>
+            <div class="text-center text-white">
+              <div class="text-2xl font-black">#1</div>
+              <div class="text-[12px] text-white/70 mt-0.5">
+                IFSC Tech Hub Location
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── RANKINGS ── -->
+      <div id="tab-rankings" class="tab-pane fade-up">
+        <!-- Rank chips – navy + blue only -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+          <div class="rank-chip">
+            <div class="text-2xl font-black text-brand mb-1">Top 5%</div>
+            <div
+              class="text-[10px] uppercase font-semibold tracking-wider text-slate-500"
+            >
+              National Rank
+            </div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-2xl font-black text-brand mb-1">QQI NFQ</div>
+            <div
+              class="text-[10px] uppercase font-semibold tracking-wider text-slate-500"
+            >
+              Accreditation
+            </div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-2xl font-black text-accent mb-1">#1</div>
+            <div
+              class="text-[10px] uppercase font-semibold tracking-wider text-slate-500"
+            >
+              IFSC Location
+            </div>
+          </div>
+          <div class="rank-chip">
+            <div class="text-2xl font-black text-accent mb-1">70+</div>
+            <div
+              class="text-[10px] uppercase font-semibold tracking-wider text-slate-500"
+            >
+              Nationalities
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="indicator-bar" style="background: #022b55"></div>
+              <h3 class="font-extrabold text-[18px] text-brand">
+                QQI Accreditation
+              </h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Quality and Qualifications Ireland (QQI) is the state agency
+              responsible for external quality assurance of further and higher
+              education in Ireland. All NCI programmes are accredited at NFQ
+              Level 9 (Masters), ensuring global recognition and transferability
+              of qualifications.
+            </p>
+          </div>
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="indicator-bar" style="background: #0069b4"></div>
+              <h3 class="font-extrabold text-[18px] text-brand">
+                Industry Recognition
+              </h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              NCI's IFSC location puts students at the heart of Europe's
+              financial and tech capital. Graduates gain direct access to
+              multinationals including Google, Meta, Stripe, LinkedIn, and
+              Citibank — many of which have graduate programmes exclusively
+              partnered with NCI.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADMISSION ── -->
+      <div id="tab-admission" class="tab-pane fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="indicator-bar" style="background: #022b55"></div>
+              <h2 class="font-extrabold text-xl text-brand font-poppins">
+                Entry Requirements
+              </h2>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">IELTS</div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Overall 6.0 minimum (programme dependent). No band below
+                    5.5.
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-language text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">TOEFL iBT</div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Minimum score of 79 or above (programme dependent).
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-graduation-cap text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Academic Qualification
+                  </div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Relevant bachelor's degree — minimum 2nd class honours or
+                    equivalent international qualification.
+                  </div>
+                </div>
+              </div>
+              <div class="admission-req-card">
+                <i class="fa-solid fa-file-lines text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Documents Required
+                  </div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Academic transcripts, Passport copy, Personal Statement, 2
+                    References, CV, English proficiency certificate.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="indicator-bar" style="background: #0069b4"></div>
+              <h2 class="font-extrabold text-xl text-brand font-poppins">
+                Application Process
+              </h2>
+            </div>
+            <ol class="flex flex-col gap-4">
+              <li class="flex gap-3">
+                <div class="admission-step-number">1</div>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Choose Your Programme
+                  </div>
+                  <div class="text-[13px] text-slate-500">
+                    Browse NCI postgraduate programmes and verify entry
+                    requirements.
+                  </div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <div class="admission-step-number">2</div>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Submit Online Application
+                  </div>
+                  <div class="text-[13px] text-slate-500">
+                    Apply via NCI's portal — no application fee required.
+                  </div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <div class="admission-step-number">3</div>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Receive Offer Letter
+                  </div>
+                  <div class="text-[13px] text-slate-500">
+                    Accept conditional/unconditional offer and pay the deposit
+                    to secure your place.
+                  </div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <div class="admission-step-number">4</div>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Apply for Student Visa (D-Visa)
+                  </div>
+                  <div class="text-[13px] text-slate-500">
+                    Submit Irish student visa with offer letter, financial
+                    proof, and health insurance.
+                  </div>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <div class="admission-step-number">5</div>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Travel &amp; Enrol
+                  </div>
+                  <div class="text-[13px] text-slate-500">
+                    Complete your pre-departure checklist and begin your
+                    academic journey in Dublin!
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SCHOLARSHIPS ── -->
+      <div id="tab-scholarships" class="tab-pane fade-up">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <!-- Each scholarship icon box now uses NCI blue tint -->
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #d0e8f7"
+              >
+                <i class="fa-solid fa-medal text-accent"></i>
+              </div>
+              <div class="font-extrabold text-sm text-slate-800">
+                NCI Merit Scholarship
+              </div>
+            </div>
+            <p class="text-[13px] text-slate-500 leading-relaxed mb-3">
+              Merit-based award for outstanding international postgraduate
+              applicants with exceptional academic records and leadership
+              potential.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="schol-badge bg-green-50 text-green-700"
+                >Up to €3,000</span
+              >
+              <span class="schol-badge text-accent" style="background: #e8f2fa"
+                >Postgraduate</span
+              >
+            </div>
+          </div>
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #d0e8f7"
+              >
+                <i class="fa-solid fa-earth-europe text-accent"></i>
+              </div>
+              <div class="font-extrabold text-sm text-slate-800">
+                Government of Ireland Scholarship
+              </div>
+            </div>
+            <p class="text-[13px] text-slate-500 leading-relaxed mb-3">
+              Competitive Irish government scholarship for top international
+              students — covers full tuition and living stipend for one academic
+              year.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="schol-badge bg-green-50 text-green-700"
+                >Full Tuition + Stipend</span
+              >
+              <span class="schol-badge text-accent" style="background: #e8f2fa"
+                >Competitive</span
+              >
+            </div>
+          </div>
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-flask text-brand"></i>
+              </div>
+              <div class="font-extrabold text-sm text-slate-800">
+                Research Scholarship
+              </div>
+            </div>
+            <p class="text-[13px] text-slate-500 leading-relaxed mb-3">
+              Funding for students pursuing research programmes. Includes fee
+              waivers and monthly stipend for qualified candidates.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="schol-badge bg-green-50 text-green-700"
+                >Stipend + Fees</span
+              >
+              <span class="schol-badge text-brand" style="background: #e8f2fa"
+                >Research</span
+              >
+            </div>
+          </div>
+          <div class="info-card p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-handshake text-brand"></i>
+              </div>
+              <div class="font-extrabold text-sm text-slate-800">
+                Departmental Bursaries
+              </div>
+            </div>
+            <p class="text-[13px] text-slate-500 leading-relaxed mb-3">
+              Individual departments offer partial fee waivers and bursaries for
+              high-achieving international students in specific disciplines.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="schol-badge bg-green-50 text-green-700"
+                >Partial Fee Waiver</span
+              >
+              <span class="schol-badge text-brand" style="background: #e8f2fa"
+                >Varies by Dept</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Callout – NCI navy + blue CTA button -->
+        <div class="callout-banner">
+          <div class="callout-banner-bg"></div>
+          <div
+            class="relative z-10 flex flex-col md:flex-row items-center gap-5"
+          >
+            <div class="flex-1 text-white md:text-left text-center">
+              <div class="font-extrabold text-xl mb-1">
+                Why Study in Ireland?
+              </div>
+              <p class="text-sm mb-1">
+                Your Gateway to Europe's Silicon Valley
+              </p>
+              <div class="text-[13px] text-white/75">
+                English-speaking EU hub · Top 10 globally for education ·
+                World-class tech pipelines
+              </div>
+            </div>
+            <a
+              href="https://studyinireland.info/why-ireland/"
+              target="_blank"
+              class="bg-accent text-white font-bold font-poppins text-sm px-6 py-2.5 rounded-xl hover:bg-accent-d transition-colors whitespace-nowrap shadow"
+            >
+              Learn More →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONTACT ── -->
+      <div id="tab-contact" class="tab-pane fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="info-card p-5 md:col-span-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="indicator-bar" style="background: #022b55"></div>
+              <h2 class="font-extrabold text-xl text-brand font-poppins">
+                Our Office
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div
+                class="flex items-start gap-3 p-3 rounded-xl"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-location-dot text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Office Address
+                  </div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Kumaripati - Mahalaximisthan Rd, Lalitpur 44700
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-start gap-3 p-3 rounded-xl"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-envelope text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">Email Us</div>
+                  <a
+                    href="mailto:admissions@studyinireland.info"
+                    class="text-[13px] text-accent block mt-0.5 hover:underline"
+                    >admissions@studyinireland.info</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-green-50">
+                <i class="fa-brands fa-whatsapp text-green-600 mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    WhatsApp / Call
+                  </div>
+                  <a
+                    href="https://wa.me/9851351123"
+                    target="_blank"
+                    class="text-[13px] text-green-700 font-semibold block mt-0.5 hover:underline"
+                    >+977 9851351123</a
+                  >
+                </div>
+              </div>
+              <div
+                class="flex items-start gap-3 p-3 rounded-xl"
+                style="background: #e8f2fa"
+              >
+                <i class="fa-solid fa-clock text-accent mt-0.5"></i>
+                <div>
+                  <div class="font-bold text-sm text-slate-800">
+                    Working Hours
+                  </div>
+                  <div class="text-[13px] text-slate-500 mt-0.5">
+                    Sun – Fri: 9:30 AM – 5:30 PM
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- CTA sidebar – navy gradient -->
+          <div class="sidebar-cta-box">
+            <div>
+              <div class="font-extrabold text-[18px] mb-2">
+                Need Personal Guidance?
+              </div>
+              <p class="text-[13px] text-white/75 leading-relaxed mb-5">
+                Book a 1-on-1 free counselling session with our European
+                education experts for profile evaluation, course shortlisting,
+                and application support.
+              </p>
+            </div>
+            <a
+              href="https://www.ncirl.ie/how-to-apply"
+              target="_blank"
+              class="block w-full bg-accent text-white font-poppins font-bold text-sm text-center py-2.5 rounded-xl hover:bg-accent-d transition-colors shadow"
+            >
+              Book Free Counselling
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── KEY INFO ── -->
+      <div id="tab-info" class="tab-pane fade-up">
+        <div class="info-card overflow-x-auto">
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <td class="font-bold text-brand w-[40%]">University Name</td>
+                <td class="text-slate-700">
+                  National College of Ireland (NCI)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Location</td>
+                <td class="text-slate-700">
+                  Mayor Street Lower, IFSC, Dublin 1, Ireland
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Type</td>
+                <td class="text-slate-700">Private Independent College</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Established</td>
+                <td class="text-slate-700">1951</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Total Students</td>
+                <td class="text-slate-700">5,000+</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Accreditation</td>
+                <td class="text-slate-700">QQI / NFQ Level 9 (Masters)</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Main Intakes</td>
+                <td class="text-slate-700">Rolling (September primary)</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Average Tuition Fee</td>
+                <td class="text-slate-700">€13,650 – €17,000 per year</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Application Fee</td>
+                <td class="text-slate-700">€0 (Free)</td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Post-Study Work Visa</td>
+                <td class="text-slate-700">
+                  2 Years (Third Level Graduate Scheme)
+                </td>
+              </tr>
+              <tr>
+                <td class="font-bold text-brand">Official Website</td>
+                <td>
+                  <a
+                    href="https://www.ncirl.ie/"
+                    target="_blank"
+                    class="text-accent underline"
+                    >www.ncirl.ie</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /tab content -->
+
+    <!-- ═══════════════════════════════════════════
+     COURSES MODAL
+════════════════════════════════════════════ -->
+    <div id="coursesModal" class="courses-modal">
+      <div class="courses-modal-content">
+        <!-- Modal header – NCI navy top border via CSS -->
+        <div
+          class="bg-white px-5 py-4 border-b border-slate-200 flex justify-between items-center"
+          style="border-top: 3px solid #0069b4"
+        >
+          <h2 class="font-extrabold text-xl text-brand font-poppins">
+            Programmes
+          </h2>
+          <button
+            id="closeModalBtn"
+            class="w-9 h-9 rounded-full bg-slate-100 hover:bg-brand-l flex items-center justify-center text-slate-600 hover:text-brand transition-colors"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <!-- Search + filters -->
+        <div
+          class="bg-white px-5 py-3 border-b-2 border-slate-200 flex flex-col md:flex-row gap-3"
+        >
+          <div class="relative flex-1">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"
+            ></i>
+            <input
+              type="text"
+              id="courseSearch"
+              placeholder="Search programmes (e.g. MBA, Data Analytics, Fintech…)"
+              class="w-full pl-10 pr-4 py-2.5 text-[14px] border-2 border-slate-200 rounded-xl outline-none bg-slate-50 font-figtree transition-colors"
+              style="font-family: &quot;Figtree&quot;, sans-serif"
+              onfocus="this.style.borderColor = '#0069b4'"
+              onblur="this.style.borderColor = '#e2e8f0'"
+            />
+          </div>
+          <div
+            class="flex gap-2 overflow-x-auto no-scroll pb-1"
+            id="filterBtns"
+          >
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Business">Business</button>
+            <button class="filter-btn" data-filter="Computing">
+              Computing
+            </button>
+          </div>
+        </div>
+        <!-- Course list -->
+        <div class="p-5 overflow-y-auto flex-1" id="courseContainer"></div>
+      </div>
+    </div>
 
     <script>
-      const ugSections = [
+      const courses = [
         {
-          title: "Postgraduate · Business & Management",
-          pg: true,
-          courses: [
-            ["MA in Human Resource Management", "€17,000", "1 Year", "Dublin"],
-            ["MBA", "€13,650", "2 Years", "Dublin"],
-            ["MSc in Accounting", "€17,000", "1 Year", "Dublin"],
-            ["MSc in Entrepreneurship", "€17,000", "1 Year", "Dublin"],
-            ["MSc in Finance", "€17,000", "1 Year", "Dublin"],
-            ["MSc in International Business", "€17,000", "1 Year", "Dublin"],
-            ["MSc in Management", "€17,000", "1 Year", "Dublin"],
-            ["MSc Marketing", "€14,500", "1 Year", "Dublin"],
-          ],
+          title: "MA in Human Resource Management",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
         },
         {
-          title: "Postgraduate · Computing & Data",
-          pg: true,
-          courses: [
-            ["MSc Artificial Intelligence", "€17,000", "1 Year", "Dublin"],
-            ["MSc AI for Business", "€17,000", "1 Year", "Dublin"],
-            ["MSc Data Analytics", "€17,000", "1 Year", "Dublin"],
-            ["MSc Cloud Computing", "€17,000", "1 Year", "Dublin"],
-            ["MSc Cybersecurity", "€17,000", "1 Year", "Dublin"],
-            ["MSc Business Analytics", "€17,000", "1 Year", "Dublin"],
-            ["MSc Open Data Practice", "€17,000", "1 Year", "Dublin"],
-            ["MSc Fintech", "€17,000", "1 Year", "Dublin"],
-          ],
+          title: "MBA",
+          faculty: "Business",
+          duration: "2 Years",
+          fee: "€13,650",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc in Accounting",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc in Entrepreneurship",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc in Finance",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc in International Business",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc in Management",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Marketing",
+          faculty: "Business",
+          duration: "1 Year",
+          fee: "€14,500",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Artificial Intelligence",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc AI for Business",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Data Analytics",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Cloud Computing",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Cybersecurity",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Business Analytics",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Open Data Practice",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
+        },
+        {
+          title: "MSc Fintech",
+          faculty: "Computing",
+          duration: "1 Year",
+          fee: "€17,000",
+          intake: "Rolling",
+          ielts: "6.0",
+          link: "https://www.ncirl.ie/",
         },
       ];
 
-      const app = document.getElementById("app");
+      let activeFilter = "all",
+        searchVal = "";
 
-      ugSections.forEach((sec) => {
-        const lbl = document.createElement("div");
-        lbl.className = "section-label";
-        lbl.innerHTML = `<h2>${sec.title}</h2>`;
-        app.appendChild(lbl);
-
-        const grid = document.createElement("div");
-        grid.className = "course-grid";
-
-        sec.courses.forEach((c) => {
+      function renderCourses() {
+        const container = document.getElementById("courseContainer");
+        container.innerHTML = "";
+        const filtered = courses.filter(
+          (c) =>
+            (activeFilter === "all" || c.faculty === activeFilter) &&
+            c.title.toLowerCase().includes(searchVal.toLowerCase()),
+        );
+        if (!filtered.length) {
+          container.innerHTML = `<div class="info-card text-center p-10"><i class="fa-solid fa-folder-open text-3xl mb-2 block text-slate-300"></i><p class="text-sm text-slate-400">No courses match your search.</p></div>`;
+          return;
+        }
+        filtered.forEach((c) => {
           const card = document.createElement("div");
           card.className = "course-card";
-
+          /* faculty tag: Business = navy, Computing = blue */
+          const tagBg = c.faculty === "Business" ? "#e8f2fa" : "#d0e8f7";
+          const tagColor = c.faculty === "Business" ? "#022b55" : "#0069b4";
           card.innerHTML = `
-            <span class="pg-badge">Postgraduate</span>
-            <div class="course-title">${c[0]}</div>
-            <div class="detail"><i class="fa-solid fa-euro-sign"></i> ${c[1]}</div>
-            <div class="detail"><i class="fa-solid fa-clock"></i> ${c[2]}</div>
-            <div class="detail"><i class="fa-solid fa-location-dot"></i> ${c[3]}</div>
-            <div class="detail"><i class="fa-solid fa-language"></i> IELTS 6.0+</div>
-            <div class="btn-group">
-              <a href="https://www.ncirl.ie/" target="_blank" class="btn btn-secondary">Learn More</a>
-              <a href="#" class="btn btn-primary">Apply Now</a>
-            </div>
-          `;
-          grid.appendChild(card);
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded" style="background:${tagBg};color:${tagColor}">${c.faculty}</span>
+            <span class="text-[11px] text-slate-500 px-2 py-0.5 rounded bg-slate-100"><i class="fa-solid fa-clock mr-1 text-[10px]"></i>${c.duration}</span>
+            <span class="text-[11px] text-slate-500 px-2 py-0.5 rounded bg-slate-100"><i class="fa-solid fa-calendar mr-1 text-[10px]"></i>Intake: ${c.intake}</span>
+          </div>
+          <h3 class="font-bold text-[15px] text-slate-800 leading-snug">
+            <a href="${c.link}" target="_blank" style="transition:color .2s" onmouseover="this.style.color='#0069b4'" onmouseout="this.style.color=''">${c.title}</a>
+          </h3>
+          <div class="flex flex-wrap gap-4 mt-2 text-[13px] text-slate-500">
+            <span><strong class="text-slate-700">Tuition Fee:</strong> <span style="color:#022b55;font-weight:600">${c.fee}</span></span>
+            <span><strong class="text-slate-700">IELTS:</strong> <span style="color:#0069b4;font-weight:600">${c.ielts}+</span></span>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-2 md:mt-0 course-card-actions">
+          <a href="${c.link}" target="_blank" class="btn-outline-dark">View Details</a>
+          <a href="https://www.ncirl.ie/how-to-apply" target="_blank" class="btn-apply-sm">Apply</a>
+        </div>`;
+          container.appendChild(card);
         });
+      }
 
-        app.appendChild(grid);
+      const modal = document.getElementById("coursesModal");
+      const openModal = () => {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderCourses();
+      };
+      const closeModal = () => {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      };
+
+      document
+        .getElementById("browseCoursesHeroBtn")
+        .addEventListener("click", openModal);
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
       });
+
+      document.querySelectorAll("#filterBtns button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll("#filterBtns button")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.dataset.filter;
+          renderCourses();
+        });
+      });
+
+      document.getElementById("courseSearch").addEventListener("input", (e) => {
+        searchVal = e.target.value;
+        renderCourses();
+      });
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".tab-pane")
+            .forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .getElementById("tab-" + btn.dataset.tab)
+            .classList.add("active");
+        });
+      });
+
+      renderCourses();
     </script>
   </body>
 </html>
