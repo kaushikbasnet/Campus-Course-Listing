@@ -1099,10 +1099,6 @@
         .hero {
           min-height: 440px;
         }
-        .hero-flex-wrapper {
-          flex-direction: row;
-          align-items: flex-end;
-        }
         .hero-text-block h1 {
           font-size: 2.75rem;
         }
@@ -1169,11 +1165,19 @@
       <div class="hero-content">
         <div style="max-width: 72rem" class="mx-auto">
           <div class="hero-flex-wrapper">
-            <div class="logo-box">
-              <img src="https://www.ul.ie/themes/custom/ul/logo.svg" alt="UL" />
-            </div>
             <div class="hero-text-block">
-              <h1>University of Limerick</h1>
+              <h1 style="display: flex; align-items: center; gap: 0.75rem">
+                <span
+                  class="logo-box"
+                  style="display: inline-flex; flex-shrink: 0"
+                >
+                  <img
+                    src="https://www.ul.ie/themes/custom/ul/logo.svg"
+                    alt="UL"
+                  />
+                </span>
+                University of Limerick
+              </h1>
               <p class="hero-meta-p">
                 <i
                   class="fa-solid fa-location-dot"
