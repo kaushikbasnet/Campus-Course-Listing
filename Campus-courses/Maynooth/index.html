@@ -1110,10 +1110,6 @@
 
       /* ── DESKTOP BREAKPOINTS ────────────────────── */
       @media (min-width: 640px) {
-        .hero-flex-wrapper {
-          flex-direction: row;
-          align-items: flex-end;
-        }
         .hero-text-block h1 {
           font-size: 2.75rem;
         }
@@ -1194,15 +1190,19 @@
       <div class="hero-content">
         <div class="max-w-6xl mx-auto">
           <div class="hero-flex-wrapper">
-            <div class="logo-box">
-              <img
-                src="https://wp.logos-download.com/wp-content/uploads/2021/01/Maynooth_University_Logo.png?dl"
-                alt="Maynooth University"
-              />
-            </div>
-
             <div class="hero-text-block">
-              <h1>Maynooth<br />University</h1>
+              <h1 style="display: flex; align-items: center; gap: 0.75rem">
+                <span
+                  class="logo-box"
+                  style="display: inline-flex; flex-shrink: 0"
+                >
+                  <img
+                    src="https://wp.logos-download.com/wp-content/uploads/2021/01/Maynooth_University_Logo.png?dl"
+                    alt="Maynooth University"
+                  />
+                </span>
+                Maynooth University
+              </h1>
               <p class="hero-meta-p">
                 <i
                   class="fa-solid fa-location-dot"
