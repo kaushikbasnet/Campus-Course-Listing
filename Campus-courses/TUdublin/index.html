@@ -114,6 +114,7 @@
       .hero-flex-wrapper {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 1.5rem;
       }
       .logo-box {
@@ -1151,10 +1152,6 @@
         .hero {
           min-height: 440px;
         }
-        .hero-flex-wrapper {
-          flex-direction: row;
-          align-items: flex-end;
-        }
         .hero-text-block h1 {
           font-size: 2.75rem;
         }
@@ -1168,7 +1165,8 @@
           grid-column: span 2 / span 2;
         }
         .about-img {
-          height: 250px;
+          height: 460px;
+          align-self: left;
         }
         .course-card {
           flex-direction: row;
@@ -1221,17 +1219,18 @@
       <div class="hero-content">
         <div class="max-w-6xl mx-auto">
           <div class="hero-flex-wrapper">
-            <div class="logo-box">
-              <img
-                src="https://pxl01-tudublinie.terminalfour.net/prod01/tudublin-cdn-pxl/media/website/site-assets/images/tu-dublin-logo.svg"
-                alt="TU Dublin"
-              />
-            </div>
-
             <div class="hero-text-block">
-              <h1>
-                Technological University<br />
-                Dublin
+              <h1 style="display: flex; align-items: center; gap: 0.75rem">
+                <span
+                  class="logo-box"
+                  style="display: inline-flex; flex-shrink: 0"
+                >
+                  <img
+                    src="https://pxl01-tudublinie.terminalfour.net/prod01/tudublin-cdn-pxl/media/website/site-assets/images/tu-dublin-logo.svg"
+                    alt="TU Dublin"
+                  />
+                </span>
+                Technological University Dublin
               </h1>
               <p class="hero-meta-p">
                 <i
@@ -1333,21 +1332,38 @@
               <div class="indicator-bar bg-brand"></div>
               <h2>About TU Dublin</h2>
             </div>
-            <p class="about-paragraph mb-3">
-              Technological University Dublin (TU Dublin) is Ireland's first and
-              largest Technological University, established in 2019 through the
-              merger of three institutions. With campuses across Dublin at
+            <p class="about-paragraph mb-3" style="text-align: justify">
+              Technological University Dublin, known as TU Dublin, has a history
+              that stretches back to 1887, when the City of Dublin Technical
+              Schools were established. In that same year, a Technical College
+              was set up at Kevin Street by Arnold Felix Graves, who was also a
+              poet, songwriter, and novelist. Today, TU Dublin stands as one of
+              the leading public universities in Dublin, Ireland. As Ireland’s
+              first technological university, it is also the second-largest
+              university in Dublin and the largest higher education institution
+              in the country. The university has more than 28,000 students and
+              over 3,000 staff members spread across five campuses located in
               Grangegorman, Blanchardstown, Tallaght, Bolton Street, and Aungier
-              Street, TU Dublin is a powerhouse of applied learning and
-              innovation.
+              Street. TU Dublin was officially formed in 2019 through the
+              merging of three institutes of technology—Institute of Technology
+              Blanchardstown, Dublin Institute of Technology, and Institute of
+              Technology Tallaght—after more than seven years of collaborative
+              work between these institutions.
             </p>
-            <p class="about-paragraph mb-4">
-              Serving over 28,000 students, TU Dublin offers globally recognised
-              programmes across Engineering, Business, Computing, Creative Arts,
-              Sciences, and Health. The university maintains 800+ industry
-              partnerships, has launched 400+ startups, and delivers a
-              practice-based curriculum that bridges academic excellence with
-              real-world experience.
+            <p class="about-paragraph mb-4" style="text-align: justify">
+              The university is increasingly recognized for its research
+              efforts, with over 800 researchers working in areas like
+              sustainability, health technologies, and urban development. The
+              main Grangegorman campus acts as a central hub for academic and
+              research activities, designed to support collaboration within a
+              modern, integrated city setting. TU Dublin maintains a global
+              perspective, welcoming students and staff from all around the
+              world. Strong international connections offer numerous
+              opportunities for exchange programs, collaborative research
+              projects, and employment. With over 7,000 graduates each year, TU
+              Dublin continues to make a positive impact by promoting
+              collaborative learning, innovative research, and active community
+              involvement.
             </p>
             <div class="about-stats-matrix">
               <div class="about-stat-item">
@@ -1367,7 +1383,7 @@
 
           <div class="overview-right-column">
             <img
-              src="https://images.shiksha.com/mediadata/images/1683551885phppaOhzF.jpeg"
+              src="https://scontent.fktm17-1.fna.fbcdn.net/v/t39.30808-6/481258281_631919452923329_7440846909169347283_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=W4yz-jRnG6gQ7kNvwE3wTM1&_nc_oc=AdoFk5Ce8C7QjyClvGvBwlWMKrDFQFw4Liq3YHScg1u6_wFBGruBY0cFJLrxzmYAmnBw8wgvD9Td7JdcWz6sI6gu&_nc_zt=23&_nc_ht=scontent.fktm17-1.fna&_nc_gid=K3IFMtmvaiT8Aex7FEKsCA&_nc_ss=7b2a8&oh=00_Af4XZTBtGaevv3ox5RQrKsnCVHOgqMGKykHXV8f-c8allQ&oe=6A1F4046"
               alt="TU Dublin Campus"
               class="about-img"
             />
