@@ -1192,10 +1192,6 @@
         }
       }
       @media (min-width: 768px) {
-        .hero-flex-wrapper {
-          flex-direction: row;
-          align-items: flex-end;
-        }
         .hero-text-block h1 {
           font-size: 2.75rem;
         }
@@ -1263,14 +1259,19 @@
       <div class="hero-content">
         <div class="max-w-6xl mx-auto">
           <div class="hero-flex-wrapper">
-            <div class="logo-box">
-              <img
-                src="https://www.cct.ie/wp-content/uploads/CCT_Logo_New_Aug_17-289x100.png"
-                alt="CCT College Dublin"
-              />
-            </div>
             <div class="hero-text-block">
-              <h1>CCT College Dublin</h1>
+              <h1 style="display: flex; align-items: center; gap: 0.75rem">
+                <span
+                  class="logo-box"
+                  style="display: inline-flex; flex-shrink: 0"
+                >
+                  <img
+                    src="https://www.cct.ie/wp-content/uploads/CCT_Logo_New_Aug_17-289x100.png"
+                    alt="CCT College Dublin"
+                  />
+                </span>
+                CCT College Dublin
+              </h1>
               <p class="hero-meta-p">
                 <i
                   class="fa-solid fa-location-dot"
@@ -1437,7 +1438,7 @@
         <div class="info-card p-5" style="margin-bottom: 1.25rem">
           <div class="card-header-block">
             <div class="indicator-bar bg-sky"></div>
-            <h2>Gallery: CCT College Dublin</h2>
+            <h2>Campus</h2>
           </div>
           <div class="gallery-grid">
             <img
