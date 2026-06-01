@@ -1101,10 +1101,6 @@
         .hero {
           min-height: 440px;
         }
-        .hero-flex-wrapper {
-          flex-direction: row;
-          align-items: flex-end;
-        }
         .hero-text-block h1 {
           font-size: 2.75rem;
         }
@@ -1171,14 +1167,19 @@
       <div class="hero-content">
         <div class="max-w-6xl mx-auto">
           <div class="hero-flex-wrapper">
-            <div class="logo-box">
-              <img
-                src="https://www.setu.ie/img/logos/setu-logo.svg"
-                alt="SETU"
-              />
-            </div>
             <div class="hero-text-block">
-              <h1>South East<br />Technological University</h1>
+              <h1 style="display: flex; align-items: center; gap: 0.75rem">
+                <span
+                  class="logo-box"
+                  style="display: inline-flex; flex-shrink: 0"
+                >
+                  <img
+                    src="https://www.setu.ie/img/logos/setu-logo.svg"
+                    alt="SETU"
+                  />
+                </span>
+                South East Technological University
+              </h1>
               <p class="hero-meta-p">
                 <i
                   class="fa-solid fa-location-dot"
@@ -1342,7 +1343,7 @@
         <div class="info-card p-5" style="margin-bottom: 1.25rem">
           <div class="card-header-block">
             <div class="indicator-bar bg-sky"></div>
-            <h2>Gallery: South East Technological University</h2>
+            <h2>Campuses</h2>
           </div>
           <div class="gallery-grid">
             <img
